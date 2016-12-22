@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>snowyYU</title>
+  <subtitle>dream passionately</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-12-22T07:55:57.588Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>snowyYU</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sublime 安装小结</title>
+    <link href="http://yoursite.com/2016/12/22/sublime-%E5%AE%89%E8%A3%85%E5%B0%8F%E7%BB%93/"/>
+    <id>http://yoursite.com/2016/12/22/sublime-安装小结/</id>
+    <published>2016-12-22T06:44:17.000Z</published>
+    <updated>2016-12-22T07:55:57.588Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;sublime-3&quot;&gt;&lt;a href=&quot;#sublime-3&quot; class=&quot;headerlink&quot; title=&quot;sublime 3&quot;&gt;&lt;/a&gt;sublime 3&lt;/h1&gt;&lt;p&gt;sublime大家都知道啦，用了近一年了，感情颇深。之前用了sublime2，感觉最
+    
+    </summary>
+    
+    
+      <category term="sublime" scheme="http://yoursite.com/tags/sublime/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>My First Post</title>
+    <link href="http://yoursite.com/2016/12/22/My-First-Post/"/>
+    <id>http://yoursite.com/2016/12/22/My-First-Post/</id>
+    <published>2016-12-22T06:24:47.000Z</published>
+    <updated>2016-12-22T06:38:47.411Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;**试试&lt;/p&gt;
+&lt;p&gt;发一篇试试效果&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="others" scheme="http://yoursite.com/tags/others/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2016/12/22/hello-world/"/>
+    <id>http://yoursite.com/2016/12/22/hello-world/</id>
+    <published>2016-12-22T03:12:21.937Z</published>
+    <updated>2016-12-22T03:12:21.950Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
