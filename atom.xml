@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-22T07:55:57.588Z</updated>
+  <updated>2016-12-22T09:32:37.330Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,13 +20,15 @@
     <link href="http://yoursite.com/2016/12/22/sublime-%E5%AE%89%E8%A3%85%E5%B0%8F%E7%BB%93/"/>
     <id>http://yoursite.com/2016/12/22/sublime-安装小结/</id>
     <published>2016-12-22T06:44:17.000Z</published>
-    <updated>2016-12-22T07:55:57.588Z</updated>
+    <updated>2016-12-22T09:32:37.330Z</updated>
     
     <summary type="html">
     
       &lt;h1 id=&quot;sublime-3&quot;&gt;&lt;a href=&quot;#sublime-3&quot; class=&quot;headerlink&quot; title=&quot;sublime 3&quot;&gt;&lt;/a&gt;sublime 3&lt;/h1&gt;&lt;p&gt;sublime大家都知道啦，用了近一年了，感情颇深。之前用了sublime2，感觉最
     
     </summary>
+    
+      <category term="sublime" scheme="http://yoursite.com/categories/sublime/"/>
     
     
       <category term="sublime" scheme="http://yoursite.com/tags/sublime/"/>
