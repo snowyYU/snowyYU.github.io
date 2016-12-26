@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-22T12:30:17.575Z</updated>
+  <updated>2016-12-26T11:27:26.650Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>angular基础</title>
+    <link href="http://yoursite.com/2016/12/26/angular%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2016/12/26/angular基础/</id>
+    <published>2016-12-26T07:39:48.000Z</published>
+    <updated>2016-12-26T11:27:26.650Z</updated>
+    
+    <content type="html"><![CDATA[<p>接触angular已经近半年了，一直在用别人的指令改改，遇到了很多自己解决不了的坑，其实自己对angular的各部分了解并不多，现在回头来弄清其中的用法原理，打好自己的基础。<br><a id="more"></a></p>
+<blockquote>
+<p>准备从如下几个部分展开，每个部分放出参考文章链接以及代码仓库地址</p>
+</blockquote>
+<h1 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h1><p>1.学习例子参考大漠老师的<a href="http://damoqiongqiu.iteye.com/blog/1917971" target="_blank" rel="external">5个实例详解指令机制</a></p>
+<p>2.<a href="https://segmentfault.com/a/1190000004586636" target="_blank" rel="external">angular指令的transclude选项以及ng-transclude指令</a></p>
+<h1 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h1><h1 id="angular核心"><a href="#angular核心" class="headerlink" title="angular核心"></a>angular核心</h1><h1 id="angular原理"><a href="#angular原理" class="headerlink" title="angular原理"></a>angular原理</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;接触angular已经近半年了，一直在用别人的指令改改，遇到了很多自己解决不了的坑，其实自己对angular的各部分了解并不多，现在回头来弄清其中的用法原理，打好自己的基础。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="angular" scheme="http://yoursite.com/categories/angular/"/>
+    
+    
+      <category term="angular" scheme="http://yoursite.com/tags/angular/"/>
+    
+      <category term="start" scheme="http://yoursite.com/tags/start/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>angular杂谈</title>
+    <link href="http://yoursite.com/2016/12/26/angular%E6%9D%82%E8%B0%88/"/>
+    <id>http://yoursite.com/2016/12/26/angular杂谈/</id>
+    <published>2016-12-26T07:38:12.000Z</published>
+    <updated>2016-12-26T11:27:08.996Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里来记一些angular相关的东西<br><a id="more"></a></p>
+<h1 id="驼峰命名"><a href="#驼峰命名" class="headerlink" title="驼峰命名"></a>驼峰命名</h1><p>直接上例子，指令中的命名</p>
+<pre><code> var appModule=angular.module(&apos;app&apos;,[]);    
+appModule.directive(&apos;helloWorld&apos;,function(){
+    return{
+        restrict:&apos;e&apos;,
+        template:&apos;&lt;div&gt;hello world~&lt;/div&gt;&apos;,
+        replace:true
+    };
+    })
+</code></pre><p>html中</p>
+<pre><code>&lt;hello-world&gt;&lt;/hello-world&gt;
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里来记一些angular相关的东西&lt;br&gt;
+    
+    </summary>
+    
+      <category term="angular" scheme="http://yoursite.com/categories/angular/"/>
+    
+    
+      <category term="angular" scheme="http://yoursite.com/tags/angular/"/>
+    
+      <category term="others" scheme="http://yoursite.com/tags/others/"/>
+    
+  </entry>
   
   <entry>
     <title>sublime 安装小结</title>
