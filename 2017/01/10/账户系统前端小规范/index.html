@@ -86,16 +86,25 @@
 
 
 
-<meta name="description" content="Front End">
+<meta name="description" content="为了后来的开发维护方便，在此写下账户系统前端部分的概述，包括所用框架，依赖，管理工具，命名规范，项目结构等，后面有时间也会总结下前端开发的规范。
+所用框架系统所用框架为angular1.3版本，为2016年之前主流版本，前端这几年涌现了太多框架，自己熟悉了这个版本后也要跟上时代的步伐，学习angular2等
+依赖angular参照Java搞出了依赖注入和指令，系统的依赖注入和个部分功能解释如下
+u">
 <meta property="og:type" content="article">
 <meta property="og:title" content="账户系统前端小规范">
 <meta property="og:url" content="http://yoursite.com/2017/01/10/账户系统前端小规范/index.html">
 <meta property="og:site_name" content="snowyYU">
-<meta property="og:description" content="Front End">
-<meta property="og:updated_time" content="2017-01-10T12:42:30.299Z">
+<meta property="og:description" content="为了后来的开发维护方便，在此写下账户系统前端部分的概述，包括所用框架，依赖，管理工具，命名规范，项目结构等，后面有时间也会总结下前端开发的规范。
+所用框架系统所用框架为angular1.3版本，为2016年之前主流版本，前端这几年涌现了太多框架，自己熟悉了这个版本后也要跟上时代的步伐，学习angular2等
+依赖angular参照Java搞出了依赖注入和指令，系统的依赖注入和个部分功能解释如下
+u">
+<meta property="og:updated_time" content="2017-01-12T01:46:28.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="账户系统前端小规范">
-<meta name="twitter:description" content="Front End">
+<meta name="twitter:description" content="为了后来的开发维护方便，在此写下账户系统前端部分的概述，包括所用框架，依赖，管理工具，命名规范，项目结构等，后面有时间也会总结下前端开发的规范。
+所用框架系统所用框架为angular1.3版本，为2016年之前主流版本，前端这几年涌现了太多框架，自己熟悉了这个版本后也要跟上时代的步伐，学习angular2等
+依赖angular参照Java搞出了依赖注入和指令，系统的依赖注入和个部分功能解释如下
+u">
 
 
 
@@ -344,6 +353,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -390,7 +421,64 @@
       
 
       
-        
+        <p>为了后来的开发维护方便，在此写下账户系统前端部分的概述，包括所用框架，依赖，管理工具，命名规范，项目结构等，后面有时间也会总结下前端开发的规范。</p>
+<h1 id="所用框架"><a href="#所用框架" class="headerlink" title="所用框架"></a>所用框架</h1><p>系统所用框架为angular1.3版本，为2016年之前主流版本，前端这几年涌现了太多框架，自己熟悉了这个版本后也要跟上时代的步伐，学习angular2等</p>
+<h1 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h1><p>angular参照Java搞出了依赖注入和指令，系统的依赖注入和个部分功能解释如下</p>
+<h2 id="ui-router"><a href="#ui-router" class="headerlink" title="ui-router"></a>ui-router</h2><p>angular1.x 本身有ng-router，但是满足不了复杂的应用，系统采用的<br>依赖为ui-router，ui-router具体用法配置和其自带的指令会单独讲一下。</p>
+<h1 id="管理工具"><a href="#管理工具" class="headerlink" title="管理工具"></a>管理工具</h1><p>包管理工具用了gulp，主要执行如下功能</p>
+<h2 id="css压缩"><a href="#css压缩" class="headerlink" title="css压缩"></a>css压缩</h2><h2 id="js压缩"><a href="#js压缩" class="headerlink" title="js压缩"></a>js压缩</h2><blockquote>
+<p>注意，为了避免压缩时注入的部分被误识别为变量部分，从而导致替换，应写成数组格式的依赖注入，特别是系统采用的angular-ui的modal服务，在实例化时也要写成数组格式的注入，分别如下</p>
+</blockquote>
+<p>1.控制器初始化</p>
+<pre><code> var appModule=angular.module(&quot;app&quot;,[])
+     appModule.controller(&quot;controllerName&quot;,
+                 [&quot;dev1&quot;,&quot;dev2&quot;,function(dev1,dev2){
+   //controller body here
+}])
+</code></pre><p>2.举例modal模态框的</p>
+<pre><code> var modalInstance =$modal.open({
+//配置部分,只显示modal控制器配置，我懒
+controller:modalController
+})
+//by the way 这里可以写modalInstance的promise
+//初始化modal的控制器，采用数组格式的依赖注入
+var modalController =[&quot;dev1&quot;,&quot;dev2&quot;,function(dev1,dev2){
+}]
+</code></pre><blockquote>
+<p>扯远了，那个modal的作用域独立，要resolve进来数据或方法</p>
+</blockquote>
+<h2 id="去注释去空格"><a href="#去注释去空格" class="headerlink" title="去注释去空格"></a>去注释去空格</h2><h2 id="图片压缩"><a href="#图片压缩" class="headerlink" title="图片压缩"></a>图片压缩</h2><h1 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h1><blockquote>
+<p>这里只针对本系统给出一定的规范</p>
+</blockquote>
+<p>控制器js文件和模板html名字相同，参照ui-router的命名结构，并相应的将点替换为下短横,ui-sref指令的值命名如下<br>在如总模板页为app,其下的一级菜单为app.Level1NavName,一级菜单下的二级菜单为app.Level1NavName.level2NavName,可参考config.router.js文件的配置，三级相同命名。<br>相应的文件命名Level1NavName_level2NavName.js/html</p>
+<blockquote>
+<p>其中Level1NavName和Level2NavName全系统唯一，注意路由配置的url属性，表现为URL层级</p>
+</blockquote>
+<p>madal弹出框的templete命名为触发事件函数的名称，controller属性的名称命名为函数名加Ctrl，例如</p>
+<pre><code> $scope.appRegisterEdit=function(row){
+   var myrow=row.entity;
+   console.log(myrow);
+   var modalInstance = $modal.open({
+   templateUrl: &apos;appRegisterEdit.html&apos;,
+   controller: appRegisterEditCtrl,
+   resolve: {
+    items: function () {
+      return myrow;
+    },
+    shuaxing: function(){
+      return $scope.shuaxing;
+    },
+    pop:function(){
+      return $scope.pop;
+    }
+   }
+ });
+    modalInstance.result.then(function () {
+}, function () {
+  $scope.shuaxing();
+});
+}
+</code></pre><h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1>
       
     </div>
 
@@ -483,8 +571,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -506,7 +603,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -547,6 +644,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#所用框架"><span class="nav-number">1.</span> <span class="nav-text">所用框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖"><span class="nav-number">2.</span> <span class="nav-text">依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ui-router"><span class="nav-number">2.1.</span> <span class="nav-text">ui-router</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管理工具"><span class="nav-number">3.</span> <span class="nav-text">管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#css压缩"><span class="nav-number">3.1.</span> <span class="nav-text">css压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js压缩"><span class="nav-number">3.2.</span> <span class="nav-text">js压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去注释去空格"><span class="nav-number">3.3.</span> <span class="nav-text">去注释去空格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片压缩"><span class="nav-number">3.4.</span> <span class="nav-text">图片压缩</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命名规范"><span class="nav-number">4.</span> <span class="nav-text">命名规范</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构"><span class="nav-number">5.</span> <span class="nav-text">项目结构</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
