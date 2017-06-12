@@ -90,7 +90,8 @@
 
 类似的还有ng-disabled和disabled等
 
-官方给出说ngValue">
+ng-value&amp;amp;&amp;amp;valueng-disabled&amp;amp;&amp;amp;disabled上来先举个正确的例子
+ng-disabled=&amp;quot;!(address.selected&amp;amp;&amp;a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="value和ng-value">
 <meta property="og:url" content="http://yoursite.com/2017/02/23/value和ng-value/index.html">
@@ -99,15 +100,17 @@
 
 类似的还有ng-disabled和disabled等
 
-官方给出说ngValue">
-<meta property="og:updated_time" content="2017-02-23T13:01:16.000Z">
+ng-value&amp;amp;&amp;amp;valueng-disabled&amp;amp;&amp;amp;disabled上来先举个正确的例子
+ng-disabled=&amp;quot;!(address.selected&amp;amp;&amp;a">
+<meta property="og:updated_time" content="2017-06-10T14:06:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="value和ng-value">
 <meta name="twitter:description" content="开年第一篇，前两周赶进度特别忙，基本重构了整个系统，也踩了不少的坑，其中就有angular指令ng-value和value这俩货
 
 类似的还有ng-disabled和disabled等
 
-官方给出说ngValue">
+ng-value&amp;amp;&amp;amp;valueng-disabled&amp;amp;&amp;amp;disabled上来先举个正确的例子
+ng-disabled=&amp;quot;!(address.selected&amp;amp;&amp;a">
 
 
 
@@ -406,7 +409,23 @@
 <blockquote>
 <p>类似的还有ng-disabled和disabled等</p>
 </blockquote>
-<p>官方给出说ngValue</p>
+<h1 id="ng-value-amp-amp-value"><a href="#ng-value-amp-amp-value" class="headerlink" title="ng-value&amp;&amp;value"></a>ng-value&amp;&amp;value</h1><h1 id="ng-disabled-amp-amp-disabled"><a href="#ng-disabled-amp-amp-disabled" class="headerlink" title="ng-disabled&amp;&amp;disabled"></a>ng-disabled&amp;&amp;disabled</h1><p>上来先举个正确的例子</p>
+<pre><code>ng-disabled=&quot;!(address.selected&amp;&amp;filterOptions.filterText.endTime&amp;&amp;filterOptions.filterText.startTime)&quot;
+</code></pre><blockquote>
+<p>这个是账户系统中的原例，注意逻辑关系的书写</p>
+</blockquote>
+<p><del>ng-disabled=”false“</del></p>
+<p>上面一条是错的</p>
+<blockquote>
+<p>注意disable存在时，表单不会对其校验，可使用visible属性</p>
+</blockquote>
+<h1 id="ng-if"><a href="#ng-if" class="headerlink" title="ng-if"></a>ng-if</h1><p>这里要特别注意ng-if和ng-show的区别</p>
+<p>ng-if = false 时，相应的标签元素在调试器里消失（不知道是否被移出了dom），且不占空间。而<br>ng-show = false 时 相应的的元素还是在dom中的，</p>
+<p>如下</p>
+<ul>
+<li>ng-if 在后面表达式为 true 的时候才创建这个 dom 节点，ng-show 是初始时就创建了，用 display:block 和 display:none 来控制显示和不显示。</li>
+<li>ng-if 会（隐式地）产生新作用域，ng-switch 、 ng-include 等会动态创建一块界面的也是如此。 </li>
+</ul>
 
       
     </div>
@@ -502,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -516,7 +544,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -525,7 +553,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -534,7 +562,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -566,6 +594,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ng-value-amp-amp-value"><span class="nav-number">1.</span> <span class="nav-text">ng-value&&value</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ng-disabled-amp-amp-disabled"><span class="nav-number">2.</span> <span class="nav-text">ng-disabled&&disabled</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ng-if"><span class="nav-number">3.</span> <span class="nav-text">ng-if</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
