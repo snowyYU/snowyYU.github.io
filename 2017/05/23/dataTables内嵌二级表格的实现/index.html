@@ -98,7 +98,7 @@ html部分">
 之后在写别的项目时也遇到了相同的需求，这次准备使用datatables，在此记录下过程。
 直接上代码:
 html部分">
-<meta property="og:updated_time" content="2017-06-10T14:06:49.000Z">
+<meta property="og:updated_time" content="2017-06-13T13:54:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dataTables内嵌二级表格的实现">
 <meta name="twitter:description" content="之前在写angular时有用过ui-grid写过内嵌展开二级表格，怎么说呢，ui-grid很强大，功能挺多的，好像也是angular团队开发的，例子足，文档好(对那些英文阅读能力比较好的人来说)，不过他的有些功能不稳定，其中就包括表格中内嵌表格的实现Expandable grid。
@@ -688,6 +688,7 @@ $(&apos;#example tbody&apos;).on(&apos;click&apos;, &apos;td.details-control&apo
 <h1 id="别的东西"><a href="#别的东西" class="headerlink" title="别的东西"></a>别的东西</h1><h2 id="从别处访问获得的json数据"><a href="#从别处访问获得的json数据" class="headerlink" title="从别处访问获得的json数据"></a>从别处访问获得的json数据</h2><p>2017.06.09，之后遇到了这个问题，去查了下文档，在datatable配置内可通过<code>this.api().ajax.json()</code>访问获得的json数据</p>
 <blockquote>
 <p>其实this指向的就是table</p>
+<h2 id="操作行数据"><a href="#操作行数据" class="headerlink" title="操作行数据"></a>操作行数据</h2><p>一般是写在监听事件的处理函数中的，如下，获取触发点击事件哪一行的数据<br>    table.row( this ).data()</p>
 </blockquote>
 
       
@@ -863,7 +864,7 @@ $(&apos;#example tbody&apos;).on(&apos;click&apos;, &apos;td.details-control&apo
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#html部分"><span class="nav-number">1.</span> <span class="nav-text">html部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#js部分"><span class="nav-number">2.</span> <span class="nav-text">js部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#别的东西"><span class="nav-number">3.</span> <span class="nav-text">别的东西</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从别处访问获得的json数据"><span class="nav-number">3.1.</span> <span class="nav-text">从别处访问获得的json数据</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#html部分"><span class="nav-number">1.</span> <span class="nav-text">html部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#js部分"><span class="nav-number">2.</span> <span class="nav-text">js部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#别的东西"><span class="nav-number">3.</span> <span class="nav-text">别的东西</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从别处访问获得的json数据"><span class="nav-number">3.1.</span> <span class="nav-text">从别处访问获得的json数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作行数据"><span class="nav-number">3.2.</span> <span class="nav-text">操作行数据</span></a></li></ol></li></ol></div>
             
 
           </div>

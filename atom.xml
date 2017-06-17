@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-10T14:06:49.000Z</updated>
+  <updated>2017-06-13T13:54:39.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/05/23/dataTables%E5%86%85%E5%B5%8C%E4%BA%8C%E7%BA%A7%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yoursite.com/2017/05/23/dataTables内嵌二级表格的实现/</id>
     <published>2017-05-23T03:41:08.000Z</published>
-    <updated>2017-06-10T14:06:49.000Z</updated>
+    <updated>2017-06-13T13:54:39.000Z</updated>
     
     <content type="html"><![CDATA[<p>之前在写angular时有用过ui-grid写过内嵌展开二级表格，怎么说呢，ui-grid很强大，功能挺多的，好像也是angular团队开发的，例子足，文档好(对那些英文阅读能力比较好的人来说)，不过他的有些功能不稳定，其中就包括表格中内嵌表格的实现<a href="http://ui-grid.info/docs/#/tutorial/216_expandable_grid" target="_blank" rel="external">Expandable grid</a>。</p>
 <p>之后在写别的项目时也遇到了相同的需求，这次准备使用datatables，在此记录下过程。</p>
@@ -289,6 +289,7 @@ $(&apos;#example tbody&apos;).on(&apos;click&apos;, &apos;td.details-control&apo
 <h1 id="别的东西"><a href="#别的东西" class="headerlink" title="别的东西"></a>别的东西</h1><h2 id="从别处访问获得的json数据"><a href="#从别处访问获得的json数据" class="headerlink" title="从别处访问获得的json数据"></a>从别处访问获得的json数据</h2><p>2017.06.09，之后遇到了这个问题，去查了下文档，在datatable配置内可通过<code>this.api().ajax.json()</code>访问获得的json数据</p>
 <blockquote>
 <p>其实this指向的就是table</p>
+<h2 id="操作行数据"><a href="#操作行数据" class="headerlink" title="操作行数据"></a>操作行数据</h2><p>一般是写在监听事件的处理函数中的，如下，获取触发点击事件哪一行的数据<br>    table.row( this ).data()</p>
 </blockquote>
 ]]></content>
     
@@ -341,12 +342,51 @@ $(&apos;#example tbody&apos;).on(&apos;click&apos;, &apos;td.details-control&apo
     <link href="http://yoursite.com/2017/05/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/"/>
     <id>http://yoursite.com/2017/05/11/浏览器渲染过程/</id>
     <published>2017-05-11T09:31:00.000Z</published>
-    <updated>2017-05-19T14:15:08.000Z</updated>
+    <updated>2017-06-13T16:49:59.000Z</updated>
     
     <content type="html"><![CDATA[<p>暂时只是大概读了一遍，先记下来</p>
-<p>两个引擎：渲染引擎和js引擎</p>
-<p>两个树</p>
+<h1 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h1><p>自上而下</p>
+<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>链路层</li>
+<li>物理层</li>
+</ul>
+<p>前四层构成TCP/IP协议族，之所以分层，我觉得可以理解为像前端的模块化，易于管理，改动。实际上设计也变得简单，各层只需考虑自己分内的事</p>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层决定了向用户提供应用服务时通信的活动。</p>
 <blockquote>
+<p>包含FTP，DNS，HTTP</p>
+</blockquote>
+<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。</p>
+<blockquote>
+<p>包含TCP，UDP(用户数据报协议)</p>
+</blockquote>
+<h2 id="网络层-网络互连层"><a href="#网络层-网络互连层" class="headerlink" title="网络层(网络互连层)"></a>网络层(网络互连层)</h2><p>网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数据单位。该层规定了通过怎样的路径（所谓的传输路线）到达对方计算机，并把数据包传送给对方。</p>
+<blockquote>
+<p>IP</p>
+</blockquote>
+<h2 id="链路层-数据链路层-网络接口层"><a href="#链路层-数据链路层-网络接口层" class="headerlink" title="链路层(数据链路层)(网络接口层)"></a>链路层(数据链路层)(网络接口层)</h2><p>用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC（Network Interface Card，网络适配器，即网卡），及光纤等物理可见部分（还包括连接器等一切传输媒介）。硬件上的范畴均在链路层的作用范围之内。</p>
+<h1 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h1><p>发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后，回传一个带有 SYN/ACK 标志的数据包以示传达确认信息。最后，发送端再回传一个带 ACK 标志的数据包，代表“握手”结束。 若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序发送相同的数据包。</p>
+<h1 id="http"><a href="#http" class="headerlink" title="http"></a>http</h1><h2 id="职责"><a href="#职责" class="headerlink" title="职责"></a>职责</h2><p>生成针对目标服务器的HTTP请求报文</p>
+<h1 id="从输入-URL-到页面加载完成的过程中都发生了什么事情？"><a href="#从输入-URL-到页面加载完成的过程中都发生了什么事情？" class="headerlink" title="从输入 URL 到页面加载完成的过程中都发生了什么事情？"></a>从输入 URL 到页面加载完成的过程中都发生了什么事情？</h1><ul>
+<li>输入URL </li>
+<li>发起请求：URL解析/DNS解析  </li>
+<li>网络连接：三次握手  </li>
+<li>服务器响应请求：返回数据  </li>
+<li>客户端接收响应：浏览器加载/渲染页面</li>
+</ul>
+<h1 id="两个引擎"><a href="#两个引擎" class="headerlink" title="两个引擎"></a>两个引擎</h1><p>浏览器两个引擎</p>
+<ol>
+<li><p>渲染引擎</p>
+<blockquote>
+<p>常称为浏览器的内核，webkit，gecko，persto(opera)</p>
+</blockquote>
+</li>
+<li><p>js引擎</p>
+</li>
+</ol>
+<h1 id="两个树"><a href="#两个树" class="headerlink" title="两个树"></a>两个树</h1><blockquote>
 <p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="external">浏览器的渲染原理简介</a></p>
 <p><a href="http://www.jianshu.com/p/e141d1543143" target="_blank" rel="external">简书，浏览器加载解析渲染</a></p>
 </blockquote>
@@ -355,10 +395,10 @@ $(&apos;#example tbody&apos;).on(&apos;click&apos;, &apos;td.details-control&apo
     <summary type="html">
     
       &lt;p&gt;暂时只是大概读了一遍，先记下来&lt;/p&gt;
-&lt;p&gt;两个引擎：渲染引擎和js引擎&lt;/p&gt;
-&lt;p&gt;两个树&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http://coolshell.cn/articles/9666.html&quot; target=&quot;_blank&quot; rel
+&lt;h1 id=&quot;网络分层&quot;&gt;&lt;a href=&quot;#网络分层&quot; class=&quot;headerlink&quot; title=&quot;网络分层&quot;&gt;&lt;/a&gt;网络分层&lt;/h1&gt;&lt;p&gt;自上而下&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;应用层&lt;/li&gt;
+&lt;li&gt;传输层&lt;/li&gt;
     
     </summary>
     
