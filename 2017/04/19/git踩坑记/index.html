@@ -95,7 +95,7 @@
 <meta property="og:description" content="总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://i.imgur.com/QJamb2Z.jpg">
-<meta property="og:updated_time" content="2017-07-21T14:56:56.000Z">
+<meta property="og:updated_time" content="2018-11-05T18:10:03.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git踩坑记">
 <meta name="twitter:description" content="总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。">
@@ -446,7 +446,7 @@ git add remote origin https://github.com/snowyYU/x.git
 <h1 id="查看更改处"><a href="#查看更改处" class="headerlink" title="查看更改处"></a>查看更改处</h1><pre><code>git diff
 </code></pre><p>上图:</p>
 <p><img src="http://i.imgur.com/QJamb2Z.jpg" alt="gitDiff"></p>
-<h1 id="创建-切换分支"><a href="#创建-切换分支" class="headerlink" title="创建,切换分支"></a>创建,切换分支</h1><p>今天在看webpack官网的指南时候，发现各部分练习的代码挺不一样，又想起之前看angularjs时官网给出的phonecat，他们项目各个构建步骤被创建成一个个branch，感觉十分方便，所以我仿照试下</p>
+<h1 id="创建-切换分支-删除"><a href="#创建-切换分支-删除" class="headerlink" title="创建,切换分支 ,删除"></a>创建,切换分支 ,删除</h1><p>今天在看webpack官网的指南时候，发现各部分练习的代码挺不一样，又想起之前看angularjs时官网给出的phonecat，他们项目各个构建步骤被创建成一个个branch，感觉十分方便，所以我仿照试下</p>
 <pre><code>git checkout -b XXX
 </code></pre><p>这个命令相当于</p>
 <pre><code>git branch XXX    //新建XXX分支
@@ -454,6 +454,10 @@ git checkout XXX  //切换到XXX分支
 </code></pre><p>现在就切换到XXX分支了，可以在gitbash中看到，然后我直接</p>
 <pre><code>git push origin XXX
 </code></pre><p>其实此时远程仓库中并没有XXX分支，执行此命令后，远程仓库会新建XXX分支，并push成功。 </p>
+<pre><code>git branch -D XXX
+</code></pre><p>删除本地的XXX分支</p>
+<pre><code>git push origin :XXX
+</code></pre><p>删除远程的XXX分支</p>
 <h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>自己尝试更新folk到自己github上仓库时查到的这个命令，先上个链接</p>
 <blockquote>
 <p><a href="https://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository" target="_blank" rel="external">How do I update a GitHub forked repository?</a></p>
@@ -648,7 +652,7 @@ git checkout XXX  //切换到XXX分支
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#将文件移除监听队列"><span class="nav-number">1.</span> <span class="nav-text">将文件移除监听队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的git删除"><span class="nav-number">2.</span> <span class="nav-text">常见的git删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新增远程仓库地址"><span class="nav-number">3.</span> <span class="nav-text">新增远程仓库地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#push，push，push"><span class="nav-number">4.</span> <span class="nav-text">push，push，push</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#merge-报错"><span class="nav-number">5.</span> <span class="nav-text">merge 报错</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看更改处"><span class="nav-number">6.</span> <span class="nav-text">查看更改处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建-切换分支"><span class="nav-number">7.</span> <span class="nav-text">创建,切换分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-rebase"><span class="nav-number">8.</span> <span class="nav-text">git rebase</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#将文件移除监听队列"><span class="nav-number">1.</span> <span class="nav-text">将文件移除监听队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的git删除"><span class="nav-number">2.</span> <span class="nav-text">常见的git删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新增远程仓库地址"><span class="nav-number">3.</span> <span class="nav-text">新增远程仓库地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#push，push，push"><span class="nav-number">4.</span> <span class="nav-text">push，push，push</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#merge-报错"><span class="nav-number">5.</span> <span class="nav-text">merge 报错</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看更改处"><span class="nav-number">6.</span> <span class="nav-text">查看更改处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建-切换分支-删除"><span class="nav-number">7.</span> <span class="nav-text">创建,切换分支 ,删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-rebase"><span class="nav-number">8.</span> <span class="nav-text">git rebase</span></a></li></ol></div>
             
 
           </div>
