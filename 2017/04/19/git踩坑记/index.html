@@ -87,15 +87,19 @@
 
 
 <meta name="description" content="总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git踩坑记">
 <meta property="og:url" content="http://yoursite.com/2017/04/19/git踩坑记/index.html">
 <meta property="og:site_name" content="snowyYU">
 <meta property="og:description" content="总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。">
-<meta property="og:updated_time" content="2017-06-12T13:33:07.000Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/QJamb2Z.jpg">
+<meta property="og:updated_time" content="2017-07-21T14:56:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git踩坑记">
 <meta name="twitter:description" content="总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。">
+<meta name="twitter:image" content="http://i.imgur.com/QJamb2Z.jpg">
 
 
 
@@ -413,47 +417,58 @@
 
       
         <p>总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。<br><a id="more"></a></p>
-<ol>
-<li><p>git中如果文件已被加入跟踪队列，后续添加相应的.gitignore参数时其相应的改变仍会被监听，采用如下</p>
-<p> git rm –cached XX/xx.x</p>
-</li>
-</ol>
-<blockquote>
+<h1 id="将文件移除监听队列"><a href="#将文件移除监听队列" class="headerlink" title="将文件移除监听队列"></a>将文件移除监听队列</h1><p>git中如果文件已被加入跟踪队列，后续添加相应的.gitignore参数时其相应的改变仍会被监听，采用如下</p>
+<pre><code>git rm --cached XX/xx.x
+</code></pre><blockquote>
 <p>附上链接<br><a href="https://segmentfault.com/q/1010000000430426" target="_blank" rel="external">git忽略已经被提交的文件</a><br><a href="http://www.ifeegoo.com/git-code-management-dot-gitignore-file-has-no-effect-solution.html" target="_blank" rel="external">.gitignore 文件无效的解决方法</a></p>
 </blockquote>
-<ol>
-<li><p>常见的git删除</p>
-<p> git rm XXX.xx</p>
-</li>
-</ol>
-<p>如果误删了可采用<code>git checkout</code></p>
+<h1 id="常见的git删除"><a href="#常见的git删除" class="headerlink" title="常见的git删除"></a>常见的git删除</h1><pre><code>git rm XXX.xx
+</code></pre><p>如果误删了可采用<code>git checkout</code></p>
 <blockquote>
 <p><code>git checkout</code>其实是用版本库里的版本替换工作区的版本，无论工作区修改还是删除，都可以使用此还原</p>
 </blockquote>
-<ol>
-<li><p>新增远程仓库地址</p>
-<p> git add remote [<options>] <name> <url><br> //例子<br> git add remote origin <a href="https://github.com/snowyYU/x.git" target="_blank" rel="external">https://github.com/snowyYU/x.git</a></url></name></options></p>
-</li>
-</ol>
-<p>name 为远程主机的名字</p>
-<ol>
-<li><p>push，push，push</p>
-<p> git push -u origin master</p>
-</li>
-</ol>
-<p>这里只想说一下-u参数，设置了这个之后，pull fetch push啥的默认连接的为origin master</p>
+<h1 id="新增远程仓库地址"><a href="#新增远程仓库地址" class="headerlink" title="新增远程仓库地址"></a>新增远程仓库地址</h1><pre><code>git add remote [&lt;options&gt;] &lt;name&gt; &lt;url&gt;
+//例子
+git add remote origin https://github.com/snowyYU/x.git
+</code></pre><p>name 为远程主机的名字</p>
+<h1 id="push，push，push"><a href="#push，push，push" class="headerlink" title="push，push，push"></a>push，push，push</h1><pre><code>git push -u origin master
+</code></pre><p>这里只想说一下-u参数，设置了这个之后，pull fetch push啥的默认连接的为origin master</p>
 <blockquote>
 <p><a href="https://www.zhihu.com/question/20019419" target="_blank" rel="external">知乎git push 的 -u 参数具体适合含义</a></p>
 </blockquote>
-<ol>
-<li>merge 报错</li>
-</ol>
-<p>今天在pull时出现了一个问题，过程是这样的，我新建了远程仓库时顺带初始化了readme,结果本地pull时报错，如下<br>    fatal: refusing to merge unrelated histories<br>就是它觉得我两个仓库没啥关联，然后我尝试push，报错如下<br>    $ git push -u origin master<br>    To <a href="https://github.com/snowyYU/center-solution.git" target="_blank" rel="external">https://github.com/snowyYU/center-solution.git</a><br>    ! [rejected]        master -&gt; master (non-fast-forward)<br>    error: failed to push some refs to ‘<a href="https://github.com/snowyYU/center-solution.git" target="_blank" rel="external">https://github.com/snowyYU/center-solution.git</a>‘<br>    hint: Updates were rejected because the tip of your current branch is behind<br>    hint: its remote counterpart. Integrate the remote changes (e.g.<br>    hint: ‘git pull …’) before pushing again.<br>    hint: See the ‘Note about fast-forwards’ in ‘git push –help’ for details.</p>
+<h1 id="merge-报错"><a href="#merge-报错" class="headerlink" title="merge 报错"></a>merge 报错</h1><p>今天在pull时出现了一个问题，过程是这样的，我新建了远程仓库时顺带初始化了readme,结果本地pull时报错，如下<br>    fatal: refusing to merge unrelated histories<br>就是它觉得我两个仓库没啥关联，然后我尝试push，报错如下<br>    $ git push -u origin master<br>    To <a href="https://github.com/snowyYU/center-solution.git" target="_blank" rel="external">https://github.com/snowyYU/center-solution.git</a><br>    ! [rejected]        master -&gt; master (non-fast-forward)<br>    error: failed to push some refs to ‘<a href="https://github.com/snowyYU/center-solution.git" target="_blank" rel="external">https://github.com/snowyYU/center-solution.git</a>‘<br>    hint: Updates were rejected because the tip of your current branch is behind<br>    hint: its remote counterpart. Integrate the remote changes (e.g.<br>    hint: ‘git pull …’) before pushing again.<br>    hint: See the ‘Note about fast-forwards’ in ‘git push –help’ for details.</p>
 <p>说我本地仓库版本过时啦，叫我先pull</p>
 <p>没办法，只能强上了，加上参数<br>    git pull origin master –allow-unrelated-histories</p>
 <p>之后会进入vim让我输入commit message，</p>
 <blockquote>
 <p><a href="https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories" target="_blank" rel="external">stackoverflow</a><br><a href="http://www.jianshu.com/p/eae20fcde419" target="_blank" rel="external">vim命令看这里</a></p>
+</blockquote>
+<h1 id="查看更改处"><a href="#查看更改处" class="headerlink" title="查看更改处"></a>查看更改处</h1><pre><code>git diff
+</code></pre><p>上图:</p>
+<p><img src="http://i.imgur.com/QJamb2Z.jpg" alt="gitDiff"></p>
+<h1 id="创建-切换分支"><a href="#创建-切换分支" class="headerlink" title="创建,切换分支"></a>创建,切换分支</h1><p>今天在看webpack官网的指南时候，发现各部分练习的代码挺不一样，又想起之前看angularjs时官网给出的phonecat，他们项目各个构建步骤被创建成一个个branch，感觉十分方便，所以我仿照试下</p>
+<pre><code>git checkout -b XXX
+</code></pre><p>这个命令相当于</p>
+<pre><code>git branch XXX    //新建XXX分支
+git checkout XXX  //切换到XXX分支
+</code></pre><p>现在就切换到XXX分支了，可以在gitbash中看到，然后我直接</p>
+<pre><code>git push origin XXX
+</code></pre><p>其实此时远程仓库中并没有XXX分支，执行此命令后，远程仓库会新建XXX分支，并push成功。 </p>
+<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>自己尝试更新folk到自己github上仓库时查到的这个命令，先上个链接</p>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository" target="_blank" rel="external">How do I update a GitHub forked repository?</a></p>
+</blockquote>
+<p>第一个答案大意就是，</p>
+<ol>
+<li>从自己的GitHub上clone至本地工作目录</li>
+<li>在本地添加remote，即从哪folk来的(这里先叫upstream)，</li>
+<li>fetch upstream上的所有分支</li>
+<li>切换到本地的master分支</li>
+<li>将upstream上需要同步的分支rebase</li>
+</ol>
+<p>我觉得rebase和merge差不多，区别可能是rebase不会留下痕迹，merge需要输入message啥的</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/hudashi/article/details/7664631/" target="_blank" rel="external">git rebase</a></p>
 </blockquote>
 
       
@@ -550,8 +565,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -564,7 +588,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -573,7 +597,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -582,7 +606,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -615,6 +639,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#将文件移除监听队列"><span class="nav-number">1.</span> <span class="nav-text">将文件移除监听队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的git删除"><span class="nav-number">2.</span> <span class="nav-text">常见的git删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新增远程仓库地址"><span class="nav-number">3.</span> <span class="nav-text">新增远程仓库地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#push，push，push"><span class="nav-number">4.</span> <span class="nav-text">push，push，push</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#merge-报错"><span class="nav-number">5.</span> <span class="nav-text">merge 报错</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看更改处"><span class="nav-number">6.</span> <span class="nav-text">查看更改处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建-切换分支"><span class="nav-number">7.</span> <span class="nav-text">创建,切换分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-rebase"><span class="nav-number">8.</span> <span class="nav-text">git rebase</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
     </div>
   </aside>
@@ -629,7 +669,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
