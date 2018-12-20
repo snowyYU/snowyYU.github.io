@@ -1220,7 +1220,7 @@ npm install babel-eslint -g
     <link href="http://yoursite.com/2017/04/19/git%E8%B8%A9%E5%9D%91%E8%AE%B0/"/>
     <id>http://yoursite.com/2017/04/19/git踩坑记/</id>
     <published>2017-04-19T10:51:39.000Z</published>
-    <updated>2018-11-05T18:10:03.908Z</updated>
+    <updated>2018-12-20T14:08:17.346Z</updated>
     
     <content type="html"><![CDATA[<p>总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。<br><a id="more"></a></p>
 <h1 id="将文件移除监听队列"><a href="#将文件移除监听队列" class="headerlink" title="将文件移除监听队列"></a>将文件移除监听队列</h1><p>git中如果文件已被加入跟踪队列，后续添加相应的.gitignore参数时其相应的改变仍会被监听，采用如下</p>
@@ -1280,6 +1280,11 @@ git checkout XXX  //切换到XXX分支
 <blockquote>
 <p><a href="http://blog.csdn.net/hudashi/article/details/7664631/" target="_blank" rel="external">git rebase</a></p>
 </blockquote>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>针对更新自己folk的仓库，官方后来又给出了web版本的方案，上面的是需要本地仓库的，先上链接</p>
+<blockquote>
+<p><a href="https://github.com/KirstieJane/STEMMRoleModels/wiki/Syncing-your-fork-to-the-original-repository-via-the-browser" target="_blank" rel="external">www</a></p>
+</blockquote>
+<p>大致就是自己从源向自己folk的仓库发起 pull request,然后合并</p>
 ]]></content>
     
     <summary type="html">
