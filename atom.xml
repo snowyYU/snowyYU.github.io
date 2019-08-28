@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-05T18:49:38.355Z</updated>
+  <updated>2019-08-28T08:59:27.046Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MongoDB 小记</title>
+    <link href="http://yoursite.com/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/08/27/MongoDB-小记/</id>
+    <published>2019-08-27T08:38:37.000Z</published>
+    <updated>2019-08-28T08:59:27.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>这是官网安装页面，<a href="https://docs.mongodb.com/manual/installation/#tutorial-installation" target="_blank" rel="external">MongoDB Install</a>。</p>
+<p>有企业版和社区版的区分，基本是</p>
+<p>我是mac系统，有 brew 和二进制文件两种安装方法</p>
+<p>顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户</p>
+<blockquote>
+<p>附上官方启用 root 账户的说明，<a href="https://support.apple.com/zh-cn/HT204012" target="_blank" rel="external">如何在 Mac 上启用 root 用户或更改 root 密码</a></p>
+</blockquote>
+<p>注意安装后需要创建一个数据库数据存储的文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir -p /data/db</div></pre></td></tr></table></figure>
+<blockquote>
+<p>顺便说 <code>cd /</code> 命令可以直接进入根目录</p>
+</blockquote>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>因为我已经把mongoDB的路径加入了系统路径中，并且使用了默认的数据存放位置，所以可以直接，如果没做这两步的话，参考如下</p>
+<blockquote>
+<p><a href="https://docs.mongodb.com/guides/server/install/" target="_blank" rel="external">MongoDB配置</a></p>
+</blockquote>
+<pre><code>sudo mongod //启动
+</code></pre><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>新开一个命令行工具，输入</p>
+<pre><code>mongo
+</code></pre><p>连接数据库，可以输入查询语句了</p>
+<h2 id="操作部分"><a href="#操作部分" class="headerlink" title="操作部分"></a>操作部分</h2><p>还能说啥，重中之重，多多练习</p>
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>查看所有数据库</p>
+<pre><code>&gt; show dbs
+</code></pre><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建或进入某个存在的数据库</p>
+<pre><code>&gt; use &lt;name&gt;
+</code></pre><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a href="https://docs.mongodb.com/manual/tutorial/getting-started/" target="_blank" rel="external">MongoDB get start</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/44263728" target="_blank" rel="external">小白必须懂的MongoDB的十大总结-MongoDB的认识
+</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习&lt;/p&gt;
+&lt;h1 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h1&gt;&lt;p&gt;这是官网安装页面，&lt;a href=&quot;https://
+    
+    </summary>
+    
+      <category term="DataBase" scheme="http://yoursite.com/categories/DataBase/"/>
+    
+    
+      <category term="DataBase" scheme="http://yoursite.com/tags/DataBase/"/>
+    
+      <category term="MongoDB" scheme="http://yoursite.com/tags/MongoDB/"/>
+    
+  </entry>
   
   <entry>
     <title>英语学习-口语篇</title>
@@ -1543,53 +1599,6 @@ var contact1=Object.create(contact);
     
     
       <category term="node" scheme="http://yoursite.com/tags/node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>value和ng-value</title>
-    <link href="http://yoursite.com/2017/02/23/value%E5%92%8Cng-value/"/>
-    <id>http://yoursite.com/2017/02/23/value和ng-value/</id>
-    <published>2017-02-23T08:01:37.000Z</published>
-    <updated>2017-06-22T13:49:03.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>开年第一篇，前两周赶进度特别忙，基本重构了整个系统，也踩了不少的坑，其中就有angular指令ng-value和value这俩货</p>
-<blockquote>
-<p>类似的还有ng-disabled和disabled等</p>
-</blockquote>
-<h1 id="ng-value-amp-amp-value"><a href="#ng-value-amp-amp-value" class="headerlink" title="ng-value&amp;&amp;value"></a>ng-value&amp;&amp;value</h1><h1 id="ng-disabled-amp-amp-disabled"><a href="#ng-disabled-amp-amp-disabled" class="headerlink" title="ng-disabled&amp;&amp;disabled"></a>ng-disabled&amp;&amp;disabled</h1><p>上来先举个正确的例子</p>
-<pre><code>ng-disabled=&quot;!(address.selected&amp;&amp;filterOptions.filterText.endTime&amp;&amp;filterOptions.filterText.startTime)&quot;
-</code></pre><blockquote>
-<p>这个是账户系统中的原例，注意逻辑关系的书写</p>
-</blockquote>
-<p><del>ng-disabled=”false“</del></p>
-<p>上面一条是错的</p>
-<blockquote>
-<p>注意disable存在时，表单不会对其校验，可使用visible属性</p>
-</blockquote>
-<h1 id="ng-if"><a href="#ng-if" class="headerlink" title="ng-if"></a>ng-if</h1><p>这里要特别注意ng-if和ng-show的区别</p>
-<p>ng-if = false 时，相应的标签元素在调试器里消失（不知道是否被移出了dom），且不占空间。而<br>ng-show = false 时 相应的的元素还是在dom中的，</p>
-<p>如下</p>
-<ul>
-<li>ng-if 在后面表达式为 true 的时候才创建这个 dom 节点，ng-show 是初始时就创建了，用 display:block 和 display:none 来控制显示和不显示。</li>
-<li>ng-if 会（隐式地）产生新作用域，ng-switch 、 ng-include 等会动态创建一块界面的也是如此。 </li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;开年第一篇，前两周赶进度特别忙，基本重构了整个系统，也踩了不少的坑，其中就有angular指令ng-value和value这俩货&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;类似的还有ng-disabled和disabled等&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=
-    
-    </summary>
-    
-      <category term="angular" scheme="http://yoursite.com/categories/angular/"/>
-    
-    
-      <category term="angular" scheme="http://yoursite.com/tags/angular/"/>
     
   </entry>
   
