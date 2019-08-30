@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习 安装这是官网安装页面，MongoDB Install。 有企业版和社区版的区分，基本是 我是mac系统，有 brew 和二进制文件两种安装方法 顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户  附上官方启用 root 账户的说明，如何在 Mac 上启">
+<meta name="description" content="主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
 <meta name="keywords" content="DataBase,MongoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB 小记">
 <meta property="og:url" content="http://yoursite.com/2019/08/27/MongoDB-小记/index.html">
 <meta property="og:site_name" content="snowyYU">
-<meta property="og:description" content="主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习 安装这是官网安装页面，MongoDB Install。 有企业版和社区版的区分，基本是 我是mac系统，有 brew 和二进制文件两种安装方法 顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户  附上官方启用 root 账户的说明，如何在 Mac 上启">
+<meta property="og:description" content="主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T08:59:27.046Z">
+<meta property="og:updated_time" content="2019-08-28T13:19:04.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB 小记">
-<meta name="twitter:description" content="主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习 安装这是官网安装页面，MongoDB Install。 有企业版和社区版的区分，基本是 我是mac系统，有 brew 和二进制文件两种安装方法 顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户  附上官方启用 root 账户的说明，如何在 Mac 上启">
+<meta name="twitter:description" content="主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
 
 
 
@@ -414,7 +414,8 @@
       
 
       
-        <p>主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习</p>
+        <p>主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习，持续改进吧</p>
+<a id="more"></a>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>这是官网安装页面，<a href="https://docs.mongodb.com/manual/installation/#tutorial-installation" target="_blank" rel="external">MongoDB Install</a>。</p>
 <p>有企业版和社区版的区分，基本是</p>
 <p>我是mac系统，有 brew 和二进制文件两种安装方法</p>
@@ -424,6 +425,7 @@
 </blockquote>
 <p>注意安装后需要创建一个数据库数据存储的文件夹</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir -p /data/db</div></pre></td></tr></table></figure>
+<p>如果运行 <code>ps -xa | grep mongod</code>，没有看到一个 <code>dbpath</code> 显式地告诉mongod查看该数据库位置的参数，并且你的mongodb.conf中没有数据库路径，那么默认数据存储位置就是如上</p>
 <blockquote>
 <p>顺便说 <code>cd /</code> 命令可以直接进入根目录</p>
 </blockquote>
