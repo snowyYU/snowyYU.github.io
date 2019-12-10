@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-28T13:19:04.952Z</updated>
+  <updated>2019-12-07T12:50:46.212Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linus 相关命令</title>
+    <link href="http://yoursite.com/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2019/12/06/Linus-相关命令/</id>
+    <published>2019-12-06T07:35:29.000Z</published>
+    <updated>2019-12-07T12:50:46.212Z</updated>
+    
+    <content type="html"><![CDATA[<p>需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈</p>
+<a id="more"></a>
+<h1 id="文档型：文件相关命令"><a href="#文档型：文件相关命令" class="headerlink" title="文档型：文件相关命令"></a>文档型：文件相关命令</h1><blockquote>
+<p>touch,cat,echo,rm,vi,cd</p>
+</blockquote>
+<h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><p><code>cd</code> 命令就不用多说了，进入某个目录下</p>
+<ul>
+<li><code>cd /</code> 为进入根目录下</li>
+<li><code>ls</code> 列出当前目录下所有文件名称<h2 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h2>创建一个目录<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2></li>
+</ul>
+<p>创建一个文件，注意区别 <code>mkdir</code> 命令</p>
+<h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>查看文件内容</p>
+<blockquote>
+<p>比如 <code>cat test.txt</code></p>
+<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>向文件中添加或覆盖内容</p>
+</blockquote>
+<p><code>echo 1234 &gt;&gt; test.txt</code> 两个箭头表示向内容末尾添加内容</p>
+<p><code>echo 1234 &gt; test.txt</code> 一个箭头表示覆盖内容</p>
+<h2 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h2><p>删除文件</p>
+<ul>
+<li>删除目录使用 <code>rm -r</code> 命令<blockquote>
+<p>注意 <code>rm -rf</code> 是强制删除命令，慎用，会造成误删后无法恢复的问题</p>
+<h2 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h2></blockquote>
+</li>
+</ul>
+<p>用 <strong>vim</strong> 编辑器编辑文件</p>
+<h1 id="功能型：压缩-解压，下载，远程"><a href="#功能型：压缩-解压，下载，远程" class="headerlink" title="功能型：压缩/解压，下载，远程"></a>功能型：压缩/解压，下载，远程</h1><blockquote>
+<p>wget, tar, ssh</p>
+</blockquote>
+<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>下载文件，命令后跟资源地址</p>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><h3 id="解压文件，-命令后跟文件名"><a href="#解压文件，-命令后跟文件名" class="headerlink" title="解压文件， 命令后跟文件名"></a>解压文件， 命令后跟文件名</h3><p><strong>tar zxvf</strong> 参数解释</p>
+<ul>
+<li><strong>z</strong> 用来解压 <strong>.gz</strong>后缀的文件，比如 <strong>apache-tomcat-9.0.17.tar.gz</strong></li>
+<li><strong>x</strong> 代表解压缩</li>
+<li><strong>v</strong> 代表显示所有的解压过程</li>
+<li><strong>f</strong> 表示解压后的文件使用压缩包文件的名字，比如 </li>
+<li><strong>apache-tomcat-9.0.17.tar.gz</strong> 使用 <strong>zxvf</strong> 参数解压后的文件名为 <strong>apache-tomcat-9.0.17</strong></li>
+</ul>
+<h3 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h3><p><strong>tar zcvf</strong> 参数解释，<strong>c</strong> 代表压缩，其余解释和上文一致</p>
+<blockquote>
+<p>需要注意，<strong>tar zcvf</strong> 后跟两个参数，第一个参数为压缩后的文件名，第二个参数为需要被压缩的文件，例如把 <strong>apache-tomcat-9.0.17</strong> 压缩成 <strong>apache-tomcat.tar.gz</strong> 使用 <code>tar zcvf apache-tomcat.tar.gz apache-tomcat-9.0.17</code></p>
+</blockquote>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><p>远程连接，看例子 <code>ssh root@119.21.241.41</code></p>
+<blockquote>
+<p><code>ssh -p 10229 root@119.21.241.41</code>  </p>
+</blockquote>
+<p>有几个相关的小点需要注意</p>
+<ul>
+<li><code>cat /etc/hostname</code> 查看主机名，可用vim修改</li>
+<li><code>cat /etc/ssh/sshd_config</code> 查看 <strong>ssh</strong> 服务的配置，可用vim修改</li>
+<li><code>netstat -anlp | grep sshd</code> 查看 <strong>ssh</strong> 服务占用的端口号</li>
+</ul>
+<h1 id="系统进程服务相关"><a href="#系统进程服务相关" class="headerlink" title="系统进程服务相关"></a>系统进程服务相关</h1><h2 id="查看当前系统进程"><a href="#查看当前系统进程" class="headerlink" title="查看当前系统进程"></a>查看当前系统进程</h2><p><strong>ps -ef | grep</strong> , 比如</p>
+<blockquote>
+<p><code>ps -ef | grep docker</code> 查看名为 <strong>docker</strong> 的进程</p>
+</blockquote>
+<h2 id="kill-某进程"><a href="#kill-某进程" class="headerlink" title="kill 某进程"></a>kill 某进程</h2><p><strong>kill -9</strong>，比如</p>
+<blockquote>
+<p><code>kill -9 27643</code> 强制杀死id为27643的进程</p>
+</blockquote>
+<h2 id="系统服务相关"><a href="#系统服务相关" class="headerlink" title="系统服务相关"></a>系统服务相关</h2><h3 id="查看系统服务"><a href="#查看系统服务" class="headerlink" title="查看系统服务"></a>查看系统服务</h3><p><strong>service 服务名 status</strong>, 比如 </p>
+<blockquote>
+<p><code>service sshd status</code> :查询 ssh 服务的运行状态</p>
+<h3 id="关闭某个服务"><a href="#关闭某个服务" class="headerlink" title="关闭某个服务"></a>关闭某个服务</h3></blockquote>
+<p><strong>service 服务名 stop</strong> </p>
+<h3 id="重启某个服务"><a href="#重启某个服务" class="headerlink" title="重启某个服务"></a>重启某个服务</h3><p><strong>service 服务名 restart</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linus" scheme="http://yoursite.com/tags/Linus/"/>
+    
+  </entry>
   
   <entry>
     <title>MongoDB 小记</title>
@@ -1538,68 +1624,6 @@ var contact1=Object.create(contact);
     
     
       <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>node(一)</title>
-    <link href="http://yoursite.com/2017/03/01/node-%E4%B8%80/"/>
-    <id>http://yoursite.com/2017/03/01/node-一/</id>
-    <published>2017-03-01T12:31:32.000Z</published>
-    <updated>2017-03-02T07:26:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>开始正式学习node，之前看过node即学即用，敲了遍书上的代码，有点晕晕的，之后很长时间没接触node了，现在下决心每天花些时间捣鼓下。<br><a id="more"></a></p>
-<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>在这里主要是记笔记，按照教程尝试搭建使用 Express + MongoDB 搭建多人博客，记录些要点和体会</p>
-<blockquote>
-<p>参考了<a href="https://github.com/nswbmw/N-blog" target="_blank" rel="external">使用 Express + MongoDB 搭建多人博客</a></p>
-<h1 id="安装配置环境"><a href="#安装配置环境" class="headerlink" title="安装配置环境"></a>安装配置环境</h1></blockquote>
-<p>安装nodejs，LTS是长期支持版本，current是最新版，支持最新语言特性(比如更全的es6)</p>
-<p>n和nvm是两个常用的nodejs版本管理工具，nvm不支持windows</p>
-<blockquote>
-<p>参考<a href="http://taobaofed.org/blog/2015/11/17/nvm-or-n/" target="_blank" rel="external">这个</a><br>还有阮一峰老师的<a href="http://es6.ruanyifeng.com/#docs/intro" target="_blank" rel="external">es6入门</a></p>
-</blockquote>
-<p>nrm管理npm源的工具，目测修改了源之后npm==cnpm了</p>
-<p>安装mongoDB遇到一个坑，执行</p>
-<pre><code>&quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot; --dbpath F:\practice\mongo
-</code></pre><p>报错</p>
-<pre><code> $ &quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot; --dbpath F:\practice\mongo
-17-03-02T14:55:01.854+0800 I CONTROL  [initandlisten] MongoDB starting :     d=7440 port=27017 dbpath=F:practicemongo 64-bit host=DESKTOP-KP92M3V
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/    ndows Server 2008 R2
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] db version v3.4.2
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] git version:     76e40c105fc223b3e5aac3e20dcd026b83b38b
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] OpenSSL version:     enSSL 1.0.1u-fips  22 Sep 2016
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] allocator: tcmalloc
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] modules: none
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] build environment:
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten]     distmod:     08plus-ssl
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten]     distarch: x86_64
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten]     target_arch: x86_64
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] options: { storage: {     Path: &quot;F:practicemongo&quot; } }
-17-03-02T14:55:01.855+0800 I STORAGE  [initandlisten] exception in     itAndListen: 29 Data directory F:practicemongo not found., terminating
-17-03-02T14:55:01.855+0800 I NETWORK  [initandlisten] shutdown: going to     ose listening sockets...
-17-03-02T14:55:01.855+0800 I NETWORK  [initandlisten] shutdown: going to     ush diaglog...
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] now exiting
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] shutting down with     de:100
-</code></pre><p>说F:practicemongo not found，不知道为什么会这样，直接执行</p>
-<pre><code>&quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot;
-</code></pre><p>又说 F:\data\db\ not found.</p>
-<p>我就只好在F盘下新建data\db，然后就成功了</p>
-<p>打开Robomongo,<a href="http://blog.robomongo.org/" target="_blank" rel="external">Robomongo</a> 是一个基于 Shell 的跨平台开源 MongoDB 可视化管理工具，支持 Windows、Linux 和 Mac，嵌入了 JavaScript 引擎和 MongoDB mongo，</p>
-<blockquote>
-<p>试着插入一条数据结果不知道怎样看不到了</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;开始正式学习node，之前看过node即学即用，敲了遍书上的代码，有点晕晕的，之后很长时间没接触node了，现在下决心每天花些时间捣鼓下。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="node" scheme="http://yoursite.com/categories/node/"/>
-    
-    
-      <category term="node" scheme="http://yoursite.com/tags/node/"/>
     
   </entry>
   
