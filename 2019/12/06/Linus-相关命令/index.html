@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="snowyYU">
 <meta property="og:description" content="需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-07T12:50:46.212Z">
+<meta property="og:updated_time" content="2019-12-11T13:33:10.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linus 相关命令">
 <meta name="twitter:description" content="需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈">
@@ -400,24 +400,25 @@
 <h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><p><code>cd</code> 命令就不用多说了，进入某个目录下</p>
 <ul>
 <li><code>cd /</code> 为进入根目录下</li>
-<li><code>ls</code> 列出当前目录下所有文件名称<h2 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h2>创建一个目录<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2></li>
+<li><code>ls</code> 列出当前目录下所有文件名称</li>
 </ul>
-<p>创建一个文件，注意区别 <code>mkdir</code> 命令</p>
+<h2 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h2><p>创建一个目录</p>
+<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p>创建一个文件，注意区别 <code>mkdir</code> 命令</p>
 <h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>查看文件内容</p>
 <blockquote>
 <p>比如 <code>cat test.txt</code></p>
-<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>向文件中添加或覆盖内容</p>
 </blockquote>
+<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>向文件中添加或覆盖内容</p>
 <p><code>echo 1234 &gt;&gt; test.txt</code> 两个箭头表示向内容末尾添加内容</p>
 <p><code>echo 1234 &gt; test.txt</code> 一个箭头表示覆盖内容</p>
 <h2 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h2><p>删除文件</p>
 <ul>
 <li>删除目录使用 <code>rm -r</code> 命令<blockquote>
 <p>注意 <code>rm -rf</code> 是强制删除命令，慎用，会造成误删后无法恢复的问题</p>
-<h2 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h2></blockquote>
+</blockquote>
 </li>
 </ul>
-<p>用 <strong>vim</strong> 编辑器编辑文件</p>
+<h2 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h2><p>用 <strong>vim</strong> 编辑器编辑文件</p>
 <h1 id="功能型：压缩-解压，下载，远程"><a href="#功能型：压缩-解压，下载，远程" class="headerlink" title="功能型：压缩/解压，下载，远程"></a>功能型：压缩/解压，下载，远程</h1><blockquote>
 <p>wget, tar, ssh</p>
 </blockquote>
@@ -455,8 +456,8 @@
 <h2 id="系统服务相关"><a href="#系统服务相关" class="headerlink" title="系统服务相关"></a>系统服务相关</h2><h3 id="查看系统服务"><a href="#查看系统服务" class="headerlink" title="查看系统服务"></a>查看系统服务</h3><p><strong>service 服务名 status</strong>, 比如 </p>
 <blockquote>
 <p><code>service sshd status</code> :查询 ssh 服务的运行状态</p>
-<h3 id="关闭某个服务"><a href="#关闭某个服务" class="headerlink" title="关闭某个服务"></a>关闭某个服务</h3></blockquote>
-<p><strong>service 服务名 stop</strong> </p>
+</blockquote>
+<h3 id="关闭某个服务"><a href="#关闭某个服务" class="headerlink" title="关闭某个服务"></a>关闭某个服务</h3><p><strong>service 服务名 stop</strong> </p>
 <h3 id="重启某个服务"><a href="#重启某个服务" class="headerlink" title="重启某个服务"></a>重启某个服务</h3><p><strong>service 服务名 restart</strong></p>
 
       
