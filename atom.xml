@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-12-11T13:33:10.122Z</updated>
+  <updated>2019-12-13T11:00:49.137Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Visual Studio Code 相关</title>
+    <link href="http://yoursite.com/2019/12/13/Visual-Studio-Code-%E7%9B%B8%E5%85%B3/"/>
+    <id>http://yoursite.com/2019/12/13/Visual-Studio-Code-相关/</id>
+    <published>2019-12-13T10:53:51.000Z</published>
+    <updated>2019-12-13T11:00:49.137Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="VSCode" scheme="http://yoursite.com/tags/VSCode/"/>
+    
+  </entry>
   
   <entry>
     <title>Linus 相关命令</title>
@@ -1008,7 +1024,7 @@ $(&apos;#example tbody&apos;).on(&apos;click&apos;, &apos;td.details-control&apo
     <link href="http://yoursite.com/2017/05/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/"/>
     <id>http://yoursite.com/2017/05/11/浏览器渲染过程/</id>
     <published>2017-05-11T09:31:00.000Z</published>
-    <updated>2017-06-13T16:49:59.000Z</updated>
+    <updated>2019-12-16T09:31:22.466Z</updated>
     
     <content type="html"><![CDATA[<p>暂时只是大概读了一遍，先记下来</p>
 <h1 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h1><p>自上而下</p>
@@ -1052,7 +1068,8 @@ $(&apos;#example tbody&apos;).on(&apos;click&apos;, &apos;td.details-control&apo
 <li><p>js引擎</p>
 </li>
 </ol>
-<h1 id="两个树"><a href="#两个树" class="headerlink" title="两个树"></a>两个树</h1><blockquote>
+<h1 id="两个树"><a href="#两个树" class="headerlink" title="两个树"></a>两个树</h1><h1 id="遇到的一些问题和解决办法"><a href="#遇到的一些问题和解决办法" class="headerlink" title="遇到的一些问题和解决办法"></a>遇到的一些问题和解决办法</h1><h2 id="Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received"><a href="#Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received" class="headerlink" title="Unchecked runtime.lastError: The message port closed before a response was received."></a>Unchecked runtime.lastError: The message port closed before a response was received.</h2><p>调试工具中报如上的错误，查阅资料得知是chrome某个插件报的错，自己一一验证，发祥是迅雷下载插件这个毒瘤，禁用可消除如上的报错</p>
+<blockquote>
 <p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="external">浏览器的渲染原理简介</a></p>
 <p><a href="http://www.jianshu.com/p/e141d1543143" target="_blank" rel="external">简书，浏览器加载解析渲染</a></p>
 </blockquote>
@@ -1364,7 +1381,7 @@ npm install babel-eslint -g
     <link href="http://yoursite.com/2017/04/19/git%E8%B8%A9%E5%9D%91%E8%AE%B0/"/>
     <id>http://yoursite.com/2017/04/19/git踩坑记/</id>
     <published>2017-04-19T10:51:39.000Z</published>
-    <updated>2018-12-20T14:08:17.346Z</updated>
+    <updated>2020-01-31T14:48:42.522Z</updated>
     
     <content type="html"><![CDATA[<p>总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。<br><a id="more"></a></p>
 <h1 id="将文件移除监听队列"><a href="#将文件移除监听队列" class="headerlink" title="将文件移除监听队列"></a>将文件移除监听队列</h1><p>git中如果文件已被加入跟踪队列，后续添加相应的.gitignore参数时其相应的改变仍会被监听，采用如下</p>
@@ -1429,6 +1446,10 @@ git checkout XXX  //切换到XXX分支
 <p><a href="https://github.com/KirstieJane/STEMMRoleModels/wiki/Syncing-your-fork-to-the-original-repository-via-the-browser" target="_blank" rel="external">www</a></p>
 </blockquote>
 <p>大致就是自己从源向自己folk的仓库发起 pull request,然后合并</p>
+<h1 id="遇到ping-github-com-time-out-问题"><a href="#遇到ping-github-com-time-out-问题" class="headerlink" title="遇到ping github.com time out 问题"></a>遇到ping github.com time out 问题</h1><blockquote>
+<p>可以在网页中正常访问 github，唯独在终端中连接不了 github，也 ping 不通</p>
+</blockquote>
+<p>喵喵喵？查了半天网上说了一堆关于 proxy 代理的问题，结果我连到手机的热点就可以了，所以下次遇到时尝试切换网络环境</p>
 ]]></content>
     
     <summary type="html">
@@ -1569,62 +1590,6 @@ params:{&apos;datas&apos;:null}.
     
     
       <category term="css" scheme="http://yoursite.com/tags/css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js回顾(一)</title>
-    <link href="http://yoursite.com/2017/03/06/js%E5%9B%9E%E9%A1%BE-%E4%B8%80/"/>
-    <id>http://yoursite.com/2017/03/06/js回顾-一/</id>
-    <published>2017-03-06T07:18:25.000Z</published>
-    <updated>2017-05-19T14:15:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="对象和原型"><a href="#对象和原型" class="headerlink" title="对象和原型"></a>对象和原型</h1><h2 id="几种常见的创建对象方法"><a href="#几种常见的创建对象方法" class="headerlink" title="几种常见的创建对象方法"></a>几种常见的创建对象方法</h2><p>1.通过对象字面量构造</p>
-<pre><code>var contact1={
-    name:&quot;zhao&quot;,
-    sex:&quot;male&quot;
-}
-</code></pre><p>通过此方法构造的对象，其[[prototype]]指向Object.prototype</p>
-<p>2.通过构造函数</p>
-<pre><code>function Contact(name,sex){
-    this.name=name;
-    this.sex=sex;
-    this.getName=function(){
-        return name;
-    }
-}
-var contact1=new Contact()
-contact1.__proto__==Contact.prototype //true
-</code></pre><p>每个函数都有一个prototype属性，其所指向的对象带有constructor属性，这一属性指向函数自身,eg,本例中，Contact.prototype.constructor==Contact</p>
-<p>3.通过函数Object.create构造</p>
-<pre><code>var contact={
-    name:&quot;zhao&quot;,
-    sex:&quot;male&quot;
-}
-var contact1=Object.create(contact);
-</code></pre><p>contact1的[[prototype]]指向contact</p>
-<h1 id="js中proto和prototype的区别和关系？"><a href="#js中proto和prototype的区别和关系？" class="headerlink" title="js中proto和prototype的区别和关系？"></a>js中<strong>proto</strong>和prototype的区别和关系？</h1><p>常说js中一切都是对象，但基本数据类型不是对象，基本数据类型没有方法和属性 ，当我们调用方法时候会封装出一个对象，（wrapper对象是什么）<br>首先，几乎所有对象都有[[prototype]]属性，在es5中这是个隐藏属性，指向此对象的原型。es5中用Object.getPrototypeOf函数获得一个对象的[[prototype]]。es6中，使用Object.setPrototypeOf可以直接修改一个对象的[[prototype]]</p>
-<blockquote>
-<p>很多浏览器都给每个对象提供<strong>proto</strong>属性(不标准，不推荐用)，我觉得可以理解为就是[[prototype]]，</p>
-</blockquote>
-<p><img src="http://i.imgur.com/0G4COrD.png" alt="关系图"></p>
-<p>1.方法（Function）是对象，方法的原型(Function.prototype)是对象。因此，它们都会具有对象共有的特点。即：对象具有属性<strong>proto</strong>，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法。<br>2.方法(Function)方法这个特殊的对象，除了和其他对象一样有上述<em>proto</em>属性之外，还有自己特有的属性——原型属性（prototype），这个属性是一个指针，指向一个对象，这个对象的用途就是包含所有实例共享的属性和方法（我们把这个对象叫做原型对象）。原型对象也有一个属性，叫做constructor，这个属性包含了一个指针，指回原构造函数。好啦，知道了这两个基本点，我们来看看上面这副图。<br>1.构造函数Foo()构造函数的原型属性Foo.prototype指向了原型对象，在原型对象里有共有的方法，所有构造函数声明的实例（这里是f1，f2）都可以共享这个方法。<br>2.原型对象Foo.prototypeFoo.prototype保存着实例共享的方法，有一个指针constructor指回构造函数。<br>3.实例f1和f2是Foo这个对象的两个实例，这两个对象也有属性<strong>proto</strong>，指向构造函数的原型对象，这样子就可以像上面1所说的访问原型对象的所有方法啦。另外：构造函数Foo()除了是方法，也是对象啊，它也有<strong>proto</strong>属性，指向谁呢？指向它的构造函数的原型对象呗。函数的构造函数不就是Function嘛，因此这里的<strong>proto</strong>指向了Function.prototype。其实除了Foo()，Function(), Object()也是一样的道理。原型对象也是对象啊，它的<strong>proto</strong>属性，又指向谁呢？同理，指向它的构造函数的原型对象呗。这里是Object.prototype.最后，Object.prototype的<strong>proto</strong>属性指向null。<br>总结：<br>1.对象有属性<strong>proto</strong>,指向该对象的构造函数的原型对象。<br>2.方法除了有属性<strong>proto</strong>,还有属性prototype，prototype指向该方法的原型对象。</p>
-<p>看一下几种常见构造一个对象的方法，决定了一个对象的[[prototype]]属性</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
-<p><a href="http://blog.csdn.net/u010425776/article/details/53617292" target="_blank" rel="external">对象与原型</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;对象和原型&quot;&gt;&lt;a href=&quot;#对象和原型&quot; class=&quot;headerlink&quot; title=&quot;对象和原型&quot;&gt;&lt;/a&gt;对象和原型&lt;/h1&gt;&lt;h2 id=&quot;几种常见的创建对象方法&quot;&gt;&lt;a href=&quot;#几种常见的创建对象方法&quot; class=&quot;headerlink
-    
-    </summary>
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
     
   </entry>
   
