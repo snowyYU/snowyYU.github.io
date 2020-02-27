@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-12-13T11:00:49.137Z</updated>
+  <updated>2020-02-22T13:44:08.546Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微信授权相关</title>
+    <link href="http://yoursite.com/2020/02/22/%E5%BE%AE%E4%BF%A1%E6%8E%88%E6%9D%83%E7%9B%B8%E5%85%B3/"/>
+    <id>http://yoursite.com/2020/02/22/微信授权相关/</id>
+    <published>2020-02-22T13:44:08.000Z</published>
+    <updated>2020-02-22T13:44:08.546Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Visual Studio Code 相关</title>
@@ -1024,7 +1038,7 @@ $(&apos;#example tbody&apos;).on(&apos;click&apos;, &apos;td.details-control&apo
     <link href="http://yoursite.com/2017/05/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/"/>
     <id>http://yoursite.com/2017/05/11/浏览器渲染过程/</id>
     <published>2017-05-11T09:31:00.000Z</published>
-    <updated>2019-12-16T09:31:22.466Z</updated>
+    <updated>2020-02-27T09:34:15.877Z</updated>
     
     <content type="html"><![CDATA[<p>暂时只是大概读了一遍，先记下来</p>
 <h1 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h1><p>自上而下</p>
@@ -1072,6 +1086,7 @@ $(&apos;#example tbody&apos;).on(&apos;click&apos;, &apos;td.details-control&apo
 <blockquote>
 <p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="external">浏览器的渲染原理简介</a></p>
 <p><a href="http://www.jianshu.com/p/e141d1543143" target="_blank" rel="external">简书，浏览器加载解析渲染</a></p>
+<p>图解http</p>
 </blockquote>
 ]]></content>
     
@@ -1547,49 +1562,6 @@ params:{&apos;datas&apos;:null}.
     
     
       <category term="http" scheme="http://yoursite.com/tags/http/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>样式规范(一)</title>
-    <link href="http://yoursite.com/2017/03/14/%E6%A0%B7%E5%BC%8F%E8%A7%84%E8%8C%83-%E4%B8%80/"/>
-    <id>http://yoursite.com/2017/03/14/样式规范-一/</id>
-    <published>2017-03-14T11:12:41.000Z</published>
-    <updated>2017-04-10T14:49:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>为提高开发效率，特定了一些规范<br><a id="more"></a></p>
-<h1 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h1><blockquote>
-<p><a href="">github</a><br>需要以下几点的储备</p>
-</blockquote>
-<p>1.less<br>2.媒体查询<br>3.before和after<br>4.熟练的掌握css的选择器<br>5.查询条件一栏间距可以写死</p>
-<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><blockquote>
-<p>这里用来记一下</p>
-</blockquote>
-<h1 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h1><h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h3><p>xxs，xs，sm，空，md，lg，xl，xxl</p>
-<blockquote>
-<p>size,你懂的</p>
-</blockquote>
-<p>还有，full</p>
-<h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><p>top，bottom，left，right，middle</p>
-<h1 id="自适应-媒体查询"><a href="#自适应-媒体查询" class="headerlink" title="自适应(媒体查询)"></a>自适应(媒体查询)</h1><h2 id="范围在此"><a href="#范围在此" class="headerlink" title="范围在此"></a>范围在此</h2><h1 id="less部分用到的函数"><a href="#less部分用到的函数" class="headerlink" title="less部分用到的函数"></a>less部分用到的函数</h1><h2 id="lighten和darken"><a href="#lighten和darken" class="headerlink" title="lighten和darken"></a>lighten和darken</h2><blockquote>
-<p>提高／降低颜色的亮度</p>
-</blockquote>
-<p>HSL即色相、饱和度、亮度</p>
-<ul>
-<li>色相（H）是色彩的基本属性，就是平常所说的颜色名称，如红色、黄色等。</li>
-<li>饱和度（S）是指色彩的纯度，越高色彩越纯，低则逐渐变灰，取0-100%的数值。</li>
-<li>明度（V），亮度（L），取0-100%。<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3>lighten(color,percent)；</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;为提高开发效率，特定了一些规范&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="css" scheme="http://yoursite.com/tags/css/"/>
     
   </entry>
   
