@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="WeChat," />
 
 
 
@@ -86,17 +86,18 @@
 
 
 
-<meta name="description" content="Front End">
+<meta name="description" content="已经写过挺多授权部分的了，这里做写记录，并且附上相关的链接，以便后续查阅">
+<meta name="keywords" content="WeChat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信授权相关">
 <meta property="og:url" content="http://yoursite.com/2020/02/22/微信授权相关/index.html">
 <meta property="og:site_name" content="snowyYU">
-<meta property="og:description" content="Front End">
+<meta property="og:description" content="已经写过挺多授权部分的了，这里做写记录，并且附上相关的链接，以便后续查阅">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-22T13:44:08.546Z">
+<meta property="og:updated_time" content="2020-02-27T10:28:49.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信授权相关">
-<meta name="twitter:description" content="Front End">
+<meta name="twitter:description" content="已经写过挺多授权部分的了，这里做写记录，并且附上相关的链接，以便后续查阅">
 
 
 
@@ -391,7 +392,34 @@
       
 
       
-        
+        <p>已经写过挺多授权部分的了，这里做写记录，并且附上相关的链接，以便后续查阅</p>
+<a id="more"></a>
+<h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><p>其实官网文档已经相当之详细了，这里特地记录下每一步骤实现所用的代码以及相关的工具函数</p>
+<blockquote>
+<p>所以重点还是要看看官方文档</p>
+</blockquote>
+<h2 id="1-获取code"><a href="#1-获取code" class="headerlink" title="1.获取code"></a>1.获取code</h2><p>获取code方法如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wechatAuth</span> (<span class="params">appId, redirectUri, responseType, scope, state</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> url = <span class="string">'https://open.weixin.qq.com/connect/oauth2/authorize'</span></div><div class="line">  <span class="keyword">let</span> queryString = <span class="string">'appid='</span> + appId + <span class="string">'&amp;redirect_uri='</span> + <span class="built_in">encodeURIComponent</span>(redirectUri) + <span class="string">'&amp;response_type='</span> + responseType + <span class="string">'&amp;scope='</span> + scope + <span class="string">'&amp;state='</span> + state</div><div class="line">  location.href = url + <span class="string">'?'</span> + queryString + <span class="string">'#wechat_redirect'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="2-通过code换取网页授权-access-token-和-openid"><a href="#2-通过code换取网页授权-access-token-和-openid" class="headerlink" title="2.通过code换取网页授权 access_token 和 openid"></a>2.通过code换取网页授权 access_token 和 openid</h2><p>一般获取access_token 和 openid 都是由后台获取到，因为获取上面两个参数除了code外还需要传secret参数，出于安全考虑不会写在前端(参照文档)</p>
+<h2 id="3-刷新access-token-如果需要"><a href="#3-刷新access-token-如果需要" class="headerlink" title="3.刷新access_token (如果需要)"></a>3.刷新access_token (如果需要)</h2><p>access_token scope为 snsapi_base 时，access_token似乎没啥用处</p>
+<h2 id="4-拉取用户信息-需scope为snsapi-userinfo"><a href="#4-拉取用户信息-需scope为snsapi-userinfo" class="headerlink" title="4.拉取用户信息(需scope为snsapi_userinfo)"></a>4.拉取用户信息(需scope为snsapi_userinfo)</h2><p>注意scope，这里针对scope为 snsapi_userinfo 的情景，即需要获取用户openid以外的更多信息</p>
+<h2 id="5-tips"><a href="#5-tips" class="headerlink" title="5.tips"></a>5.tips</h2><h3 id="获取url中code参数的方法"><a href="#获取url中code参数的方法" class="headerlink" title="获取url中code参数的方法"></a>获取url中code参数的方法</h3><ol>
+<li><p>自写一个原生的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">getUrlParams (query, _url) &#123;</div><div class="line">  <span class="keyword">const</span> url = _url || <span class="built_in">window</span>.location.href</div><div class="line">  <span class="keyword">const</span> paramsString = url.indexOf(<span class="string">'?'</span>) &gt; <span class="number">-1</span> ? url.substring(url.indexOf(<span class="string">'?'</span>) + <span class="number">1</span>, url.length).split(<span class="string">'&amp;'</span>) : []</div><div class="line">  <span class="keyword">let</span> paramsObj = &#123;&#125;</div><div class="line">  paramsString.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</div><div class="line">    paramsObj[item.substring(<span class="number">0</span>, item.indexOf(<span class="string">'='</span>))] = item.substring(item.indexOf(<span class="string">'='</span>) + <span class="number">1</span>, item.length).split(<span class="string">'#'</span>)[<span class="number">0</span>]</div><div class="line">  &#125;)</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(query).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Array'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> paramsObj</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">const</span> returnValue = paramsObj[query]</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> (returnValue) === <span class="string">'undefined'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">''</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> returnValue</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>vue 中的 router相关方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.$route.query.code</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="存储相关配置参数的位置"><a href="#存储相关配置参数的位置" class="headerlink" title="存储相关配置参数的位置"></a>存储相关配置参数的位置</h3><p>微信和支付宝授权啊支付啊什么的都需要传一些参数给支付宝或微信的后台，就前端来说，常见的如下</p>
+<blockquote>
+<p>appid scope redirect_uri 等<br>那这些固定的常量都写在哪里呢？之前我会单新建一个config文件夹，然后分别创建微信和支付宝所需要用到的配置文件，不过有时候在测试的时候不想一遍遍的请求微信那边的授权（比如我只是想那个openid请求自己应用的接口），所以会额外加一些已知的openid userinfo 等，这些往往会再加多两个文件，而且还要加多一些有关开发和生产环境的判断等等</p>
+</blockquote>
+<p>所以如果是在vue-cli的开发环境下，推荐使用<a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F" target="_blank" rel="external">环境变量和模式</a></p>
+<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><ol>
+<li><a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html" target="_blank" rel="external">微信官方文档-网页授权</a></li>
+<li><a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F" target="_blank" rel="external">vue-cli环境变量和模式</a></li>
+</ol>
+
       
     </div>
 
@@ -411,6 +439,12 @@
 
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WeChat/" rel="tag"># WeChat</a>
+          
+        </div>
       
 
       
@@ -476,8 +510,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -508,7 +551,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -540,6 +583,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#主要步骤"><span class="nav-number">1.</span> <span class="nav-text">主要步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-获取code"><span class="nav-number">1.1.</span> <span class="nav-text">1.获取code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-通过code换取网页授权-access-token-和-openid"><span class="nav-number">1.2.</span> <span class="nav-text">2.通过code换取网页授权 access_token 和 openid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-刷新access-token-如果需要"><span class="nav-number">1.3.</span> <span class="nav-text">3.刷新access_token (如果需要)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-拉取用户信息-需scope为snsapi-userinfo"><span class="nav-number">1.4.</span> <span class="nav-text">4.拉取用户信息(需scope为snsapi_userinfo)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-tips"><span class="nav-number">1.5.</span> <span class="nav-text">5.tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取url中code参数的方法"><span class="nav-number">1.5.1.</span> <span class="nav-text">获取url中code参数的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储相关配置参数的位置"><span class="nav-number">1.5.2.</span> <span class="nav-text">存储相关配置参数的位置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关链接"><span class="nav-number">2.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
