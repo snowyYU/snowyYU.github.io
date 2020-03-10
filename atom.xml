@@ -83,7 +83,7 @@
     <link href="http://yoursite.com/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/"/>
     <id>http://yoursite.com/2019/12/06/Linus-相关命令/</id>
     <published>2019-12-06T07:35:29.000Z</published>
-    <updated>2019-12-11T13:33:10.122Z</updated>
+    <updated>2020-03-10T01:32:38.165Z</updated>
     
     <content type="html"><![CDATA[<p>需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈</p>
 <a id="more"></a>
@@ -95,6 +95,10 @@
 <li><code>cd /</code> 为进入根目录下</li>
 <li><code>ls</code> 列出当前目录下所有文件名称</li>
 </ul>
+<h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><p>查看当前文件目录完整路径</p>
+<blockquote>
+<p>复制当前目录到剪贴板，<code>pwd|pbcopy</code></p>
+</blockquote>
 <h2 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h2><p>创建一个目录</p>
 <h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p>创建一个文件，注意区别 <code>mkdir</code> 命令</p>
 <h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>查看文件内容</p>
