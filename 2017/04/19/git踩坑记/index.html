@@ -86,19 +86,19 @@
 
 
 
-<meta name="description" content="总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。">
+<meta name="description" content="总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git踩坑记">
 <meta property="og:url" content="http://yoursite.com/2017/04/19/git踩坑记/index.html">
 <meta property="og:site_name" content="snowyYU">
-<meta property="og:description" content="总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。">
+<meta property="og:description" content="总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://i.imgur.com/QJamb2Z.jpg">
-<meta property="og:updated_time" content="2020-04-02T10:09:15.330Z">
+<meta property="og:updated_time" content="2020-04-16T02:09:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git踩坑记">
-<meta name="twitter:description" content="总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。">
+<meta name="twitter:description" content="总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。">
 <meta name="twitter:image" content="http://i.imgur.com/QJamb2Z.jpg">
 
 
@@ -416,13 +416,14 @@
       
 
       
-        <p>总是容易忘记git的一些命令和用法，在此记下我重复google的，哈哈，比较无序，足够多时再分类。<br><a id="more"></a></p>
-<h1 id="将文件移除监听队列"><a href="#将文件移除监听队列" class="headerlink" title="将文件移除监听队列"></a>将文件移除监听队列</h1><p>git中如果文件已被加入跟踪队列，后续添加相应的.gitignore参数时其相应的改变仍会被监听，采用如下</p>
+        <p>总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。</p>
+<a id="more"></a>
+<h1 id="将文件移除监听队列"><a href="#将文件移除监听队列" class="headerlink" title="将文件移除监听队列"></a>将文件移除监听队列</h1><p>git 中如果文件已被加入跟踪队列，后续添加相应的.gitignore 参数时其相应的改变仍会被监听，采用如下</p>
 <pre><code>git rm --cached XX/xx.x
 </code></pre><blockquote>
-<p>附上链接<br><a href="https://segmentfault.com/q/1010000000430426" target="_blank" rel="external">git忽略已经被提交的文件</a><br><a href="http://www.ifeegoo.com/git-code-management-dot-gitignore-file-has-no-effect-solution.html" target="_blank" rel="external">.gitignore 文件无效的解决方法</a></p>
+<p>附上链接<br><a href="https://segmentfault.com/q/1010000000430426" target="_blank" rel="external">git 忽略已经被提交的文件</a> &gt;<a href="http://www.ifeegoo.com/git-code-management-dot-gitignore-file-has-no-effect-solution.html" target="_blank" rel="external">.gitignore 文件无效的解决方法</a></p>
 </blockquote>
-<h1 id="常见的git删除"><a href="#常见的git删除" class="headerlink" title="常见的git删除"></a>常见的git删除</h1><pre><code>git rm XXX.xx
+<h1 id="常见的-git-删除"><a href="#常见的-git-删除" class="headerlink" title="常见的 git 删除"></a>常见的 git 删除</h1><pre><code>git rm XXX.xx
 </code></pre><p>如果误删了可采用<code>git checkout</code></p>
 <blockquote>
 <p><code>git checkout</code>其实是用版本库里的版本替换工作区的版本，无论工作区修改还是删除，都可以使用此还原</p>
@@ -432,21 +433,48 @@
 git add remote origin https://github.com/snowyYU/x.git
 </code></pre><p>name 为远程主机的名字</p>
 <h1 id="push，push，push"><a href="#push，push，push" class="headerlink" title="push，push，push"></a>push，push，push</h1><pre><code>git push -u origin master
-</code></pre><p>这里只想说一下-u参数，设置了这个之后，pull fetch push啥的默认连接的为origin master</p>
+</code></pre><p>这里只想说一下-u 参数，设置了这个之后，pull fetch push 啥的默认连接的为 origin master</p>
 <blockquote>
-<p><a href="https://www.zhihu.com/question/20019419" target="_blank" rel="external">知乎git push 的 -u 参数具体适合含义</a></p>
+<p><a href="https://www.zhihu.com/question/20019419" target="_blank" rel="external">知乎 git push 的 -u 参数具体适合含义</a></p>
 </blockquote>
-<h1 id="merge-报错"><a href="#merge-报错" class="headerlink" title="merge 报错"></a>merge 报错</h1><p>今天在pull时出现了一个问题，过程是这样的，我新建了远程仓库时顺带初始化了readme,结果本地pull时报错，如下<br>    fatal: refusing to merge unrelated histories<br>就是它觉得我两个仓库没啥关联，然后我尝试push，报错如下<br>    $ git push -u origin master<br>    To <a href="https://github.com/snowyYU/center-solution.git" target="_blank" rel="external">https://github.com/snowyYU/center-solution.git</a><br>    ! [rejected]        master -&gt; master (non-fast-forward)<br>    error: failed to push some refs to ‘<a href="https://github.com/snowyYU/center-solution.git" target="_blank" rel="external">https://github.com/snowyYU/center-solution.git</a>‘<br>    hint: Updates were rejected because the tip of your current branch is behind<br>    hint: its remote counterpart. Integrate the remote changes (e.g.<br>    hint: ‘git pull …’) before pushing again.<br>    hint: See the ‘Note about fast-forwards’ in ‘git push –help’ for details.</p>
-<p>说我本地仓库版本过时啦，叫我先pull</p>
-<p>没办法，只能强上了，加上参数<br>    git pull origin master –allow-unrelated-histories</p>
-<p>之后会进入vim让我输入commit message，</p>
+<h1 id="打上标签-tag"><a href="#打上标签-tag" class="headerlink" title="打上标签 tag"></a>打上标签 tag</h1><p>主要有两种方法</p>
+<ul>
+<li><code>git tag tagName</code></li>
+<li><code>git tag -a tagName -m &quot;remarks备注&quot;</code></li>
+</ul>
+<p>查看<code>tags</code></p>
+<ul>
+<li><code>git tag</code></li>
+</ul>
+<p>从 tag 处开一个分支</p>
+<p><code>git branch &lt;new-branch&gt; &lt;tag-name&gt;</code> 进行版本的管理</p>
 <blockquote>
-<p><a href="https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories" target="_blank" rel="external">stackoverflow</a><br><a href="http://www.jianshu.com/p/eae20fcde419" target="_blank" rel="external">vim命令看这里</a></p>
+<p><a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE" target="_blank" rel="external">详情参考</a></p>
+</blockquote>
+<h1 id="log-和-reflog-命令"><a href="#log-和-reflog-命令" class="headerlink" title="log 和 reflog 命令"></a>log 和 reflog 命令</h1><h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p>展示所有的 commit</p>
+<h2 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h2><p>展示所有的操作记录，相较 git log ，reflog 命令可以展示 reset 和已删除 commit 的操作</p>
+<h1 id="merge-报错"><a href="#merge-报错" class="headerlink" title="merge 报错"></a>merge 报错</h1><p>今天在 pull 时出现了一个问题，过程是这样的，我新建了远程仓库时顺带初始化了 readme,结果本地 pull 时报错，如下</p>
+<pre><code>fatal: refusing to merge unrelated histories
+</code></pre><p>就是它觉得我两个仓库没啥关联，然后我尝试 push，报错如下</p>
+<pre><code>$ git push -u origin master
+To https://github.com/snowyYU/center-solution.git
+! [rejected]        master -&gt; master (non-fast-forward)
+error: failed to push some refs to &apos;https://github.com/snowyYU/center-solution.git&apos;
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: &apos;git pull ...&apos;) before pushing again.
+hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.
+</code></pre><p>说我本地仓库版本过时啦，叫我先 pull</p>
+<p>没办法，只能强上了，加上参数</p>
+<pre><code>git pull origin master --allow-unrelated-histories
+</code></pre><p>之后会进入 vim 让我输入 commit message，</p>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories" target="_blank" rel="external">stackoverflow</a> &gt;<a href="http://www.jianshu.com/p/eae20fcde419" target="_blank" rel="external">vim 命令看这里</a></p>
 </blockquote>
 <h1 id="查看更改处"><a href="#查看更改处" class="headerlink" title="查看更改处"></a>查看更改处</h1><pre><code>git diff
 </code></pre><p>上图:</p>
 <p><img src="http://i.imgur.com/QJamb2Z.jpg" alt="gitDiff"></p>
-<p>这样只会对比当前工作区和所在分支最新commit的改动处，需要对比远程分支，可以看 <a href="#参考链接">参考链接</a></p>
+<p>这样只会对比当前工作区和所在分支最新 commit 的改动处，需要对比远程分支，可以看 <a href="#参考链接">参考链接</a></p>
 <h1 id="撤销更改"><a href="#撤销更改" class="headerlink" title="撤销更改"></a>撤销更改</h1><p>如果还没有使用 <code>add</code> 命令加入到暂存区，可以</p>
 <h2 id="单个文件"><a href="#单个文件" class="headerlink" title="单个文件"></a>单个文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout --filename</div></pre></td></tr></table></figure>
 <h2 id="所有文件"><a href="#所有文件" class="headerlink" title="所有文件"></a>所有文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout .</div></pre></td></tr></table></figure>
@@ -457,48 +485,48 @@ git add remote origin https://github.com/snowyYU/x.git
 <p>如果已经 <code>commit</code> 了，想要撤销</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset commit_id  // 撤销后所有的更改会变成 add 之前的状态，git status 之后就是一片红红红</div></pre></td></tr></table></figure>
 <blockquote>
-<p>这个 id 是你想要回到的那个节点，可以通过 git log 查看，可以只选前6位</p>
+<p>这个 id 是你想要回到的那个节点，可以通过 git log 查看，可以只选前 6 位<br>或者 通过 gitreflog 命令取得</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard commit_id //撤销之后，所做的已经commit的修改将会清除，仍在工作区/暂存区的代码也将会清除！</div></pre></td></tr></table></figure>
-<h1 id="创建-切换分支-删除"><a href="#创建-切换分支-删除" class="headerlink" title="创建,切换分支 ,删除"></a>创建,切换分支 ,删除</h1><p>今天在看webpack官网的指南时候，发现各部分练习的代码挺不一样，又想起之前看angularjs时官网给出的phonecat，他们项目各个构建步骤被创建成一个个branch，感觉十分方便，所以我仿照试下</p>
+<h1 id="创建-切换分支-删除"><a href="#创建-切换分支-删除" class="headerlink" title="创建,切换分支 ,删除"></a>创建,切换分支 ,删除</h1><p>今天在看 webpack 官网的指南时候，发现各部分练习的代码挺不一样，又想起之前看 angularjs 时官网给出的 phonecat，他们项目各个构建步骤被创建成一个个 branch，感觉十分方便，所以我仿照试下</p>
 <pre><code>git checkout -b XXX
 </code></pre><p>这个命令相当于</p>
 <pre><code>git branch XXX    //新建XXX分支
 git checkout XXX  //切换到XXX分支
-</code></pre><p>现在就切换到XXX分支了，可以在gitbash中看到，然后我直接</p>
-<pre><code>git push origin XXX
-</code></pre><p>其实此时远程仓库中并没有XXX分支，执行此命令后，远程仓库会新建XXX分支，并push成功。 </p>
+</code></pre><p>现在就切换到 XXX 分支了，可以在 gitbash 中看到，然后我直接</p>
+<p>git push origin XXX</p>
+<p>其实此时远程仓库中并没有 XXX 分支，执行此命令后，远程仓库会新建 XXX 分支，并 push 成功。</p>
 <pre><code>git branch -D XXX
-</code></pre><p>删除本地的XXX分支</p>
+</code></pre><p>删除本地的 XXX 分支</p>
 <pre><code>git push origin :XXX
-</code></pre><p>删除远程的XXX分支</p>
-<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>自己尝试更新folk到自己github上仓库时查到的这个命令，先上个链接</p>
+</code></pre><p>删除远程的 XXX 分支</p>
+<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>自己尝试更新 folk 到自己 github 上仓库时查到的这个命令，先上个链接</p>
 <blockquote>
 <p><a href="https://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository" target="_blank" rel="external">How do I update a GitHub forked repository?</a></p>
 </blockquote>
 <p>第一个答案大意就是，</p>
 <ol>
-<li>从自己的GitHub上clone至本地工作目录</li>
-<li>在本地添加remote，即从哪folk来的(这里先叫upstream)，</li>
-<li>fetch upstream上的所有分支</li>
-<li>切换到本地的master分支</li>
-<li>将upstream上需要同步的分支rebase</li>
+<li>从自己的 GitHub 上 clone 至本地工作目录</li>
+<li>在本地添加 remote，即从哪 folk 来的(这里先叫 upstream)，</li>
+<li>fetch upstream 上的所有分支</li>
+<li>切换到本地的 master 分支</li>
+<li>将 upstream 上需要同步的分支 rebase</li>
 </ol>
-<p>我觉得rebase和merge差不多，区别可能是rebase不会留下痕迹，merge需要输入message啥的</p>
+<p>我觉得 rebase 和 merge 差不多，区别可能是 rebase 不会留下痕迹，merge 需要输入 message 啥的</p>
 <blockquote>
 <p><a href="http://blog.csdn.net/hudashi/article/details/7664631/" target="_blank" rel="external">git rebase</a></p>
 </blockquote>
-<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>针对更新自己folk的仓库，官方后来又给出了web版本的方案，上面的是需要本地仓库的，先上链接</p>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>针对更新自己 folk 的仓库，官方后来又给出了 web 版本的方案，上面的是需要本地仓库的，先上链接</p>
 <blockquote>
 <p><a href="https://github.com/KirstieJane/STEMMRoleModels/wiki/Syncing-your-fork-to-the-original-repository-via-the-browser" target="_blank" rel="external">www</a></p>
 </blockquote>
-<p>大致就是自己从源向自己folk的仓库发起 pull request,然后合并</p>
-<h1 id="遇到ping-github-com-time-out-问题"><a href="#遇到ping-github-com-time-out-问题" class="headerlink" title="遇到ping github.com time out 问题"></a>遇到ping github.com time out 问题</h1><blockquote>
+<p>大致就是自己从源向自己 folk 的仓库发起 pull request,然后合并</p>
+<h1 id="遇到-ping-github-com-time-out-问题"><a href="#遇到-ping-github-com-time-out-问题" class="headerlink" title="遇到 ping github.com time out 问题"></a>遇到 ping github.com time out 问题</h1><blockquote>
 <p>可以在网页中正常访问 github，唯独在终端中连接不了 github，也 ping 不通</p>
 </blockquote>
 <p>喵喵喵？查了半天网上说了一堆关于 proxy 代理的问题，结果我连到手机的热点就可以了，所以下次遇到时尝试切换网络环境</p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><a href="https://www.zhihu.com/question/53601264" target="_blank" rel="external">如何在git中对比当前工作区和远程仓库的区别</a></li>
+<li><a href="https://www.zhihu.com/question/53601264" target="_blank" rel="external">如何在 git 中对比当前工作区和远程仓库的区别</a></li>
 </ul>
 
       
@@ -678,7 +706,7 @@ git checkout XXX  //切换到XXX分支
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#将文件移除监听队列"><span class="nav-number">1.</span> <span class="nav-text">将文件移除监听队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的git删除"><span class="nav-number">2.</span> <span class="nav-text">常见的git删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新增远程仓库地址"><span class="nav-number">3.</span> <span class="nav-text">新增远程仓库地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#push，push，push"><span class="nav-number">4.</span> <span class="nav-text">push，push，push</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#merge-报错"><span class="nav-number">5.</span> <span class="nav-text">merge 报错</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看更改处"><span class="nav-number">6.</span> <span class="nav-text">查看更改处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#撤销更改"><span class="nav-number">7.</span> <span class="nav-text">撤销更改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单个文件"><span class="nav-number">7.1.</span> <span class="nav-text">单个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有文件"><span class="nav-number">7.2.</span> <span class="nav-text">所有文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除所有新增未加入暂存区的文件-文件夹"><span class="nav-number">7.3.</span> <span class="nav-text">清除所有新增未加入暂存区的文件/文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单个文件-1"><span class="nav-number">7.4.</span> <span class="nav-text">单个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有文件-1"><span class="nav-number">7.5.</span> <span class="nav-text">所有文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建-切换分支-删除"><span class="nav-number">8.</span> <span class="nav-text">创建,切换分支 ,删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-rebase"><span class="nav-number">9.</span> <span class="nav-text">git rebase</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#后续"><span class="nav-number">9.1.</span> <span class="nav-text">后续</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到ping-github-com-time-out-问题"><span class="nav-number">10.</span> <span class="nav-text">遇到ping github.com time out 问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">11.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#将文件移除监听队列"><span class="nav-number">1.</span> <span class="nav-text">将文件移除监听队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的-git-删除"><span class="nav-number">2.</span> <span class="nav-text">常见的 git 删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新增远程仓库地址"><span class="nav-number">3.</span> <span class="nav-text">新增远程仓库地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#push，push，push"><span class="nav-number">4.</span> <span class="nav-text">push，push，push</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打上标签-tag"><span class="nav-number">5.</span> <span class="nav-text">打上标签 tag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#log-和-reflog-命令"><span class="nav-number">6.</span> <span class="nav-text">log 和 reflog 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-log"><span class="nav-number">6.1.</span> <span class="nav-text">git log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-reflog"><span class="nav-number">6.2.</span> <span class="nav-text">git reflog</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#merge-报错"><span class="nav-number">7.</span> <span class="nav-text">merge 报错</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看更改处"><span class="nav-number">8.</span> <span class="nav-text">查看更改处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#撤销更改"><span class="nav-number">9.</span> <span class="nav-text">撤销更改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单个文件"><span class="nav-number">9.1.</span> <span class="nav-text">单个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有文件"><span class="nav-number">9.2.</span> <span class="nav-text">所有文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除所有新增未加入暂存区的文件-文件夹"><span class="nav-number">9.3.</span> <span class="nav-text">清除所有新增未加入暂存区的文件/文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单个文件-1"><span class="nav-number">9.4.</span> <span class="nav-text">单个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有文件-1"><span class="nav-number">9.5.</span> <span class="nav-text">所有文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建-切换分支-删除"><span class="nav-number">10.</span> <span class="nav-text">创建,切换分支 ,删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-rebase"><span class="nav-number">11.</span> <span class="nav-text">git rebase</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#后续"><span class="nav-number">11.1.</span> <span class="nav-text">后续</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到-ping-github-com-time-out-问题"><span class="nav-number">12.</span> <span class="nav-text">遇到 ping github.com time out 问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">13.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>

@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="snowyYU">
 <meta property="og:description" content="js中数据类型分基本数据类型和引用数据类型两种，对象便是某个特定引用类型的实例。Array构造函数在web中作为window对象的一个属性 数组的初始化 var array=[]; var array=new Array();   var array=new Array(5)接收的参数作为新建数组的长度var array=new Array(&amp;quot;param1&amp;quot;,&amp;quot;par">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-21T14:56:56.000Z">
+<meta property="og:updated_time" content="2020-04-07T09:58:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js数组">
 <meta name="twitter:description" content="js中数据类型分基本数据类型和引用数据类型两种，对象便是某个特定引用类型的实例。Array构造函数在web中作为window对象的一个属性 数组的初始化 var array=[]; var array=new Array();   var array=new Array(5)接收的参数作为新建数组的长度var array=new Array(&amp;quot;param1&amp;quot;,&amp;quot;par">
@@ -498,15 +498,11 @@ var colors2 = colors.concat(&quot;purple&quot;,[&quot;black&quot;,&quot;white&qu
 console.log(colors2);   //[&quot;red&quot;,&quot;yellow&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;purple&quot;,&quot;black&quot;,&quot;white&quot;]
 </code></pre><p>slice()接收一个或两个参数，即要返回起始至末尾或者起始和结束位置(不包括)的项，上例子</p>
 <blockquote>
+<p>注意 <code>slice()</code> 方法可以不传参数，看下面例子</p>
 <p>注意参数可以为负值</p>
 </blockquote>
-<pre><code>var colors = [&quot;red&quot;,&quot;yellow&quot;,&quot;blue&quot;,&quot;green&quot;];
-var colors3 = colors.slice(1);
-var colors4 = colors.slice(1,2);
-var colors5 = colors.slice(-3,-2);  //colors.length-3==1
-console.log(colors3);   //[&quot;yellow&quot;, &quot;blue&quot;, &quot;green&quot;]
-console.log(colors4);   //[&quot;yellow&quot;]
-</code></pre><blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> colors = [<span class="string">"red"</span>,<span class="string">"yellow"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>];</div><div class="line"><span class="keyword">var</span> colorss = colors.slice() <span class="comment">// 相当于colors.slice(0)</span></div><div class="line"><span class="keyword">var</span> colors3 = colors.slice(<span class="number">1</span>);</div><div class="line"><span class="keyword">var</span> colors4 = colors.slice(<span class="number">1</span>,<span class="number">2</span>);</div><div class="line"><span class="keyword">var</span> colors5 = colors.slice(<span class="number">-3</span>,<span class="number">-2</span>);  <span class="comment">//colors.length-3==1</span></div><div class="line"><span class="built_in">console</span>.log(colors3);   <span class="comment">//["yellow", "blue", "green"]</span></div><div class="line"><span class="built_in">console</span>.log(colors4);   <span class="comment">//["yellow"]</span></div></pre></td></tr></table></figure>
+<blockquote>
 <p>concat()和slice()不会影响原有数组</p>
 <h3 id="splice"><a href="#splice" class="headerlink" title="splice"></a>splice</h3><p>splice方法很强大，可以实现数组的删除，插入，替换功能，语法为：</p>
 </blockquote>

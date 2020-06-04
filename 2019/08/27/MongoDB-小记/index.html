@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
+<meta name="description" content="主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
 <meta name="keywords" content="DataBase,MongoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB 小记">
 <meta property="og:url" content="http://yoursite.com/2019/08/27/MongoDB-小记/index.html">
 <meta property="og:site_name" content="snowyYU">
-<meta property="og:description" content="主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
+<meta property="og:description" content="主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T13:19:04.952Z">
+<meta property="og:updated_time" content="2020-06-04T07:09:23.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB 小记">
-<meta name="twitter:description" content="主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
+<meta name="twitter:description" content="主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
 
 
 
@@ -414,24 +414,45 @@
       
 
       
-        <p>主要是记录下我学习MongoDB的过程和遇到的问题，以供后续的查阅和学习，持续改进吧</p>
+        <p>主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧</p>
 <a id="more"></a>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>这是官网安装页面，<a href="https://docs.mongodb.com/manual/installation/#tutorial-installation" target="_blank" rel="external">MongoDB Install</a>。</p>
 <p>有企业版和社区版的区分，基本是</p>
-<p>我是mac系统，有 brew 和二进制文件两种安装方法</p>
+<p>我是 mac 系统，有 brew 和二进制文件两种安装方法</p>
 <p>顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户</p>
 <blockquote>
 <p>附上官方启用 root 账户的说明，<a href="https://support.apple.com/zh-cn/HT204012" target="_blank" rel="external">如何在 Mac 上启用 root 用户或更改 root 密码</a></p>
 </blockquote>
-<p>注意安装后需要创建一个数据库数据存储的文件夹</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir -p /data/db</div></pre></td></tr></table></figure>
-<p>如果运行 <code>ps -xa | grep mongod</code>，没有看到一个 <code>dbpath</code> 显式地告诉mongod查看该数据库位置的参数，并且你的mongodb.conf中没有数据库路径，那么默认数据存储位置就是如上</p>
+<p><del>注意安装后需要创建一个数据库数据存储的文件夹</del></p>
+<p><del><code>mkdir -p /data/db</code></del></p>
+<p><del>如果运行 <code>ps -xa | grep mongod</code>，没有看到一个 <code>dbpath</code> 显式地告诉 mongod 查看该数据库位置的参数，并且你的 mongodb.conf 中没有数据库路径，那么默认数据存储位置就是如上</del></p>
+<p>Mac 升级为 Catalina 系统后，根目录只有读的权限了，也就是不能在根目录创建 /data/db</p>
+<p>两种解决方法</p>
+<ol>
+<li><p>使用 <code>mongod --dbpath=/Users/user/data/db</code> 这种，每次都指明数据存放路径的命令启动 mongodb</p>
+</li>
+<li><p>参考 <a href="https://stackoverflow.com/questions/58034955/read-only-file-system-when-attempting-mkdir-data-db-on-mac" target="_blank" rel="external">stackoverflow</a> 第二条回答，使用 brew 启动<br><code>brew services start mongodb-community</code></p>
+</li>
+</ol>
 <blockquote>
-<p>顺便说 <code>cd /</code> 命令可以直接进入根目录</p>
+<p>顺便说 <code>cd /</code> 命令可以直接进入根目录<br>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<h1 id="cd-进入用户根目录"><a href="#cd-进入用户根目录" class="headerlink" title="cd ~ 进入用户根目录"></a><code>cd ~</code> 进入用户根目录</h1><blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>3575c5fdccc55be4e8f6a65dc08e1df8b25288f7</p>
 </blockquote>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>因为我已经把mongoDB的路径加入了系统路径中，并且使用了默认的数据存放位置，所以可以直接，如果没做这两步的话，参考如下</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>因为我已经把 mongoDB 的路径加入了系统路径中，并且使用了默认的数据存放位置，所以可以直接，如果没做这两步的话，参考如下</p>
 <blockquote>
-<p><a href="https://docs.mongodb.com/guides/server/install/" target="_blank" rel="external">MongoDB配置</a></p>
+<p><a href="https://docs.mongodb.com/guides/server/install/" target="_blank" rel="external">MongoDB 配置</a></p>
 </blockquote>
 <pre><code>sudo mongod //启动
 </code></pre><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>新开一个命令行工具，输入</p>
@@ -444,7 +465,7 @@
 <pre><code>&gt; use &lt;name&gt;
 </code></pre><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
 <li><a href="https://docs.mongodb.com/manual/tutorial/getting-started/" target="_blank" rel="external">MongoDB get start</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/44263728" target="_blank" rel="external">小白必须懂的MongoDB的十大总结-MongoDB的认识
+<li><a href="https://zhuanlan.zhihu.com/p/44263728" target="_blank" rel="external">小白必须懂的 MongoDB 的十大总结-MongoDB 的认识
 </a></li>
 </ul>
 
@@ -627,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">2.1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接"><span class="nav-number">2.2.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作部分"><span class="nav-number">2.3.</span> <span class="nav-text">操作部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看"><span class="nav-number">2.3.1.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.3.2.</span> <span class="nav-text">创建</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cd-进入用户根目录"><span class="nav-number">2.</span> <span class="nav-text">cd ~ 进入用户根目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">3.1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接"><span class="nav-number">3.2.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作部分"><span class="nav-number">3.3.</span> <span class="nav-text">操作部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看"><span class="nav-number">3.3.1.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">3.3.2.</span> <span class="nav-text">创建</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
