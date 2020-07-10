@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>snowyYU</title>
+  
+  <subtitle>dream passionately</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-07-09T04:21:24.272Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>snowyYU</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 prettier + eslint 统一代码风格和语法检查</title>
+    <link href="http://yoursite.com/2020/07/03/%E4%BD%BF%E7%94%A8-prettier-eslint-%E7%BB%9F%E4%B8%80%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E8%AF%AD%E6%B3%95%E6%A3%80%E6%9F%A5/"/>
+    <id>http://yoursite.com/2020/07/03/使用-prettier-eslint-统一代码风格和语法检查/</id>
+    <published>2020-07-03T08:59:07.000Z</published>
+    <updated>2020-07-09T04:21:24.272Z</updated>
+    
+    <content type="html"><![CDATA[<p>考虑各项目间的统一，使用 prettier 进行项目的代码风格格式化，使用 eslint 做语法检查，具体规范如下</p><a id="more"></a><h1 id="Prettier-vs-Linters"><a href="#Prettier-vs-Linters" class="headerlink" title="Prettier vs. Linters"></a>Prettier vs. Linters</h1><p>首先说明 Prettier 和 .Linters(ESLint/TSLint/stylelint, etc)的区别，</p><ol><li>Prettier 专注于代码风格上的统一，其配置项较少，是个 Opinionated formatter (就是类似 angular 那种，必须按照它自定的规则来)，</li><li>比如说 ESLint，它其实包括了代码风格规范和语法检查两部分，有众多的规范插件可供选择，其配置项也较为复杂。但在代码风格上，它只能提供异常报错的警示信息，不能直接帮我们输出风格统一的代码。</li></ol><blockquote><p><a href="https://prettier.io/docs/en/comparison.html" target="_blank" rel="noopener">How does it compare to ESLint/TSLint/stylelint, etc.?</a></p></blockquote><h1 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h1><p>代码美化部分大致包含：触发自动换行的字符数，强制关键词前后加空格</p><p>prettier 的大部分规则都是不可配置了，只保留了几个争议特别大的规则给用户配置，比如单引号和双引号的选择，也正因如此，对团队的代码风格上的统一也会更有帮助</p><h2 id="风格规范"><a href="#风格规范" class="headerlink" title="风格规范"></a>风格规范</h2><p>直接执行如下命令查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npx prettier --write .</span><br><span class="line">npx prettier --write app/</span><br><span class="line">npx prettier --write app/components/Button.js</span><br><span class="line">npx prettier --write app/**/*.test.js</span><br></pre></td></tr></table></figure></p><h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><ol><li>使用 <code>eslint-config-prettier</code> 覆盖掉 ESLint 的代码风格规则</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev eslint-config-prettier</span><br></pre></td></tr></table></figure><ol start="2"><li>向根目录下 .eslintrc 文件中的 <strong>extend</strong> 增加 <code>&quot;prettier&quot;</code></li></ol><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"extends"</span>: [</span><br><span class="line">    <span class="string">"some-other-config-you-use"</span>,</span><br><span class="line">    <span class="string">"prettier"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="3"><li><p>配置根目录下 .prettierrc 文件如下</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"eslintIntegration"</span>: <span class="literal">true</span>, <span class="comment">//</span></span><br><span class="line">    <span class="attr">"stylelintIntegration"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"tabWidth"</span>: <span class="number">2</span>,        <span class="comment">// 缩进字符</span></span><br><span class="line">    <span class="attr">"singleQuote"</span>: <span class="literal">true</span>,  <span class="comment">// 要不要单引号</span></span><br><span class="line">    <span class="attr">"semi"</span>: <span class="literal">false</span>         <span class="comment">// 要不要使用 ;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>配置保存自动格式化，在用户的 <code>setting.json</code> 文件中加上如下配置</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">"eslint.format.enable": true,</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">5. 如有需要忽略代码风格</span><br><span class="line"></span><br><span class="line">## others ##</span><br><span class="line"></span><br><span class="line">### git hook ###</span><br><span class="line"></span><br><span class="line">使用 husky 和 lint-staged 来确保每次提交前代码已是格式化后的状态，配置参考如下</span><br><span class="line"></span><br><span class="line">```json</span><br><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"husky"</span>: &#123;</span><br><span class="line">    <span class="attr">"hooks"</span>: &#123;</span><br><span class="line">      <span class="attr">"pre-commit"</span>: <span class="string">"lint-staged"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"lint-staged"</span>: &#123;</span><br><span class="line">    <span class="attr">"**/*"</span>: [<span class="string">"eslint --fix"</span>, <span class="string">"prettier --write"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><h2 id="about"><a href="#about" class="headerlink" title="about"></a>about</h2><ol><li><a href="https://prettier.io/docs/en/index.html" target="_blank" rel="noopener">Prettier</a></li><li><a href="https://github.com/okonet/lint-staged#readme" target="_blank" rel="noopener">lint-staged</a></li><li><a href="https://github.com/typicode/husky#readme" target="_blank" rel="noopener">husky</a></li></ol><h1 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h1><p>语法检查部分大致包含：变量检查（重复引用，引入但未使用，声明但未使用。。。），无意义的bind</p><p>一般情况下，脚手架都自带了基础的 eslint 配置，所以主要还是注意eslint 的 plugin 的安装配置，参考如下</p><h2 id="about-1"><a href="#about-1" class="headerlink" title="about"></a>about</h2><ol><li><a href="https://eslint.org/docs/user-guide/getting-started" target="_blank" rel="noopener">eslint</a></li><li><a href="https://eslint.org/docs/developer-guide/working-with-plugins" target="_blank" rel="noopener">working-with-plugins</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;考虑各项目间的统一，使用 prettier 进行项目的代码风格格式化，使用 eslint 做语法检查，具体规范如下&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="standard" scheme="http://yoursite.com/categories/standard/"/>
+    
+    
+      <category term="vscode" scheme="http://yoursite.com/tags/vscode/"/>
+    
+      <category term="IDE" scheme="http://yoursite.com/tags/IDE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker入门</title>
+    <link href="http://yoursite.com/2020/06/29/docker%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2020/06/29/docker入门/</id>
+    <published>2020-06-29T08:11:52.000Z</published>
+    <updated>2020-06-29T09:04:50.762Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录些安装，配置，和使用上的一些心得，方便日后查阅</p><a id="more"></a><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="在centOS上安装"><a href="#在centOS上安装" class="headerlink" title="在centOS上安装"></a>在centOS上安装</h2><p>mac 上安装的话直接有相应的安装包，很简单，现在主要说下服务端的，流程大致可以参考官方 <a href="https://docs.docker.com/engine/install/centos/" target="_blank" rel="noopener">docker install</a>，不过要注意，我在centos8 上执行到 <code>sudo yum install docker-ce docker-ce-cli containerd.io</code> 命令报错（应该是containerd.io版本问题）。</p><p>此时需要先执行 <code>dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm</code> 先安装 containerd.io。</p><p>再执行 <code>sudo yum install docker-ce docker-ce-cli</code> ,<code>sudo systemctl start docker</code> 安装剩下两个</p><h2 id="配置国内镜像"><a href="#配置国内镜像" class="headerlink" title="配置国内镜像"></a>配置国内镜像</h2><p>编辑 <code>sudo vi /etc/docker/daemon.json</code><br>加入如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;registry-mirrors&quot;: [</span><br><span class="line">        &quot;https://1nj0zren.mirror.aliyuncs.com&quot;,</span><br><span class="line">        &quot;https://docker.mirrors.ustc.edu.cn&quot;,</span><br><span class="line">        &quot;http://f1361db2.m.daocloud.io&quot;,</span><br><span class="line">        &quot;https://registry.docker-cn.com&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><blockquote><p>好像 <code>&quot;https://registry.docker-cn.com&quot;</code> 失效了</p></blockquote><h1 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h1><p>参考官方安装文档 <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">compose install</a></p><ol><li>下载安装 <code>sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</code></li><li>给权限 <code>sudo chmod +x /usr/local/bin/docker-compose</code></li><li>测试是否安装成功 <code>docker-compose --version</code></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录些安装，配置，和使用上的一些心得，方便日后查阅&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+    
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微信授权相关</title>
+    <link href="http://yoursite.com/2020/02/22/%E5%BE%AE%E4%BF%A1%E6%8E%88%E6%9D%83%E7%9B%B8%E5%85%B3/"/>
+    <id>http://yoursite.com/2020/02/22/微信授权相关/</id>
+    <published>2020-02-22T13:44:08.000Z</published>
+    <updated>2020-02-27T10:28:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>已经写过挺多授权部分的了，这里做写记录，并且附上相关的链接，以便后续查阅</p><a id="more"></a><h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><p>其实官网文档已经相当之详细了，这里特地记录下每一步骤实现所用的代码以及相关的工具函数</p><blockquote><p>所以重点还是要看看官方文档</p></blockquote><h2 id="1-获取code"><a href="#1-获取code" class="headerlink" title="1.获取code"></a>1.获取code</h2><p>获取code方法如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wechatAuth</span> (<span class="params">appId, redirectUri, responseType, scope, state</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> url = <span class="string">'https://open.weixin.qq.com/connect/oauth2/authorize'</span></span><br><span class="line">  <span class="keyword">let</span> queryString = <span class="string">'appid='</span> + appId + <span class="string">'&amp;redirect_uri='</span> + <span class="built_in">encodeURIComponent</span>(redirectUri) + <span class="string">'&amp;response_type='</span> + responseType + <span class="string">'&amp;scope='</span> + scope + <span class="string">'&amp;state='</span> + state</span><br><span class="line">  location.href = url + <span class="string">'?'</span> + queryString + <span class="string">'#wechat_redirect'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="2-通过code换取网页授权-access-token-和-openid"><a href="#2-通过code换取网页授权-access-token-和-openid" class="headerlink" title="2.通过code换取网页授权 access_token 和 openid"></a>2.通过code换取网页授权 access_token 和 openid</h2><p>一般获取access_token 和 openid 都是由后台获取到，因为获取上面两个参数除了code外还需要传secret参数，出于安全考虑不会写在前端(参照文档)</p><h2 id="3-刷新access-token-如果需要"><a href="#3-刷新access-token-如果需要" class="headerlink" title="3.刷新access_token (如果需要)"></a>3.刷新access_token (如果需要)</h2><p>access_token scope为 snsapi_base 时，access_token似乎没啥用处</p><h2 id="4-拉取用户信息-需scope为snsapi-userinfo"><a href="#4-拉取用户信息-需scope为snsapi-userinfo" class="headerlink" title="4.拉取用户信息(需scope为snsapi_userinfo)"></a>4.拉取用户信息(需scope为snsapi_userinfo)</h2><p>注意scope，这里针对scope为 snsapi_userinfo 的情景，即需要获取用户openid以外的更多信息</p><h2 id="5-tips"><a href="#5-tips" class="headerlink" title="5.tips"></a>5.tips</h2><h3 id="获取url中code参数的方法"><a href="#获取url中code参数的方法" class="headerlink" title="获取url中code参数的方法"></a>获取url中code参数的方法</h3><ol><li><p>自写一个原生的</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">getUrlParams (query, _url) &#123;</span><br><span class="line">  <span class="keyword">const</span> url = _url || <span class="built_in">window</span>.location.href</span><br><span class="line">  <span class="keyword">const</span> paramsString = url.indexOf(<span class="string">'?'</span>) &gt; <span class="number">-1</span> ? url.substring(url.indexOf(<span class="string">'?'</span>) + <span class="number">1</span>, url.length).split(<span class="string">'&amp;'</span>) : []</span><br><span class="line">  <span class="keyword">let</span> paramsObj = &#123;&#125;</span><br><span class="line">  paramsString.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    paramsObj[item.substring(<span class="number">0</span>, item.indexOf(<span class="string">'='</span>))] = item.substring(item.indexOf(<span class="string">'='</span>) + <span class="number">1</span>, item.length).split(<span class="string">'#'</span>)[<span class="number">0</span>]</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(query).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Array'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> paramsObj</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> returnValue = paramsObj[query]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> (returnValue) === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> returnValue</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>vue 中的 router相关方法</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$route.query.code</span><br></pre></td></tr></table></figure></li></ol><h3 id="存储相关配置参数的位置"><a href="#存储相关配置参数的位置" class="headerlink" title="存储相关配置参数的位置"></a>存储相关配置参数的位置</h3><p>微信和支付宝授权啊支付啊什么的都需要传一些参数给支付宝或微信的后台，就前端来说，常见的如下</p><blockquote><p>appid scope redirect_uri 等<br>那这些固定的常量都写在哪里呢？之前我会单新建一个config文件夹，然后分别创建微信和支付宝所需要用到的配置文件，不过有时候在测试的时候不想一遍遍的请求微信那边的授权（比如我只是想那个openid请求自己应用的接口），所以会额外加一些已知的openid userinfo 等，这些往往会再加多两个文件，而且还要加多一些有关开发和生产环境的判断等等</p></blockquote><p>所以如果是在vue-cli的开发环境下，推荐使用<a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">环境变量和模式</a></p><h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><ol><li><a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html" target="_blank" rel="noopener">微信官方文档-网页授权</a></li><li><a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">vue-cli环境变量和模式</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;已经写过挺多授权部分的了，这里做写记录，并且附上相关的链接，以便后续查阅&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="WeChat" scheme="http://yoursite.com/tags/WeChat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Visual Studio Code 相关</title>
+    <link href="http://yoursite.com/2019/12/13/Visual-Studio-Code-%E7%9B%B8%E5%85%B3/"/>
+    <id>http://yoursite.com/2019/12/13/Visual-Studio-Code-相关/</id>
+    <published>2019-12-13T10:53:51.000Z</published>
+    <updated>2019-12-13T11:00:49.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="VSCode" scheme="http://yoursite.com/tags/VSCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linus 相关命令</title>
+    <link href="http://yoursite.com/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2019/12/06/Linus-相关命令/</id>
+    <published>2019-12-06T07:35:29.000Z</published>
+    <updated>2020-03-10T02:05:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈</p><a id="more"></a><h1 id="文档型：文件相关命令"><a href="#文档型：文件相关命令" class="headerlink" title="文档型：文件相关命令"></a>文档型：文件相关命令</h1><blockquote><p>touch,cat,echo,rm,vi,cd</p></blockquote><h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><p><code>cd</code> 命令就不用多说了，进入某个目录下</p><ul><li><code>cd /</code> 为进入根目录下</li><li><code>ls</code> 列出当前目录下所有文件名称</li></ul><h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><p>查看当前文件目录完整路径</p><blockquote><p>复制当前目录到剪贴板，<code>pwd|pbcopy</code></p></blockquote><h2 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h2><p>创建一个目录</p><h2 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h2><p>移动一个文件或文件夹，也可用于更改文件名</p><blockquote><p><code>mv test.txt test</code> 将 test.txt 文件移动到当前目录下到test文件夹下</p></blockquote><blockquote><p><code>mv test.txt test1.txt</code> 将 test.txt 文件名改为test1.txt</p></blockquote><h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p>创建一个文件，注意区别 <code>mkdir</code> 命令</p><h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>查看文件内容</p><blockquote><p>比如 <code>cat test.txt</code></p></blockquote><h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>向文件中添加或覆盖内容</p><p><code>echo 1234 &gt;&gt; test.txt</code> 两个箭头表示向内容末尾添加内容</p><p><code>echo 1234 &gt; test.txt</code> 一个箭头表示覆盖内容</p><h2 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h2><p>删除文件</p><ul><li>删除目录使用 <code>rm -r</code> 命令<blockquote><p>注意 <code>rm -rf</code> 是强制删除命令，慎用，会造成误删后无法恢复的问题</p></blockquote></li></ul><h2 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h2><p>用 <strong>vim</strong> 编辑器编辑文件</p><h1 id="功能型：压缩-解压，下载，远程"><a href="#功能型：压缩-解压，下载，远程" class="headerlink" title="功能型：压缩/解压，下载，远程"></a>功能型：压缩/解压，下载，远程</h1><blockquote><p>wget, tar, ssh</p></blockquote><h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>下载文件，命令后跟资源地址</p><h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><h3 id="解压文件，-命令后跟文件名"><a href="#解压文件，-命令后跟文件名" class="headerlink" title="解压文件， 命令后跟文件名"></a>解压文件， 命令后跟文件名</h3><p><strong>tar zxvf</strong> 参数解释</p><ul><li><strong>z</strong> 用来解压 <strong>.gz</strong>后缀的文件，比如 <strong>apache-tomcat-9.0.17.tar.gz</strong></li><li><strong>x</strong> 代表解压缩</li><li><strong>v</strong> 代表显示所有的解压过程</li><li><strong>f</strong> 表示解压后的文件使用压缩包文件的名字，比如 </li><li><strong>apache-tomcat-9.0.17.tar.gz</strong> 使用 <strong>zxvf</strong> 参数解压后的文件名为 <strong>apache-tomcat-9.0.17</strong></li></ul><h3 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h3><p><strong>tar zcvf</strong> 参数解释，<strong>c</strong> 代表压缩，其余解释和上文一致</p><blockquote><p>需要注意，<strong>tar zcvf</strong> 后跟两个参数，第一个参数为压缩后的文件名，第二个参数为需要被压缩的文件，例如把 <strong>apache-tomcat-9.0.17</strong> 压缩成 <strong>apache-tomcat.tar.gz</strong> 使用 <code>tar zcvf apache-tomcat.tar.gz apache-tomcat-9.0.17</code></p></blockquote><h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><p>远程连接，看例子 <code>ssh root@119.21.241.41</code></p><blockquote><p><code>ssh -p 10229 root@119.21.241.41</code>  </p></blockquote><p>有几个相关的小点需要注意</p><ul><li><code>cat /etc/hostname</code> 查看主机名，可用vim修改</li><li><code>cat /etc/ssh/sshd_config</code> 查看 <strong>ssh</strong> 服务的配置，可用vim修改</li><li><code>netstat -anlp | grep sshd</code> 查看 <strong>ssh</strong> 服务占用的端口号</li></ul><h1 id="系统进程服务相关"><a href="#系统进程服务相关" class="headerlink" title="系统进程服务相关"></a>系统进程服务相关</h1><h2 id="查看当前系统进程"><a href="#查看当前系统进程" class="headerlink" title="查看当前系统进程"></a>查看当前系统进程</h2><p><strong>ps -ef | grep</strong> , 比如</p><blockquote><p><code>ps -ef | grep docker</code> 查看名为 <strong>docker</strong> 的进程</p></blockquote><h2 id="kill-某进程"><a href="#kill-某进程" class="headerlink" title="kill 某进程"></a>kill 某进程</h2><p><strong>kill -9</strong>，比如</p><blockquote><p><code>kill -9 27643</code> 强制杀死id为27643的进程</p></blockquote><h2 id="系统服务相关"><a href="#系统服务相关" class="headerlink" title="系统服务相关"></a>系统服务相关</h2><h3 id="查看系统服务"><a href="#查看系统服务" class="headerlink" title="查看系统服务"></a>查看系统服务</h3><p><strong>service 服务名 status</strong>, 比如 </p><blockquote><p><code>service sshd status</code> :查询 ssh 服务的运行状态</p></blockquote><h3 id="关闭某个服务"><a href="#关闭某个服务" class="headerlink" title="关闭某个服务"></a>关闭某个服务</h3><p><strong>service 服务名 stop</strong> </p><h3 id="重启某个服务"><a href="#重启某个服务" class="headerlink" title="重启某个服务"></a>重启某个服务</h3><p><strong>service 服务名 restart</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linus" scheme="http://yoursite.com/tags/Linus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB 小记</title>
+    <link href="http://yoursite.com/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/08/27/MongoDB-小记/</id>
+    <published>2019-08-27T08:38:37.000Z</published>
+    <updated>2020-06-30T08:06:34.452Z</updated>
+    
+    <content type="html"><![CDATA[<p>主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧</p><a id="more"></a><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>这是官网安装页面，<a href="https://docs.mongodb.com/manual/installation/#tutorial-installation" target="_blank" rel="noopener">MongoDB Install</a>。</p><p>有企业版和社区版的区分，基本是</p><p>我是 mac 系统，有 brew 和二进制文件两种安装方法</p><p>顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户</p><blockquote><p>附上官方启用 root 账户的说明，<a href="https://support.apple.com/zh-cn/HT204012" target="_blank" rel="noopener">如何在 Mac 上启用 root 用户或更改 root 密码</a></p></blockquote><p><del>注意安装后需要创建一个数据库数据存储的文件夹</del></p><p><del><code>mkdir -p /data/db</code></del></p><p><del>如果运行 <code>ps -xa | grep mongod</code>，没有看到一个 <code>dbpath</code> 显式地告诉 mongod 查看该数据库位置的参数，并且你的 mongodb.conf 中没有数据库路径，那么默认数据存储位置就是如上</del></p><p>Mac 升级为 Catalina 系统后，根目录只有读的权限了，也就是不能在根目录创建 /data/db</p><p>两种解决方法</p><ol><li><p>使用 <code>mongod --dbpath=/Users/user/data/db</code> 这种，每次都指明数据存放路径的命令启动 mongodb</p></li><li><p>参考 <a href="https://stackoverflow.com/questions/58034955/read-only-file-system-when-attempting-mkdir-data-db-on-mac" target="_blank" rel="noopener">stackoverflow</a> 第二条回答，使用 brew 启动<br><code>brew services start mongodb-community</code></p></li></ol><blockquote><p>顺便说 <code>cd /</code> 命令可以直接进入根目录<br><code>cd ~</code> 进入用户根目录</p></blockquote><h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>因为我已经把 mongoDB 的路径加入了系统路径中，并且使用了默认的数据存放位置，所以可以直接，如果没做这两步的话，参考如下</p><blockquote><p><a href="https://docs.mongodb.com/guides/server/install/" target="_blank" rel="noopener">MongoDB 配置</a></p></blockquote><pre><code>sudo mongod //启动</code></pre><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>新开一个命令行工具，输入</p><pre><code>mongo</code></pre><p>连接数据库，可以输入查询语句了</p><h2 id="操作部分"><a href="#操作部分" class="headerlink" title="操作部分"></a>操作部分</h2><p>还能说啥，重中之重，多多练习</p><h2 id="授权，创建，修改，查看用户"><a href="#授权，创建，修改，查看用户" class="headerlink" title="授权，创建，修改，查看用户"></a>授权，创建，修改，查看用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.auth(&apos;user&apos;,&apos;pwd&apos;)</span><br><span class="line">db.createUser(user:&apos;&apos;,pwd:&apos;&apos;,roles:[])</span><br><span class="line">show users // 查看当前数据库用户</span><br><span class="line">db.system.users.find() // 查看所有用户</span><br></pre></td></tr></table></figure><blockquote><p><a href="https://zhuanlan.zhihu.com/p/26215701" target="_blank" rel="noopener">详情参考此文</a></p></blockquote><h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>查看所有数据库</p><pre><code>&gt; show dbs</code></pre><p>查看当前数据库的 collections (集合)</p><pre><code>&gt; show collections</code></pre><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建或进入某个存在的数据库</p><pre><code>&gt; use &lt;name&gt;</code></pre><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入一条数据</p><pre><code>&gt; db.collection.insertOne({})</code></pre><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul><li><a href="https://docs.mongodb.com/manual/tutorial/getting-started/" target="_blank" rel="noopener">MongoDB get start</a></li><li><a href="https://zhuanlan.zhihu.com/p/44263728" target="_blank" rel="noopener">小白必须懂的 MongoDB 的十大总结-MongoDB 的认识</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="DataBase" scheme="http://yoursite.com/categories/DataBase/"/>
+    
+    
+      <category term="DataBase" scheme="http://yoursite.com/tags/DataBase/"/>
+    
+      <category term="MongoDB" scheme="http://yoursite.com/tags/MongoDB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>英语学习-口语篇</title>
+    <link href="http://yoursite.com/2018/11/05/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0-%E5%8F%A3%E8%AF%AD%E7%AF%87/"/>
+    <id>http://yoursite.com/2018/11/05/英语学习-口语篇/</id>
+    <published>2018-11-05T15:23:45.000Z</published>
+    <updated>2018-11-05T18:49:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今年集中学习了一段时间英语，后经我家东贤提醒，应该写写自己学习的心得，供我们以后参考。</p><a id="more"></a><h1 id="音标"><a href="#音标" class="headerlink" title="音标"></a>音标</h1><p>既然是口语相关，音标自然是基础啦，推荐 <strong>赖世雄美语音标</strong>，分音频和文本部分，连接如下</p><ul><li><a href="https://www.ximalaya.com/waiyu/4324892/" target="_blank" rel="noopener">音频-喜马拉雅</a></li><li><a href="https://pan.baidu.com/s/1yBUD_d8Y3EVh_eYm_WS8Hg" target="_blank" rel="noopener">文本-提取码12na</a></li></ul><h1 id="单词"><a href="#单词" class="headerlink" title="单词"></a>单词</h1><p>单词量是基础，这个没啥说的，找个app大声跟着读吧</p><h1 id="听和看"><a href="#听和看" class="headerlink" title="听和看"></a>听和看</h1><p>我觉得对语言来讲，各方面的能力都是协同进步的，所以口语也定然离不开听力阅读等部分，听和看的同时要加上模仿和思考，这里给出相关推荐</p><h2 id="听"><a href="#听" class="headerlink" title="听"></a>听</h2><p>我觉得VOA系列就很棒，<strong>VOA-special</strong> 现在有自己的发音评测，其他的之后在听力篇写写</p><h2 id="看"><a href="#看" class="headerlink" title="看"></a>看</h2><ul><li><strong>How I Met Your Mother</strong>，美剧，几个人在一起唠嗑，包含了大量日常的俚语，而且还蛮有趣的哈哈，建议把台词打印下来，可以模仿某个人的对话找找感觉</li><li><strong>老友记</strong>，这个我没看过啦，听说有蛮多相关APP的，资源应该很丰富 </li><li><p><strong>charlotte’s web</strong>，英文儿童读物，老师推荐 </p><blockquote><p>链接: <a href="https://pan.baidu.com/s/1PhC1Gp4yxNRZYT9F_gRGFQ" target="_blank" rel="noopener">文本-提取码204a</a></p></blockquote></li></ul><h1 id="连读部分"><a href="#连读部分" class="headerlink" title="连读部分"></a>连读部分</h1><p>感觉这个是进阶的重要部分，一个知乎话题供参考</p><blockquote><p><a href="https://www.zhihu.com/question/35857073" target="_blank" rel="noopener">知乎-怎样解决英语的连读吞音等问题</a></p></blockquote><p>有看到推荐<strong>A Course in Phonetics</strong>，瞅了一下觉得应该靠谱，便去搜了下相关资源</p><ul><li><a href="https://pan.baidu.com/s/1qR0b_P1FPIO4xsA3dNMZfQ" target="_blank" rel="noopener">文本-提取码59dp</a></li><li><a href="https://corpus.linguistics.berkeley.edu/acip/course/chapter1/" target="_blank" rel="noopener">示例音频及作业</a></li><li><a href="http://ocw.aca.ntu.edu.tw/ntu-ocw/index.php/ocw/cou/101S102" target="_blank" rel="noopener">台大公开课</a></li></ul><h1 id="讲"><a href="#讲" class="headerlink" title="讲"></a>讲</h1><p>很多时候我们说英文的话都是先想象中文怎样表达，然后再转换成英文，这个过程的长短就是区分初学者水平的关键，不过熟练的话可能根本没有转英文这一步，直接英文怼上去哈。这就要求多想多讲啦，练习可以分如下几个方面</p><ul><li><strong>话题练习</strong>，就是雅思和托福口语部分的练习，多瞅瞅相关真题，蛮多APP的，我用的小站</li><li><strong>多讲多讲</strong>，交流多用用英文啦，不过一般情况下用到英文对地方太少啦，建议每次讲完话多用英文对语境下思考下英文版对回答</li><li><strong>纠错</strong>，能多和英文老师交流最好啦，网上也有相关外教口语方面的授课。还有就是很多APP有自己的录音上传评分功能，大部分还是蛮准的，可以的话自己录音反复和原文对比</li></ul><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote><p><a href="https://www.zhihu.com/question/20097263" target="_blank" rel="noopener">知乎-怎么练好英语口语</a><br><a href="https://www.zhihu.com/question/35857073" target="_blank" rel="noopener">知乎-怎样解决英语的连读吞音等问题</a><br>啊，泣不成声啊</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今年集中学习了一段时间英语，后经我家东贤提醒，应该写写自己学习的心得，供我们以后参考。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="study" scheme="http://yoursite.com/categories/study/"/>
+    
+    
+      <category term="English" scheme="http://yoursite.com/tags/English/"/>
+    
+      <category term="study" scheme="http://yoursite.com/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅谈自己对Promise的理解</title>
+    <link href="http://yoursite.com/2017/08/03/%E6%B5%85%E8%B0%88%E8%87%AA%E5%B7%B1%E5%AF%B9Promise%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <id>http://yoursite.com/2017/08/03/浅谈自己对Promise的理解/</id>
+    <published>2017-08-03T09:54:05.000Z</published>
+    <updated>2017-09-02T17:04:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一直以来虽然写了不少promise，总感觉有点一知半解，现在花些时间整理下。</p><h1 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h1><p>自己最早是从一篇介绍promise的文章看到的，记得文章中说promise可以使代码更整洁，避免陷入重重的回调当中。之后真正写是从angularjs中的$http服务中开始的，嗯，其中的写法很多，我一直用success和error来加载回调函数，现在看起来应该是then和catch的实现(或者是只用then方法即then中含有两个方法参数)，还有bootstrap UI for Angular组件中modal框部分，$modal.open().result返回的便是一个promise对象，在上面写关闭modal框后实现的方法</p><p>等等，现在又接触到angular2的observer了，</p><h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><blockquote><p><a href="http://liubin.org/promises-book/#promises-overview" target="_blank" rel="noopener">promise小小书</a></p></blockquote><h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>创建promise对象的流程如下所示。</p><ol><li><p>new Promise(fn) 返回一个promise对象</p></li><li><p>在fn 中指定异步等处理</p></li><li><p>处理结果正常的话，调用resolve(处理结果值)</p></li><li><p>处理结果错误的话，调用reject(Error对象)</p></li></ol><p>举个书上的栗子，一看便懂</p><pre><code>function getURL(URL) {    return new Promise(function (resolve, reject) {        var req = new XMLHttpRequest();        req.open(&apos;GET&apos;, URL, true);        req.onload = function () {            if (req.status === 200) {                resolve(req.responseText);            } else {                reject(new Error(req.statusText));            }        };        req.onerror = function () {            reject(new Error(req.statusText));        };        req.send();    });}// 运行示例var URL = &quot;http://httpbin.org/get&quot;;getURL(URL).then(function onFulfilled(value){    console.log(value);}).catch(function onRejected(error){    console.error(error);});</code></pre><p>首先，返回resolve就代表着接下来then的回调函数会调用，(也意味着catch中的回调函数不会执行了)</p><p>这有个angular2的例子，是个resolve很好的应用</p><pre><code>//返回的promise中的泛型，为返回data的格式queryLoans(query:any):Promise&lt;{count:number,items:Loan[]}&gt;{    return this.myHttp.get({      api:this.myHttp.api.loanList,      query:query    }).toPromise()      .then((res)=&gt;{        let data={          count:0,          items:[]        };        if(res.ok){          console.log(res);          let result=res.json();          if(result.status===200){            data.count=result.body.paginator.totalCount;            for(let l of result.body.records){              let loan=new Loan();              loan.borrowApplyId=l.borrowApplyId;              loan.memberId=l.memberId;              loan.companyName=l.companyName;              loan.applyAmount=parseFloat(l.applyAmount);              loan.approveAmount=parseFloat(l.approveAmount);              loan.productId=l.productId;              loan.borrowHowLong=l.borrowHowlong;              loan.repaymentWay=l.repaymentWay;              loan.cardId=l.cardId;              loan.cardNo=l.cardNo;              loan.isContract=!!parseFloat(l.isContract);              loan.status=parseFloat(l.status);              loan.createTime=l.createTime;              loan.auditOneTime=l.auditOneTime;              loan.auditOneBy=l.auditOneBy;              data.items.push(loan);            }          }        }        return Promise.resolve(data);      });}</code></pre><p>angular2使用typescript来写的，ts可以说是强类型了，这个方法是用来获取接口的数据，并对接收的数据进行了一定的格式化，最后把格式化后的数据放在promise中的resolve中返回，angular2中这种和数据打交道的方法一般都放置在服务中，组件作为服务的最大消费者来调用它。</p><h2 id="Promise的状态"><a href="#Promise的状态" class="headerlink" title="Promise的状态"></a>Promise的状态</h2><p>实例化的promise对象只有三种状态，成功，失败，初始化状态</p><ul><li><p>“has-resolution” - Fulfilled<br>resolve(成功)时。此时会调用 onFulfilled</p></li><li><p>“has-rejection” - Rejected<br>reject(失败)时。此时会调用 onRejected</p></li><li><p>“unresolved” - Pending<br>既不是resolve也不是reject的状态。也就是promise对象刚被创建后的初始化状态等</p></li></ul><h2 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h2><p>Promise.all 接收一个 promise对象的数组作为参数，当这个数组里的所有promise对象全部变为resolve或reject状态的时候，它才会去调用 .then 方法。</p><pre><code>Promise.all([promise1,promise2],...).then(res=&gt;{})</code></pre><p>res接收各个结果组成的数组，</p><p>个人觉得这个会应用于接口间顺序的请求渲染，比如编辑页面的初始渲染可能会依赖于一些字典接口查询后的结果。或者对多个接口数据请求后的统一处理。</p><h2 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h2><p>Promise.race 也同样接收一个promise对象的数组作为参数，区别是Promise.race只要有一个promise对象进入 FulFilled 或者 Rejected 状态的话，就会继续进行后面的处理</p><blockquote><p>这样的话，之后的then或catch接收的参数就只有最快进入FulFilled 或 Rejected 状态的promise返回的数据了</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一直以来虽然写了不少promise，总感觉有点一知半解，现在花些时间整理下。&lt;/p&gt;
+&lt;h1 id=&quot;前记&quot;&gt;&lt;a href=&quot;#前记&quot; class=&quot;headerlink&quot; title=&quot;前记&quot;&gt;&lt;/a&gt;前记&lt;/h1&gt;&lt;p&gt;自己最早是从一篇介绍promise的文章看到的，
+      
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>进击的angular2</title>
+    <link href="http://yoursite.com/2017/07/21/%E8%BF%9B%E5%87%BB%E7%9A%84angular2/"/>
+    <id>http://yoursite.com/2017/07/21/进击的angular2/</id>
+    <published>2017-07-21T15:03:52.000Z</published>
+    <updated>2017-08-19T03:19:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录下<br><a id="more"></a></p><p>angular2以上用了typescript开发，怎么说呢，也要学习下ts的语法，所以记录的问题分为两部分了。</p><h1 id="typescript"><a href="#typescript" class="headerlink" title="typescript"></a>typescript</h1><h2 id="资料部分"><a href="#资料部分" class="headerlink" title="资料部分"></a>资料部分</h2><blockquote><p>官网文档很重要</p></blockquote><ol><li><a href="https://www.tslang.cn/docs/home.html" target="_blank" rel="noopener">ts中文官网</a>墙裂推荐</li></ol><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="setter和getter"><a href="#setter和getter" class="headerlink" title="setter和getter"></a>setter和getter</h3><h3 id="对类中"><a href="#对类中" class="headerlink" title="对类中"></a>对类中</h3><h1 id="angular"><a href="#angular" class="headerlink" title="angular"></a>angular</h1><h2 id="资料部分-1"><a href="#资料部分-1" class="headerlink" title="资料部分"></a>资料部分</h2><ol><li><a href="https://angular.cn/" target="_blank" rel="noopener">angular中文网</a>相当好，每个翻译都有对应的英文</li></ol><h2 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h2><h3 id="service可以用作单例对象吗"><a href="#service可以用作单例对象吗" class="headerlink" title="service可以用作单例对象吗"></a>service可以用作单例对象吗</h3><p>angular中的service我觉得只是用injectable装饰器修饰的一个类，既然是类的话</p><blockquote><p><a href="http://www.zcfy.cc/article/javascript-design-patterns-the-singleton-918.html" target="_blank" rel="noopener">JavaScript设计模式：单例模式</a></p></blockquote><blockquote><p><a href="http://liaodanqi.me/2017/03/24/design-pattern-singleton/" target="_blank" rel="noopener">2</a></p></blockquote><h3 id="angular组件间的通信"><a href="#angular组件间的通信" class="headerlink" title="angular组件间的通信"></a>angular组件间的通信</h3><ol><li>通过单例的类，字变量对象，服务</li><li>通过router传参是个方法</li><li>@input和@output装饰器</li></ol><h2 id="资料部分-2"><a href="#资料部分-2" class="headerlink" title="资料部分"></a>资料部分</h2><blockquote><p>官方文档炒鸡重要啊</p></blockquote><h2 id="问题-2"><a href="#问题-2" class="headerlink" title="问题"></a>问题</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录下&lt;br&gt;
+    
+    </summary>
+    
+      <category term="angular" scheme="http://yoursite.com/categories/angular/"/>
+    
+    
+      <category term="angular" scheme="http://yoursite.com/tags/angular/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sublime3主题和BracketHightLighter插件配置</title>
+    <link href="http://yoursite.com/2017/07/12/sublime3%E4%B8%BB%E9%A2%98%E5%92%8CBracketHightLighter%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2017/07/12/sublime3主题和BracketHightLighter插件配置/</id>
+    <published>2017-07-12T03:38:14.000Z</published>
+    <updated>2017-07-21T14:56:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>sublime有很高的配置性，这里说下他的主题部分和插件(BracketHightLighter)的相关配置。</p><a id="more"></a><h1 id="sublime主题"><a href="#sublime主题" class="headerlink" title="sublime主题"></a>sublime主题</h1><p>我的sublime版本为3126</p><p>网上有很多主题，可通过package control来安装，就不说啦</p><h1 id="BracketHightLighter插件配置"><a href="#BracketHightLighter插件配置" class="headerlink" title="BracketHightLighter插件配置"></a>BracketHightLighter插件配置</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装不说了，直接在package control中安装</p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>打开</p><p>Preferences  &gt;  Package Settings  &gt;  BracketHighlighter  &gt;  Bracket Settings</p><p>不同版本的sublime会有些差异，sublime3的话一般配置分为</p><ul><li>默认配置（用户不可更改，以防你改残了）</li><li>用户配置（这部分随便你改，大不了最后直接删掉）</li></ul><p>这个就像css一样，用户配置的部分会覆盖默认的配置</p><p>现在，你看到两栏，左边就是默认配置啦，改不了的，右边就是用户配置，现在空空的向其中添加如下，</p><blockquote><p>其中，根据英文名就可以知道default(默认)，curly(大括号)，round(小括号)，square(方括号)……是分别配置各自的显示信息的啦</p></blockquote><blockquote><p>style 属性就是展示的类型了，默认为下划线(underline)，个人偏好都改为高亮(highlight)</p></blockquote><blockquote><p>color 的配置稍微繁琐，放到下面讲</p></blockquote><pre><code> { &quot;bracket_styles&quot;:     {        &quot;default&quot;: {        &quot;icon&quot;: &quot;dot&quot;,         &quot;color&quot;: &quot;entity.name.class&quot;,         &quot;color&quot;: &quot;brackethighlighter.default&quot;,         &quot;style&quot;: &quot;highlight&quot;         },         &quot;unmatched&quot;: {        &quot;icon&quot;: &quot;question&quot;,         &quot;color&quot;: &quot;brackethighlighter.unmatched&quot;,         &quot;style&quot;: &quot;highlight&quot;         },         &quot;curly&quot;: {        &quot;icon&quot;: &quot;curly_bracket&quot;,         &quot;color&quot;: &quot;brackethighlighter.curly&quot;,         &quot;style&quot;: &quot;highlight&quot;         },         &quot;round&quot;: {        &quot;icon&quot;: &quot;round_bracket&quot;,         &quot;color&quot;: &quot;brackethighlighter.round&quot;,         &quot;style&quot;: &quot;highlight&quot;         },         &quot;square&quot;: {        &quot;icon&quot;: &quot;square_bracket&quot;,         &quot;color&quot;: &quot;brackethighlighter.square&quot;,         &quot;style&quot;: &quot;highlight&quot;         },         &quot;angle&quot;: {        &quot;icon&quot;: &quot;angle_bracket&quot;,         &quot;color&quot;: &quot;brackethighlighter.angle&quot;,         &quot;style&quot;: &quot;highlight&quot;         },         &quot;tag&quot;: {        &quot;icon&quot;: &quot;tag&quot;,         &quot;color&quot;: &quot;brackethighlighter.tag&quot;,         &quot;style&quot;: &quot;highlight&quot;         },         &quot;single_quote&quot;: {         &quot;icon&quot;: &quot;single_quote&quot;,          &quot;color&quot;: &quot;brackethighlighter.quote&quot;,          &quot;style&quot;: &quot;highlight&quot;         },         &quot;double_quote&quot;: {        &quot;icon&quot;: &quot;double_quote&quot;,         &quot;color&quot;: &quot;brackethighlighter.quote&quot;,         &quot;style&quot;: &quot;highlight&quot;         },         &quot;regex&quot;: {        &quot;icon&quot;: &quot;regex&quot;,         &quot;color&quot;: &quot;brackethighlighter.quote&quot;,         &quot;style&quot;: &quot;outline&quot;          }     } }</code></pre><p>BracketHightLighter插件默认是使用下划线的（underline）</p><h2 id="color的配置"><a href="#color的配置" class="headerlink" title="color的配置"></a>color的配置</h2><p>比如其中的</p><pre><code>&quot;curly&quot;: {        &quot;icon&quot;: &quot;curly_bracket&quot;,         &quot;color&quot;: &quot;brackethighlighter.curly&quot;,         &quot;style&quot;: &quot;highlight&quot;         }, </code></pre><p>color属性值为brackethighlighter.curly，这个在哪呢</p><p>首先要找到正在使用的主题,打开Packages文件夹，再打开User  &gt;  Preferences.sublime-settings<br>第一行就是正在使用的主题配置</p><p>之后(Preferences  &gt;  Browse Packages)打开Packages文件夹，User  &gt;   Color Highlighter    &gt;   themes</p><p>我试用的Monokai.tmTheme，打开，向<code>&lt;array&gt;&lt;/array&gt;</code>添加</p><pre><code>&lt;dict&gt;    &lt;key&gt;name&lt;/key&gt;    &lt;string&gt;Bracket Curly&lt;/string&gt;    &lt;key&gt;scope&lt;/key&gt;    &lt;string&gt;brackethighlighter.curly&lt;/string&gt;    &lt;key&gt;settings&lt;/key&gt;    &lt;dict&gt;        &lt;key&gt;foreground&lt;/key&gt;        &lt;string&gt;#CC99CC&lt;/string&gt;    &lt;/dict&gt;&lt;/dict&gt;</code></pre><p>保存后就发现花括号高亮颜色就变成粉红色啦，其他配置同理</p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul><li><a href="http://docs.sublimetext.info/en/latest/reference/color_schemes.html" target="_blank" rel="noopener">color schemes</a></li><li><a href="https://facelessuser.github.io/BracketHighlighter/customize/#configuring-highlight-style" target="_blank" rel="noopener">BracketHighlighter set color</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;sublime有很高的配置性，这里说下他的主题部分和插件(BracketHightLighter)的相关配置。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="sublime" scheme="http://yoursite.com/categories/sublime/"/>
+    
+    
+      <category term="sublime" scheme="http://yoursite.com/tags/sublime/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>进击的vue</title>
+    <link href="http://yoursite.com/2017/06/20/%E8%BF%9B%E5%87%BB%E7%9A%84vue/"/>
+    <id>http://yoursite.com/2017/06/20/进击的vue/</id>
+    <published>2017-06-20T15:36:26.000Z</published>
+    <updated>2017-07-10T13:15:16.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>js数组</title>
+    <link href="http://yoursite.com/2017/06/20/js%E6%95%B0%E7%BB%84/"/>
+    <id>http://yoursite.com/2017/06/20/js数组/</id>
+    <published>2017-06-20T11:51:50.000Z</published>
+    <updated>2020-04-07T09:58:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>js中数据类型分基本数据类型和引用数据类型两种，对象便是某个特定引用类型的实例。<br>Array构造函数在web中作为window对象的一个属性</p><h1 id="数组的初始化"><a href="#数组的初始化" class="headerlink" title="数组的初始化"></a>数组的初始化</h1><ol><li><code>var array=[];</code></li><li><code>var array=new Array();</code></li></ol><blockquote><p><code>var array=new Array(5)</code>接收的参数作为新建数组的长度<br><code>var array=new Array(&quot;param1&quot;,&quot;param2&quot;,&quot;param3&quot;)</code>直接接收数组成员作为参数</p></blockquote><h1 id="数组的方法"><a href="#数组的方法" class="headerlink" title="数组的方法"></a>数组的方法</h1><p>数组的长度</p><pre><code>var family = [&quot;child&quot;,&quot;mother&quot;,&quot;father&quot;];family.length    //3</code></pre><p>js中，数组的长度可变，会随着数据的添加而增长，所以会出现所含项数和length属性值不等的情况，如下</p><pre><code>var family = [&quot;child&quot;,&quot;mother&quot;,&quot;father&quot;];family.length=4;family[3]    //undefinedfamily.length=2;family[2]    //undefined</code></pre><h1 id="数组的检测"><a href="#数组的检测" class="headerlink" title="数组的检测"></a>数组的检测</h1><p>数组的检测不能使用typeof，因为返回的是object</p><blockquote><p>说到这个我想起来我本来有个误解，以为typeof只能返回js数据类型的名称呢，</p></blockquote><blockquote><p>即<code>undefined</code>,<code>null</code>,<code>boolean</code>,<code>string</code>,<code>number</code>,<code>object</code>,<code>symbol(es6新增)</code>。其实检测function类型时会返回function，具体typeof的返回值看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof" target="_blank" rel="noopener">这里</a></p></blockquote><p>然后就是这个方法，instanceof其实从字面上就可以看出它是干嘛的了，可以理解为判断对象是否是被右边的家伙所实例化（语无伦次）。</p><p>摘自js高程</p><p>instanceof操作符在存在多个作用域(像一个页面包含多个frame)的情况下，也是问题多多。一个经典的例子</p><pre><code>var isArray = value instanceof Array</code></pre><p>以上代码要返回true，value必须是一个数组，而且还必须与Array构造函数在同个全局作用域中。（别忘了，Array是window 的属性）如果value是在另一个frame中 定义的数组。那么以上代码就会返回false。</p><p>推荐用这种方法<br>    object.prototype.toString.call(value)</p><blockquote><p>如果value为数组的话会返回[object Array]，同时这种方法也可以检测原生函数或正则表达式，分别返回[object Function]和[object RegEXp]</p></blockquote><h1 id="数组的转化方法"><a href="#数组的转化方法" class="headerlink" title="数组的转化方法"></a>数组的转化方法</h1><p>所有对象都具有toLocaleString(),toSring()和valueOf()方法，所以数组也不例外。</p><p>还有join()</p><h2 id="数组转化为对象"><a href="#数组转化为对象" class="headerlink" title="数组转化为对象"></a>数组转化为对象</h2><h1 id="数组的操作"><a href="#数组的操作" class="headerlink" title="数组的操作"></a>数组的操作</h1><h2 id="栈方法"><a href="#栈方法" class="headerlink" title="栈方法"></a>栈方法</h2><p>栈数据结构的访问规则是LIFO（last-in-first-out,后进先出）,两个方法push()和pop()</p><blockquote><p>我我觉得可以理解为操作一直在数组尾巴处进行</p></blockquote><p>push()返回操作后数组的长度。</p><p>pop()删除并返回数组最后一项</p><p>几个例子</p><pre><code>var colors = new Array();colors.push(&quot;red&quot;,&quot;green&quot;);    //返回数组的长度2，此时colors=[&quot;red&quot;,&quot;green&quot;]colors.pop();                  //返回数组的最后一项&quot;green&quot;,此时colors=[&quot;red&quot;]</code></pre><h2 id="队列方法"><a href="#队列方法" class="headerlink" title="队列方法"></a>队列方法</h2><p>队列数据的访问规则是FIFO(first-in-first-out,先进先出)，</p><p>shift(),移除数组中的第一个项并返回该项，同时将数组长度减1。</p><p>unshift(),在数组前端添加任一个项并返回新数组的长度。</p><p>例子如下</p><pre><code>var colors = new Array();colors.push(&quot;white&quot;,&quot;blue&quot;);colors.shift();              //返回数组的第一项&quot;white&quot;,此时colors=[&quot;white&quot;]colors.unshift(&quot;purple&quot;,&quot;yellow&quot;);  //返回数组的长度3,此时colors=[&quot;purple&quot;,&quot;yellow&quot;,&quot;white&quot;]   </code></pre><h2 id="重排序方法"><a href="#重排序方法" class="headerlink" title="重排序方法"></a>重排序方法</h2><p>reverse(),将原数组的顺序颠倒，返回一个数组。</p><p>sort(),会先调用每个项的toString()方法，然后比较得到的字符串，用以确定排序</p><blockquote><p>数组各项是数字可能会出问题，因为仍然会先转化为字符串在进行排序，这样的话比较的就是各自的字符编码（ASCII），如下</p></blockquote><pre><code>var numbs=[0,1,5,10,15];numbs.sort();console.log(numbs);     //[0,1,10,15,5]console.log(&quot;5&quot;.charCodeAt());      //53console.log(&quot;10&quot;.charCodeAt());     //49</code></pre><p>但是sort()方法可以接收一个比较函数作为参数，用以决定那个值位于哪个值的前面。比较函数的返回值如下</p><ol><li>返回负数，表示value1应该位于value2之前</li><li>返回0，表示两个参数相等</li><li><p>返回正数，表示value1应该位于value2之后</p><p> function compare(value1,value2){</p><pre><code>if(value1 &lt; value2){    return -1;}else if(value1 &gt; value2){    return 1;}else {    return 0;}</code></pre><p> }</p><p> var numbs=[0,1,5,10,15];<br> numbs.sort(compare);<br> console.log(numbs);      //[0,1,5,10,15]</p></li></ol><h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h2><p>concat()拼接数组，直接上例子</p><pre><code>var colors = [&quot;red&quot;,&quot;yellow&quot;,&quot;blue&quot;,&quot;green&quot;];var colors2 = colors.concat(&quot;purple&quot;,[&quot;black&quot;,&quot;white&quot;]);console.log(colors2);   //[&quot;red&quot;,&quot;yellow&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;purple&quot;,&quot;black&quot;,&quot;white&quot;]</code></pre><p>slice()接收一个或两个参数，即要返回起始至末尾或者起始和结束位置(不包括)的项，上例子</p><blockquote><p>注意 <code>slice()</code> 方法可以不传参数，看下面例子</p></blockquote><blockquote><p>注意参数可以为负值</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">"red"</span>,<span class="string">"yellow"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>];</span><br><span class="line"><span class="keyword">var</span> colorss = colors.slice() <span class="comment">// 相当于colors.slice(0)</span></span><br><span class="line"><span class="keyword">var</span> colors3 = colors.slice(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> colors4 = colors.slice(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">var</span> colors5 = colors.slice(<span class="number">-3</span>,<span class="number">-2</span>);  <span class="comment">//colors.length-3==1</span></span><br><span class="line"><span class="built_in">console</span>.log(colors3);   <span class="comment">//["yellow", "blue", "green"]</span></span><br><span class="line"><span class="built_in">console</span>.log(colors4);   <span class="comment">//["yellow"]</span></span><br></pre></td></tr></table></figure><blockquote><p>concat()和slice()不会影响原有数组</p></blockquote><h3 id="splice"><a href="#splice" class="headerlink" title="splice"></a>splice</h3><p>splice方法很强大，可以实现数组的删除，插入，替换功能，语法为：</p><pre><code>arrayObject.splice(index,howmany,item1,.....,itemX);index  必需。整数，规定添加删除项目的位置，使用负数可从数组结尾处规定位置。howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。item1, ..., itemX   可选。向数组添加的新项目。</code></pre><p>返回删除的项组成的数组，如果没有删除的项，返回一个空数组。</p><blockquote><p>该方法会改变原始数组。</p></blockquote><h2 id="位置方法"><a href="#位置方法" class="headerlink" title="位置方法"></a>位置方法</h2><p>indexOf()和lastIndexOf()，都接收两个参数，要查找的项和表示查找起点的索引(可选)</p><p>不同点是indexOf从头开始找，lastIndexOf从尾巴找</p><p>都返回要查找的项在数组中的位置，没找到的话返回-1</p><p>indexOf()从</p><blockquote><p>想起来，字符串类型也有indexOf()方法，比如检测cookie中是否含user字段<code>document.cookie.indexOf(&quot;user=&quot;)</code>，顺带一提，<code>document.cookie</code>是一串字符串</p></blockquote><h2 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h2><ul><li>every()</li><li>filter()</li><li>forEach()</li><li>map()</li><li>some()</li></ul><p>让我缓口气，过两天在写完</p><h2 id="归并方法"><a href="#归并方法" class="headerlink" title="归并方法"></a>归并方法</h2><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>jq中，数组操作新增了each()</p><h1 id="伪数组"><a href="#伪数组" class="headerlink" title="伪数组"></a>伪数组</h1><p>像数组，有和数组相同的属性和方法，如length等。</p><ul><li>nodelist</li><li>argument</li></ul><h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ol><li><a href="http://zxc8899.iteye.com/blog/1558298/" target="_blank" rel="noopener">一瓢江湖</a></li><li><a href="http://www.jianshu.com/p/66b04163948b" target="_blank" rel="noopener">简书</a></li><li>js高程</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;js中数据类型分基本数据类型和引用数据类型两种，对象便是某个特定引用类型的实例。&lt;br&gt;Array构造函数在web中作为window对象的一个属性&lt;/p&gt;
+&lt;h1 id=&quot;数组的初始化&quot;&gt;&lt;a href=&quot;#数组的初始化&quot; class=&quot;headerlink&quot; title=
+      
+    
+    </summary>
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dataTables内嵌二级表格的实现</title>
+    <link href="http://yoursite.com/2017/05/23/dataTables%E5%86%85%E5%B5%8C%E4%BA%8C%E7%BA%A7%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
+    <id>http://yoursite.com/2017/05/23/dataTables内嵌二级表格的实现/</id>
+    <published>2017-05-23T03:41:08.000Z</published>
+    <updated>2017-06-13T13:54:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前在写angular时有用过ui-grid写过内嵌展开二级表格，怎么说呢，ui-grid很强大，功能挺多的，好像也是angular团队开发的，例子足，文档好(对那些英文阅读能力比较好的人来说)，不过他的有些功能不稳定，其中就包括表格中内嵌表格的实现<a href="http://ui-grid.info/docs/#/tutorial/216_expandable_grid" target="_blank" rel="noopener">Expandable grid</a>。</p><p>之后在写别的项目时也遇到了相同的需求，这次准备使用datatables，在此记录下过程。</p><p>直接上代码:</p><h1 id="html部分"><a href="#html部分" class="headerlink" title="html部分"></a>html部分</h1><pre><code>//这个div用来存放查询条件&lt;div&gt;    &lt;div class=&quot;float-left m-b-md&quot;&gt;&lt;label&gt;账户名:&lt;/label&gt;&lt;input id=&quot;accountName&quot; type=&quot;text&quot;&gt;&lt;/div&gt;    &lt;div class=&quot;float-left m-b-md&quot;&gt;&lt;label&gt;银行账号:&lt;/label&gt;&lt;input id=&quot;bankAccount&quot; type=&quot;text&quot;&gt;&lt;/div&gt;    &lt;div class=&quot;float-left m-b-md&quot;&gt;&lt;label&gt;账户ID:&lt;/label&gt;&lt;input id=&quot;accountId&quot; type=&quot;text&quot;&gt;&lt;/div&gt;    &lt;button id=&quot;searchBtn&quot; class=&quot;m-b-md&quot;&gt;查询&lt;/button&gt;&lt;/div&gt;//以下是table的主体&lt;table id=&quot;example&quot; class=&quot;display&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;    &lt;thead&gt;        &lt;tr&gt;            &lt;th&gt;&lt;/th&gt;            &lt;th&gt;账户ID&lt;/th&gt;            &lt;th&gt;账户名&lt;/th&gt;            &lt;th&gt;账户状态&lt;/th&gt;            &lt;th&gt;账户类型&lt;/th&gt;            &lt;th&gt;账户余额&lt;/th&gt;            &lt;th&gt;银行账号&lt;/th&gt;            &lt;th&gt;冻结金额&lt;/th&gt;            &lt;th&gt;在途金额&lt;/th&gt;            &lt;th&gt;最后交易时间&lt;/th&gt;        &lt;/tr&gt;    &lt;/thead&gt;&lt;/table&gt;</code></pre><p>html部分分为搜索部分和table主体部分，挺简单的没啥说的</p><h1 id="js部分"><a href="#js部分" class="headerlink" title="js部分"></a>js部分</h1><pre><code>//1.初始化部分//1.1禁用表格自带的搜索和排序$.extend($.fn.dataTable.defaults, {    searching: false,    ordering: false});//1.2初始化表格主体var table = $(&apos;#example&apos;).DataTable({//配置相应部分的中文显示(废话，不然就显示英文了)    &quot;language&quot;: {        &quot;lengthMenu&quot;: &quot;每页 _MENU_ 条记录&quot;,        &quot;zeroRecords&quot;: &quot;没有找到记录&quot;,        &quot;info&quot;: &quot;第 _PAGE_ 页 ( 总共 _PAGES_ 页 )&quot;,        &quot;infoEmpty&quot;: &quot;无记录&quot;,        &quot;infoFiltered&quot;: &quot;(从 _MAX_ 条记录过滤)&quot;,        &quot;paginate&quot;: {            &quot;first&quot;: &quot;First&quot;,            &quot;last&quot;: &quot;Last&quot;,            &quot;next&quot;: &quot;后一页&quot;,            &quot;previous&quot;: &quot;上一页&quot;        },    },    &quot;pageLength&quot;: 10,           //默认每页条数    &quot;lengthChange&quot;: false,      //禁掉表格自带的选择每页条数的下拉框    &quot;processing&quot;: true,         //是否显示进度遮罩    &quot;serverSide&quot;: true,         //开启服务端传输数据    &quot;ajax&quot;: {                   //ajax        url: &quot;${ctx}/client/account/accountListData&quot;,        type: &quot;POST&quot;,        data: function(d) {            //获取查询条件的值            var accountName  = $(&quot;#accountName&quot;).val();            var bankAccount  = $(&quot;#bankAccount&quot;).val();            var accountId  = $(&quot;#accountId&quot;).val();            //添加额外的参数传给服务器               d.accountName = accountName;             d.bankAccountNo = bankAccount;             d.accountId = accountId;        },    },    //这里虽然没用到，但这个属性很有用，可以初始datatable的data(还是去看看官网吧)，因为插件对返回值的格式要求严格    /* &quot;dataSrc&quot;: function(json){           return json.data[0].body.records;        }, */    //配置各列    &quot;columns&quot;: [{        className: &apos;details-control&apos;,   //就是给这列添加的类名        orderable: false,               //禁用掉这列的排序功能        data: null,                  //data为空，因为这列只有展开icon        defaultContent: &apos;&apos;          //没数据的话为空        },{        data:&apos;accountId&apos;            /* &quot;targets&quot;: 0,            &quot;data&quot;: &quot;body&quot;,            &quot;render&quot;: function ( data, type, full, meta ) {              return data.records.memberId;            } */        },{        data: &apos;accountName&apos;        },{        data: &apos;accountStatusdic&apos;        },{        data: &apos;accounTypedic&apos;        },{        data: &apos;availableBalance&apos;        },{        data: &apos;bankAccount&apos;        },{        data: &apos;freezeBalance&apos;        },{        data: &apos;undeterminedBalance&apos;        },/* {        data: &apos;memberId&apos;,        },{        data: &apos;memberStatusDic&apos;,          }, */{         data: &apos;lastTranTime&apos;        }        ],    &quot;columnDefs&quot;: [        {            targets: [5, 7, 8 ],  //这个用于对列的批量处理，里面为需要处理的列的下标            //render很有用，这里主要是过滤用，好像在columns中也可以写render            render: function(data,type,row,meta){                return (&quot;￥&quot;+data.toFixed(2));            }        },     ] });//点击查询，触发表格的渲染$(&quot;#searchBtn&quot;).click(function() {    table.ajax.reload();});//二级table的模板function format(table_id) {    return &apos;&lt;table class=&quot;table table-striped&quot; id=&quot;opiniondt_&apos; + table_id + &apos;&quot;&gt;&apos; +    &apos;&lt;thead&gt;&apos;+    &apos;&lt;tr&gt;&apos;+    &apos;&lt;th&gt;账户ID&lt;/th&gt;&lt;th&gt;账户名&lt;/th&gt;&lt;th&gt;账户状态&lt;/th&gt;&apos;+    &apos;&lt;th&gt;账户类型&lt;/th&gt;&lt;th&gt;可用余额&lt;/th&gt;&lt;th&gt;冻结金额 &lt;/th&gt;&apos;+    &apos;&lt;th&gt;最后交易时间&lt;/th&gt;&lt;th&gt;锁定金额&lt;/th&gt;&lt;th&gt;在途金额&lt;/th&gt;&apos;+    &apos;&lt;/tr&gt;&apos;+    &apos;&lt;/thead&gt;&apos; +    &apos;&lt;tr&gt;&apos; +    &apos;&lt;td&gt;Full name:&lt;/td&gt;&apos; +    &apos;&lt;td&gt;Extension number:&lt;/td&gt;&apos; +    &apos;&lt;td&gt;Extra info:&lt;/td&gt;&apos; +    &apos;&lt;/tr&gt;&apos; +    &apos;&lt;tr&gt;&apos; +    &apos;&lt;td&gt;Full name:&lt;/td&gt;&apos; +    &apos;&lt;td&gt;Extension number:&lt;/td&gt;&apos; +    &apos;&lt;td&gt;Extra info:&lt;/td&gt;&apos; +    &apos;&lt;/tr&gt;&apos; +    &apos;&lt;/table&gt;&apos;;}//先初始化一个变量，用于动态给展开的二级table赋值var iTableCounter = 1;var oInnerTable;//展开icon的点击事件$(&apos;#example tbody&apos;).on(&apos;click&apos;, &apos;td.details-control&apos;, function() {    //获得最近的tr老爸    var tr = $(this).closest(&apos;tr&apos;);    //遍历老铁们    var td = $(this).siblings(&quot;td&quot;);    //获取第一个老铁的内容    var acId=td[0].innerHTML;    //把选择的这一行变成datatable的行，这样就可以使用一些方法了    //dataTables默认给所有的行设置了他们的子显示区    //可通过row().child.show()和row().child.hide()显示隐藏    var row = table.row(tr);    var data;    if (row.child.isShown()) {        //  This row is already open - close it        row.child.hide();        //这个shown是为了控制展开icon和收缩icon的切换显示        tr.removeClass(&apos;shown&apos;);    } else {        //ajax开始传参给后台          $.ajax({            url:&quot;${ctx}/client/account/getSlaveAccount&quot;,            type:&quot;POST&quot;,            data:{accountId:acId},        }).done(function(res){            data = JSON.parse(res);            //这里是请求后台字典接口，进行过滤数据，记住设置为同步请求            data.slaveAccounts.forEach(function(e){                (function(){                $.ajax({                    url:&quot;${ctx}/client/dict/getDicValue&quot;,                    type:&quot;post&quot;,                    async:false,                    data:{                        type:&quot;accountType&quot;,                        value:e.accountType,                        defaultValue:&quot;&quot;                    }                }).done(function(res1){                    e.accountType=res1;                });            }());                //处理accountStatus                (function(){                $.ajax({                    url:&quot;${ctx}/client/dict/getDicValue&quot;,                    type:&quot;post&quot;,                    async:false,                    data:{                        type:&quot;accountStatus&quot;,                        value:e.accountStatus,                        defaultValue:&quot;&quot;                    }                }).done(function(res2){                    e.accountStatus=res2;                });                }());            })            var lastData=data.slaveAccounts;            // Open this row            //child()内接收二级table的模板            row.child(format(iTableCounter)).show();            //显示出收缩icon            tr.addClass(&apos;shown&apos;);            // try datatable stuff            //为所有的二级列表配置            oInnerTable = $(&apos;#opiniondt_&apos; + iTableCounter).dataTable({                data: lastData,                autoWidth: true,                deferRender: true,                info: false,                lengthChange: false,                ordering: false,                paging: false,                scrollX: false,                scrollY: false,                searching: false,                columns: [{                    data: &apos;accountId&apos;                }, {                    data: &apos;accountName&apos;                }, {                    data: &apos;accountStatus&apos;                }, {                    data: &apos;accountType&apos;                }, {                    data: &apos;availableBalance&apos;                }, {                    data: &apos;freezeBalance&apos;                }, {                    data: &apos;lastTranTime&apos;                }, {                    data: &apos;lockBalance&apos;                }, {                    data: &apos;undeterminedBalance&apos;                }],                columnDefs: [{                    targets: [4,5, 7, 8 ],                    render: function(data,type,row,meta){                                return (&quot;￥&quot;+data.toFixed(2));                            }                }]             });            //+1后下一个展开的二级table的id加1            iTableCounter = iTableCounter + 1;        })      }})</code></pre><p>嗯，想说的过程全变成注释了，就酱吧。</p><h1 id="别的东西"><a href="#别的东西" class="headerlink" title="别的东西"></a>别的东西</h1><h2 id="从别处访问获得的json数据"><a href="#从别处访问获得的json数据" class="headerlink" title="从别处访问获得的json数据"></a>从别处访问获得的json数据</h2><p>2017.06.09，之后遇到了这个问题，去查了下文档，在datatable配置内可通过<code>this.api().ajax.json()</code>访问获得的json数据</p><blockquote><p>其实this指向的就是table</p></blockquote><h2 id="操作行数据"><a href="#操作行数据" class="headerlink" title="操作行数据"></a>操作行数据</h2><p>一般是写在监听事件的处理函数中的，如下，获取触发点击事件哪一行的数据<br>    table.row( this ).data()</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;之前在写angular时有用过ui-grid写过内嵌展开二级表格，怎么说呢，ui-grid很强大，功能挺多的，好像也是angular团队开发的，例子足，文档好(对那些英文阅读能力比较好的人来说)，不过他的有些功能不稳定，其中就包括表格中内嵌表格的实现&lt;a href=&quot;htt
+      
+    
+    </summary>
+    
+      <category term="插件" scheme="http://yoursite.com/categories/%E6%8F%92%E4%BB%B6/"/>
+    
+    
+      <category term="插件" scheme="http://yoursite.com/tags/%E6%8F%92%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript闭包</title>
+    <link href="http://yoursite.com/2017/05/12/javascript%E9%97%AD%E5%8C%85/"/>
+    <id>http://yoursite.com/2017/05/12/javascript闭包/</id>
+    <published>2017-05-12T01:17:07.000Z</published>
+    <updated>2017-06-10T14:32:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="闭包是什么"><a href="#闭包是什么" class="headerlink" title="闭包是什么"></a>闭包是什么</h1><h2 id="闭包的产生"><a href="#闭包的产生" class="headerlink" title="闭包的产生"></a>闭包的产生</h2><p>我觉得是因为闭包函数的作用域链中保存着包裹函数的活动对象，正因保留着引用，导致包裹函数不会被垃圾回收</p><h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><ol><li>闭包会引用包含函数的整个活动对象</li><li>是个函数</li></ol><h1 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h1><ol><li>模拟私有方法</li></ol><h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>作用域链和闭包脱不了干系，作用域链部分可以查看<a href="/2017/05/10/javascript作用域/" title="javascript作用域">javascript作用域</a></p><h1 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;闭包是什么&quot;&gt;&lt;a href=&quot;#闭包是什么&quot; class=&quot;headerlink&quot; title=&quot;闭包是什么&quot;&gt;&lt;/a&gt;闭包是什么&lt;/h1&gt;&lt;h2 id=&quot;闭包的产生&quot;&gt;&lt;a href=&quot;#闭包的产生&quot; class=&quot;headerlink&quot; title=&quot;闭包的
+      
+    
+    </summary>
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浏览器渲染过程</title>
+    <link href="http://yoursite.com/2017/05/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/"/>
+    <id>http://yoursite.com/2017/05/11/浏览器渲染过程/</id>
+    <published>2017-05-11T09:31:00.000Z</published>
+    <updated>2020-02-27T09:34:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>暂时只是大概读了一遍，先记下来</p><h1 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h1><p>自上而下</p><ul><li>应用层</li><li>传输层</li><li>网络层</li><li>链路层</li><li>物理层</li></ul><p>前四层构成TCP/IP协议族，之所以分层，我觉得可以理解为像前端的模块化，易于管理，改动。实际上设计也变得简单，各层只需考虑自己分内的事</p><h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层决定了向用户提供应用服务时通信的活动。</p><blockquote><p>包含FTP，DNS，HTTP</p></blockquote><h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。</p><blockquote><p>包含TCP，UDP(用户数据报协议)</p></blockquote><h2 id="网络层-网络互连层"><a href="#网络层-网络互连层" class="headerlink" title="网络层(网络互连层)"></a>网络层(网络互连层)</h2><p>网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数据单位。该层规定了通过怎样的路径（所谓的传输路线）到达对方计算机，并把数据包传送给对方。</p><blockquote><p>IP</p></blockquote><h2 id="链路层-数据链路层-网络接口层"><a href="#链路层-数据链路层-网络接口层" class="headerlink" title="链路层(数据链路层)(网络接口层)"></a>链路层(数据链路层)(网络接口层)</h2><p>用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC（Network Interface Card，网络适配器，即网卡），及光纤等物理可见部分（还包括连接器等一切传输媒介）。硬件上的范畴均在链路层的作用范围之内。</p><h1 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h1><p>发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后，回传一个带有 SYN/ACK 标志的数据包以示传达确认信息。最后，发送端再回传一个带 ACK 标志的数据包，代表“握手”结束。 若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序发送相同的数据包。</p><h1 id="http"><a href="#http" class="headerlink" title="http"></a>http</h1><h2 id="职责"><a href="#职责" class="headerlink" title="职责"></a>职责</h2><p>生成针对目标服务器的HTTP请求报文</p><h1 id="从输入-URL-到页面加载完成的过程中都发生了什么事情？"><a href="#从输入-URL-到页面加载完成的过程中都发生了什么事情？" class="headerlink" title="从输入 URL 到页面加载完成的过程中都发生了什么事情？"></a>从输入 URL 到页面加载完成的过程中都发生了什么事情？</h1><ul><li>输入URL </li><li>发起请求：URL解析/DNS解析  </li><li>网络连接：三次握手  </li><li>服务器响应请求：返回数据  </li><li>客户端接收响应：浏览器加载/渲染页面</li></ul><h1 id="两个引擎"><a href="#两个引擎" class="headerlink" title="两个引擎"></a>两个引擎</h1><p>浏览器两个引擎</p><ol><li><p>渲染引擎</p><blockquote><p>常称为浏览器的内核，webkit，gecko，persto(opera)</p></blockquote></li><li><p>js引擎</p></li></ol><h1 id="两个树"><a href="#两个树" class="headerlink" title="两个树"></a>两个树</h1><h1 id="遇到的一些问题和解决办法"><a href="#遇到的一些问题和解决办法" class="headerlink" title="遇到的一些问题和解决办法"></a>遇到的一些问题和解决办法</h1><h2 id="Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received"><a href="#Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received" class="headerlink" title="Unchecked runtime.lastError: The message port closed before a response was received."></a>Unchecked runtime.lastError: The message port closed before a response was received.</h2><p>调试工具中报如上的错误，查阅资料得知是chrome某个插件报的错，自己一一验证，发祥是迅雷下载插件这个毒瘤，禁用可消除如上的报错</p><blockquote><p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="noopener">浏览器的渲染原理简介</a></p></blockquote><blockquote><p><a href="http://www.jianshu.com/p/e141d1543143" target="_blank" rel="noopener">简书，浏览器加载解析渲染</a></p></blockquote><blockquote><p>图解http</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;暂时只是大概读了一遍，先记下来&lt;/p&gt;
+&lt;h1 id=&quot;网络分层&quot;&gt;&lt;a href=&quot;#网络分层&quot; class=&quot;headerlink&quot; title=&quot;网络分层&quot;&gt;&lt;/a&gt;网络分层&lt;/h1&gt;&lt;p&gt;自上而下&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;应用层&lt;/li&gt;
+&lt;li&gt;传输层&lt;/li&gt;
+      
+    
+    </summary>
+    
+      <category term="browser" scheme="http://yoursite.com/categories/browser/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="browser" scheme="http://yoursite.com/tags/browser/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>angular相关问题</title>
+    <link href="http://yoursite.com/2017/05/10/angular%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2017/05/10/angular相关问题/</id>
+    <published>2017-05-10T11:15:53.000Z</published>
+    <updated>2017-06-11T15:06:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>整理一些angular相关的问题，多了再整理</p><h1 id="angular-的数据绑定采用什么机制"><a href="#angular-的数据绑定采用什么机制" class="headerlink" title="angular 的数据绑定采用什么机制"></a>angular 的数据绑定采用什么机制</h1><p>脏检查机制。</p><p>双向数据绑定是 AngularJS 的核心机制之一。当 view 中有任何数据变化时，会更新到 model ，当 model 中数据有变化时，view 也会同步更新，显然，这需要一个监控。</p><p>原理就是，Angular 在 scope 模型上设置了一个 监听队列，用来监听数据变化并更新 view 。每次绑定一个东西到 view 上时 AngularJS 就会往 $watch 队列里插入一条 $watch，用来检测它监视的 model 里是否有变化的东西。当浏览器接收到可以被 angular context 处理的事件时，$digest 循环就会触发，遍历所有的 $watch，最后更新 dom。</p><p>举个栗子</p><pre><code>&lt;button ng-click=&quot;val=val+1&quot;&gt;increase 1&lt;/button&gt;</code></pre><p>click 时会产生一次更新的操作（至少触发两次 $digest 循环）</p><p>按下按钮<br>浏览器接收到一个事件，进入到 angular context<br>$digest 循环开始执行，查询每个 $watch 是否变化<br>由于监视 $scope.val 的 $watch 报告了变化，因此强制再执行一次 $digest 循环<br>新的 $digest 循环未检测到变化<br>浏览器拿回控制器，更新 $scope.val 新值对应的 dom<br>$digest 循环的上限是 10 次（超过 10次后抛出一个异常，防止无限循环）。</p><blockquote><p>自己感觉吧，绑定在$scope上的变量都会被监听，有变化时会刷新整个$scope上的队列。</p></blockquote><h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><ol><li><a href="https://docs.angularjs.org/misc/faq" target="_blank" rel="noopener">官网FAQ</a></li><li><a href="https://www.zhihu.com/question/36040694" target="_blank" rel="noopener">知乎-如何衡量一个人的angular水平</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;整理一些angular相关的问题，多了再整理&lt;/p&gt;
+&lt;h1 id=&quot;angular-的数据绑定采用什么机制&quot;&gt;&lt;a href=&quot;#angular-的数据绑定采用什么机制&quot; class=&quot;headerlink&quot; title=&quot;angular 的数据绑定采用什么机制&quot;&gt;&lt;/a
+      
+    
+    </summary>
+    
+      <category term="angular" scheme="http://yoursite.com/categories/angular/"/>
+    
+    
+      <category term="angular" scheme="http://yoursite.com/tags/angular/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript作用域</title>
+    <link href="http://yoursite.com/2017/05/10/javascript%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
+    <id>http://yoursite.com/2017/05/10/javascript作用域/</id>
+    <published>2017-05-10T10:50:19.000Z</published>
+    <updated>2017-05-19T14:15:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><ol><li><strong>执行环境</strong>(execution context,有时也叫“环境”,“执行上下文”,“”,“”)</li><li><strong>变量对象</strong>(variable object)</li><li><strong>活动对象</strong>(activation object)</li></ol><h1 id="执行环境和作用域"><a href="#执行环境和作用域" class="headerlink" title="执行环境和作用域"></a>执行环境和作用域</h1><p><strong>执行环境</strong>很重要，执行环境定义了变量或函数有权访问的其他数据(难道指的就是初始化的作用域链？),决定论它们各自的行为。每个执行环境都有一个与之关联的 <strong>变量对象</strong>(包含了环境中定义的所有变量和函数)(难道执行环境只包含了一个标识符指针列表？)，虽然我们的代码无法访问这个对象，但解析器在数据处理时会在后台使用它</p><p>全局执行环境是最外围的执行环境，在Web浏览器中，全局执行环节被认为是window对象</p><p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p><blockquote><p>也就是说这个栈一直存在，和全局执行环境一样关闭网页时才被销毁</p></blockquote><p>当代码在一个环境中执行时，会创建变量对象的一个 <strong>作用域链</strong>(scope chain)。作用域链的用途，是保证对执行环境有权访问的所有变量和函数有序的访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动对象作为变量对象，活动对象在开始时只包含一个变量，即arguments对象(这个对象在全局环境中是不存在的)。作用域链中的下一个变量对象来自包含(外部)环境，而再下个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p><blockquote><p>作用域链存放在哪</p></blockquote><p>以上大部分来自js高程这本书，下面开始图解</p><h1 id="图解过程"><a href="#图解过程" class="headerlink" title="图解过程"></a>图解过程</h1><h2 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h2><pre><code>//myScript.js &quot;use strict&quot;    var a=1;var b=2; </code></pre><p>如图，开始时，创建全局执行环境并被推入执行环境栈<br><img src="http://i.imgur.com/FcKggu2.png" alt="p1"></p><h2 id="step2"><a href="#step2" class="headerlink" title="step2"></a>step2</h2><pre><code>//myScript.js &quot;use strict&quot;    var a=1;var b=2; function foo(){    var c=3;    var d=4;    console.log(c+d);}</code></pre><p>执行至<code>function foo(){}</code>也就是函数创建时，food的标识符(identifier)被加到当前(栗子中是全局变量对象)中,并且这个标识符引用了一个函数对象，函数对象中不仅包含了函数的源代码等还有[[scope]],[[Scope]]属性中保存了一条用来初始化作用域链，其指向就是当前的变量对象(全局变量对象)</p><blockquote><p>注意此时并没创建函数相应的执行环境<br><img src="http://i.imgur.com/GGGcGON.png" alt="p2"></p></blockquote><h2 id="step3"><a href="#step3" class="headerlink" title="step3"></a>step3</h2><pre><code>//myScript.js &quot;use strict&quot;    var a=1;var b=2; function foo(){    var c=3;    var d=4;    console.log(c+d);};foo();</code></pre><p>执行至<code>foo()</code>,函数被调用，产生相应的执行环境，之后被推入执行环境栈顶，</p><blockquote><p>此时产生的执行环境中的作用域链由之前函数定义时的[[scope]]而来，作用链的前端为foo的变量对象，由于这个环境是函数，创建活动对象并将其作为变量对象<br><img src="http://i.imgur.com/ocIbFzQ.png" alt="p3"></p></blockquote><h2 id="step4"><a href="#step4" class="headerlink" title="step4"></a>step4</h2><p>调用foo()结束后，其执行环境会被弹出执行栈，<br><img src="http://i.imgur.com/gDcXp4r.png" alt="p4"></p><h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>1.作用域链是本质上是一个指向变量对象的指针列表，它只是引用但不实际包含变量对象。<br>2.AO中包含了函数的形参、arguments对象、this对象、以及局部变量和内部函数的定义，然后AO会被推入作用域链的顶端。</p><blockquote><p>感觉AO和VO里的内容差不多</p></blockquote><h1 id="EC和VO的产生过程"><a href="#EC和VO的产生过程" class="headerlink" title="EC和VO的产生过程"></a>EC和VO的产生过程</h1><p>当函数被调用时进入EC的产生阶段</p><h1 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h1><blockquote><p><a href="http://www.jianshu.com/p/4881610a8c24" target="_blank" rel="noopener">简书</a></p></blockquote><blockquote><p><a href="http://www.cnblogs.com/jacksplwxy/p/6725850.html" target="_blank" rel="noopener">偶尔看到的个人挺赞同的</a></p></blockquote><blockquote><p><a href="http://www.cnblogs.com/jacksplwxy/p/6725850.html" target="_blank" rel="noopener">执行环境、变量对象、活动对象和作用域链</a></p></blockquote><blockquote><p><a href="https://github.com/dwqs/blog/issues/18" target="_blank" rel="noopener">皮卡丘的讲解</a></p></blockquote><blockquote><p><a href="https://segmentfault.com/a/1190000004676747" target="_blank" rel="noopener">segmentfault作用域javascript1</a></p></blockquote><blockquote><p><a href="https://segmentfault.com/a/1190000008614579" target="_blank" rel="noopener">segmentfault作用域javascript2</a></p></blockquote><blockquote><p><a href="https://segmentfault.com/a/1190000000533094" target="_blank" rel="noopener">segmentfault作用域javascript3</a></p></blockquote><blockquote><p><a href="https://segmentfault.com/a/1190000009247123" target="_blank" rel="noopener">讲了执行环境和变量对象的创建和执行过程，很有用</a></p></blockquote><blockquote><p><a href="http://blog.csdn.net/u010425776/article/details/53557942" target="_blank" rel="noopener">作用域</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;相关概念&quot;&gt;&lt;a href=&quot;#相关概念&quot; class=&quot;headerlink&quot; title=&quot;相关概念&quot;&gt;&lt;/a&gt;相关概念&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;执行环境&lt;/strong&gt;(execution context,有时也叫“环境”,“执行上下文”
+      
+    
+    </summary>
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript中this</title>
+    <link href="http://yoursite.com/2017/05/08/javascript%E4%B8%ADthis/"/>
+    <id>http://yoursite.com/2017/05/08/javascript中this/</id>
+    <published>2017-05-08T12:58:06.000Z</published>
+    <updated>2017-06-10T14:06:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>javascript中的this接触很多，但一直是模模糊糊的，在这里整理下</p><h1 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h1><p>与其他语言相比，函数的 this 关键字在JavaScript中的行为略有不同。它在严格模式和非严格模式之间也有一些区别。</p><p>读了廖雪峰老师的文章感觉文中所说的调用对象就是指执行环境，不知道可不可以这样理解</p><p>当一个函数被调用时，会创建一个 <strong>执行环境(execution context)</strong>及相应的作用域链，自动获取两个特殊变量：this和arguments，然后使用arguments和其他命名参数的值来初始化函数的 <strong>活动对象(activation object)</strong>，</p><p><code>(function(){}())</code>立即执行函数</p><p>构造函数模式创建对象时，会经历以下4个步骤</p><ol><li>创建一个新对象</li><li>见构造函数的作用域赋给新对象（因此this就指向了这个新对象）</li><li>执行构造函数中的代码（为这个对象添加属性）</li><li>返回新对象</li></ol><h1 id="this-指向"><a href="#this-指向" class="headerlink" title="this 指向"></a>this 指向</h1><p>this总是指向调用函数的那个对象,在运行时基于函数的执行环境绑定的</p><h2 id="纯函数调用"><a href="#纯函数调用" class="headerlink" title="纯函数调用"></a>纯函数调用</h2><p>属于全局调用，this代表全局对象Global</p><pre><code>function foo(){    console.log(this);};foo(); //Window</code></pre><h2 id="作为对象方法的调用"><a href="#作为对象方法的调用" class="headerlink" title="作为对象方法的调用"></a>作为对象方法的调用</h2><p>this指向调用的函数</p><h2 id="作为构造函数调用"><a href="#作为构造函数调用" class="headerlink" title="作为构造函数调用"></a>作为构造函数调用</h2><p>this 指向当前实例对象</p><h2 id="apply-amp-amp-call"><a href="#apply-amp-amp-call" class="headerlink" title="apply &amp;&amp; call"></a>apply &amp;&amp; call</h2><p>apply()和call()作为函数对象的方法，可以改变函数的执行环境(调用对象)<br>它们的第一个参数是个对象，即作为函数内的this。</p><pre><code>function foo(){    console.log(this);}foo.call(1);  //1foo.call(&apos;a&apos;);  //afoo.call(true);  //truefoo.call({type:object});  //[object Object]</code></pre><p>如上，他们的参数作为函数内的this输出</p><p>需要注意的是，传null或undefined时，将是JS执行环境的全局变量。浏览器中是window,其他环境，如node则是global。</p><pre><code>fun.call(null);  //window or globalfun.call(undefined);  //window or global</code></pre><p>apply()和call()唯一的区别是参数不一样，apply的第二个参数必须传入数组。<br>如 </p><pre><code>func1.call(this, arg1, arg2);func1.apply(this, [arg1, arg2]);</code></pre><h3 id="适用条件"><a href="#适用条件" class="headerlink" title="适用条件"></a>适用条件</h3><p>js中函数的参数不固定，当参数是明确知道数量时，用 call，而不确定的时候，用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个 <strong>类数组</strong>来便利所有的参数。</p><h3 id="小小结"><a href="#小小结" class="headerlink" title="小小结"></a>小小结</h3><ol><li>apply() 的第一个参数是对象，第二个参数是数组，作为参数列表。</li><li></li></ol><h1 id="从ECMAScript规范谈this"><a href="#从ECMAScript规范谈this" class="headerlink" title="从ECMAScript规范谈this"></a>从ECMAScript规范谈this</h1><p>上面说的this的指向很偏应用的，倒是像经验上的总结。具体还是要看规范的，这部分打算之后再好好写写</p><blockquote><p>参考:<a href="https://github.com/mqyqingfeng/Blog/issues/7" target="_blank" rel="noopener">JavaScript深入之从ECMAScript规范解读this</a></p></blockquote><h1 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h1><blockquote><p><a href="http://www.cnblogs.com/snandy/archive/2012/03/01/2373243.html" target="_blank" rel="noopener">call和apply</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;javascript中的this接触很多，但一直是模模糊糊的，在这里整理下&lt;/p&gt;
+&lt;h1 id=&quot;相关&quot;&gt;&lt;a href=&quot;#相关&quot; class=&quot;headerlink&quot; title=&quot;相关&quot;&gt;&lt;/a&gt;相关&lt;/h1&gt;&lt;p&gt;与其他语言相比，函数的 this 关键字在Java
+      
+    
+    </summary>
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>eslint初涉</title>
+    <link href="http://yoursite.com/2017/05/05/eslint%E5%88%9D%E6%B6%89/"/>
+    <id>http://yoursite.com/2017/05/05/eslint初涉/</id>
+    <published>2017-05-05T13:00:31.000Z</published>
+    <updated>2017-05-08T15:50:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>便于养成良好的代码习惯和规范性，开始学习eslint,还有sublime相应的插件安装</p><a id="more"></a><h1 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h1><p>eslint 还是挺强大的，相较于jshint</p><blockquote><p>新版本配置文件 .eslint 被抛弃，建议使用 .eslint.js来进行配置，不过我分别尝试后发现第二种行不通，暂时还没找到问题，就都记下来</p></blockquote><h1 id="eslint-配置"><a href="#eslint-配置" class="headerlink" title=".eslint 配置"></a>.eslint 配置</h1><h2 id="安装nodejs部分"><a href="#安装nodejs部分" class="headerlink" title="安装nodejs部分"></a>安装nodejs部分</h2><pre><code>npm install eslint -gnpm install babel-eslint -g</code></pre><h2 id="在sublime-安装-eslint-插件"><a href="#在sublime-安装-eslint-插件" class="headerlink" title="在sublime 安装 eslint 插件"></a>在sublime 安装 eslint 插件</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol><li>SublimeLinter</li><li>SublimeLinter-contrib-eslint</li></ol><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在项目根目录编写配置文件</p><p>.eslintrc</p><pre><code>{&quot;env&quot;: {    &quot;browser&quot;: true,    &quot;node&quot;: true,    &quot;es6&quot;: true},&quot;parser&quot;: &quot;babel-eslint&quot;,&quot;ecmaFeatures&quot;: {   &quot;jsx&quot;: true},&quot;rules&quot;: {    &quot;semi&quot;: [2, &quot;always&quot;],    &quot;quotes&quot;: [2, &quot;single&quot;]}}</code></pre><p>sublime 编辑器内Prefernces &gt; Pakage Settings &gt; SublimeLinter &gt; Settings-User<br>debug设置为true</p><p>it works</p><p><img src="http://i.imgur.com/gXpuFcw.png" alt="效果"></p><h1 id="eslint-js"><a href="#eslint-js" class="headerlink" title=".eslint.js"></a>.eslint.js</h1><p>看了些文档后好像可以通过运行如下命令在控制台输出错误信息</p><pre><code>$ eslint yourfile.js</code></pre><p>也就是说不需要sublime了，喔</p><h2 id="node-js部分的相关安装"><a href="#node-js部分的相关安装" class="headerlink" title="node.js部分的相关安装"></a>node.js部分的相关安装</h2><p>局部安装</p><p>不说了，看参考链接2</p><p>全局安装</p><pre><code>$ npm i -g eslint</code></pre><blockquote><p>一直分不清 <code>$ npm i -g eslint</code>和<code>$ npm i eslint -g</code>的区别</p></blockquote><p>初始化</p><pre><code>$ eslint --init</code></pre><p>建议命令行配置如下</p><ul><li>Use a popular style guide</li><li>Standard</li><li>JavaScript</li></ul><blockquote><p>可以看看参考链接3</p></blockquote><blockquote><p>注意，这个需要package.json的配置了，全局使用的话要同样全局安装使用到的插件，比如如下配置的话就要全局安装plugins里的了</p></blockquote><p><img src="http://i.imgur.com/4l6XQ0o.png" alt="plugins"></p><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><ol><li>.eslint的使用感觉更方便啊，不需要配置package.json，不需安装相应的node_module。不过明显感觉.eslint.js更智能，有脚手架的感觉</li><li>优先级方面</li></ol><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="http://blog.csdn.net/binjly/article/details/49926001" target="_blank" rel="noopener">.eslint</a></li><li><a href="http://eslint.org/docs/user-guide/getting-started" target="_blank" rel="noopener">官方起步文档,不过没有sublime的配置部分</a></li><li><a href="http://www.jianshu.com/p/e826e13c67ec" target="_blank" rel="noopener">参考链接3</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;便于养成良好的代码习惯和规范性，开始学习eslint,还有sublime相应的插件安装&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="eslint" scheme="http://yoursite.com/categories/eslint/"/>
+    
+    
+      <category term="eslint" scheme="http://yoursite.com/tags/eslint/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git踩坑记</title>
+    <link href="http://yoursite.com/2017/04/19/git%E8%B8%A9%E5%9D%91%E8%AE%B0/"/>
+    <id>http://yoursite.com/2017/04/19/git踩坑记/</id>
+    <published>2017-04-19T10:51:39.000Z</published>
+    <updated>2020-04-16T02:09:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。</p><a id="more"></a><h1 id="将文件移除监听队列"><a href="#将文件移除监听队列" class="headerlink" title="将文件移除监听队列"></a>将文件移除监听队列</h1><p>git 中如果文件已被加入跟踪队列，后续添加相应的.gitignore 参数时其相应的改变仍会被监听，采用如下</p><pre><code>git rm --cached XX/xx.x</code></pre><blockquote><p>附上链接<br><a href="https://segmentfault.com/q/1010000000430426" target="_blank" rel="noopener">git 忽略已经被提交的文件</a> &gt;<a href="http://www.ifeegoo.com/git-code-management-dot-gitignore-file-has-no-effect-solution.html" target="_blank" rel="noopener">.gitignore 文件无效的解决方法</a></p></blockquote><h1 id="常见的-git-删除"><a href="#常见的-git-删除" class="headerlink" title="常见的 git 删除"></a>常见的 git 删除</h1><pre><code>git rm XXX.xx</code></pre><p>如果误删了可采用<code>git checkout</code></p><blockquote><p><code>git checkout</code>其实是用版本库里的版本替换工作区的版本，无论工作区修改还是删除，都可以使用此还原</p></blockquote><h1 id="新增远程仓库地址"><a href="#新增远程仓库地址" class="headerlink" title="新增远程仓库地址"></a>新增远程仓库地址</h1><pre><code>git add remote [&lt;options&gt;] &lt;name&gt; &lt;url&gt;//例子git add remote origin https://github.com/snowyYU/x.git</code></pre><p>name 为远程主机的名字</p><h1 id="push，push，push"><a href="#push，push，push" class="headerlink" title="push，push，push"></a>push，push，push</h1><pre><code>git push -u origin master</code></pre><p>这里只想说一下-u 参数，设置了这个之后，pull fetch push 啥的默认连接的为 origin master</p><blockquote><p><a href="https://www.zhihu.com/question/20019419" target="_blank" rel="noopener">知乎 git push 的 -u 参数具体适合含义</a></p></blockquote><h1 id="打上标签-tag"><a href="#打上标签-tag" class="headerlink" title="打上标签 tag"></a>打上标签 tag</h1><p>主要有两种方法</p><ul><li><code>git tag tagName</code></li><li><code>git tag -a tagName -m &quot;remarks备注&quot;</code></li></ul><p>查看<code>tags</code></p><ul><li><code>git tag</code></li></ul><p>从 tag 处开一个分支</p><p><code>git branch &lt;new-branch&gt; &lt;tag-name&gt;</code> 进行版本的管理</p><blockquote><p><a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE" target="_blank" rel="noopener">详情参考</a></p></blockquote><h1 id="log-和-reflog-命令"><a href="#log-和-reflog-命令" class="headerlink" title="log 和 reflog 命令"></a>log 和 reflog 命令</h1><h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p>展示所有的 commit</p><h2 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h2><p>展示所有的操作记录，相较 git log ，reflog 命令可以展示 reset 和已删除 commit 的操作</p><h1 id="merge-报错"><a href="#merge-报错" class="headerlink" title="merge 报错"></a>merge 报错</h1><p>今天在 pull 时出现了一个问题，过程是这样的，我新建了远程仓库时顺带初始化了 readme,结果本地 pull 时报错，如下</p><pre><code>fatal: refusing to merge unrelated histories</code></pre><p>就是它觉得我两个仓库没啥关联，然后我尝试 push，报错如下</p><pre><code>$ git push -u origin masterTo https://github.com/snowyYU/center-solution.git! [rejected]        master -&gt; master (non-fast-forward)error: failed to push some refs to &apos;https://github.com/snowyYU/center-solution.git&apos;hint: Updates were rejected because the tip of your current branch is behindhint: its remote counterpart. Integrate the remote changes (e.g.hint: &apos;git pull ...&apos;) before pushing again.hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.</code></pre><p>说我本地仓库版本过时啦，叫我先 pull</p><p>没办法，只能强上了，加上参数</p><pre><code>git pull origin master --allow-unrelated-histories</code></pre><p>之后会进入 vim 让我输入 commit message，</p><blockquote><p><a href="https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories" target="_blank" rel="noopener">stackoverflow</a> &gt;<a href="http://www.jianshu.com/p/eae20fcde419" target="_blank" rel="noopener">vim 命令看这里</a></p></blockquote><h1 id="查看更改处"><a href="#查看更改处" class="headerlink" title="查看更改处"></a>查看更改处</h1><pre><code>git diff</code></pre><p>上图:</p><p><img src="http://i.imgur.com/QJamb2Z.jpg" alt="gitDiff"></p><p>这样只会对比当前工作区和所在分支最新 commit 的改动处，需要对比远程分支，可以看 <a href="#参考链接">参考链接</a></p><h1 id="撤销更改"><a href="#撤销更改" class="headerlink" title="撤销更改"></a>撤销更改</h1><p>如果还没有使用 <code>add</code> 命令加入到暂存区，可以</p><h2 id="单个文件"><a href="#单个文件" class="headerlink" title="单个文件"></a>单个文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout --filename</span><br></pre></td></tr></table></figure><h2 id="所有文件"><a href="#所有文件" class="headerlink" title="所有文件"></a>所有文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout .</span><br></pre></td></tr></table></figure><h2 id="清除所有新增未加入暂存区的文件-文件夹"><a href="#清除所有新增未加入暂存区的文件-文件夹" class="headerlink" title="清除所有新增未加入暂存区的文件/文件夹"></a>清除所有新增未加入暂存区的文件/文件夹</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -xdf</span><br></pre></td></tr></table></figure><p>如果已经 <code>add</code> 之后，想要撤销</p><h2 id="单个文件-1"><a href="#单个文件-1" class="headerlink" title="单个文件"></a>单个文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD filename</span><br></pre></td></tr></table></figure><h2 id="所有文件-1"><a href="#所有文件-1" class="headerlink" title="所有文件"></a>所有文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD</span><br></pre></td></tr></table></figure><p>如果已经 <code>commit</code> 了，想要撤销</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset commit_id  // 撤销后所有的更改会变成 add 之前的状态，git status 之后就是一片红红红</span><br></pre></td></tr></table></figure><blockquote><p>这个 id 是你想要回到的那个节点，可以通过 git log 查看，可以只选前 6 位<br>或者 通过 gitreflog 命令取得</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard commit_id //撤销之后，所做的已经commit的修改将会清除，仍在工作区/暂存区的代码也将会清除！</span><br></pre></td></tr></table></figure><h1 id="创建-切换分支-删除"><a href="#创建-切换分支-删除" class="headerlink" title="创建,切换分支 ,删除"></a>创建,切换分支 ,删除</h1><p>今天在看 webpack 官网的指南时候，发现各部分练习的代码挺不一样，又想起之前看 angularjs 时官网给出的 phonecat，他们项目各个构建步骤被创建成一个个 branch，感觉十分方便，所以我仿照试下</p><pre><code>git checkout -b XXX</code></pre><p>这个命令相当于</p><pre><code>git branch XXX    //新建XXX分支git checkout XXX  //切换到XXX分支</code></pre><p>现在就切换到 XXX 分支了，可以在 gitbash 中看到，然后我直接</p><p>git push origin XXX</p><p>其实此时远程仓库中并没有 XXX 分支，执行此命令后，远程仓库会新建 XXX 分支，并 push 成功。</p><pre><code>git branch -D XXX</code></pre><p>删除本地的 XXX 分支</p><pre><code>git push origin :XXX</code></pre><p>删除远程的 XXX 分支</p><h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>自己尝试更新 folk 到自己 github 上仓库时查到的这个命令，先上个链接</p><blockquote><p><a href="https://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository" target="_blank" rel="noopener">How do I update a GitHub forked repository?</a></p></blockquote><p>第一个答案大意就是，</p><ol><li>从自己的 GitHub 上 clone 至本地工作目录</li><li>在本地添加 remote，即从哪 folk 来的(这里先叫 upstream)，</li><li>fetch upstream 上的所有分支</li><li>切换到本地的 master 分支</li><li>将 upstream 上需要同步的分支 rebase</li></ol><p>我觉得 rebase 和 merge 差不多，区别可能是 rebase 不会留下痕迹，merge 需要输入 message 啥的</p><blockquote><p><a href="http://blog.csdn.net/hudashi/article/details/7664631/" target="_blank" rel="noopener">git rebase</a></p></blockquote><h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>针对更新自己 folk 的仓库，官方后来又给出了 web 版本的方案，上面的是需要本地仓库的，先上链接</p><blockquote><p><a href="https://github.com/KirstieJane/STEMMRoleModels/wiki/Syncing-your-fork-to-the-original-repository-via-the-browser" target="_blank" rel="noopener">www</a></p></blockquote><p>大致就是自己从源向自己 folk 的仓库发起 pull request,然后合并</p><h1 id="遇到-ping-github-com-time-out-问题"><a href="#遇到-ping-github-com-time-out-问题" class="headerlink" title="遇到 ping github.com time out 问题"></a>遇到 ping github.com time out 问题</h1><blockquote><p>可以在网页中正常访问 github，唯独在终端中连接不了 github，也 ping 不通</p></blockquote><p>喵喵喵？查了半天网上说了一堆关于 proxy 代理的问题，结果我连到手机的热点就可以了，所以下次遇到时尝试切换网络环境</p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul><li><a href="https://www.zhihu.com/question/53601264" target="_blank" rel="noopener">如何在 git 中对比当前工作区和远程仓库的区别</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
+  
+</feed>
