@@ -1,115 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Linus 相关命令</title>
-    <url>/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p>需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈</p>
-<a id="more"></a>
-<h1 id="文档型：文件相关命令"><a href="#文档型：文件相关命令" class="headerlink" title="文档型：文件相关命令"></a>文档型：文件相关命令</h1><blockquote>
-<p>touch,cat,echo,rm,vi,cd</p>
-</blockquote>
-<h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><p><code>cd</code> 命令就不用多说了，进入某个目录下</p>
-<ul>
-<li><code>cd /</code> 为进入根目录下</li>
-<li><code>ls</code> 列出当前目录下所有文件名称</li>
-</ul>
-<h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><p>查看当前文件目录完整路径</p>
-<blockquote>
-<p>复制当前目录到剪贴板，<code>pwd|pbcopy</code></p>
-</blockquote>
-<h2 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h2><p>创建一个目录</p>
-<h2 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h2><p>移动一个文件或文件夹，也可用于更改文件名</p>
-<blockquote>
-<p><code>mv test.txt test</code> 将 test.txt 文件移动到当前目录下到test文件夹下</p>
-</blockquote>
-<blockquote>
-<p><code>mv test.txt test1.txt</code> 将 test.txt 文件名改为test1.txt</p>
-</blockquote>
-<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p>创建一个文件，注意区别 <code>mkdir</code> 命令</p>
-<h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>查看文件内容</p>
-<blockquote>
-<p>比如 <code>cat test.txt</code></p>
-</blockquote>
-<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>向文件中添加或覆盖内容</p>
-<p><code>echo 1234 &gt;&gt; test.txt</code> 两个箭头表示向内容末尾添加内容</p>
-<p><code>echo 1234 &gt; test.txt</code> 一个箭头表示覆盖内容</p>
-<h2 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h2><p>删除文件</p>
-<ul>
-<li>删除目录使用 <code>rm -r</code> 命令<blockquote>
-<p>注意 <code>rm -rf</code> 是强制删除命令，慎用，会造成误删后无法恢复的问题</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h2><p>用 <strong>vim</strong> 编辑器编辑文件</p>
-<h1 id="功能型：压缩-解压，下载，远程"><a href="#功能型：压缩-解压，下载，远程" class="headerlink" title="功能型：压缩/解压，下载，远程"></a>功能型：压缩/解压，下载，远程</h1><blockquote>
-<p>wget, tar, ssh</p>
-</blockquote>
-<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>下载文件，命令后跟资源地址</p>
-<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><h3 id="解压文件，-命令后跟文件名"><a href="#解压文件，-命令后跟文件名" class="headerlink" title="解压文件， 命令后跟文件名"></a>解压文件， 命令后跟文件名</h3><p><strong>tar zxvf</strong> 参数解释</p>
-<ul>
-<li><strong>z</strong> 用来解压 <strong>.gz</strong>后缀的文件，比如 <strong>apache-tomcat-9.0.17.tar.gz</strong></li>
-<li><strong>x</strong> 代表解压缩</li>
-<li><strong>v</strong> 代表显示所有的解压过程</li>
-<li><strong>f</strong> 表示解压后的文件使用压缩包文件的名字，比如 </li>
-<li><strong>apache-tomcat-9.0.17.tar.gz</strong> 使用 <strong>zxvf</strong> 参数解压后的文件名为 <strong>apache-tomcat-9.0.17</strong></li>
-</ul>
-<h3 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h3><p><strong>tar zcvf</strong> 参数解释，<strong>c</strong> 代表压缩，其余解释和上文一致</p>
-<blockquote>
-<p>需要注意，<strong>tar zcvf</strong> 后跟两个参数，第一个参数为压缩后的文件名，第二个参数为需要被压缩的文件，例如把 <strong>apache-tomcat-9.0.17</strong> 压缩成 <strong>apache-tomcat.tar.gz</strong> 使用 <code>tar zcvf apache-tomcat.tar.gz apache-tomcat-9.0.17</code></p>
-</blockquote>
-<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><p>远程连接，看例子 <code>ssh root@119.21.241.41</code></p>
-<blockquote>
-<p><code>ssh -p 10229 root@119.21.241.41</code>  </p>
-</blockquote>
-<p>有几个相关的小点需要注意</p>
-<ul>
-<li><code>cat /etc/hostname</code> 查看主机名，可用vim修改</li>
-<li><code>cat /etc/ssh/sshd_config</code> 查看 <strong>ssh</strong> 服务的配置，可用vim修改</li>
-<li><code>netstat -anlp | grep sshd</code> 查看 <strong>ssh</strong> 服务占用的端口号</li>
-</ul>
-<h1 id="系统进程服务相关"><a href="#系统进程服务相关" class="headerlink" title="系统进程服务相关"></a>系统进程服务相关</h1><h2 id="查看当前系统进程"><a href="#查看当前系统进程" class="headerlink" title="查看当前系统进程"></a>查看当前系统进程</h2><p><strong>ps -ef | grep</strong> , 比如</p>
-<blockquote>
-<p><code>ps -ef | grep docker</code> 查看名为 <strong>docker</strong> 的进程</p>
-</blockquote>
-<h2 id="kill-某进程"><a href="#kill-某进程" class="headerlink" title="kill 某进程"></a>kill 某进程</h2><p><strong>kill -9</strong>，比如</p>
-<blockquote>
-<p><code>kill -9 27643</code> 强制杀死id为27643的进程</p>
-</blockquote>
-<h2 id="系统服务相关"><a href="#系统服务相关" class="headerlink" title="系统服务相关"></a>系统服务相关</h2><h3 id="查看系统服务"><a href="#查看系统服务" class="headerlink" title="查看系统服务"></a>查看系统服务</h3><p><strong>service 服务名 status</strong>, 比如 </p>
-<blockquote>
-<p><code>service sshd status</code> :查询 ssh 服务的运行状态</p>
-</blockquote>
-<h3 id="关闭某个服务"><a href="#关闭某个服务" class="headerlink" title="关闭某个服务"></a>关闭某个服务</h3><p><strong>service 服务名 stop</strong> </p>
-<h3 id="重启某个服务"><a href="#重启某个服务" class="headerlink" title="重启某个服务"></a>重启某个服务</h3><p><strong>service 服务名 restart</strong></p>
-]]></content>
-      <tags>
-        <tag>Linus</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2016小小结</title>
-    <url>/2017/01/10/2016%E5%B0%8F%E5%B0%8F%E7%BB%93/</url>
-    <content><![CDATA[<p>2016年结束了，回头看来这年经历可真是丰富啊，没去考研，感觉整年都在弥补我的过错，现在想想都觉得我真是太废了，1月6号开始决定敲代码，翻开人生第一本代码书–超简单的headfirst-html。过年因为家庭问题也没有回家，初二便跑回学校，记得当时贝岗只有M记开门（而且还只有我最讨厌的香辣堡卖），真是对自己的惩罚，希望自己能多多记住这种感觉</p>
-<h1 id="学习部分"><a href="#学习部分" class="headerlink" title="学习部分"></a>学习部分</h1><h2 id="总结下今年看的书"><a href="#总结下今年看的书" class="headerlink" title="总结下今年看的书"></a>总结下今年看的书</h2><h3 id="技术上"><a href="#技术上" class="headerlink" title="技术上"></a>技术上</h3><p>1.headfirst-html和css，自己看完的第一本代码书，按照示例敲出了第一个静态页面，现在想想真是挺适合入门的，讲的简单生动<br>2.headfirst-html5,这个看了一半，倒是对html5有了比较浅的了解<br>3.javascript高级程序设计，这个看了一半，必读书籍，新的一年准备和犀牛书再啃一遍<br>4.css权威教程，读了大半，也是当做工具书，需要就去查，很详细<br>5.jq基础，挑着读了些，很多时候需要用到时跑去查找</p>
-<h3 id="others"><a href="#others" class="headerlink" title="others"></a>others</h3><p>1.中国缺了一味药，感觉有些心酸<br>2.时间简史，看了一点点，感觉还是值得一看，全民科普类书籍<br>3.<a href="http://www.cnblogs.com/yangpf/p/4148488.html" target="_blank" rel="noopener">相对论并非遥不可及</a>，写的相当赞，我竟然看懂啦<br>4.常识，托马斯潘恩的，据说是美国独立战争的反动小册子，感觉看着翻译的版本有点怪<br>5.知乎上收藏了一大把的东西</p>
-<h2 id="学到的技术"><a href="#学到的技术" class="headerlink" title="学到的技术"></a>学到的技术</h2><p>1.前端基础html,css相比较看的较多，js和jq就不够了，自己明白js很重要，<br>2.bootstrap，这个也只能算了解，其核心网格系统也只是勉强会用<br>3.angular，想想听到老大说用angular搭建项目时的一脸懵逼，只能硬着头皮上了，现在也只能说是刚入门，框架自身变化也快，此外第三方的库，angular-ui，ui-router，oclazyload，ng-grid也多少了解些<br>4.ui-grid这个拿出来单独说，因为这个要替代ng-grid了，而且其功能更强大，我也打算将angular项目中的表格替换为ui-grid<br>5.Git，只会些简单的命令，倒是对其了解了些<br>6.gulp，倒是自己尝试配了些简单的命令，</p>
-<blockquote>
-<p>这一年接触的东西不少，深究起来真正懂的一个都没有，这也是下年需要改进的地方</p>
-</blockquote>
-<h1 id="生活部分"><a href="#生活部分" class="headerlink" title="生活部分"></a>生活部分</h1><p>啊哈，还是单身单身，欣慰的是毕业后能和大学好盆友暂时住在一起，延续了些大学的味道，嗯，尝试做了很多次饭（虽然是最简单的烤面包片加鸡蛋），把自己的房间认真装了下，拍死了不少小强，开始独立自己买衣服，年末开始锻炼身体了</p>
-<p>当然，这一年还有个大事件就是我毕业啦，感觉吧，不开心</p>
-<h1 id="工作部分"><a href="#工作部分" class="headerlink" title="工作部分"></a>工作部分</h1><p>在安正实习了下，跑到海豚啦，氛围很好，师兄很赞，还有一堆大学的小伙伴</p>
-<h1 id="吸取的教训"><a href="#吸取的教训" class="headerlink" title="吸取的教训"></a>吸取的教训</h1><p>最大的教训就是最后没去考研，一直以来觉得自己可以坦然面对一些事，现在发现还真是高估了自己，发觉自己还是太容易受环境影响，内心对未知有种惧怕，自己很多时候是准备不足。这种挫败感真是太大了，自己远不如想象的成熟</p>
-<h1 id="新一年给自己"><a href="#新一年给自己" class="headerlink" title="新一年给自己"></a>新一年给自己</h1><p>js很重要，新的一年要重新弄下，<br>1.身体很重要，多跑跑步，可以的话，去健身房吧<br>2.英语<br>3.php，体验下世界上最好的语言</p>
-]]></content>
-      <categories>
-        <category>summary</category>
-      </categories>
-      <tags>
-        <tag>回顾</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Angular1.X页面间传值</title>
     <url>/2017/04/19/Angular1-X%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC/</url>
     <content><![CDATA[<p>页面间的传值还是很常见的，在此记录下我接触过的angular1.X版本页面间传值的例子<br><a id="more"></a></p>
@@ -166,64 +57,26 @@ params:{&apos;datas&apos;:null}.
       </tags>
   </entry>
   <entry>
-    <title>MongoDB 小记</title>
-    <url>/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/</url>
-    <content><![CDATA[<p>主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧</p>
-<a id="more"></a>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>这是官网安装页面，<a href="https://docs.mongodb.com/manual/installation/#tutorial-installation" target="_blank" rel="noopener">MongoDB Install</a>。</p>
-<p>有企业版和社区版的区分，基本是</p>
-<p>我是 mac 系统，有 brew 和二进制文件两种安装方法</p>
-<p>顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户</p>
+    <title>2016小小结</title>
+    <url>/2017/01/10/2016%E5%B0%8F%E5%B0%8F%E7%BB%93/</url>
+    <content><![CDATA[<p>2016年结束了，回头看来这年经历可真是丰富啊，没去考研，感觉整年都在弥补我的过错，现在想想都觉得我真是太废了，1月6号开始决定敲代码，翻开人生第一本代码书–超简单的headfirst-html。过年因为家庭问题也没有回家，初二便跑回学校，记得当时贝岗只有M记开门（而且还只有我最讨厌的香辣堡卖），真是对自己的惩罚，希望自己能多多记住这种感觉</p>
+<h1 id="学习部分"><a href="#学习部分" class="headerlink" title="学习部分"></a>学习部分</h1><h2 id="总结下今年看的书"><a href="#总结下今年看的书" class="headerlink" title="总结下今年看的书"></a>总结下今年看的书</h2><h3 id="技术上"><a href="#技术上" class="headerlink" title="技术上"></a>技术上</h3><p>1.headfirst-html和css，自己看完的第一本代码书，按照示例敲出了第一个静态页面，现在想想真是挺适合入门的，讲的简单生动<br>2.headfirst-html5,这个看了一半，倒是对html5有了比较浅的了解<br>3.javascript高级程序设计，这个看了一半，必读书籍，新的一年准备和犀牛书再啃一遍<br>4.css权威教程，读了大半，也是当做工具书，需要就去查，很详细<br>5.jq基础，挑着读了些，很多时候需要用到时跑去查找</p>
+<h3 id="others"><a href="#others" class="headerlink" title="others"></a>others</h3><p>1.中国缺了一味药，感觉有些心酸<br>2.时间简史，看了一点点，感觉还是值得一看，全民科普类书籍<br>3.<a href="http://www.cnblogs.com/yangpf/p/4148488.html" target="_blank" rel="noopener">相对论并非遥不可及</a>，写的相当赞，我竟然看懂啦<br>4.常识，托马斯潘恩的，据说是美国独立战争的反动小册子，感觉看着翻译的版本有点怪<br>5.知乎上收藏了一大把的东西</p>
+<h2 id="学到的技术"><a href="#学到的技术" class="headerlink" title="学到的技术"></a>学到的技术</h2><p>1.前端基础html,css相比较看的较多，js和jq就不够了，自己明白js很重要，<br>2.bootstrap，这个也只能算了解，其核心网格系统也只是勉强会用<br>3.angular，想想听到老大说用angular搭建项目时的一脸懵逼，只能硬着头皮上了，现在也只能说是刚入门，框架自身变化也快，此外第三方的库，angular-ui，ui-router，oclazyload，ng-grid也多少了解些<br>4.ui-grid这个拿出来单独说，因为这个要替代ng-grid了，而且其功能更强大，我也打算将angular项目中的表格替换为ui-grid<br>5.Git，只会些简单的命令，倒是对其了解了些<br>6.gulp，倒是自己尝试配了些简单的命令，</p>
 <blockquote>
-<p>附上官方启用 root 账户的说明，<a href="https://support.apple.com/zh-cn/HT204012" target="_blank" rel="noopener">如何在 Mac 上启用 root 用户或更改 root 密码</a></p>
+<p>这一年接触的东西不少，深究起来真正懂的一个都没有，这也是下年需要改进的地方</p>
 </blockquote>
-<p><del>注意安装后需要创建一个数据库数据存储的文件夹</del></p>
-<p><del><code>mkdir -p /data/db</code></del></p>
-<p><del>如果运行 <code>ps -xa | grep mongod</code>，没有看到一个 <code>dbpath</code> 显式地告诉 mongod 查看该数据库位置的参数，并且你的 mongodb.conf 中没有数据库路径，那么默认数据存储位置就是如上</del></p>
-<p>Mac 升级为 Catalina 系统后，根目录只有读的权限了，也就是不能在根目录创建 /data/db</p>
-<p>两种解决方法</p>
-<ol>
-<li><p>使用 <code>mongod --dbpath=/Users/user/data/db</code> 这种，每次都指明数据存放路径的命令启动 mongodb</p>
-</li>
-<li><p>参考 <a href="https://stackoverflow.com/questions/58034955/read-only-file-system-when-attempting-mkdir-data-db-on-mac" target="_blank" rel="noopener">stackoverflow</a> 第二条回答，使用 brew 启动<br><code>brew services start mongodb-community</code></p>
-</li>
-</ol>
-<blockquote>
-<p>顺便说 <code>cd /</code> 命令可以直接进入根目录<br><code>cd ~</code> 进入用户根目录</p>
-</blockquote>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>因为我已经把 mongoDB 的路径加入了系统路径中，并且使用了默认的数据存放位置，所以可以直接，如果没做这两步的话，参考如下</p>
-<blockquote>
-<p><a href="https://docs.mongodb.com/guides/server/install/" target="_blank" rel="noopener">MongoDB 配置</a></p>
-</blockquote>
-<pre><code>sudo mongod //启动
-</code></pre><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>新开一个命令行工具，输入</p>
-<pre><code>mongo
-</code></pre><p>连接数据库，可以输入查询语句了</p>
-<h2 id="操作部分"><a href="#操作部分" class="headerlink" title="操作部分"></a>操作部分</h2><p>还能说啥，重中之重，多多练习</p>
-<h2 id="授权，创建，修改，查看用户"><a href="#授权，创建，修改，查看用户" class="headerlink" title="授权，创建，修改，查看用户"></a>授权，创建，修改，查看用户</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.auth(&apos;user&apos;,&apos;pwd&apos;)</span><br><span class="line">db.createUser(user:&apos;&apos;,pwd:&apos;&apos;,roles:[])</span><br><span class="line">show users // 查看当前数据库用户</span><br><span class="line">db.system.users.find() // 查看所有用户</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/26215701" target="_blank" rel="noopener">详情参考此文</a></p>
-</blockquote>
-<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>查看所有数据库</p>
-<pre><code>&gt; show dbs
-</code></pre><p>查看当前数据库的 collections (集合)</p>
-<pre><code>&gt; show collections
-</code></pre><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建或进入某个存在的数据库</p>
-<pre><code>&gt; use &lt;name&gt;
-</code></pre><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入一条数据</p>
-<pre><code>&gt; db.collection.insertOne({})
-</code></pre><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><a href="https://docs.mongodb.com/manual/tutorial/getting-started/" target="_blank" rel="noopener">MongoDB get start</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/44263728" target="_blank" rel="noopener">小白必须懂的 MongoDB 的十大总结-MongoDB 的认识
-</a></li>
-</ul>
+<h1 id="生活部分"><a href="#生活部分" class="headerlink" title="生活部分"></a>生活部分</h1><p>啊哈，还是单身单身，欣慰的是毕业后能和大学好盆友暂时住在一起，延续了些大学的味道，嗯，尝试做了很多次饭（虽然是最简单的烤面包片加鸡蛋），把自己的房间认真装了下，拍死了不少小强，开始独立自己买衣服，年末开始锻炼身体了</p>
+<p>当然，这一年还有个大事件就是我毕业啦，感觉吧，不开心</p>
+<h1 id="工作部分"><a href="#工作部分" class="headerlink" title="工作部分"></a>工作部分</h1><p>在安正实习了下，跑到海豚啦，氛围很好，师兄很赞，还有一堆大学的小伙伴</p>
+<h1 id="吸取的教训"><a href="#吸取的教训" class="headerlink" title="吸取的教训"></a>吸取的教训</h1><p>最大的教训就是最后没去考研，一直以来觉得自己可以坦然面对一些事，现在发现还真是高估了自己，发觉自己还是太容易受环境影响，内心对未知有种惧怕，自己很多时候是准备不足。这种挫败感真是太大了，自己远不如想象的成熟</p>
+<h1 id="新一年给自己"><a href="#新一年给自己" class="headerlink" title="新一年给自己"></a>新一年给自己</h1><p>js很重要，新的一年要重新弄下，<br>1.身体很重要，多跑跑步，可以的话，去健身房吧<br>2.英语<br>3.php，体验下世界上最好的语言</p>
 ]]></content>
       <categories>
-        <category>DataBase</category>
+        <category>summary</category>
       </categories>
       <tags>
-        <tag>DataBase</tag>
-        <tag>MongoDB</tag>
+        <tag>回顾</tag>
       </tags>
   </entry>
   <entry>
@@ -373,6 +226,67 @@ appModule.directive(&apos;helloWorld&apos;,function(){
       </tags>
   </entry>
   <entry>
+    <title>MongoDB 小记</title>
+    <url>/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<p>主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧</p>
+<a id="more"></a>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>这是官网安装页面，<a href="https://docs.mongodb.com/manual/installation/#tutorial-installation" target="_blank" rel="noopener">MongoDB Install</a>。</p>
+<p>有企业版和社区版的区分，基本是</p>
+<p>我是 mac 系统，有 brew 和二进制文件两种安装方法</p>
+<p>顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户</p>
+<blockquote>
+<p>附上官方启用 root 账户的说明，<a href="https://support.apple.com/zh-cn/HT204012" target="_blank" rel="noopener">如何在 Mac 上启用 root 用户或更改 root 密码</a></p>
+</blockquote>
+<p><del>注意安装后需要创建一个数据库数据存储的文件夹</del></p>
+<p><del><code>mkdir -p /data/db</code></del></p>
+<p><del>如果运行 <code>ps -xa | grep mongod</code>，没有看到一个 <code>dbpath</code> 显式地告诉 mongod 查看该数据库位置的参数，并且你的 mongodb.conf 中没有数据库路径，那么默认数据存储位置就是如上</del></p>
+<p>Mac 升级为 Catalina 系统后，根目录只有读的权限了，也就是不能在根目录创建 /data/db</p>
+<p>两种解决方法</p>
+<ol>
+<li><p>使用 <code>mongod --dbpath=/Users/user/data/db</code> 这种，每次都指明数据存放路径的命令启动 mongodb</p>
+</li>
+<li><p>参考 <a href="https://stackoverflow.com/questions/58034955/read-only-file-system-when-attempting-mkdir-data-db-on-mac" target="_blank" rel="noopener">stackoverflow</a> 第二条回答，使用 brew 启动<br><code>brew services start mongodb-community</code></p>
+</li>
+</ol>
+<blockquote>
+<p>顺便说 <code>cd /</code> 命令可以直接进入根目录<br><code>cd ~</code> 进入用户根目录</p>
+</blockquote>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>因为我已经把 mongoDB 的路径加入了系统路径中，并且使用了默认的数据存放位置，所以可以直接，如果没做这两步的话，参考如下</p>
+<blockquote>
+<p><a href="https://docs.mongodb.com/guides/server/install/" target="_blank" rel="noopener">MongoDB 配置</a></p>
+</blockquote>
+<pre><code>sudo mongod //启动
+</code></pre><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>新开一个命令行工具，输入</p>
+<pre><code>mongo
+</code></pre><p>连接数据库，可以输入查询语句了</p>
+<h2 id="操作部分"><a href="#操作部分" class="headerlink" title="操作部分"></a>操作部分</h2><p>还能说啥，重中之重，多多练习</p>
+<h2 id="授权，创建，修改，查看用户"><a href="#授权，创建，修改，查看用户" class="headerlink" title="授权，创建，修改，查看用户"></a>授权，创建，修改，查看用户</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.auth(&apos;user&apos;,&apos;pwd&apos;)</span><br><span class="line">db.createUser(user:&apos;&apos;,pwd:&apos;&apos;,roles:[])</span><br><span class="line">show users // 查看当前数据库用户</span><br><span class="line">db.system.users.find() // 查看所有用户</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/26215701" target="_blank" rel="noopener">详情参考此文</a></p>
+</blockquote>
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>查看所有数据库</p>
+<pre><code>&gt; show dbs
+</code></pre><p>查看当前数据库的 collections (集合)</p>
+<pre><code>&gt; show collections
+</code></pre><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建或进入某个存在的数据库</p>
+<pre><code>&gt; use &lt;name&gt;
+</code></pre><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入一条数据</p>
+<pre><code>&gt; db.collection.insertOne({})
+</code></pre><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a href="https://docs.mongodb.com/manual/tutorial/getting-started/" target="_blank" rel="noopener">MongoDB get start</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/44263728" target="_blank" rel="noopener">小白必须懂的 MongoDB 的十大总结-MongoDB 的认识
+</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>DataBase</category>
+      </categories>
+      <tags>
+        <tag>DataBase</tag>
+        <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>angular相关问题</title>
     <url>/2017/05/10/angular%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>整理一些angular相关的问题，多了再整理</p>
@@ -396,6 +310,34 @@ appModule.directive(&apos;helloWorld&apos;,function(){
       </categories>
       <tags>
         <tag>angular</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker入门</title>
+    <url>/2020/06/29/docker%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>记录些安装，配置，和使用上的一些心得，方便日后查阅</p>
+<a id="more"></a>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="在centOS上安装"><a href="#在centOS上安装" class="headerlink" title="在centOS上安装"></a>在centOS上安装</h2><p>mac 上安装的话直接有相应的安装包，很简单，现在主要说下服务端的，流程大致可以参考官方 <a href="https://docs.docker.com/engine/install/centos/" target="_blank" rel="noopener">docker install</a>，不过要注意，我在centos8 上执行到 <code>sudo yum install docker-ce docker-ce-cli containerd.io</code> 命令报错（应该是containerd.io版本问题）。</p>
+<p>此时需要先执行 </p>
+<p><code>dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm</code> </p>
+<p>先安装 containerd.io。</p>
+<p>再执行 <code>sudo yum install docker-ce docker-ce-cli</code> ,<code>sudo systemctl start docker</code> 安装剩下两个</p>
+<h2 id="配置国内镜像"><a href="#配置国内镜像" class="headerlink" title="配置国内镜像"></a>配置国内镜像</h2><p>编辑 <code>sudo vi /etc/docker/daemon.json</code><br>加入如下<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"registry-mirrors"</span>: [</span><br><span class="line">        <span class="string">"https://1nj0zren.mirror.aliyuncs.com"</span>,</span><br><span class="line">        <span class="string">"https://docker.mirrors.ustc.edu.cn"</span>,</span><br><span class="line">        <span class="string">"http://f1361db2.m.daocloud.io"</span>,</span><br><span class="line">        <span class="string">"https://registry.docker-cn.com"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>好像 <code>&quot;https://registry.docker-cn.com&quot;</code> 失效了</p>
+</blockquote>
+<h1 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h1><p>参考官方安装文档 <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">compose install</a></p>
+<ol>
+<li>下载安装  </li>
+</ol>
+<p><code>sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</code></p>
+<ol start="2">
+<li>给权限 <code>sudo chmod +x /usr/local/bin/docker-compose</code></li>
+<li>测试是否安装成功 <code>docker-compose --version</code></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -657,129 +599,6 @@ func1.apply(this, [arg1, arg2]);
       </tags>
   </entry>
   <entry>
-    <title>docker入门</title>
-    <url>/2020/06/29/docker%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<p>记录些安装，配置，和使用上的一些心得，方便日后查阅</p>
-<a id="more"></a>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="在centOS上安装"><a href="#在centOS上安装" class="headerlink" title="在centOS上安装"></a>在centOS上安装</h2><p>mac 上安装的话直接有相应的安装包，很简单，现在主要说下服务端的，流程大致可以参考官方 <a href="https://docs.docker.com/engine/install/centos/" target="_blank" rel="noopener">docker install</a>，不过要注意，我在centos8 上执行到 <code>sudo yum install docker-ce docker-ce-cli containerd.io</code> 命令报错（应该是containerd.io版本问题）。</p>
-<p>此时需要先执行 </p>
-<p><code>dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm</code> </p>
-<p>先安装 containerd.io。</p>
-<p>再执行 <code>sudo yum install docker-ce docker-ce-cli</code> ,<code>sudo systemctl start docker</code> 安装剩下两个</p>
-<h2 id="配置国内镜像"><a href="#配置国内镜像" class="headerlink" title="配置国内镜像"></a>配置国内镜像</h2><p>编辑 <code>sudo vi /etc/docker/daemon.json</code><br>加入如下<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"registry-mirrors"</span>: [</span><br><span class="line">        <span class="string">"https://1nj0zren.mirror.aliyuncs.com"</span>,</span><br><span class="line">        <span class="string">"https://docker.mirrors.ustc.edu.cn"</span>,</span><br><span class="line">        <span class="string">"http://f1361db2.m.daocloud.io"</span>,</span><br><span class="line">        <span class="string">"https://registry.docker-cn.com"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>好像 <code>&quot;https://registry.docker-cn.com&quot;</code> 失效了</p>
-</blockquote>
-<h1 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h1><p>参考官方安装文档 <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">compose install</a></p>
-<ol>
-<li>下载安装  </li>
-</ol>
-<p><code>sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</code></p>
-<ol start="2">
-<li>给权限 <code>sudo chmod +x /usr/local/bin/docker-compose</code></li>
-<li>测试是否安装成功 <code>docker-compose --version</code></li>
-</ol>
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>javascript作用域</title>
-    <url>/2017/05/10/javascript%E4%BD%9C%E7%94%A8%E5%9F%9F/</url>
-    <content><![CDATA[<h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><ol>
-<li><strong>执行环境</strong>(execution context,有时也叫“环境”,“执行上下文”,“”,“”)</li>
-<li><strong>变量对象</strong>(variable object)</li>
-<li><strong>活动对象</strong>(activation object)</li>
-</ol>
-<h1 id="执行环境和作用域"><a href="#执行环境和作用域" class="headerlink" title="执行环境和作用域"></a>执行环境和作用域</h1><p><strong>执行环境</strong>很重要，执行环境定义了变量或函数有权访问的其他数据(难道指的就是初始化的作用域链？),决定论它们各自的行为。每个执行环境都有一个与之关联的 <strong>变量对象</strong>(包含了环境中定义的所有变量和函数)(难道执行环境只包含了一个标识符指针列表？)，虽然我们的代码无法访问这个对象，但解析器在数据处理时会在后台使用它</p>
-<p>全局执行环境是最外围的执行环境，在Web浏览器中，全局执行环节被认为是window对象</p>
-<p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
-<blockquote>
-<p>也就是说这个栈一直存在，和全局执行环境一样关闭网页时才被销毁</p>
-</blockquote>
-<p>当代码在一个环境中执行时，会创建变量对象的一个 <strong>作用域链</strong>(scope chain)。作用域链的用途，是保证对执行环境有权访问的所有变量和函数有序的访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动对象作为变量对象，活动对象在开始时只包含一个变量，即arguments对象(这个对象在全局环境中是不存在的)。作用域链中的下一个变量对象来自包含(外部)环境，而再下个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
-<blockquote>
-<p>作用域链存放在哪</p>
-</blockquote>
-<p>以上大部分来自js高程这本书，下面开始图解</p>
-<h1 id="图解过程"><a href="#图解过程" class="headerlink" title="图解过程"></a>图解过程</h1><h2 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h2><pre><code>//myScript.js 
-&quot;use strict&quot;    
-var a=1;
-var b=2; 
-</code></pre><p>如图，开始时，创建全局执行环境并被推入执行环境栈<br><img src="http://i.imgur.com/FcKggu2.png" alt="p1"></p>
-<h2 id="step2"><a href="#step2" class="headerlink" title="step2"></a>step2</h2><pre><code>//myScript.js 
-&quot;use strict&quot;    
-var a=1;
-var b=2; 
-function foo(){
-    var c=3;
-    var d=4;
-    console.log(c+d);
-}
-</code></pre><p>执行至<code>function foo(){}</code>也就是函数创建时，food的标识符(identifier)被加到当前(栗子中是全局变量对象)中,并且这个标识符引用了一个函数对象，函数对象中不仅包含了函数的源代码等还有[[scope]],[[Scope]]属性中保存了一条用来初始化作用域链，其指向就是当前的变量对象(全局变量对象)</p>
-<blockquote>
-<p>注意此时并没创建函数相应的执行环境<br><img src="http://i.imgur.com/GGGcGON.png" alt="p2"></p>
-</blockquote>
-<h2 id="step3"><a href="#step3" class="headerlink" title="step3"></a>step3</h2><pre><code>//myScript.js 
-&quot;use strict&quot;    
-var a=1;
-var b=2; 
-function foo(){
-    var c=3;
-    var d=4;
-    console.log(c+d);
-};
-foo();
-</code></pre><p>执行至<code>foo()</code>,函数被调用，产生相应的执行环境，之后被推入执行环境栈顶，</p>
-<blockquote>
-<p>此时产生的执行环境中的作用域链由之前函数定义时的[[scope]]而来，作用链的前端为foo的变量对象，由于这个环境是函数，创建活动对象并将其作为变量对象<br><img src="http://i.imgur.com/ocIbFzQ.png" alt="p3"></p>
-</blockquote>
-<h2 id="step4"><a href="#step4" class="headerlink" title="step4"></a>step4</h2><p>调用foo()结束后，其执行环境会被弹出执行栈，<br><img src="http://i.imgur.com/gDcXp4r.png" alt="p4"></p>
-<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>1.作用域链是本质上是一个指向变量对象的指针列表，它只是引用但不实际包含变量对象。<br>2.AO中包含了函数的形参、arguments对象、this对象、以及局部变量和内部函数的定义，然后AO会被推入作用域链的顶端。</p>
-<blockquote>
-<p>感觉AO和VO里的内容差不多</p>
-</blockquote>
-<h1 id="EC和VO的产生过程"><a href="#EC和VO的产生过程" class="headerlink" title="EC和VO的产生过程"></a>EC和VO的产生过程</h1><p>当函数被调用时进入EC的产生阶段</p>
-<h1 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h1><blockquote>
-<p><a href="http://www.jianshu.com/p/4881610a8c24" target="_blank" rel="noopener">简书</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/jacksplwxy/p/6725850.html" target="_blank" rel="noopener">偶尔看到的个人挺赞同的</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://www.cnblogs.com/jacksplwxy/p/6725850.html" target="_blank" rel="noopener">执行环境、变量对象、活动对象和作用域链</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://github.com/dwqs/blog/issues/18" target="_blank" rel="noopener">皮卡丘的讲解</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://segmentfault.com/a/1190000004676747" target="_blank" rel="noopener">segmentfault作用域javascript1</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://segmentfault.com/a/1190000008614579" target="_blank" rel="noopener">segmentfault作用域javascript2</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://segmentfault.com/a/1190000000533094" target="_blank" rel="noopener">segmentfault作用域javascript3</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://segmentfault.com/a/1190000009247123" target="_blank" rel="noopener">讲了执行环境和变量对象的创建和执行过程，很有用</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://blog.csdn.net/u010425776/article/details/53557942" target="_blank" rel="noopener">作用域</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>javascript闭包</title>
     <url>/2017/05/12/javascript%E9%97%AD%E5%8C%85/</url>
     <content><![CDATA[<h1 id="闭包是什么"><a href="#闭包是什么" class="headerlink" title="闭包是什么"></a>闭包是什么</h1><h2 id="闭包的产生"><a href="#闭包的产生" class="headerlink" title="闭包的产生"></a>闭包的产生</h2><p>我觉得是因为闭包函数的作用域链中保存着包裹函数的活动对象，正因保留着引用，导致包裹函数不会被垃圾回收</p>
@@ -792,51 +611,6 @@ foo();
 </ol>
 <h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>作用域链和闭包脱不了干系，作用域链部分可以查看<a href="/2017/05/10/javascript作用域/" title="javascript作用域">javascript作用域</a></p>
 <h1 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h1>]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>js回顾(一)</title>
-    <url>/2017/03/06/js%E5%9B%9E%E9%A1%BE-%E4%B8%80/</url>
-    <content><![CDATA[<h1 id="对象和原型"><a href="#对象和原型" class="headerlink" title="对象和原型"></a>对象和原型</h1><h2 id="几种常见的创建对象方法"><a href="#几种常见的创建对象方法" class="headerlink" title="几种常见的创建对象方法"></a>几种常见的创建对象方法</h2><p>1.通过对象字面量构造</p>
-<pre><code>var contact1={
-    name:&quot;zhao&quot;,
-    sex:&quot;male&quot;
-}
-</code></pre><p>通过此方法构造的对象，其[[prototype]]指向Object.prototype</p>
-<p>2.通过构造函数</p>
-<pre><code>function Contact(name,sex){
-    this.name=name;
-    this.sex=sex;
-    this.getName=function(){
-        return name;
-    }
-}
-var contact1=new Contact()
-contact1.__proto__==Contact.prototype //true
-</code></pre><p>每个函数都有一个prototype属性，其所指向的对象带有constructor属性，这一属性指向函数自身,eg,本例中，Contact.prototype.constructor==Contact</p>
-<p>3.通过函数Object.create构造</p>
-<pre><code>var contact={
-    name:&quot;zhao&quot;,
-    sex:&quot;male&quot;
-}
-var contact1=Object.create(contact);
-</code></pre><p>contact1的[[prototype]]指向contact</p>
-<h1 id="js中proto和prototype的区别和关系？"><a href="#js中proto和prototype的区别和关系？" class="headerlink" title="js中proto和prototype的区别和关系？"></a>js中<strong>proto</strong>和prototype的区别和关系？</h1><p>常说js中一切都是对象，但基本数据类型不是对象，基本数据类型没有方法和属性 ，当我们调用方法时候会封装出一个对象，（wrapper对象是什么）<br>首先，几乎所有对象都有[[prototype]]属性，在es5中这是个隐藏属性，指向此对象的原型。es5中用Object.getPrototypeOf函数获得一个对象的[[prototype]]。es6中，使用Object.setPrototypeOf可以直接修改一个对象的[[prototype]]</p>
-<blockquote>
-<p>很多浏览器都给每个对象提供<strong>proto</strong>属性(不标准，不推荐用)，我觉得可以理解为就是[[prototype]]，</p>
-</blockquote>
-<p><img src="http://i.imgur.com/0G4COrD.png" alt="关系图"></p>
-<p>1.方法（Function）是对象，方法的原型(Function.prototype)是对象。因此，它们都会具有对象共有的特点。即：对象具有属性<strong>proto</strong>，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法。<br>2.方法(Function)方法这个特殊的对象，除了和其他对象一样有上述<em>proto</em>属性之外，还有自己特有的属性——原型属性（prototype），这个属性是一个指针，指向一个对象，这个对象的用途就是包含所有实例共享的属性和方法（我们把这个对象叫做原型对象）。原型对象也有一个属性，叫做constructor，这个属性包含了一个指针，指回原构造函数。好啦，知道了这两个基本点，我们来看看上面这副图。<br>1.构造函数Foo()构造函数的原型属性Foo.prototype指向了原型对象，在原型对象里有共有的方法，所有构造函数声明的实例（这里是f1，f2）都可以共享这个方法。<br>2.原型对象Foo.prototypeFoo.prototype保存着实例共享的方法，有一个指针constructor指回构造函数。<br>3.实例f1和f2是Foo这个对象的两个实例，这两个对象也有属性<strong>proto</strong>，指向构造函数的原型对象，这样子就可以像上面1所说的访问原型对象的所有方法啦。另外：构造函数Foo()除了是方法，也是对象啊，它也有<strong>proto</strong>属性，指向谁呢？指向它的构造函数的原型对象呗。函数的构造函数不就是Function嘛，因此这里的<strong>proto</strong>指向了Function.prototype。其实除了Foo()，Function(), Object()也是一样的道理。原型对象也是对象啊，它的<strong>proto</strong>属性，又指向谁呢？同理，指向它的构造函数的原型对象呗。这里是Object.prototype.最后，Object.prototype的<strong>proto</strong>属性指向null。<br>总结：<br>1.对象有属性<strong>proto</strong>,指向该对象的构造函数的原型对象。<br>2.方法除了有属性<strong>proto</strong>,还有属性prototype，prototype指向该方法的原型对象。</p>
-<p>看一下几种常见构造一个对象的方法，决定了一个对象的[[prototype]]属性</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
-<p><a href="http://blog.csdn.net/u010425776/article/details/53617292" target="_blank" rel="noopener">对象与原型</a></p>
-</blockquote>
-]]></content>
       <categories>
         <category>js</category>
       </categories>
@@ -986,54 +760,140 @@ item1, ..., itemX   可选。向数组添加的新项目。
       </tags>
   </entry>
   <entry>
-    <title>node(一)</title>
-    <url>/2017/03/01/node-%E4%B8%80/</url>
-    <content><![CDATA[<p>开始正式学习node，之前看过node即学即用，敲了遍书上的代码，有点晕晕的，之后很长时间没接触node了，现在下决心每天花些时间捣鼓下。<br><a id="more"></a></p>
-<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>在这里主要是记笔记，按照教程尝试搭建使用 Express + MongoDB 搭建多人博客，记录些要点和体会</p>
+    <title>javascript作用域</title>
+    <url>/2017/05/10/javascript%E4%BD%9C%E7%94%A8%E5%9F%9F/</url>
+    <content><![CDATA[<h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><ol>
+<li><strong>执行环境</strong>(execution context,有时也叫“环境”,“执行上下文”,“”,“”)</li>
+<li><strong>变量对象</strong>(variable object)</li>
+<li><strong>活动对象</strong>(activation object)</li>
+</ol>
+<h1 id="执行环境和作用域"><a href="#执行环境和作用域" class="headerlink" title="执行环境和作用域"></a>执行环境和作用域</h1><p><strong>执行环境</strong>很重要，执行环境定义了变量或函数有权访问的其他数据(难道指的就是初始化的作用域链？),决定论它们各自的行为。每个执行环境都有一个与之关联的 <strong>变量对象</strong>(包含了环境中定义的所有变量和函数)(难道执行环境只包含了一个标识符指针列表？)，虽然我们的代码无法访问这个对象，但解析器在数据处理时会在后台使用它</p>
+<p>全局执行环境是最外围的执行环境，在Web浏览器中，全局执行环节被认为是window对象</p>
+<p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
 <blockquote>
-<p>参考了<a href="https://github.com/nswbmw/N-blog" target="_blank" rel="noopener">使用 Express + MongoDB 搭建多人博客</a></p>
+<p>也就是说这个栈一直存在，和全局执行环境一样关闭网页时才被销毁</p>
 </blockquote>
-<h1 id="安装配置环境"><a href="#安装配置环境" class="headerlink" title="安装配置环境"></a>安装配置环境</h1><p>安装nodejs，LTS是长期支持版本，current是最新版，支持最新语言特性(比如更全的es6)</p>
-<p>n和nvm是两个常用的nodejs版本管理工具，nvm不支持windows</p>
+<p>当代码在一个环境中执行时，会创建变量对象的一个 <strong>作用域链</strong>(scope chain)。作用域链的用途，是保证对执行环境有权访问的所有变量和函数有序的访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动对象作为变量对象，活动对象在开始时只包含一个变量，即arguments对象(这个对象在全局环境中是不存在的)。作用域链中的下一个变量对象来自包含(外部)环境，而再下个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
 <blockquote>
-<p>参考<a href="http://taobaofed.org/blog/2015/11/17/nvm-or-n/" target="_blank" rel="noopener">这个</a><br>还有阮一峰老师的<a href="http://es6.ruanyifeng.com/#docs/intro" target="_blank" rel="noopener">es6入门</a></p>
+<p>作用域链存放在哪</p>
 </blockquote>
-<p>nrm管理npm源的工具，目测修改了源之后npm==cnpm了</p>
-<p>安装mongoDB遇到一个坑，执行</p>
-<pre><code>&quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot; --dbpath F:\practice\mongo
-</code></pre><p>报错</p>
-<pre><code> $ &quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot; --dbpath F:\practice\mongo
-17-03-02T14:55:01.854+0800 I CONTROL  [initandlisten] MongoDB starting :     d=7440 port=27017 dbpath=F:practicemongo 64-bit host=DESKTOP-KP92M3V
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/    ndows Server 2008 R2
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] db version v3.4.2
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] git version:     76e40c105fc223b3e5aac3e20dcd026b83b38b
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] OpenSSL version:     enSSL 1.0.1u-fips  22 Sep 2016
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] allocator: tcmalloc
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] modules: none
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] build environment:
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten]     distmod:     08plus-ssl
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten]     distarch: x86_64
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten]     target_arch: x86_64
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] options: { storage: {     Path: &quot;F:practicemongo&quot; } }
-17-03-02T14:55:01.855+0800 I STORAGE  [initandlisten] exception in     itAndListen: 29 Data directory F:practicemongo not found., terminating
-17-03-02T14:55:01.855+0800 I NETWORK  [initandlisten] shutdown: going to     ose listening sockets...
-17-03-02T14:55:01.855+0800 I NETWORK  [initandlisten] shutdown: going to     ush diaglog...
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] now exiting
-17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] shutting down with     de:100
-</code></pre><p>说F:practicemongo not found，不知道为什么会这样，直接执行</p>
-<pre><code>&quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot;
-</code></pre><p>又说 F:\data\db\ not found.</p>
-<p>我就只好在F盘下新建data\db，然后就成功了</p>
-<p>打开Robomongo,<a href="http://blog.robomongo.org/" target="_blank" rel="noopener">Robomongo</a> 是一个基于 Shell 的跨平台开源 MongoDB 可视化管理工具，支持 Windows、Linux 和 Mac，嵌入了 JavaScript 引擎和 MongoDB mongo，</p>
+<p>以上大部分来自js高程这本书，下面开始图解</p>
+<h1 id="图解过程"><a href="#图解过程" class="headerlink" title="图解过程"></a>图解过程</h1><h2 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h2><pre><code>//myScript.js 
+&quot;use strict&quot;    
+var a=1;
+var b=2; 
+</code></pre><p>如图，开始时，创建全局执行环境并被推入执行环境栈<br><img src="http://i.imgur.com/FcKggu2.png" alt="p1"></p>
+<h2 id="step2"><a href="#step2" class="headerlink" title="step2"></a>step2</h2><pre><code>//myScript.js 
+&quot;use strict&quot;    
+var a=1;
+var b=2; 
+function foo(){
+    var c=3;
+    var d=4;
+    console.log(c+d);
+}
+</code></pre><p>执行至<code>function foo(){}</code>也就是函数创建时，food的标识符(identifier)被加到当前(栗子中是全局变量对象)中,并且这个标识符引用了一个函数对象，函数对象中不仅包含了函数的源代码等还有[[scope]],[[Scope]]属性中保存了一条用来初始化作用域链，其指向就是当前的变量对象(全局变量对象)</p>
 <blockquote>
-<p>试着插入一条数据结果不知道怎样看不到了</p>
+<p>注意此时并没创建函数相应的执行环境<br><img src="http://i.imgur.com/GGGcGON.png" alt="p2"></p>
+</blockquote>
+<h2 id="step3"><a href="#step3" class="headerlink" title="step3"></a>step3</h2><pre><code>//myScript.js 
+&quot;use strict&quot;    
+var a=1;
+var b=2; 
+function foo(){
+    var c=3;
+    var d=4;
+    console.log(c+d);
+};
+foo();
+</code></pre><p>执行至<code>foo()</code>,函数被调用，产生相应的执行环境，之后被推入执行环境栈顶，</p>
+<blockquote>
+<p>此时产生的执行环境中的作用域链由之前函数定义时的[[scope]]而来，作用链的前端为foo的变量对象，由于这个环境是函数，创建活动对象并将其作为变量对象<br><img src="http://i.imgur.com/ocIbFzQ.png" alt="p3"></p>
+</blockquote>
+<h2 id="step4"><a href="#step4" class="headerlink" title="step4"></a>step4</h2><p>调用foo()结束后，其执行环境会被弹出执行栈，<br><img src="http://i.imgur.com/gDcXp4r.png" alt="p4"></p>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>1.作用域链是本质上是一个指向变量对象的指针列表，它只是引用但不实际包含变量对象。<br>2.AO中包含了函数的形参、arguments对象、this对象、以及局部变量和内部函数的定义，然后AO会被推入作用域链的顶端。</p>
+<blockquote>
+<p>感觉AO和VO里的内容差不多</p>
+</blockquote>
+<h1 id="EC和VO的产生过程"><a href="#EC和VO的产生过程" class="headerlink" title="EC和VO的产生过程"></a>EC和VO的产生过程</h1><p>当函数被调用时进入EC的产生阶段</p>
+<h1 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h1><blockquote>
+<p><a href="http://www.jianshu.com/p/4881610a8c24" target="_blank" rel="noopener">简书</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/jacksplwxy/p/6725850.html" target="_blank" rel="noopener">偶尔看到的个人挺赞同的</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/jacksplwxy/p/6725850.html" target="_blank" rel="noopener">执行环境、变量对象、活动对象和作用域链</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/dwqs/blog/issues/18" target="_blank" rel="noopener">皮卡丘的讲解</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000004676747" target="_blank" rel="noopener">segmentfault作用域javascript1</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000008614579" target="_blank" rel="noopener">segmentfault作用域javascript2</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000000533094" target="_blank" rel="noopener">segmentfault作用域javascript3</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000009247123" target="_blank" rel="noopener">讲了执行环境和变量对象的创建和执行过程，很有用</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://blog.csdn.net/u010425776/article/details/53557942" target="_blank" rel="noopener">作用域</a></p>
 </blockquote>
 ]]></content>
       <categories>
-        <category>node</category>
+        <category>js</category>
       </categories>
       <tags>
-        <tag>node</tag>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>js回顾(一)</title>
+    <url>/2017/03/06/js%E5%9B%9E%E9%A1%BE-%E4%B8%80/</url>
+    <content><![CDATA[<h1 id="对象和原型"><a href="#对象和原型" class="headerlink" title="对象和原型"></a>对象和原型</h1><h2 id="几种常见的创建对象方法"><a href="#几种常见的创建对象方法" class="headerlink" title="几种常见的创建对象方法"></a>几种常见的创建对象方法</h2><p>1.通过对象字面量构造</p>
+<pre><code>var contact1={
+    name:&quot;zhao&quot;,
+    sex:&quot;male&quot;
+}
+</code></pre><p>通过此方法构造的对象，其[[prototype]]指向Object.prototype</p>
+<p>2.通过构造函数</p>
+<pre><code>function Contact(name,sex){
+    this.name=name;
+    this.sex=sex;
+    this.getName=function(){
+        return name;
+    }
+}
+var contact1=new Contact()
+contact1.__proto__==Contact.prototype //true
+</code></pre><p>每个函数都有一个prototype属性，其所指向的对象带有constructor属性，这一属性指向函数自身,eg,本例中，Contact.prototype.constructor==Contact</p>
+<p>3.通过函数Object.create构造</p>
+<pre><code>var contact={
+    name:&quot;zhao&quot;,
+    sex:&quot;male&quot;
+}
+var contact1=Object.create(contact);
+</code></pre><p>contact1的[[prototype]]指向contact</p>
+<h1 id="js中proto和prototype的区别和关系？"><a href="#js中proto和prototype的区别和关系？" class="headerlink" title="js中proto和prototype的区别和关系？"></a>js中<strong>proto</strong>和prototype的区别和关系？</h1><p>常说js中一切都是对象，但基本数据类型不是对象，基本数据类型没有方法和属性 ，当我们调用方法时候会封装出一个对象，（wrapper对象是什么）<br>首先，几乎所有对象都有[[prototype]]属性，在es5中这是个隐藏属性，指向此对象的原型。es5中用Object.getPrototypeOf函数获得一个对象的[[prototype]]。es6中，使用Object.setPrototypeOf可以直接修改一个对象的[[prototype]]</p>
+<blockquote>
+<p>很多浏览器都给每个对象提供<strong>proto</strong>属性(不标准，不推荐用)，我觉得可以理解为就是[[prototype]]，</p>
+</blockquote>
+<p><img src="http://i.imgur.com/0G4COrD.png" alt="关系图"></p>
+<p>1.方法（Function）是对象，方法的原型(Function.prototype)是对象。因此，它们都会具有对象共有的特点。即：对象具有属性<strong>proto</strong>，可称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型，这也保证了实例能够访问在构造函数原型中定义的属性和方法。<br>2.方法(Function)方法这个特殊的对象，除了和其他对象一样有上述<em>proto</em>属性之外，还有自己特有的属性——原型属性（prototype），这个属性是一个指针，指向一个对象，这个对象的用途就是包含所有实例共享的属性和方法（我们把这个对象叫做原型对象）。原型对象也有一个属性，叫做constructor，这个属性包含了一个指针，指回原构造函数。好啦，知道了这两个基本点，我们来看看上面这副图。<br>1.构造函数Foo()构造函数的原型属性Foo.prototype指向了原型对象，在原型对象里有共有的方法，所有构造函数声明的实例（这里是f1，f2）都可以共享这个方法。<br>2.原型对象Foo.prototypeFoo.prototype保存着实例共享的方法，有一个指针constructor指回构造函数。<br>3.实例f1和f2是Foo这个对象的两个实例，这两个对象也有属性<strong>proto</strong>，指向构造函数的原型对象，这样子就可以像上面1所说的访问原型对象的所有方法啦。另外：构造函数Foo()除了是方法，也是对象啊，它也有<strong>proto</strong>属性，指向谁呢？指向它的构造函数的原型对象呗。函数的构造函数不就是Function嘛，因此这里的<strong>proto</strong>指向了Function.prototype。其实除了Foo()，Function(), Object()也是一样的道理。原型对象也是对象啊，它的<strong>proto</strong>属性，又指向谁呢？同理，指向它的构造函数的原型对象呗。这里是Object.prototype.最后，Object.prototype的<strong>proto</strong>属性指向null。<br>总结：<br>1.对象有属性<strong>proto</strong>,指向该对象的构造函数的原型对象。<br>2.方法除了有属性<strong>proto</strong>,还有属性prototype，prototype指向该方法的原型对象。</p>
+<p>看一下几种常见构造一个对象的方法，决定了一个对象的[[prototype]]属性</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="http://blog.csdn.net/u010425776/article/details/53617292" target="_blank" rel="noopener">对象与原型</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -1119,6 +979,38 @@ item1, ..., itemX   可选。向数组添加的新项目。
       </categories>
       <tags>
         <tag>sublime</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>value和ng-value</title>
+    <url>/2017/02/23/value%E5%92%8Cng-value/</url>
+    <content><![CDATA[<p>开年第一篇，前两周赶进度特别忙，基本重构了整个系统，也踩了不少的坑，其中就有angular指令ng-value和value这俩货</p>
+<blockquote>
+<p>类似的还有ng-disabled和disabled等</p>
+</blockquote>
+<h1 id="ng-value-amp-amp-value"><a href="#ng-value-amp-amp-value" class="headerlink" title="ng-value&amp;&amp;value"></a>ng-value&amp;&amp;value</h1><h1 id="ng-disabled-amp-amp-disabled"><a href="#ng-disabled-amp-amp-disabled" class="headerlink" title="ng-disabled&amp;&amp;disabled"></a>ng-disabled&amp;&amp;disabled</h1><p>上来先举个正确的例子</p>
+<pre><code>ng-disabled=&quot;!(address.selected&amp;&amp;filterOptions.filterText.endTime&amp;&amp;filterOptions.filterText.startTime)&quot;
+</code></pre><blockquote>
+<p>这个是账户系统中的原例，注意逻辑关系的书写</p>
+</blockquote>
+<p><del>ng-disabled=”false“</del></p>
+<p>上面一条是错的</p>
+<blockquote>
+<p>注意disable存在时，表单不会对其校验，可使用visible属性</p>
+</blockquote>
+<h1 id="ng-if"><a href="#ng-if" class="headerlink" title="ng-if"></a>ng-if</h1><p>这里要特别注意ng-if和ng-show的区别</p>
+<p>ng-if = false 时，相应的标签元素在调试器里消失（不知道是否被移出了dom），且不占空间。而<br>ng-show = false 时 相应的的元素还是在dom中的，</p>
+<p>如下</p>
+<ul>
+<li>ng-if 在后面表达式为 true 的时候才创建这个 dom 节点，ng-show 是初始时就创建了，用 display:block 和 display:none 来控制显示和不显示。</li>
+<li>ng-if 会（隐式地）产生新作用域，ng-switch 、 ng-include 等会动态创建一块界面的也是如此。 </li>
+</ul>
+]]></content>
+      <categories>
+        <category>angular</category>
+      </categories>
+      <tags>
+        <tag>angular</tag>
       </tags>
   </entry>
   <entry>
@@ -1239,80 +1131,54 @@ item1, ..., itemX   可选。向数组添加的新项目。
       </tags>
   </entry>
   <entry>
-    <title>zsh相关</title>
-    <url>/2020/07/14/zsh%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<p>zsh 相关的 <strong>iTerm2</strong> 和 <strong>oh my zsh</strong> 安装，以及相关主题配置</p>
-<a id="more"></a>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>开始接触命令行是在用windows的时候，那时就只是用来装装node之类的软件，后来装了 git bash，接触了些很好用的linux命令，就可以减少使用鼠标的次数啦，一定程度上来说还是很爽的。</p>
-<p>之后碗切到了mac，Linux 命令就用的更爽啦(mac os 毕竟是基于 linux 的)，然后就接触到了 fish ，可以直接通过 fish ui 命令直接调出配置页面，可以直接调整文字大小啊，颜色啊，git分支提示，而且还有历史命令提示等功能，从此我的命令行就变得花花绿绿的。再后来，mac 大力推荐 zsh 了，因为 zsh 功能更加强大，所以也就有了本篇。</p>
-<h1 id="安装-zsh"><a href="#安装-zsh" class="headerlink" title="安装 zsh"></a>安装 zsh</h1><p>安装 zsh 就不写了，因为 mac 本身就内置了，切换下就好</p>
-<h1 id="安装-iTerm2"><a href="#安装-iTerm2" class="headerlink" title="安装 iTerm2"></a>安装 <strong>iTerm2</strong></h1><p><a href="https://www.iterm2.com/" target="_blank" rel="noopener">iTerm2下载</a></p>
+    <title>node(一)</title>
+    <url>/2017/03/01/node-%E4%B8%80/</url>
+    <content><![CDATA[<p>开始正式学习node，之前看过node即学即用，敲了遍书上的代码，有点晕晕的，之后很长时间没接触node了，现在下决心每天花些时间捣鼓下。<br><a id="more"></a></p>
+<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>在这里主要是记笔记，按照教程尝试搭建使用 Express + MongoDB 搭建多人博客，记录些要点和体会</p>
 <blockquote>
-<p>echo $SHELL  // 查看当前命令行解析器</p>
+<p>参考了<a href="https://github.com/nswbmw/N-blog" target="_blank" rel="noopener">使用 Express + MongoDB 搭建多人博客</a></p>
 </blockquote>
-<h1 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh my zsh"></a>oh my zsh</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>通过 curl<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure></p>
-<p>通过 wget<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="安装配置环境"><a href="#安装配置环境" class="headerlink" title="安装配置环境"></a>安装配置环境</h1><p>安装nodejs，LTS是长期支持版本，current是最新版，支持最新语言特性(比如更全的es6)</p>
+<p>n和nvm是两个常用的nodejs版本管理工具，nvm不支持windows</p>
 <blockquote>
-<p>刚开始安装时会报 connect refuse 等的错误，我是通过修改 git host 配置来解决的</p>
+<p>参考<a href="http://taobaofed.org/blog/2015/11/17/nvm-or-n/" target="_blank" rel="noopener">这个</a><br>还有阮一峰老师的<a href="http://es6.ruanyifeng.com/#docs/intro" target="_blank" rel="noopener">es6入门</a></p>
 </blockquote>
-<h2 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h2><p>配置 <strong>.zshrc</strong> 文件<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.zshrc</span><br></pre></td></tr></table></figure></p>
-<p>比如添加如下插件<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">  git</span><br><span class="line">  bundler</span><br><span class="line">  dotenv</span><br><span class="line">  osx</span><br><span class="line">  rake</span><br><span class="line">  rbenv</span><br><span class="line">  ruby</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<h2 id="安装-powerline-font"><a href="#安装-powerline-font" class="headerlink" title="安装 powerline font"></a>安装 powerline font</h2><p>有些主题需要 powerline font 的支持，所以配置主题前先安装 powerline font</p>
-<p>有文章说需要先安装 powerline 再安装 powerline font，实际上我直接按照如下安装的，并没有先装 powerline</p>
+<p>nrm管理npm源的工具，目测修改了源之后npm==cnpm了</p>
+<p>安装mongoDB遇到一个坑，执行</p>
+<pre><code>&quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot; --dbpath F:\practice\mongo
+</code></pre><p>报错</p>
+<pre><code> $ &quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot; --dbpath F:\practice\mongo
+17-03-02T14:55:01.854+0800 I CONTROL  [initandlisten] MongoDB starting :     d=7440 port=27017 dbpath=F:practicemongo 64-bit host=DESKTOP-KP92M3V
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/    ndows Server 2008 R2
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] db version v3.4.2
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] git version:     76e40c105fc223b3e5aac3e20dcd026b83b38b
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] OpenSSL version:     enSSL 1.0.1u-fips  22 Sep 2016
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] modules: none
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] build environment:
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten]     distmod:     08plus-ssl
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten]     distarch: x86_64
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] options: { storage: {     Path: &quot;F:practicemongo&quot; } }
+17-03-02T14:55:01.855+0800 I STORAGE  [initandlisten] exception in     itAndListen: 29 Data directory F:practicemongo not found., terminating
+17-03-02T14:55:01.855+0800 I NETWORK  [initandlisten] shutdown: going to     ose listening sockets...
+17-03-02T14:55:01.855+0800 I NETWORK  [initandlisten] shutdown: going to     ush diaglog...
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] now exiting
+17-03-02T14:55:01.855+0800 I CONTROL  [initandlisten] shutting down with     de:100
+</code></pre><p>说F:practicemongo not found，不知道为什么会这样，直接执行</p>
+<pre><code>&quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot;
+</code></pre><p>又说 F:\data\db\ not found.</p>
+<p>我就只好在F盘下新建data\db，然后就成功了</p>
+<p>打开Robomongo,<a href="http://blog.robomongo.org/" target="_blank" rel="noopener">Robomongo</a> 是一个基于 Shell 的跨平台开源 MongoDB 可视化管理工具，支持 Windows、Linux 和 Mac，嵌入了 JavaScript 引擎和 MongoDB mongo，</p>
 <blockquote>
-<p>可能其中的 install 脚本自带检查安装 powerline 的功能吧</p>
+<p>试着插入一条数据结果不知道怎样看不到了</p>
 </blockquote>
-<p>地址在此 <a href="https://github.com/powerline/fonts" target="_blank" rel="noopener">powerline fonts</a></p>
-<p>安装方法有多种，我使用了如下的安装方法</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># clone</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/powerline/fonts.git --depth=1</span><br><span class="line"><span class="comment"># install</span></span><br><span class="line"><span class="built_in">cd</span> fonts</span><br><span class="line">./install.sh</span><br><span class="line"><span class="comment"># clean-up a bit</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">rm -rf fonts</span><br></pre></td></tr></table></figure>
-<h2 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h2><p>同样是修改 <strong>.zshrc</strong> 文件，修改如下配置项</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">"robbyrussell"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>其实安装 <strong>on my zsh</strong> 后，原本的 <strong>.zshrc</strong> 文件的内容会被覆盖，新的内容里增加了大量的说明内容，方便了 zsh 相关的配置</p>
-</blockquote>
-<h1 id="go2shell"><a href="#go2shell" class="headerlink" title="go2shell"></a>go2shell</h1><p>很好用，集成在finder中，可以快速在当前目录下调出命令行工具</p>
-<blockquote>
-<p>记得选择 iterm2</p>
-</blockquote>
-<h1 id="about"><a href="#about" class="headerlink" title="about"></a>about</h1><ol>
-<li><a href="https://zhuanlan.zhihu.com/p/103672631" target="_blank" rel="noopener">我觉得这篇文的 fish 部分写的很好</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/37195261" target="_blank" rel="noopener">知乎</a></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>shell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>value和ng-value</title>
-    <url>/2017/02/23/value%E5%92%8Cng-value/</url>
-    <content><![CDATA[<p>开年第一篇，前两周赶进度特别忙，基本重构了整个系统，也踩了不少的坑，其中就有angular指令ng-value和value这俩货</p>
-<blockquote>
-<p>类似的还有ng-disabled和disabled等</p>
-</blockquote>
-<h1 id="ng-value-amp-amp-value"><a href="#ng-value-amp-amp-value" class="headerlink" title="ng-value&amp;&amp;value"></a>ng-value&amp;&amp;value</h1><h1 id="ng-disabled-amp-amp-disabled"><a href="#ng-disabled-amp-amp-disabled" class="headerlink" title="ng-disabled&amp;&amp;disabled"></a>ng-disabled&amp;&amp;disabled</h1><p>上来先举个正确的例子</p>
-<pre><code>ng-disabled=&quot;!(address.selected&amp;&amp;filterOptions.filterText.endTime&amp;&amp;filterOptions.filterText.startTime)&quot;
-</code></pre><blockquote>
-<p>这个是账户系统中的原例，注意逻辑关系的书写</p>
-</blockquote>
-<p><del>ng-disabled=”false“</del></p>
-<p>上面一条是错的</p>
-<blockquote>
-<p>注意disable存在时，表单不会对其校验，可使用visible属性</p>
-</blockquote>
-<h1 id="ng-if"><a href="#ng-if" class="headerlink" title="ng-if"></a>ng-if</h1><p>这里要特别注意ng-if和ng-show的区别</p>
-<p>ng-if = false 时，相应的标签元素在调试器里消失（不知道是否被移出了dom），且不占空间。而<br>ng-show = false 时 相应的的元素还是在dom中的，</p>
-<p>如下</p>
-<ul>
-<li>ng-if 在后面表达式为 true 的时候才创建这个 dom 节点，ng-show 是初始时就创建了，用 display:block 和 display:none 来控制显示和不显示。</li>
-<li>ng-if 会（隐式地）产生新作用域，ng-switch 、 ng-include 等会动态创建一块界面的也是如此。 </li>
-</ul>
 ]]></content>
       <categories>
-        <category>angular</category>
+        <category>node</category>
       </categories>
       <tags>
-        <tag>angular</tag>
+        <tag>node</tag>
       </tags>
   </entry>
   <entry>
@@ -1390,6 +1256,58 @@ item1, ..., itemX   可选。向数组添加的新项目。
 ]]></content>
       <tags>
         <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 prettier + eslint 统一代码风格和语法检查</title>
+    <url>/2020/07/03/%E4%BD%BF%E7%94%A8-prettier-eslint-%E7%BB%9F%E4%B8%80%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E8%AF%AD%E6%B3%95%E6%A3%80%E6%9F%A5/</url>
+    <content><![CDATA[<p>考虑各项目间的统一，使用 prettier 进行项目的代码风格格式化，使用 eslint 做语法检查，具体规范如下</p>
+<a id="more"></a>
+<h1 id="Prettier-vs-Linters"><a href="#Prettier-vs-Linters" class="headerlink" title="Prettier vs. Linters"></a>Prettier vs. Linters</h1><p>首先说明 Prettier 和 .Linters(ESLint/TSLint/stylelint, etc)的区别，</p>
+<ol>
+<li>Prettier 专注于代码风格上的统一，其配置项较少，是个 Opinionated formatter (就是类似 angular 那种，必须按照它自定的规则来)，</li>
+<li>比如说 ESLint，它其实包括了代码风格规范和语法检查两部分，有众多的规范插件可供选择，其配置项也较为复杂。但在代码风格上，它只能提供异常报错的警示信息，不能直接帮我们输出风格统一的代码。</li>
+</ol>
+<blockquote>
+<p><a href="https://prettier.io/docs/en/comparison.html" target="_blank" rel="noopener">How does it compare to ESLint/TSLint/stylelint, etc.?</a></p>
+</blockquote>
+<h1 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h1><p>代码美化部分大致包含：触发自动换行的字符数，强制关键词前后加空格</p>
+<p>prettier 的大部分规则都是不可配置了，只保留了几个争议特别大的规则给用户配置，比如单引号和双引号的选择，也正因如此，对团队的代码风格上的统一也会更有帮助</p>
+<h2 id="风格规范"><a href="#风格规范" class="headerlink" title="风格规范"></a>风格规范</h2><p>直接执行如下命令查看<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npx prettier --write .</span><br><span class="line">npx prettier --write app/</span><br><span class="line">npx prettier --write app/components/Button.js</span><br><span class="line">npx prettier --write app/**/*.test.js</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><ol>
+<li>使用 <code>eslint-config-prettier</code> 覆盖掉 ESLint 的代码风格规则</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install --save-dev eslint-config-prettier</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>向根目录下 .eslintrc 文件中的 <strong>extend</strong> 增加 <code>&quot;prettier&quot;</code></li>
+</ol>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"extends"</span>: [</span><br><span class="line">    <span class="string">"some-other-config-you-use"</span>,</span><br><span class="line">    <span class="string">"prettier"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>配置根目录下 .prettierrc 文件如下</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"eslintIntegration"</span>: <span class="literal">true</span>, <span class="comment">//</span></span><br><span class="line">    <span class="attr">"stylelintIntegration"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"tabWidth"</span>: <span class="number">2</span>,        <span class="comment">// 缩进字符</span></span><br><span class="line">    <span class="attr">"singleQuote"</span>: <span class="literal">true</span>,  <span class="comment">// 要不要单引号</span></span><br><span class="line">    <span class="attr">"semi"</span>: <span class="literal">false</span>         <span class="comment">// 要不要使用 ;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置保存自动格式化，在用户的 <code>setting.json</code> 文件中加上如下配置</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">"eslint.format.enable": true,</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">5. 如有需要忽略代码风格</span><br><span class="line"></span><br><span class="line">## others ##</span><br><span class="line"></span><br><span class="line">### git hook ###</span><br><span class="line"></span><br><span class="line">使用 husky 和 lint-staged 来确保每次提交前代码已是格式化后的状态，配置参考如下</span><br><span class="line"></span><br><span class="line">```json</span><br><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"husky"</span>: &#123;</span><br><span class="line">    <span class="attr">"hooks"</span>: &#123;</span><br><span class="line">      <span class="attr">"pre-commit"</span>: <span class="string">"lint-staged"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"lint-staged"</span>: &#123;</span><br><span class="line">    <span class="attr">"**/*"</span>: [<span class="string">"eslint --fix"</span>, <span class="string">"prettier --write"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="about"><a href="#about" class="headerlink" title="about"></a>about</h2><ol>
+<li><a href="https://prettier.io/docs/en/index.html" target="_blank" rel="noopener">Prettier</a></li>
+<li><a href="https://github.com/okonet/lint-staged#readme" target="_blank" rel="noopener">lint-staged</a></li>
+<li><a href="https://github.com/typicode/husky#readme" target="_blank" rel="noopener">husky</a></li>
+</ol>
+<h1 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h1><p>语法检查部分大致包含：变量检查（重复引用，引入但未使用，声明但未使用。。。），无意义的bind</p>
+<p>一般情况下，脚手架都自带了基础的 eslint 配置，所以主要还是注意eslint 的 plugin 的安装配置，参考如下</p>
+<h2 id="about-1"><a href="#about-1" class="headerlink" title="about"></a>about</h2><ol>
+<li><a href="https://eslint.org/docs/user-guide/getting-started" target="_blank" rel="noopener">eslint</a></li>
+<li><a href="https://eslint.org/docs/developer-guide/working-with-plugins" target="_blank" rel="noopener">working-with-plugins</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>standard</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
+        <tag>IDE</tag>
       </tags>
   </entry>
   <entry>
@@ -1503,169 +1421,136 @@ queryLoans(query:any):Promise&lt;{count:number,items:Loan[]}&gt;{
       </tags>
   </entry>
   <entry>
-    <title>浏览器渲染过程</title>
-    <url>/2017/05/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<p>暂时只是大概读了一遍，先记下来</p>
-<h1 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h1><p>自上而下</p>
+    <title>Linus 相关命令</title>
+    <url>/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈</p>
+<a id="more"></a>
+<h1 id="文档型：文件相关命令"><a href="#文档型：文件相关命令" class="headerlink" title="文档型：文件相关命令"></a>文档型：文件相关命令</h1><blockquote>
+<p>touch,cat,echo,rm,vi,cd</p>
+</blockquote>
+<h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><p><code>cd</code> 命令就不用多说了，进入某个目录下</p>
 <ul>
-<li>应用层</li>
-<li>传输层</li>
-<li>网络层</li>
-<li>链路层</li>
-<li>物理层</li>
+<li><code>cd /</code> 为进入根目录下</li>
+<li><code>ls</code> 列出当前目录下所有文件名称</li>
 </ul>
-<p>前四层构成TCP/IP协议族，之所以分层，我觉得可以理解为像前端的模块化，易于管理，改动。实际上设计也变得简单，各层只需考虑自己分内的事</p>
-<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层决定了向用户提供应用服务时通信的活动。</p>
+<h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><p>查看当前文件目录完整路径</p>
 <blockquote>
-<p>包含FTP，DNS，HTTP</p>
+<p>复制当前目录到剪贴板，<code>pwd|pbcopy</code></p>
 </blockquote>
-<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。</p>
+<h2 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h2><p>创建一个目录</p>
+<h2 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h2><p>移动一个文件或文件夹，也可用于更改文件名</p>
 <blockquote>
-<p>包含TCP，UDP(用户数据报协议)</p>
+<p><code>mv test.txt test</code> 将 test.txt 文件移动到当前目录下到test文件夹下</p>
 </blockquote>
-<h2 id="网络层-网络互连层"><a href="#网络层-网络互连层" class="headerlink" title="网络层(网络互连层)"></a>网络层(网络互连层)</h2><p>网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数据单位。该层规定了通过怎样的路径（所谓的传输路线）到达对方计算机，并把数据包传送给对方。</p>
 <blockquote>
-<p>IP</p>
+<p><code>mv test.txt test1.txt</code> 将 test.txt 文件名改为test1.txt</p>
 </blockquote>
-<h2 id="链路层-数据链路层-网络接口层"><a href="#链路层-数据链路层-网络接口层" class="headerlink" title="链路层(数据链路层)(网络接口层)"></a>链路层(数据链路层)(网络接口层)</h2><p>用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC（Network Interface Card，网络适配器，即网卡），及光纤等物理可见部分（还包括连接器等一切传输媒介）。硬件上的范畴均在链路层的作用范围之内。</p>
-<h1 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h1><p>发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后，回传一个带有 SYN/ACK 标志的数据包以示传达确认信息。最后，发送端再回传一个带 ACK 标志的数据包，代表“握手”结束。 若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序发送相同的数据包。</p>
-<h1 id="http"><a href="#http" class="headerlink" title="http"></a>http</h1><h2 id="职责"><a href="#职责" class="headerlink" title="职责"></a>职责</h2><p>生成针对目标服务器的HTTP请求报文</p>
-<h1 id="从输入-URL-到页面加载完成的过程中都发生了什么事情？"><a href="#从输入-URL-到页面加载完成的过程中都发生了什么事情？" class="headerlink" title="从输入 URL 到页面加载完成的过程中都发生了什么事情？"></a>从输入 URL 到页面加载完成的过程中都发生了什么事情？</h1><ul>
-<li>输入URL </li>
-<li>发起请求：URL解析/DNS解析  </li>
-<li>网络连接：三次握手  </li>
-<li>服务器响应请求：返回数据  </li>
-<li>客户端接收响应：浏览器加载/渲染页面</li>
-</ul>
-<h1 id="两个引擎"><a href="#两个引擎" class="headerlink" title="两个引擎"></a>两个引擎</h1><p>浏览器两个引擎</p>
-<ol>
-<li><p>渲染引擎</p>
+<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p>创建一个文件，注意区别 <code>mkdir</code> 命令</p>
+<h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>查看文件内容</p>
 <blockquote>
-<p>常称为浏览器的内核，webkit，gecko，persto(opera)</p>
+<p>比如 <code>cat test.txt</code></p>
+</blockquote>
+<h2 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h2><p>向文件中添加或覆盖内容</p>
+<p><code>echo 1234 &gt;&gt; test.txt</code> 两个箭头表示向内容末尾添加内容</p>
+<p><code>echo 1234 &gt; test.txt</code> 一个箭头表示覆盖内容</p>
+<h2 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h2><p>删除文件</p>
+<ul>
+<li>删除目录使用 <code>rm -r</code> 命令<blockquote>
+<p>注意 <code>rm -rf</code> 是强制删除命令，慎用，会造成误删后无法恢复的问题</p>
 </blockquote>
 </li>
-<li><p>js引擎</p>
-</li>
-</ol>
-<h1 id="两个树"><a href="#两个树" class="headerlink" title="两个树"></a>两个树</h1><h1 id="遇到的一些问题和解决办法"><a href="#遇到的一些问题和解决办法" class="headerlink" title="遇到的一些问题和解决办法"></a>遇到的一些问题和解决办法</h1><h2 id="Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received"><a href="#Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received" class="headerlink" title="Unchecked runtime.lastError: The message port closed before a response was received."></a>Unchecked runtime.lastError: The message port closed before a response was received.</h2><p>调试工具中报如上的错误，查阅资料得知是chrome某个插件报的错，自己一一验证，发祥是迅雷下载插件这个毒瘤，禁用可消除如上的报错</p>
-<blockquote>
-<p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="noopener">浏览器的渲染原理简介</a></p>
+</ul>
+<h2 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h2><p>用 <strong>vim</strong> 编辑器编辑文件</p>
+<h1 id="功能型：压缩-解压，下载，远程"><a href="#功能型：压缩-解压，下载，远程" class="headerlink" title="功能型：压缩/解压，下载，远程"></a>功能型：压缩/解压，下载，远程</h1><blockquote>
+<p>wget, tar, ssh</p>
 </blockquote>
+<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>下载文件，命令后跟资源地址</p>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><h3 id="解压文件，-命令后跟文件名"><a href="#解压文件，-命令后跟文件名" class="headerlink" title="解压文件， 命令后跟文件名"></a>解压文件， 命令后跟文件名</h3><p><strong>tar zxvf</strong> 参数解释</p>
+<ul>
+<li><strong>z</strong> 用来解压 <strong>.gz</strong>后缀的文件，比如 <strong>apache-tomcat-9.0.17.tar.gz</strong></li>
+<li><strong>x</strong> 代表解压缩</li>
+<li><strong>v</strong> 代表显示所有的解压过程</li>
+<li><strong>f</strong> 表示解压后的文件使用压缩包文件的名字，比如 </li>
+<li><strong>apache-tomcat-9.0.17.tar.gz</strong> 使用 <strong>zxvf</strong> 参数解压后的文件名为 <strong>apache-tomcat-9.0.17</strong></li>
+</ul>
+<h3 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h3><p><strong>tar zcvf</strong> 参数解释，<strong>c</strong> 代表压缩，其余解释和上文一致</p>
 <blockquote>
-<p><a href="http://www.jianshu.com/p/e141d1543143" target="_blank" rel="noopener">简书，浏览器加载解析渲染</a></p>
+<p>需要注意，<strong>tar zcvf</strong> 后跟两个参数，第一个参数为压缩后的文件名，第二个参数为需要被压缩的文件，例如把 <strong>apache-tomcat-9.0.17</strong> 压缩成 <strong>apache-tomcat.tar.gz</strong> 使用 <code>tar zcvf apache-tomcat.tar.gz apache-tomcat-9.0.17</code></p>
 </blockquote>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><p>远程连接，看例子 <code>ssh root@119.21.241.41</code></p>
 <blockquote>
-<p>图解http</p>
+<p><code>ssh -p 10229 root@119.21.241.41</code>  </p>
 </blockquote>
+<p>有几个相关的小点需要注意</p>
+<ul>
+<li><code>cat /etc/hostname</code> 查看主机名，可用vim修改</li>
+<li><code>cat /etc/ssh/sshd_config</code> 查看 <strong>ssh</strong> 服务的配置，可用vim修改</li>
+<li><code>netstat -anlp | grep sshd</code> 查看 <strong>ssh</strong> 服务占用的端口号</li>
+</ul>
+<h1 id="系统进程服务相关"><a href="#系统进程服务相关" class="headerlink" title="系统进程服务相关"></a>系统进程服务相关</h1><h2 id="查看当前系统进程"><a href="#查看当前系统进程" class="headerlink" title="查看当前系统进程"></a>查看当前系统进程</h2><p><strong>ps -ef | grep</strong> , 比如</p>
+<blockquote>
+<p><code>ps -ef | grep docker</code> 查看名为 <strong>docker</strong> 的进程</p>
+</blockquote>
+<h2 id="kill-某进程"><a href="#kill-某进程" class="headerlink" title="kill 某进程"></a>kill 某进程</h2><p><strong>kill -9</strong>，比如</p>
+<blockquote>
+<p><code>kill -9 27643</code> 强制杀死id为27643的进程</p>
+</blockquote>
+<h2 id="系统服务相关"><a href="#系统服务相关" class="headerlink" title="系统服务相关"></a>系统服务相关</h2><h3 id="查看系统服务"><a href="#查看系统服务" class="headerlink" title="查看系统服务"></a>查看系统服务</h3><p><strong>service 服务名 status</strong>, 比如 </p>
+<blockquote>
+<p><code>service sshd status</code> :查询 ssh 服务的运行状态</p>
+</blockquote>
+<h3 id="关闭某个服务"><a href="#关闭某个服务" class="headerlink" title="关闭某个服务"></a>关闭某个服务</h3><p><strong>service 服务名 stop</strong> </p>
+<h3 id="重启某个服务"><a href="#重启某个服务" class="headerlink" title="重启某个服务"></a>重启某个服务</h3><p><strong>service 服务名 restart</strong></p>
 ]]></content>
-      <categories>
-        <category>browser</category>
-      </categories>
       <tags>
-        <tag>js</tag>
-        <tag>browser</tag>
+        <tag>Linus</tag>
       </tags>
   </entry>
   <entry>
-    <title>英语学习-口语篇</title>
-    <url>/2018/11/05/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0-%E5%8F%A3%E8%AF%AD%E7%AF%87/</url>
-    <content><![CDATA[<p>今年集中学习了一段时间英语，后经我家东贤提醒，应该写写自己学习的心得，供我们以后参考。</p>
+    <title>zsh相关</title>
+    <url>/2020/07/14/zsh%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<p>zsh 相关的 <strong>iTerm2</strong> 和 <strong>oh my zsh</strong> 安装，以及相关主题配置</p>
 <a id="more"></a>
-<h1 id="音标"><a href="#音标" class="headerlink" title="音标"></a>音标</h1><p>既然是口语相关，音标自然是基础啦，推荐 <strong>赖世雄美语音标</strong>，分音频和文本部分，连接如下</p>
-<ul>
-<li><a href="https://www.ximalaya.com/waiyu/4324892/" target="_blank" rel="noopener">音频-喜马拉雅</a></li>
-<li><a href="https://pan.baidu.com/s/1yBUD_d8Y3EVh_eYm_WS8Hg" target="_blank" rel="noopener">文本-提取码12na</a></li>
-</ul>
-<h1 id="单词"><a href="#单词" class="headerlink" title="单词"></a>单词</h1><p>单词量是基础，这个没啥说的，找个app大声跟着读吧</p>
-<h1 id="听和看"><a href="#听和看" class="headerlink" title="听和看"></a>听和看</h1><p>我觉得对语言来讲，各方面的能力都是协同进步的，所以口语也定然离不开听力阅读等部分，听和看的同时要加上模仿和思考，这里给出相关推荐</p>
-<h2 id="听"><a href="#听" class="headerlink" title="听"></a>听</h2><p>我觉得VOA系列就很棒，<strong>VOA-special</strong> 现在有自己的发音评测，其他的之后在听力篇写写</p>
-<h2 id="看"><a href="#看" class="headerlink" title="看"></a>看</h2><ul>
-<li><strong>How I Met Your Mother</strong>，美剧，几个人在一起唠嗑，包含了大量日常的俚语，而且还蛮有趣的哈哈，建议把台词打印下来，可以模仿某个人的对话找找感觉</li>
-<li><strong>老友记</strong>，这个我没看过啦，听说有蛮多相关APP的，资源应该很丰富 </li>
-<li><p><strong>charlotte’s web</strong>，英文儿童读物，老师推荐 </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>开始接触命令行是在用windows的时候，那时就只是用来装装node之类的软件，后来装了 git bash，接触了些很好用的linux命令，就可以减少使用鼠标的次数啦，一定程度上来说还是很爽的。</p>
+<p>之后碗切到了mac，Linux 命令就用的更爽啦(mac os 毕竟是基于 linux 的)，然后就接触到了 fish ，可以直接通过 fish ui 命令直接调出配置页面，可以直接调整文字大小啊，颜色啊，git分支提示，而且还有历史命令提示等功能，从此我的命令行就变得花花绿绿的。再后来，mac 大力推荐 zsh 了，因为 zsh 功能更加强大，所以也就有了本篇。</p>
+<h1 id="安装-zsh"><a href="#安装-zsh" class="headerlink" title="安装 zsh"></a>安装 zsh</h1><p>安装 zsh 就不写了，因为 mac 本身就内置了，切换下就好</p>
+<h1 id="安装-iTerm2"><a href="#安装-iTerm2" class="headerlink" title="安装 iTerm2"></a>安装 <strong>iTerm2</strong></h1><p><a href="https://www.iterm2.com/" target="_blank" rel="noopener">iTerm2下载</a></p>
 <blockquote>
-<p>链接: <a href="https://pan.baidu.com/s/1PhC1Gp4yxNRZYT9F_gRGFQ" target="_blank" rel="noopener">文本-提取码204a</a></p>
+<p>echo $SHELL  // 查看当前命令行解析器</p>
 </blockquote>
-</li>
-</ul>
-<h1 id="连读部分"><a href="#连读部分" class="headerlink" title="连读部分"></a>连读部分</h1><p>感觉这个是进阶的重要部分，一个知乎话题供参考</p>
+<h1 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh my zsh"></a>oh my zsh</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>通过 curl<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p>通过 wget<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
-<p><a href="https://www.zhihu.com/question/35857073" target="_blank" rel="noopener">知乎-怎样解决英语的连读吞音等问题</a></p>
+<p>刚开始安装时会报 connect refuse 等的错误，我是通过修改 git host 配置来解决的</p>
 </blockquote>
-<p>有看到推荐<strong>A Course in Phonetics</strong>，瞅了一下觉得应该靠谱，便去搜了下相关资源</p>
-<ul>
-<li><a href="https://pan.baidu.com/s/1qR0b_P1FPIO4xsA3dNMZfQ" target="_blank" rel="noopener">文本-提取码59dp</a></li>
-<li><a href="https://corpus.linguistics.berkeley.edu/acip/course/chapter1/" target="_blank" rel="noopener">示例音频及作业</a></li>
-<li><a href="http://ocw.aca.ntu.edu.tw/ntu-ocw/index.php/ocw/cou/101S102" target="_blank" rel="noopener">台大公开课</a></li>
-</ul>
-<h1 id="讲"><a href="#讲" class="headerlink" title="讲"></a>讲</h1><p>很多时候我们说英文的话都是先想象中文怎样表达，然后再转换成英文，这个过程的长短就是区分初学者水平的关键，不过熟练的话可能根本没有转英文这一步，直接英文怼上去哈。这就要求多想多讲啦，练习可以分如下几个方面</p>
-<ul>
-<li><strong>话题练习</strong>，就是雅思和托福口语部分的练习，多瞅瞅相关真题，蛮多APP的，我用的小站</li>
-<li><strong>多讲多讲</strong>，交流多用用英文啦，不过一般情况下用到英文对地方太少啦，建议每次讲完话多用英文对语境下思考下英文版对回答</li>
-<li><strong>纠错</strong>，能多和英文老师交流最好啦，网上也有相关外教口语方面的授课。还有就是很多APP有自己的录音上传评分功能，大部分还是蛮准的，可以的话自己录音反复和原文对比</li>
-</ul>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
-<p><a href="https://www.zhihu.com/question/20097263" target="_blank" rel="noopener">知乎-怎么练好英语口语</a><br><a href="https://www.zhihu.com/question/35857073" target="_blank" rel="noopener">知乎-怎样解决英语的连读吞音等问题</a><br>啊，泣不成声啊</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>study</category>
-      </categories>
-      <tags>
-        <tag>English</tag>
-        <tag>study</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 prettier + eslint 统一代码风格和语法检查</title>
-    <url>/2020/07/03/%E4%BD%BF%E7%94%A8-prettier-eslint-%E7%BB%9F%E4%B8%80%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E8%AF%AD%E6%B3%95%E6%A3%80%E6%9F%A5/</url>
-    <content><![CDATA[<p>考虑各项目间的统一，使用 prettier 进行项目的代码风格格式化，使用 eslint 做语法检查，具体规范如下</p>
-<a id="more"></a>
-<h1 id="Prettier-vs-Linters"><a href="#Prettier-vs-Linters" class="headerlink" title="Prettier vs. Linters"></a>Prettier vs. Linters</h1><p>首先说明 Prettier 和 .Linters(ESLint/TSLint/stylelint, etc)的区别，</p>
-<ol>
-<li>Prettier 专注于代码风格上的统一，其配置项较少，是个 Opinionated formatter (就是类似 angular 那种，必须按照它自定的规则来)，</li>
-<li>比如说 ESLint，它其实包括了代码风格规范和语法检查两部分，有众多的规范插件可供选择，其配置项也较为复杂。但在代码风格上，它只能提供异常报错的警示信息，不能直接帮我们输出风格统一的代码。</li>
-</ol>
+<h2 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h2><p>配置 <strong>.zshrc</strong> 文件<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi ~/.zshrc</span><br></pre></td></tr></table></figure></p>
+<p>比如添加如下插件<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">  git</span><br><span class="line">  bundler</span><br><span class="line">  dotenv</span><br><span class="line">  osx</span><br><span class="line">  rake</span><br><span class="line">  rbenv</span><br><span class="line">  ruby</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装-powerline-font"><a href="#安装-powerline-font" class="headerlink" title="安装 powerline font"></a>安装 powerline font</h2><p>有些主题需要 powerline font 的支持，所以配置主题前先安装 powerline font</p>
+<p>有文章说需要先安装 powerline 再安装 powerline font，实际上我直接按照如下安装的，并没有先装 powerline</p>
 <blockquote>
-<p><a href="https://prettier.io/docs/en/comparison.html" target="_blank" rel="noopener">How does it compare to ESLint/TSLint/stylelint, etc.?</a></p>
+<p>可能其中的 install 脚本自带检查安装 powerline 的功能吧</p>
 </blockquote>
-<h1 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h1><p>代码美化部分大致包含：触发自动换行的字符数，强制关键词前后加空格</p>
-<p>prettier 的大部分规则都是不可配置了，只保留了几个争议特别大的规则给用户配置，比如单引号和双引号的选择，也正因如此，对团队的代码风格上的统一也会更有帮助</p>
-<h2 id="风格规范"><a href="#风格规范" class="headerlink" title="风格规范"></a>风格规范</h2><p>直接执行如下命令查看<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npx prettier --write .</span><br><span class="line">npx prettier --write app/</span><br><span class="line">npx prettier --write app/components/Button.js</span><br><span class="line">npx prettier --write app/**/*.test.js</span><br></pre></td></tr></table></figure></p>
-<h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><ol>
-<li>使用 <code>eslint-config-prettier</code> 覆盖掉 ESLint 的代码风格规则</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install --save-dev eslint-config-prettier</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>向根目录下 .eslintrc 文件中的 <strong>extend</strong> 增加 <code>&quot;prettier&quot;</code></li>
-</ol>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"extends"</span>: [</span><br><span class="line">    <span class="string">"some-other-config-you-use"</span>,</span><br><span class="line">    <span class="string">"prettier"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li><p>配置根目录下 .prettierrc 文件如下</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"eslintIntegration"</span>: <span class="literal">true</span>, <span class="comment">//</span></span><br><span class="line">    <span class="attr">"stylelintIntegration"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"tabWidth"</span>: <span class="number">2</span>,        <span class="comment">// 缩进字符</span></span><br><span class="line">    <span class="attr">"singleQuote"</span>: <span class="literal">true</span>,  <span class="comment">// 要不要单引号</span></span><br><span class="line">    <span class="attr">"semi"</span>: <span class="literal">false</span>         <span class="comment">// 要不要使用 ;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置保存自动格式化，在用户的 <code>setting.json</code> 文件中加上如下配置</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">"eslint.format.enable": true,</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">5. 如有需要忽略代码风格</span><br><span class="line"></span><br><span class="line">## others ##</span><br><span class="line"></span><br><span class="line">### git hook ###</span><br><span class="line"></span><br><span class="line">使用 husky 和 lint-staged 来确保每次提交前代码已是格式化后的状态，配置参考如下</span><br><span class="line"></span><br><span class="line">```json</span><br><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"husky"</span>: &#123;</span><br><span class="line">    <span class="attr">"hooks"</span>: &#123;</span><br><span class="line">      <span class="attr">"pre-commit"</span>: <span class="string">"lint-staged"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"lint-staged"</span>: &#123;</span><br><span class="line">    <span class="attr">"**/*"</span>: [<span class="string">"eslint --fix"</span>, <span class="string">"prettier --write"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="about"><a href="#about" class="headerlink" title="about"></a>about</h2><ol>
-<li><a href="https://prettier.io/docs/en/index.html" target="_blank" rel="noopener">Prettier</a></li>
-<li><a href="https://github.com/okonet/lint-staged#readme" target="_blank" rel="noopener">lint-staged</a></li>
-<li><a href="https://github.com/typicode/husky#readme" target="_blank" rel="noopener">husky</a></li>
-</ol>
-<h1 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h1><p>语法检查部分大致包含：变量检查（重复引用，引入但未使用，声明但未使用。。。），无意义的bind</p>
-<p>一般情况下，脚手架都自带了基础的 eslint 配置，所以主要还是注意eslint 的 plugin 的安装配置，参考如下</p>
-<h2 id="about-1"><a href="#about-1" class="headerlink" title="about"></a>about</h2><ol>
-<li><a href="https://eslint.org/docs/user-guide/getting-started" target="_blank" rel="noopener">eslint</a></li>
-<li><a href="https://eslint.org/docs/developer-guide/working-with-plugins" target="_blank" rel="noopener">working-with-plugins</a></li>
+<p>地址在此 <a href="https://github.com/powerline/fonts" target="_blank" rel="noopener">powerline fonts</a></p>
+<p>安装方法有多种，我使用了如下的安装方法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># clone</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/powerline/fonts.git --depth=1</span><br><span class="line"><span class="comment"># install</span></span><br><span class="line"><span class="built_in">cd</span> fonts</span><br><span class="line">./install.sh</span><br><span class="line"><span class="comment"># clean-up a bit</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">rm -rf fonts</span><br></pre></td></tr></table></figure>
+<h2 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h2><p>同样是修改 <strong>.zshrc</strong> 文件，修改如下配置项</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">"robbyrussell"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其实安装 <strong>on my zsh</strong> 后，原本的 <strong>.zshrc</strong> 文件的内容会被覆盖，新的内容里增加了大量的说明内容，方便了 zsh 相关的配置</p>
+</blockquote>
+<h1 id="上照"><a href="#上照" class="headerlink" title="上照"></a>上照</h1><p>主要是配置了颜色，然后加上背景图片</p>
+<p><img src="https://i.loli.net/2020/07/16/HvDUlni3opYaTeW.png" alt="image.png"></p>
+<h1 id="go2shell"><a href="#go2shell" class="headerlink" title="go2shell"></a>go2shell</h1><p>很好用，集成在finder中，可以快速在当前目录下调出命令行工具</p>
+<blockquote>
+<p>记得选择 iterm2</p>
+</blockquote>
+<h1 id="about"><a href="#about" class="headerlink" title="about"></a>about</h1><ol>
+<li><a href="https://zhuanlan.zhihu.com/p/103672631" target="_blank" rel="noopener">我觉得这篇文的 fish 部分写的很好</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/37195261" target="_blank" rel="noopener">知乎</a></li>
 </ol>
 ]]></content>
-      <categories>
-        <category>standard</category>
-      </categories>
       <tags>
-        <tag>vscode</tag>
-        <tag>IDE</tag>
+        <tag>shell</tag>
       </tags>
   </entry>
   <entry>
@@ -1738,6 +1623,56 @@ var modalController =[&quot;dev1&quot;,&quot;dev2&quot;,function(dev1,dev2){
       </tags>
   </entry>
   <entry>
+    <title>英语学习-口语篇</title>
+    <url>/2018/11/05/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0-%E5%8F%A3%E8%AF%AD%E7%AF%87/</url>
+    <content><![CDATA[<p>今年集中学习了一段时间英语，后经我家东贤提醒，应该写写自己学习的心得，供我们以后参考。</p>
+<a id="more"></a>
+<h1 id="音标"><a href="#音标" class="headerlink" title="音标"></a>音标</h1><p>既然是口语相关，音标自然是基础啦，推荐 <strong>赖世雄美语音标</strong>，分音频和文本部分，连接如下</p>
+<ul>
+<li><a href="https://www.ximalaya.com/waiyu/4324892/" target="_blank" rel="noopener">音频-喜马拉雅</a></li>
+<li><a href="https://pan.baidu.com/s/1yBUD_d8Y3EVh_eYm_WS8Hg" target="_blank" rel="noopener">文本-提取码12na</a></li>
+</ul>
+<h1 id="单词"><a href="#单词" class="headerlink" title="单词"></a>单词</h1><p>单词量是基础，这个没啥说的，找个app大声跟着读吧</p>
+<h1 id="听和看"><a href="#听和看" class="headerlink" title="听和看"></a>听和看</h1><p>我觉得对语言来讲，各方面的能力都是协同进步的，所以口语也定然离不开听力阅读等部分，听和看的同时要加上模仿和思考，这里给出相关推荐</p>
+<h2 id="听"><a href="#听" class="headerlink" title="听"></a>听</h2><p>我觉得VOA系列就很棒，<strong>VOA-special</strong> 现在有自己的发音评测，其他的之后在听力篇写写</p>
+<h2 id="看"><a href="#看" class="headerlink" title="看"></a>看</h2><ul>
+<li><strong>How I Met Your Mother</strong>，美剧，几个人在一起唠嗑，包含了大量日常的俚语，而且还蛮有趣的哈哈，建议把台词打印下来，可以模仿某个人的对话找找感觉</li>
+<li><strong>老友记</strong>，这个我没看过啦，听说有蛮多相关APP的，资源应该很丰富 </li>
+<li><p><strong>charlotte’s web</strong>，英文儿童读物，老师推荐 </p>
+<blockquote>
+<p>链接: <a href="https://pan.baidu.com/s/1PhC1Gp4yxNRZYT9F_gRGFQ" target="_blank" rel="noopener">文本-提取码204a</a></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="连读部分"><a href="#连读部分" class="headerlink" title="连读部分"></a>连读部分</h1><p>感觉这个是进阶的重要部分，一个知乎话题供参考</p>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/35857073" target="_blank" rel="noopener">知乎-怎样解决英语的连读吞音等问题</a></p>
+</blockquote>
+<p>有看到推荐<strong>A Course in Phonetics</strong>，瞅了一下觉得应该靠谱，便去搜了下相关资源</p>
+<ul>
+<li><a href="https://pan.baidu.com/s/1qR0b_P1FPIO4xsA3dNMZfQ" target="_blank" rel="noopener">文本-提取码59dp</a></li>
+<li><a href="https://corpus.linguistics.berkeley.edu/acip/course/chapter1/" target="_blank" rel="noopener">示例音频及作业</a></li>
+<li><a href="http://ocw.aca.ntu.edu.tw/ntu-ocw/index.php/ocw/cou/101S102" target="_blank" rel="noopener">台大公开课</a></li>
+</ul>
+<h1 id="讲"><a href="#讲" class="headerlink" title="讲"></a>讲</h1><p>很多时候我们说英文的话都是先想象中文怎样表达，然后再转换成英文，这个过程的长短就是区分初学者水平的关键，不过熟练的话可能根本没有转英文这一步，直接英文怼上去哈。这就要求多想多讲啦，练习可以分如下几个方面</p>
+<ul>
+<li><strong>话题练习</strong>，就是雅思和托福口语部分的练习，多瞅瞅相关真题，蛮多APP的，我用的小站</li>
+<li><strong>多讲多讲</strong>，交流多用用英文啦，不过一般情况下用到英文对地方太少啦，建议每次讲完话多用英文对语境下思考下英文版对回答</li>
+<li><strong>纠错</strong>，能多和英文老师交流最好啦，网上也有相关外教口语方面的授课。还有就是很多APP有自己的录音上传评分功能，大部分还是蛮准的，可以的话自己录音反复和原文对比</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="https://www.zhihu.com/question/20097263" target="_blank" rel="noopener">知乎-怎么练好英语口语</a><br><a href="https://www.zhihu.com/question/35857073" target="_blank" rel="noopener">知乎-怎样解决英语的连读吞音等问题</a><br>啊，泣不成声啊</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>study</category>
+      </categories>
+      <tags>
+        <tag>English</tag>
+        <tag>study</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>进击的angular2</title>
     <url>/2017/07/21/%E8%BF%9B%E5%87%BB%E7%9A%84angular2/</url>
     <content><![CDATA[<p>记录下<br><a id="more"></a></p>
@@ -1778,6 +1713,70 @@ var modalController =[&quot;dev1&quot;,&quot;dev2&quot;,function(dev1,dev2){
     <title>进击的vue</title>
     <url>/2017/06/20/%E8%BF%9B%E5%87%BB%E7%9A%84vue/</url>
     <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>浏览器渲染过程</title>
+    <url>/2017/05/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<p>暂时只是大概读了一遍，先记下来</p>
+<h1 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h1><p>自上而下</p>
+<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>链路层</li>
+<li>物理层</li>
+</ul>
+<p>前四层构成TCP/IP协议族，之所以分层，我觉得可以理解为像前端的模块化，易于管理，改动。实际上设计也变得简单，各层只需考虑自己分内的事</p>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层决定了向用户提供应用服务时通信的活动。</p>
+<blockquote>
+<p>包含FTP，DNS，HTTP</p>
+</blockquote>
+<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。</p>
+<blockquote>
+<p>包含TCP，UDP(用户数据报协议)</p>
+</blockquote>
+<h2 id="网络层-网络互连层"><a href="#网络层-网络互连层" class="headerlink" title="网络层(网络互连层)"></a>网络层(网络互连层)</h2><p>网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数据单位。该层规定了通过怎样的路径（所谓的传输路线）到达对方计算机，并把数据包传送给对方。</p>
+<blockquote>
+<p>IP</p>
+</blockquote>
+<h2 id="链路层-数据链路层-网络接口层"><a href="#链路层-数据链路层-网络接口层" class="headerlink" title="链路层(数据链路层)(网络接口层)"></a>链路层(数据链路层)(网络接口层)</h2><p>用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC（Network Interface Card，网络适配器，即网卡），及光纤等物理可见部分（还包括连接器等一切传输媒介）。硬件上的范畴均在链路层的作用范围之内。</p>
+<h1 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h1><p>发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后，回传一个带有 SYN/ACK 标志的数据包以示传达确认信息。最后，发送端再回传一个带 ACK 标志的数据包，代表“握手”结束。 若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序发送相同的数据包。</p>
+<h1 id="http"><a href="#http" class="headerlink" title="http"></a>http</h1><h2 id="职责"><a href="#职责" class="headerlink" title="职责"></a>职责</h2><p>生成针对目标服务器的HTTP请求报文</p>
+<h1 id="从输入-URL-到页面加载完成的过程中都发生了什么事情？"><a href="#从输入-URL-到页面加载完成的过程中都发生了什么事情？" class="headerlink" title="从输入 URL 到页面加载完成的过程中都发生了什么事情？"></a>从输入 URL 到页面加载完成的过程中都发生了什么事情？</h1><ul>
+<li>输入URL </li>
+<li>发起请求：URL解析/DNS解析  </li>
+<li>网络连接：三次握手  </li>
+<li>服务器响应请求：返回数据  </li>
+<li>客户端接收响应：浏览器加载/渲染页面</li>
+</ul>
+<h1 id="两个引擎"><a href="#两个引擎" class="headerlink" title="两个引擎"></a>两个引擎</h1><p>浏览器两个引擎</p>
+<ol>
+<li><p>渲染引擎</p>
+<blockquote>
+<p>常称为浏览器的内核，webkit，gecko，persto(opera)</p>
+</blockquote>
+</li>
+<li><p>js引擎</p>
+</li>
+</ol>
+<h1 id="两个树"><a href="#两个树" class="headerlink" title="两个树"></a>两个树</h1><h1 id="遇到的一些问题和解决办法"><a href="#遇到的一些问题和解决办法" class="headerlink" title="遇到的一些问题和解决办法"></a>遇到的一些问题和解决办法</h1><h2 id="Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received"><a href="#Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received" class="headerlink" title="Unchecked runtime.lastError: The message port closed before a response was received."></a>Unchecked runtime.lastError: The message port closed before a response was received.</h2><p>调试工具中报如上的错误，查阅资料得知是chrome某个插件报的错，自己一一验证，发祥是迅雷下载插件这个毒瘤，禁用可消除如上的报错</p>
+<blockquote>
+<p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="noopener">浏览器的渲染原理简介</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.jianshu.com/p/e141d1543143" target="_blank" rel="noopener">简书，浏览器加载解析渲染</a></p>
+</blockquote>
+<blockquote>
+<p>图解http</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>browser</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>browser</tag>
+      </tags>
   </entry>
   <entry>
     <title>dataTables内嵌二级表格的实现</title>
