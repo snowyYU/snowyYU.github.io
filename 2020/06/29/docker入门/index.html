@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="snowyYU">
 <meta property="og:description" content="记录些安装，配置，和使用上的一些心得，方便日后查阅">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-29T09:04:50.762Z">
+<meta property="og:updated_time" content="2020-07-10T03:31:06.357Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker入门">
 <meta name="twitter:description" content="记录些安装，配置，和使用上的一些心得，方便日后查阅">
@@ -417,15 +417,20 @@
         <p>记录些安装，配置，和使用上的一些心得，方便日后查阅</p>
 <a id="more"></a>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="在centOS上安装"><a href="#在centOS上安装" class="headerlink" title="在centOS上安装"></a>在centOS上安装</h2><p>mac 上安装的话直接有相应的安装包，很简单，现在主要说下服务端的，流程大致可以参考官方 <a href="https://docs.docker.com/engine/install/centos/" target="_blank" rel="noopener">docker install</a>，不过要注意，我在centos8 上执行到 <code>sudo yum install docker-ce docker-ce-cli containerd.io</code> 命令报错（应该是containerd.io版本问题）。</p>
-<p>此时需要先执行 <code>dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm</code> 先安装 containerd.io。</p>
+<p>此时需要先执行 </p>
+<p><code>dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm</code> </p>
+<p>先安装 containerd.io。</p>
 <p>再执行 <code>sudo yum install docker-ce docker-ce-cli</code> ,<code>sudo systemctl start docker</code> 安装剩下两个</p>
-<h2 id="配置国内镜像"><a href="#配置国内镜像" class="headerlink" title="配置国内镜像"></a>配置国内镜像</h2><p>编辑 <code>sudo vi /etc/docker/daemon.json</code><br>加入如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;registry-mirrors&quot;: [</span><br><span class="line">        &quot;https://1nj0zren.mirror.aliyuncs.com&quot;,</span><br><span class="line">        &quot;https://docker.mirrors.ustc.edu.cn&quot;,</span><br><span class="line">        &quot;http://f1361db2.m.daocloud.io&quot;,</span><br><span class="line">        &quot;https://registry.docker-cn.com&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置国内镜像"><a href="#配置国内镜像" class="headerlink" title="配置国内镜像"></a>配置国内镜像</h2><p>编辑 <code>sudo vi /etc/docker/daemon.json</code><br>加入如下<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"registry-mirrors"</span>: [</span><br><span class="line">        <span class="string">"https://1nj0zren.mirror.aliyuncs.com"</span>,</span><br><span class="line">        <span class="string">"https://docker.mirrors.ustc.edu.cn"</span>,</span><br><span class="line">        <span class="string">"http://f1361db2.m.daocloud.io"</span>,</span><br><span class="line">        <span class="string">"https://registry.docker-cn.com"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>好像 <code>&quot;https://registry.docker-cn.com&quot;</code> 失效了</p>
 </blockquote>
 <h1 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h1><p>参考官方安装文档 <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">compose install</a></p>
 <ol>
-<li>下载安装 <code>sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</code></li>
+<li>下载安装  </li>
+</ol>
+<p><code>sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</code></p>
+<ol start="2">
 <li>给权限 <code>sudo chmod +x /usr/local/bin/docker-compose</code></li>
 <li>测试是否安装成功 <code>docker-compose --version</code></li>
 </ol>
@@ -544,7 +549,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -562,7 +567,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
