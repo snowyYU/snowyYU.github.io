@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="snowyYU">
 <meta property="og:description" content="需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-15T09:47:58.996Z">
+<meta property="og:updated_time" content="2020-07-28T10:20:05.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linus 相关命令">
 <meta name="twitter:description" content="需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈">
@@ -412,6 +412,31 @@
 <blockquote>
 <p><code>mv test.txt test1.txt</code> 将 test.txt 文件名改为test1.txt</p>
 </blockquote>
+<h2 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h2><p>一般用于服务器上的上传下载操作</p>
+<ul>
+<li>从服务器上下载文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp username@servername:/path/filename /var/www/local_dir（本地目录）</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>例如scp <a href="mailto:root@192.168.0.101" target="_blank" rel="noopener">root@192.168.0.101</a>:/var/www/test.txt  把192.168.0.101上的/var/www/test.txt 的文件下载到/var/www/local_dir（本地目录）</p>
+</blockquote>
+<ul>
+<li>上传本地文件到服务器<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /path/filename username@servername:/path</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>例如scp /var/www/test.php  <a href="mailto:root@192.168.0.101" target="_blank" rel="noopener">root@192.168.0.101</a>:/var/www/  把本机/var/www/目录下的test.php文件上传到192.168.0.101这台服务器上的/var/www/目录中</p>
+</blockquote>
+<ul>
+<li>从服务器下载整个目录</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r username@servername:/var/www/remote_dir/（远程目录） /var/www/local_dir（本地目录）</span><br></pre></td></tr></table></figure>
+<p>例如:scp -r <a href="mailto:root@192.168.0.101" target="_blank" rel="noopener">root@192.168.0.101</a>:/var/www/test  /var/www/  </p>
+<ul>
+<li>上传目录到服务器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp  -r local_dir username@servername:remote_dir</span><br></pre></td></tr></table></figure>
+<p>例如：scp -r test  <a href="mailto:root@192.168.0.101" target="_blank" rel="noopener">root@192.168.0.101</a>:/var/www/   把当前目录下的test目录上传到服务器的/var/www/ 目录</p>
 <h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><p>创建一个文件，注意区别 <code>mkdir</code> 命令</p>
 <h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>查看文件内容</p>
 <blockquote>
@@ -583,7 +608,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -601,7 +626,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -647,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文档型：文件相关命令"><span class="nav-number">1.</span> <span class="nav-text">文档型：文件相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cd"><span class="nav-number">1.1.</span> <span class="nav-text">cd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd"><span class="nav-number">1.2.</span> <span class="nav-text">pwd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir"><span class="nav-number">1.3.</span> <span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv"><span class="nav-number">1.4.</span> <span class="nav-text">mv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch"><span class="nav-number">1.5.</span> <span class="nav-text">touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-number">1.6.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo"><span class="nav-number">1.7.</span> <span class="nav-text">echo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rm"><span class="nav-number">1.8.</span> <span class="nav-text">rm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vi"><span class="nav-number">1.9.</span> <span class="nav-text">vi</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#功能型：压缩-解压，下载，远程"><span class="nav-number">2.</span> <span class="nav-text">功能型：压缩/解压，下载，远程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#wget"><span class="nav-number">2.1.</span> <span class="nav-text">wget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">2.2.</span> <span class="nav-text">tar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解压文件，-命令后跟文件名"><span class="nav-number">2.2.1.</span> <span class="nav-text">解压文件， 命令后跟文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩文件"><span class="nav-number">2.2.2.</span> <span class="nav-text">压缩文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh"><span class="nav-number">3.</span> <span class="nav-text">ssh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统进程服务相关"><span class="nav-number">4.</span> <span class="nav-text">系统进程服务相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看当前系统进程"><span class="nav-number">4.1.</span> <span class="nav-text">查看当前系统进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kill-某进程"><span class="nav-number">4.2.</span> <span class="nav-text">kill 某进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统服务相关"><span class="nav-number">4.3.</span> <span class="nav-text">系统服务相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看系统服务"><span class="nav-number">4.3.1.</span> <span class="nav-text">查看系统服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭某个服务"><span class="nav-number">4.3.2.</span> <span class="nav-text">关闭某个服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启某个服务"><span class="nav-number">4.3.3.</span> <span class="nav-text">重启某个服务</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文档型：文件相关命令"><span class="nav-number">1.</span> <span class="nav-text">文档型：文件相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cd"><span class="nav-number">1.1.</span> <span class="nav-text">cd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd"><span class="nav-number">1.2.</span> <span class="nav-text">pwd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir"><span class="nav-number">1.3.</span> <span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv"><span class="nav-number">1.4.</span> <span class="nav-text">mv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scp"><span class="nav-number">1.5.</span> <span class="nav-text">scp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch"><span class="nav-number">1.6.</span> <span class="nav-text">touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-number">1.7.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo"><span class="nav-number">1.8.</span> <span class="nav-text">echo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rm"><span class="nav-number">1.9.</span> <span class="nav-text">rm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vi"><span class="nav-number">1.10.</span> <span class="nav-text">vi</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#功能型：压缩-解压，下载，远程"><span class="nav-number">2.</span> <span class="nav-text">功能型：压缩/解压，下载，远程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#wget"><span class="nav-number">2.1.</span> <span class="nav-text">wget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar"><span class="nav-number">2.2.</span> <span class="nav-text">tar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解压文件，-命令后跟文件名"><span class="nav-number">2.2.1.</span> <span class="nav-text">解压文件， 命令后跟文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩文件"><span class="nav-number">2.2.2.</span> <span class="nav-text">压缩文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh"><span class="nav-number">3.</span> <span class="nav-text">ssh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统进程服务相关"><span class="nav-number">4.</span> <span class="nav-text">系统进程服务相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看当前系统进程"><span class="nav-number">4.1.</span> <span class="nav-text">查看当前系统进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kill-某进程"><span class="nav-number">4.2.</span> <span class="nav-text">kill 某进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统服务相关"><span class="nav-number">4.3.</span> <span class="nav-text">系统服务相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看系统服务"><span class="nav-number">4.3.1.</span> <span class="nav-text">查看系统服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭某个服务"><span class="nav-number">4.3.2.</span> <span class="nav-text">关闭某个服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启某个服务"><span class="nav-number">4.3.3.</span> <span class="nav-text">重启某个服务</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

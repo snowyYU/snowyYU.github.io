@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="snowyYU">
 <meta property="og:description" content="考虑各项目间的统一，使用 prettier 进行项目的代码风格格式化，使用 eslint 做语法检查，具体规范如下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-09T04:21:24.272Z">
+<meta property="og:updated_time" content="2020-08-11T03:15:10.274Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 prettier + eslint 统一代码风格和语法检查">
 <meta name="twitter:description" content="考虑各项目间的统一，使用 prettier 进行项目的代码风格格式化，使用 eslint 做语法检查，具体规范如下">
@@ -425,22 +425,14 @@
 <h1 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h1><p>代码美化部分大致包含：触发自动换行的字符数，强制关键词前后加空格</p>
 <p>prettier 的大部分规则都是不可配置了，只保留了几个争议特别大的规则给用户配置，比如单引号和双引号的选择，也正因如此，对团队的代码风格上的统一也会更有帮助</p>
 <h2 id="风格规范"><a href="#风格规范" class="headerlink" title="风格规范"></a>风格规范</h2><p>直接执行如下命令查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npx prettier --write .</span><br><span class="line">npx prettier --write app/</span><br><span class="line">npx prettier --write app/components/Button.js</span><br><span class="line">npx prettier --write app/**/*.test.js</span><br></pre></td></tr></table></figure></p>
-<h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><ol>
-<li>使用 <code>eslint-config-prettier</code> 覆盖掉 ESLint 的代码风格规则</li>
-</ol>
+<h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><p>使用 <code>eslint-config-prettier</code> 覆盖掉 ESLint 的代码风格规则</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev eslint-config-prettier</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>向根目录下 .eslintrc 文件中的 <strong>extend</strong> 增加 <code>&quot;prettier&quot;</code></li>
-</ol>
+<p>向根目录下 .eslintrc 文件中的 <strong>extend</strong> 增加 <code>&quot;prettier&quot;</code></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"extends"</span>: [</span><br><span class="line">    <span class="string">"some-other-config-you-use"</span>,</span><br><span class="line">    <span class="string">"prettier"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li><p>配置根目录下 .prettierrc 文件如下</p>
+<p>配置根目录下 .prettierrc 文件如下</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"eslintIntegration"</span>: <span class="literal">true</span>, <span class="comment">//</span></span><br><span class="line">    <span class="attr">"stylelintIntegration"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"tabWidth"</span>: <span class="number">2</span>,        <span class="comment">// 缩进字符</span></span><br><span class="line">    <span class="attr">"singleQuote"</span>: <span class="literal">true</span>,  <span class="comment">// 要不要单引号</span></span><br><span class="line">    <span class="attr">"semi"</span>: <span class="literal">false</span>         <span class="comment">// 要不要使用 ;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置保存自动格式化，在用户的 <code>setting.json</code> 文件中加上如下配置</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">"eslint.format.enable": true,</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">5. 如有需要忽略代码风格</span><br><span class="line"></span><br><span class="line">## others ##</span><br><span class="line"></span><br><span class="line">### git hook ###</span><br><span class="line"></span><br><span class="line">使用 husky 和 lint-staged 来确保每次提交前代码已是格式化后的状态，配置参考如下</span><br><span class="line"></span><br><span class="line">```json</span><br><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"husky"</span>: &#123;</span><br><span class="line">    <span class="attr">"hooks"</span>: &#123;</span><br><span class="line">      <span class="attr">"pre-commit"</span>: <span class="string">"lint-staged"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"lint-staged"</span>: &#123;</span><br><span class="line">    <span class="attr">"**/*"</span>: [<span class="string">"eslint --fix"</span>, <span class="string">"prettier --write"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<p>配置保存自动格式化，在用户的 <code>setting.json</code> 文件中加上如下配置</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">"eslint.format.enable": true,</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">如有需要忽略代码风格</span><br><span class="line"></span><br><span class="line">## others ##</span><br><span class="line"></span><br><span class="line">### git hook ###</span><br><span class="line"></span><br><span class="line">使用 husky 和 lint-staged 来确保每次提交前代码已是格式化后的状态，配置参考如下</span><br><span class="line"></span><br><span class="line">```json</span><br><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"husky"</span>: &#123;</span><br><span class="line">    <span class="attr">"hooks"</span>: &#123;</span><br><span class="line">      <span class="attr">"pre-commit"</span>: <span class="string">"lint-staged"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"lint-staged"</span>: &#123;</span><br><span class="line">    <span class="attr">"**/*"</span>: [<span class="string">"eslint --fix"</span>, <span class="string">"prettier --write"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="about"><a href="#about" class="headerlink" title="about"></a>about</h2><ol>
 <li><a href="https://prettier.io/docs/en/index.html" target="_blank" rel="noopener">Prettier</a></li>
 <li><a href="https://github.com/okonet/lint-staged#readme" target="_blank" rel="noopener">lint-staged</a></li>
@@ -569,7 +561,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -587,7 +579,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
