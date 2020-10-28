@@ -93,7 +93,7 @@
 <meta property="og:description" content="总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://i.imgur.com/QJamb2Z.jpg">
-<meta property="og:updated_time" content="2020-04-16T02:09:50.000Z">
+<meta property="og:updated_time" content="2020-10-13T13:17:49.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git踩坑记">
 <meta name="twitter:description" content="总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。">
@@ -469,6 +469,11 @@ hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos
 <blockquote>
 <p><a href="https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories" target="_blank" rel="noopener">stackoverflow</a> &gt;<a href="http://www.jianshu.com/p/eae20fcde419" target="_blank" rel="noopener">vim 命令看这里</a></p>
 </blockquote>
+<h2 id="撤销合并"><a href="#撤销合并" class="headerlink" title="撤销合并"></a>撤销合并</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --abort</span><br></pre></td></tr></table></figure>
+<p>有时候拉代码，合并，结果整个文件到处是冲突，可以使用此命令撤销到合并前的状态</p>
+<blockquote>
+<p>一般这种情况常见于仓库和本地工作环境有一端代码格式化不同步</p>
+</blockquote>
 <h1 id="查看更改处"><a href="#查看更改处" class="headerlink" title="查看更改处"></a>查看更改处</h1><pre><code>git diff
 </code></pre><p>上图:</p>
 <p><img src="http://i.imgur.com/QJamb2Z.jpg" alt="gitDiff"></p>
@@ -513,6 +518,11 @@ git checkout XXX  //切换到XXX分支
 <p>我觉得 rebase 和 merge 差不多，区别可能是 rebase 不会留下痕迹，merge 需要输入 message 啥的</p>
 <blockquote>
 <p><a href="http://blog.csdn.net/hudashi/article/details/7664631/" target="_blank" rel="noopener">git rebase</a></p>
+</blockquote>
+<h1 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h1><p>哈哈，这个命令还挺好玩的，能把当前工作区的更改先搁置，最常见的应用就是突然要去到之前的某个版本打个包。</p>
+<p>使用 <code>git stash pop</code> 取回搁置的更改，继续撸码</p>
+<blockquote>
+<p>如果更改中有 untrack 的文件，需要加上 <code>-u</code> 参数，即 <code>git stash -u</code> 才能一起 stash 起来</p>
 </blockquote>
 <h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>针对更新自己 folk 的仓库，官方后来又给出了 web 版本的方案，上面的是需要本地仓库的，先上链接</p>
 <blockquote>
@@ -641,7 +651,7 @@ git checkout XXX  //切换到XXX分支
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -650,7 +660,7 @@ git checkout XXX  //切换到XXX分支
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -659,7 +669,7 @@ git checkout XXX  //切换到XXX分支
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -705,7 +715,7 @@ git checkout XXX  //切换到XXX分支
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#将文件移除监听队列"><span class="nav-number">1.</span> <span class="nav-text">将文件移除监听队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的-git-删除"><span class="nav-number">2.</span> <span class="nav-text">常见的 git 删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新增远程仓库地址"><span class="nav-number">3.</span> <span class="nav-text">新增远程仓库地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#push，push，push"><span class="nav-number">4.</span> <span class="nav-text">push，push，push</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打上标签-tag"><span class="nav-number">5.</span> <span class="nav-text">打上标签 tag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#log-和-reflog-命令"><span class="nav-number">6.</span> <span class="nav-text">log 和 reflog 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-log"><span class="nav-number">6.1.</span> <span class="nav-text">git log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-reflog"><span class="nav-number">6.2.</span> <span class="nav-text">git reflog</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#merge-报错"><span class="nav-number">7.</span> <span class="nav-text">merge 报错</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看更改处"><span class="nav-number">8.</span> <span class="nav-text">查看更改处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#撤销更改"><span class="nav-number">9.</span> <span class="nav-text">撤销更改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单个文件"><span class="nav-number">9.1.</span> <span class="nav-text">单个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有文件"><span class="nav-number">9.2.</span> <span class="nav-text">所有文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除所有新增未加入暂存区的文件-文件夹"><span class="nav-number">9.3.</span> <span class="nav-text">清除所有新增未加入暂存区的文件/文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单个文件-1"><span class="nav-number">9.4.</span> <span class="nav-text">单个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有文件-1"><span class="nav-number">9.5.</span> <span class="nav-text">所有文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建-切换分支-删除"><span class="nav-number">10.</span> <span class="nav-text">创建,切换分支 ,删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-rebase"><span class="nav-number">11.</span> <span class="nav-text">git rebase</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#后续"><span class="nav-number">11.1.</span> <span class="nav-text">后续</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到-ping-github-com-time-out-问题"><span class="nav-number">12.</span> <span class="nav-text">遇到 ping github.com time out 问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">13.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#将文件移除监听队列"><span class="nav-number">1.</span> <span class="nav-text">将文件移除监听队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的-git-删除"><span class="nav-number">2.</span> <span class="nav-text">常见的 git 删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新增远程仓库地址"><span class="nav-number">3.</span> <span class="nav-text">新增远程仓库地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#push，push，push"><span class="nav-number">4.</span> <span class="nav-text">push，push，push</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打上标签-tag"><span class="nav-number">5.</span> <span class="nav-text">打上标签 tag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#log-和-reflog-命令"><span class="nav-number">6.</span> <span class="nav-text">log 和 reflog 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-log"><span class="nav-number">6.1.</span> <span class="nav-text">git log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-reflog"><span class="nav-number">6.2.</span> <span class="nav-text">git reflog</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#merge-报错"><span class="nav-number">7.</span> <span class="nav-text">merge 报错</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#撤销合并"><span class="nav-number">7.1.</span> <span class="nav-text">撤销合并</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看更改处"><span class="nav-number">8.</span> <span class="nav-text">查看更改处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#撤销更改"><span class="nav-number">9.</span> <span class="nav-text">撤销更改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单个文件"><span class="nav-number">9.1.</span> <span class="nav-text">单个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有文件"><span class="nav-number">9.2.</span> <span class="nav-text">所有文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除所有新增未加入暂存区的文件-文件夹"><span class="nav-number">9.3.</span> <span class="nav-text">清除所有新增未加入暂存区的文件/文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单个文件-1"><span class="nav-number">9.4.</span> <span class="nav-text">单个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有文件-1"><span class="nav-number">9.5.</span> <span class="nav-text">所有文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建-切换分支-删除"><span class="nav-number">10.</span> <span class="nav-text">创建,切换分支 ,删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-rebase"><span class="nav-number">11.</span> <span class="nav-text">git rebase</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-stash"><span class="nav-number">12.</span> <span class="nav-text">git stash</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#后续"><span class="nav-number">12.1.</span> <span class="nav-text">后续</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到-ping-github-com-time-out-问题"><span class="nav-number">13.</span> <span class="nav-text">遇到 ping github.com time out 问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">14.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
