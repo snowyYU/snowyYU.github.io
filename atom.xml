@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-10-27T10:05:16.157Z</updated>
+  <updated>2020-12-14T17:00:27.085Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>配置husky与lint-staged用以实现快照生成前的代码检查和格式化</title>
+    <link href="http://yoursite.com/2020/12/08/%E9%85%8D%E7%BD%AEhusky%E4%B8%8Elint-staged%E7%94%A8%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%BF%AB%E7%85%A7%E7%94%9F%E6%88%90%E5%89%8D%E7%9A%84%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/"/>
+    <id>http://yoursite.com/2020/12/08/配置husky与lint-staged用以实现快照生成前的代码检查和格式化/</id>
+    <published>2020-12-08T13:43:47.000Z</published>
+    <updated>2020-12-14T17:00:27.085Z</updated>
+    
+    <content type="html"><![CDATA[<p>在之前的项目中，团队为了保持代码风格的统一会统一要求为各自的 vs-code 安装 <strong>prettier</strong> 插件，然后在项目中添加 <strong>.prettierrc</strong> 配置文件，还需要设置 vs-code 中的自动保存时使用 <strong>prettier</strong> 插件 格式化代码。同样为了减少低级的代码错误，也引进了 <strong>eslint</strong> 进行代码的检查。现引入 husky 和 lint-stage 来优化协作流程</p><a id="more"></a><p><strong>vue</strong> 项目在初始化的时候可以直接选择启用 <code>Lint and fix on commit</code>，如下</p><p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1glgvu3ivx9j20v00caqf6.jpg" alt="WX20201208-234451@2x.png"></p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>先安装 Eslint 和 Prettier </p><blockquote><p>如果原项目是小程序之类的没有 package.json 文件，需要先 <code>npm init</code></p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install eslint --save-dev</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install prettier --save-dev</span><br></pre></td></tr></table></figure><p>执行 lint-stage 的安装配置命令，此命令会同时安装并配置 husky </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx mrm lint-staged</span><br></pre></td></tr></table></figure><p>最终 package.json 文件相关配置如下</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "eslint": "^7.15.0",</span><br><span class="line">    "husky": "^4.3.5",</span><br><span class="line">    "lint-staged": "^10.5.3",</span><br><span class="line">    "prettier": "^2.2.1",</span><br><span class="line">    "stylelint": "^13.8.0",</span><br><span class="line">    "stylelint-config-standard": "^20.0.0"</span><br><span class="line">  &#125;,</span><br><span class="line">  "scripts": &#123;</span><br><span class="line">    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",</span><br><span class="line">    "lint": "npm run lint:js &amp;&amp; npm run lint:style &amp;&amp; npm run lint:prettier",</span><br><span class="line">    "lint:js": "eslint --fix \"**/*.js\"",</span><br><span class="line">    "lint:style": "stylelint --fix \"**/*.wxss\" --syntax css",</span><br><span class="line">    "lint:prettier": "prettier --write \"**/*.(js|wxss|json)\""</span><br><span class="line">  &#125;,</span><br><span class="line">  "husky": &#123;</span><br><span class="line">    "hooks": &#123;</span><br><span class="line">      "pre-commit": "lint-staged"</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  "lint-staged": &#123;</span><br><span class="line">    "*.js": "eslint --fix",</span><br><span class="line">    "*.wxss": "stylelint --fix --syntax css",</span><br><span class="line">    "*.&#123;js,wxss,md&#125;": "prettier --write"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><blockquote><p>这里同时引入了 stylelint 用来校验 wxss</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在之前的项目中，团队为了保持代码风格的统一会统一要求为各自的 vs-code 安装 &lt;strong&gt;prettier&lt;/strong&gt; 插件，然后在项目中添加 &lt;strong&gt;.prettierrc&lt;/strong&gt; 配置文件，还需要设置 vs-code 中的自动保存时使用 &lt;strong&gt;prettier&lt;/strong&gt; 插件 格式化代码。同样为了减少低级的代码错误，也引进了 &lt;strong&gt;eslint&lt;/strong&gt; 进行代码的检查。现引入 husky 和 lint-stage 来优化协作流程&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="standard" scheme="http://yoursite.com/categories/standard/"/>
+    
+    
+      <category term="standard" scheme="http://yoursite.com/tags/standard/"/>
+    
+      <category term="npm" scheme="http://yoursite.com/tags/npm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue和angular异同</title>
+    <link href="http://yoursite.com/2020/11/04/vue%E5%92%8Cangular%E5%BC%82%E5%90%8C/"/>
+    <id>http://yoursite.com/2020/11/04/vue和angular异同/</id>
+    <published>2020-11-04T15:25:10.000Z</published>
+    <updated>2020-11-24T10:18:47.714Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近重新看回 angular，其1.X版本作为第一个接触到的框架，给我留下了深刻的印象，近两年的项目用的基本都是vue，感觉现在是时候总结记录下他们的异同了</p><a id="more"></a><p>因为 vue3 还没上手实际项目，以下讨论的 vue 指的是vue2.X 版本</p><p>从以下几个方面聊聊</p><h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul><li><strong>angular</strong> 有着较为统一的目录结构，一般每个功能页面（视图-由组件和关联的模版构成）都有，template，component，service，样式文件（css,scss,less），举例如下</li></ul><p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1gke4flbxt4j20fe09ijs6.jpg" alt="WX20201105-110902@2x.png"></p><ul><li><p><strong>angular</strong> 在功能页面之上，还有更高层级的模块（module）概念，每个 <strong>angular</strong> 应用都有一个根模块，通常命名为 AppModule。根模块提供了用来启动应用的引导机制。 一个应用通常会包含很多特性模块。</p></li><li><p><strong>vue</strong> 的目录就比较松散了，每个人都有自己的分层想法，不过还是建议以 vue 的<strong>风格指南</strong>作为开发中的标准</p></li><li><p><strong>vue</strong> 其实是由一个个组件构成的，没有 angular 这么多别的东西，vue 的入口文件为 main.js</p></li></ul><h2 id="模版部分"><a href="#模版部分" class="headerlink" title="模版部分"></a>模版部分</h2><ul><li><strong>vue</strong> 是用了虚拟dom（virtual dom），展示的为编译后的模版</li></ul><p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1gke51ze13gj20fk0gg406.jpg" alt="WX20201105-112937.png"></p><p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1gke52nf3mlj20pc0epacq.jpg" alt="WX20201105-112905.png"></p><ul><li><strong>angular</strong> 模版基于 web component 标准，如下，分别为代码和Google开发者工具中的显示</li></ul><p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1gke4k6fl7uj211k0gctcj.jpg" alt="WX20201105-111250@2x.png"></p><p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1gke4kj5aerj20rp08agnu.jpg" alt="WX20201105-111324.png"></p><h2 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h2><ul><li><strong>angular</strong> 的脚手架非常强大，可以使用其中的命令创建，删除 module，service，component，route 等，并且有自动注入的功能，推荐使用命令创建模块组件等</li></ul><blockquote><p>经常会给脚手架命令加上参数，比如 <code>ng new routing-app --routing</code> 生成一个带有应用路由模块（AppRoutingModule）的基本 Angular 应用</p><ul><li><strong>vue</strong> 等脚手架没有这么多辅助开发等命令，不过可以使用 <code>vue ui</code> 打开一个项目的可视化管理页面，进行包的增删操作等</li></ul></blockquote><p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1gkebrx59lkj22l61jogwc.jpg" alt="WX20201105-152425@2x.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近重新看回 angular，其1.X版本作为第一个接触到的框架，给我留下了深刻的印象，近两年的项目用的基本都是vue，感觉现在是时候总结记录下他们的异同了&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="angular" scheme="http://yoursite.com/tags/angular/"/>
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+  </entry>
   
   <entry>
     <title>nginx笔记</title>
@@ -114,7 +160,7 @@
     <link href="http://yoursite.com/2020/07/03/%E4%BD%BF%E7%94%A8-prettier-eslint-%E7%BB%9F%E4%B8%80%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%92%8C%E8%AF%AD%E6%B3%95%E6%A3%80%E6%9F%A5/"/>
     <id>http://yoursite.com/2020/07/03/使用-prettier-eslint-统一代码风格和语法检查/</id>
     <published>2020-07-03T08:59:07.000Z</published>
-    <updated>2020-08-20T08:13:36.712Z</updated>
+    <updated>2020-12-08T13:51:33.444Z</updated>
     
     <content type="html"><![CDATA[<p>考虑各项目间的统一，使用 prettier 进行项目的代码风格格式化，使用 eslint 做语法检查，具体规范如下</p><a id="more"></a><h1 id="Prettier-vs-Linters"><a href="#Prettier-vs-Linters" class="headerlink" title="Prettier vs. Linters"></a>Prettier vs. Linters</h1><p>首先说明 Prettier 和 .Linters(ESLint/TSLint/stylelint, etc)的区别，</p><ol><li>Prettier 专注于代码风格上的统一，其配置项较少，是个 Opinionated formatter (就是类似 angular 那种，必须按照它自定的规则来)，</li><li>比如说 ESLint，它其实包括了代码风格规范和语法检查两部分，有众多的规范插件可供选择，其配置项也较为复杂。但在代码风格上，它只能提供异常报错的警示信息，不能直接帮我们输出风格统一的代码。</li></ol><blockquote><p><a href="https://prettier.io/docs/en/comparison.html" target="_blank" rel="noopener">How does it compare to ESLint/TSLint/stylelint, etc.?</a></p></blockquote><h1 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h1><p>代码美化部分大致包含：触发自动换行的字符数，强制关键词前后加空格</p><p>prettier 的大部分规则都是不可配置了，只保留了几个争议特别大的规则给用户配置，比如单引号和双引号的选择，也正因如此，对团队的代码风格上的统一也会更有帮助</p><h2 id="风格规范"><a href="#风格规范" class="headerlink" title="风格规范"></a>风格规范</h2><p>直接执行如下命令查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npx prettier --write .</span><br><span class="line">npx prettier --write app/</span><br><span class="line">npx prettier --write app/components/Button.js</span><br><span class="line">npx prettier --write app/**/*.test.js</span><br></pre></td></tr></table></figure></p><h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><p>使用 <code>eslint-config-prettier</code> 覆盖掉 ESLint 的代码风格规则</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev eslint-config-prettier</span><br></pre></td></tr></table></figure><p>向根目录下 .eslintrc 文件中的 <strong>extend</strong> 增加 <code>&quot;prettier&quot;</code></p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"extends"</span>: [</span><br><span class="line">    <span class="string">"some-other-config-you-use"</span>,</span><br><span class="line">    <span class="string">"prettier"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>配置根目录下 .prettierrc 文件如下</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"eslintIntegration"</span>: <span class="literal">true</span>, <span class="comment">//</span></span><br><span class="line">    <span class="attr">"stylelintIntegration"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"tabWidth"</span>: <span class="number">2</span>,        <span class="comment">// 缩进字符</span></span><br><span class="line">    <span class="attr">"singleQuote"</span>: <span class="literal">true</span>,  <span class="comment">// 要不要单引号</span></span><br><span class="line">    <span class="attr">"semi"</span>: <span class="literal">false</span>         <span class="comment">// 要不要使用 ;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>配置保存自动格式化，在用户的 <code>setting.json</code> 文件中加上如下配置</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">"eslint.format.enable": true,</span><br><span class="line"></span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## others ##</span><br><span class="line"></span><br><span class="line">### git hook ###</span><br><span class="line"></span><br><span class="line">如有需要忽略代码风格</span><br><span class="line"></span><br><span class="line">使用 husky 和 lint-staged 来确保每次提交前代码已是格式化后的状态，配置参考如下</span><br><span class="line"></span><br><span class="line">```json</span><br><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"husky"</span>: &#123;</span><br><span class="line">    <span class="attr">"hooks"</span>: &#123;</span><br><span class="line">      <span class="attr">"pre-commit"</span>: <span class="string">"lint-staged"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"lint-staged"</span>: &#123;</span><br><span class="line">    <span class="attr">"**/*"</span>: [<span class="string">"eslint --fix"</span>, <span class="string">"prettier --write"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="about"><a href="#about" class="headerlink" title="about"></a>about</h2><ol><li><a href="https://prettier.io/docs/en/index.html" target="_blank" rel="noopener">Prettier</a></li><li><a href="https://github.com/okonet/lint-staged#readme" target="_blank" rel="noopener">lint-staged</a></li><li><a href="https://github.com/typicode/husky#readme" target="_blank" rel="noopener">husky</a></li></ol><h1 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h1><p>语法检查部分大致包含：变量检查（重复引用，引入但未使用，声明但未使用。。。），无意义的bind</p><p>一般情况下，脚手架都自带了基础的 eslint 配置，所以主要还是注意eslint 的 plugin 的安装配置，参考如下</p><h2 id="about-1"><a href="#about-1" class="headerlink" title="about"></a>about</h2><ol><li><a href="https://eslint.org/docs/user-guide/getting-started" target="_blank" rel="noopener">eslint</a></li><li><a href="https://eslint.org/docs/developer-guide/working-with-plugins" target="_blank" rel="noopener">working-with-plugins</a></li></ol>]]></content>
     
@@ -130,6 +176,8 @@
       <category term="vscode" scheme="http://yoursite.com/tags/vscode/"/>
     
       <category term="IDE" scheme="http://yoursite.com/tags/IDE/"/>
+    
+      <category term="standard" scheme="http://yoursite.com/tags/standard/"/>
     
   </entry>
   
@@ -418,63 +466,6 @@
     
     
       <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浏览器渲染过程</title>
-    <link href="http://yoursite.com/2017/05/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/"/>
-    <id>http://yoursite.com/2017/05/11/浏览器渲染过程/</id>
-    <published>2017-05-11T09:31:00.000Z</published>
-    <updated>2020-02-27T09:34:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>暂时只是大概读了一遍，先记下来</p><h1 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h1><p>自上而下</p><ul><li>应用层</li><li>传输层</li><li>网络层</li><li>链路层</li><li>物理层</li></ul><p>前四层构成TCP/IP协议族，之所以分层，我觉得可以理解为像前端的模块化，易于管理，改动。实际上设计也变得简单，各层只需考虑自己分内的事</p><h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层决定了向用户提供应用服务时通信的活动。</p><blockquote><p>包含FTP，DNS，HTTP</p></blockquote><h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。</p><blockquote><p>包含TCP，UDP(用户数据报协议)</p></blockquote><h2 id="网络层-网络互连层"><a href="#网络层-网络互连层" class="headerlink" title="网络层(网络互连层)"></a>网络层(网络互连层)</h2><p>网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数据单位。该层规定了通过怎样的路径（所谓的传输路线）到达对方计算机，并把数据包传送给对方。</p><blockquote><p>IP</p></blockquote><h2 id="链路层-数据链路层-网络接口层"><a href="#链路层-数据链路层-网络接口层" class="headerlink" title="链路层(数据链路层)(网络接口层)"></a>链路层(数据链路层)(网络接口层)</h2><p>用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC（Network Interface Card，网络适配器，即网卡），及光纤等物理可见部分（还包括连接器等一切传输媒介）。硬件上的范畴均在链路层的作用范围之内。</p><h1 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h1><p>发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后，回传一个带有 SYN/ACK 标志的数据包以示传达确认信息。最后，发送端再回传一个带 ACK 标志的数据包，代表“握手”结束。 若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序发送相同的数据包。</p><h1 id="http"><a href="#http" class="headerlink" title="http"></a>http</h1><h2 id="职责"><a href="#职责" class="headerlink" title="职责"></a>职责</h2><p>生成针对目标服务器的HTTP请求报文</p><h1 id="从输入-URL-到页面加载完成的过程中都发生了什么事情？"><a href="#从输入-URL-到页面加载完成的过程中都发生了什么事情？" class="headerlink" title="从输入 URL 到页面加载完成的过程中都发生了什么事情？"></a>从输入 URL 到页面加载完成的过程中都发生了什么事情？</h1><ul><li>输入URL </li><li>发起请求：URL解析/DNS解析  </li><li>网络连接：三次握手  </li><li>服务器响应请求：返回数据  </li><li>客户端接收响应：浏览器加载/渲染页面</li></ul><h1 id="两个引擎"><a href="#两个引擎" class="headerlink" title="两个引擎"></a>两个引擎</h1><p>浏览器两个引擎</p><ol><li><p>渲染引擎</p><blockquote><p>常称为浏览器的内核，webkit，gecko，persto(opera)</p></blockquote></li><li><p>js引擎</p></li></ol><h1 id="两个树"><a href="#两个树" class="headerlink" title="两个树"></a>两个树</h1><h1 id="遇到的一些问题和解决办法"><a href="#遇到的一些问题和解决办法" class="headerlink" title="遇到的一些问题和解决办法"></a>遇到的一些问题和解决办法</h1><h2 id="Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received"><a href="#Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received" class="headerlink" title="Unchecked runtime.lastError: The message port closed before a response was received."></a>Unchecked runtime.lastError: The message port closed before a response was received.</h2><p>调试工具中报如上的错误，查阅资料得知是chrome某个插件报的错，自己一一验证，发祥是迅雷下载插件这个毒瘤，禁用可消除如上的报错</p><blockquote><p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="noopener">浏览器的渲染原理简介</a></p></blockquote><blockquote><p><a href="http://www.jianshu.com/p/e141d1543143" target="_blank" rel="noopener">简书，浏览器加载解析渲染</a></p></blockquote><blockquote><p>图解http</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;暂时只是大概读了一遍，先记下来&lt;/p&gt;
-&lt;h1 id=&quot;网络分层&quot;&gt;&lt;a href=&quot;#网络分层&quot; class=&quot;headerlink&quot; title=&quot;网络分层&quot;&gt;&lt;/a&gt;网络分层&lt;/h1&gt;&lt;p&gt;自上而下&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;应用层&lt;/li&gt;
-&lt;li&gt;传输层&lt;/li&gt;
-      
-    
-    </summary>
-    
-      <category term="browser" scheme="http://yoursite.com/categories/browser/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="browser" scheme="http://yoursite.com/tags/browser/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>angular相关问题</title>
-    <link href="http://yoursite.com/2017/05/10/angular%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2017/05/10/angular相关问题/</id>
-    <published>2017-05-10T11:15:53.000Z</published>
-    <updated>2017-06-11T15:06:11.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>整理一些angular相关的问题，多了再整理</p><h1 id="angular-的数据绑定采用什么机制"><a href="#angular-的数据绑定采用什么机制" class="headerlink" title="angular 的数据绑定采用什么机制"></a>angular 的数据绑定采用什么机制</h1><p>脏检查机制。</p><p>双向数据绑定是 AngularJS 的核心机制之一。当 view 中有任何数据变化时，会更新到 model ，当 model 中数据有变化时，view 也会同步更新，显然，这需要一个监控。</p><p>原理就是，Angular 在 scope 模型上设置了一个 监听队列，用来监听数据变化并更新 view 。每次绑定一个东西到 view 上时 AngularJS 就会往 $watch 队列里插入一条 $watch，用来检测它监视的 model 里是否有变化的东西。当浏览器接收到可以被 angular context 处理的事件时，$digest 循环就会触发，遍历所有的 $watch，最后更新 dom。</p><p>举个栗子</p><pre><code>&lt;button ng-click=&quot;val=val+1&quot;&gt;increase 1&lt;/button&gt;</code></pre><p>click 时会产生一次更新的操作（至少触发两次 $digest 循环）</p><p>按下按钮<br>浏览器接收到一个事件，进入到 angular context<br>$digest 循环开始执行，查询每个 $watch 是否变化<br>由于监视 $scope.val 的 $watch 报告了变化，因此强制再执行一次 $digest 循环<br>新的 $digest 循环未检测到变化<br>浏览器拿回控制器，更新 $scope.val 新值对应的 dom<br>$digest 循环的上限是 10 次（超过 10次后抛出一个异常，防止无限循环）。</p><blockquote><p>自己感觉吧，绑定在$scope上的变量都会被监听，有变化时会刷新整个$scope上的队列。</p></blockquote><h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><ol><li><a href="https://docs.angularjs.org/misc/faq" target="_blank" rel="noopener">官网FAQ</a></li><li><a href="https://www.zhihu.com/question/36040694" target="_blank" rel="noopener">知乎-如何衡量一个人的angular水平</a></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;整理一些angular相关的问题，多了再整理&lt;/p&gt;
-&lt;h1 id=&quot;angular-的数据绑定采用什么机制&quot;&gt;&lt;a href=&quot;#angular-的数据绑定采用什么机制&quot; class=&quot;headerlink&quot; title=&quot;angular 的数据绑定采用什么机制&quot;&gt;&lt;/a
-      
-    
-    </summary>
-    
-      <category term="angular" scheme="http://yoursite.com/categories/angular/"/>
-    
-    
-      <category term="angular" scheme="http://yoursite.com/tags/angular/"/>
     
   </entry>
   

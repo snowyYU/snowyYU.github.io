@@ -93,7 +93,7 @@
 <meta property="og:description" content="总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://i.imgur.com/QJamb2Z.jpg">
-<meta property="og:updated_time" content="2020-10-13T13:17:49.461Z">
+<meta property="og:updated_time" content="2020-11-05T10:10:10.399Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git踩坑记">
 <meta name="twitter:description" content="总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。">
@@ -435,6 +435,10 @@ git add remote origin https://github.com/snowyYU/x.git
 <blockquote>
 <p><a href="https://www.zhihu.com/question/20019419" target="_blank" rel="noopener">知乎 git push 的 -u 参数具体适合含义</a></p>
 </blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --all</span><br></pre></td></tr></table></figure>
+<p>上面命令表示，将所有本地分支都推送到origin主机。如果远程主机的版本比本地版本更新，推送时Git会报错，要求先在本地做<code>git pull</code>合并差异，然后再推送到远程主机。这时，如果你一定要推送，可以使用 <code>–-force</code>选项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --tags</span><br></pre></td></tr></table></figure>
+<p><code>git push</code>不会推送标签(tag)，除非使用 <code>-–tags</code> 选项</p>
 <h1 id="打上标签-tag"><a href="#打上标签-tag" class="headerlink" title="打上标签 tag"></a>打上标签 tag</h1><p>主要有两种方法</p>
 <ul>
 <li><code>git tag tagName</code></li>
@@ -651,7 +655,7 @@ git checkout XXX  //切换到XXX分支
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -669,7 +673,7 @@ git checkout XXX  //切换到XXX分支
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
