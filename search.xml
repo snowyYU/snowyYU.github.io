@@ -24,6 +24,62 @@
       </tags>
   </entry>
   <entry>
+    <title>Angular1.X页面间传值</title>
+    <url>/2017/04/19/Angular1-X%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC/</url>
+    <content><![CDATA[<p>页面间的传值还是很常见的，在此记录下我接触过的angular1.X版本页面间传值的例子<br><a id="more"></a></p>
+<h1 id="使用ui-router"><a href="#使用ui-router" class="headerlink" title="使用ui-router"></a>使用ui-router</h1><h2 id="1-html模板页中可直接写在ui-sref里"><a href="#1-html模板页中可直接写在ui-sref里" class="headerlink" title="1. html模板页中可直接写在ui-sref里"></a>1. html模板页中可直接写在ui-sref里</h2><p>比如</p>
+<pre><code>ui-sref=&quot;app.operation.channel-overview({&apos;appId&apos;:&apos;{{item.appId}}&apos;,&apos;appName&apos;:&apos;{{item.appName}}&apos;})&quot;
+</code></pre><p>相应的，ui-router中配置目的地url时需要拼接如下</p>
+<pre><code>url: &apos;/channel-overview?appId&amp;appName&apos;
+</code></pre><p>在目标控制器中取出来</p>
+<pre><code>var appId=$stateParams.appId
+</code></pre><blockquote>
+<p>参数内容会在浏览器的url中显示出来，比较乱</p>
+</blockquote>
+<h2 id="2-使用-state-go"><a href="#2-使用-state-go" class="headerlink" title="2. 使用$state.go()"></a>2. 使用$state.go()</h2><h3 id="old"><a href="#old" class="headerlink" title="old"></a>old</h3><p>先讲下比较早的ui-router传参，有个很致命缺点就是url中不显示参数，刷新等操作会使页面丢失之前传过来的参数，如下</p>
+<p> 1.router配置中标明参数的名字</p>
+<pre><code>.state(&apos;state1&apos;, {
+url: &apos;/path/:id&apos;, // 这个地方用简单字符串
+templateUrl: &apos;/path/to.html&apos;,
+params: {
+obj: null // 这个地方就可以随便你用了. 因为这个参数没在state的url中体现出来
+}
+}).
+</code></pre><p> 2.$state.go</p>
+<pre><code>$state.go(&apos;state1&apos;, {
+id: &apos;22&apos;,
+obj: {
+    key: &apos;value&apos;
+}
+});
+</code></pre><p>3.获取obj直接用</p>
+<pre><code>$stateParams.obj
+</code></pre><blockquote>
+<p>不要用了</p>
+</blockquote>
+<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><p>忘记在哪个版本ui-router新增了如下方法，可保持url中的参数</p>
+<p>1.$state</p>
+<pre><code>$state.go(&quot;state&quot;,{datas:{ID:data1,NAME:data2}})
+</code></pre><p>2.配置router</p>
+<pre><code>.state(&apos;state&apos;,{
+url:&apos;path/{datas:json}&apos;,
+params:{&apos;datas&apos;:null}.
+...
+})
+</code></pre><p>3.用$stateParam.datas来取</p>
+<h1 id="基于factory的页面间传参"><a href="#基于factory的页面间传参" class="headerlink" title="基于factory的页面间传参"></a>基于factory的页面间传参</h1><blockquote>
+<p>这个没试过，上链接</p>
+</blockquote>
+<p><a href="https://www.zhihu.com/question/33565135" target="_blank" rel="noopener">知乎angular页面间传参</a></p>
+]]></content>
+      <categories>
+        <category>angular</category>
+      </categories>
+      <tags>
+        <tag>angular</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linus 相关命令</title>
     <url>/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈</p>
@@ -137,6 +193,54 @@
       </tags>
   </entry>
   <entry>
+    <title>Visual Studio Code 相关</title>
+    <url>/2019/12/13/Visual-Studio-Code-%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<p>之前使用 setting sync 同步过别人 git gist 上的 vsCode 配置，接触了一些很好用的功能，不过同时也有大量的拓展和相关配置一并被下载下来了，然后就遇到了些问题，现在准备重新安装vscode<br><a id="more"></a></p>
+<h1 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h1><h1 id="之前遇到的问题"><a href="#之前遇到的问题" class="headerlink" title="之前遇到的问题"></a>之前遇到的问题</h1><ol>
+<li>debug 配置文件 lanch.js 无法触发 智能输入</li>
+</ol>
+<h1 id="拓展部分"><a href="#拓展部分" class="headerlink" title="拓展部分"></a>拓展部分</h1><ol>
+<li><strong>YAML</strong> 支持</li>
+<li><strong>Auto Close Tag</strong> 自动添加 html/xml 闭合标签</li>
+<li><strong>Auto Rename Tag</strong> 修改标签名的辅助插件</li>
+<li><strong>Auto import</strong> 自动 import</li>
+<li><strong>Babel JavaScript</strong> 支持 react jsx， es201* flow GraphQL 的语法高亮</li>
+<li><strong>Bash Debug</strong>  debug下的lanch.js 配置支持</li>
+<li><strong>Better Comments</strong> 注释用的，让注释更加可视化，五颜六色的</li>
+<li><strong>Branket Pair colorizer</strong>  标签，括号，范围提示</li>
+<li><strong>Community Material Theme</strong> 一个主题，注意相关配置</li>
+<li><strong>Dart dart</strong> 语言支持</li>
+<li><strong>Debugger for Chrome</strong> 基于 chrome 的调试工具</li>
+<li><strong>Django</strong></li>
+<li><strong>Docker</strong></li>
+<li><strong>DotENV</strong> 环境配置文件(.env,.env.development……结尾)语法高亮</li>
+<li><strong>EJS language support</strong></li>
+<li><strong>ES6 Mocha Snippets</strong></li>
+<li><strong>ES7 React/Redux/GraphQL/React-Native snippets</strong></li>
+<li><strong>ESLint</strong></li>
+<li><strong>Formatting Toggle</strong></li>
+<li><strong>GitLens</strong> — Git supercharged git 拓展</li>
+<li><strong>HTML CSS Support</strong> html css 拓展</li>
+<li><strong>Ignore files</strong> .gitignore 等文件的语法高亮</li>
+<li><strong>Import Cost</strong> 自动计算import 文件的大小</li>
+<li><strong>IntelliSense for CSS class names in HTML</strong> 自动检测引入的类名，智能提示补全</li>
+<li><strong>JavaScript (ES6) code snippets</strong> es6代码片段</li>
+<li><strong>JavaScript Booster</strong></li>
+<li><strong>Jest Snippets</strong></li>
+<li><strong>Jinja</strong></li>
+<li><strong>JS Refactor</strong></li>
+<li><strong>json2ts</strong> 将json 转化为 ts interface 文件</li>
+<li><strong>LeetCode</strong> 算法题目</li>
+<li><strong>Less IntelliSense</strong> less 的智能辅助</li>
+<li><strong>Live Sass Compiler</strong> 一个即时sass 编译插件</li>
+</ol>
+<p>主要是对安装的拓展做个简介，方便自己后续的查找</p>
+<h1 id="同步-gist"><a href="#同步-gist" class="headerlink" title="同步 gist"></a>同步 gist</h1>]]></content>
+      <tags>
+        <tag>VSCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>angular基础</title>
     <url>/2016/12/26/angular%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<p>接触angular已经近半年了，一直在用别人的指令改改，遇到了很多自己解决不了的坑，其实自己对angular的各部分了解并不多，现在回头来弄清其中的用法原理，打好自己的基础。<br><a id="more"></a></p>
@@ -206,59 +310,72 @@ return {
       </tags>
   </entry>
   <entry>
-    <title>Angular1.X页面间传值</title>
-    <url>/2017/04/19/Angular1-X%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC/</url>
-    <content><![CDATA[<p>页面间的传值还是很常见的，在此记录下我接触过的angular1.X版本页面间传值的例子<br><a id="more"></a></p>
-<h1 id="使用ui-router"><a href="#使用ui-router" class="headerlink" title="使用ui-router"></a>使用ui-router</h1><h2 id="1-html模板页中可直接写在ui-sref里"><a href="#1-html模板页中可直接写在ui-sref里" class="headerlink" title="1. html模板页中可直接写在ui-sref里"></a>1. html模板页中可直接写在ui-sref里</h2><p>比如</p>
-<pre><code>ui-sref=&quot;app.operation.channel-overview({&apos;appId&apos;:&apos;{{item.appId}}&apos;,&apos;appName&apos;:&apos;{{item.appName}}&apos;})&quot;
-</code></pre><p>相应的，ui-router中配置目的地url时需要拼接如下</p>
-<pre><code>url: &apos;/channel-overview?appId&amp;appName&apos;
-</code></pre><p>在目标控制器中取出来</p>
-<pre><code>var appId=$stateParams.appId
-</code></pre><blockquote>
-<p>参数内容会在浏览器的url中显示出来，比较乱</p>
+    <title>MongoDB 小记</title>
+    <url>/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<p>主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧</p>
+<a id="more"></a>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>这是官网安装页面，<a href="https://docs.mongodb.com/manual/installation/#tutorial-installation" target="_blank" rel="noopener">MongoDB Install</a>。</p>
+<p>有企业版和社区版的区分，基本是</p>
+<p>我是 mac 系统，有 brew 和二进制文件两种安装方法</p>
+<p>顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户</p>
+<blockquote>
+<p>附上官方启用 root 账户的说明，<a href="https://support.apple.com/zh-cn/HT204012" target="_blank" rel="noopener">如何在 Mac 上启用 root 用户或更改 root 密码</a></p>
 </blockquote>
-<h2 id="2-使用-state-go"><a href="#2-使用-state-go" class="headerlink" title="2. 使用$state.go()"></a>2. 使用$state.go()</h2><h3 id="old"><a href="#old" class="headerlink" title="old"></a>old</h3><p>先讲下比较早的ui-router传参，有个很致命缺点就是url中不显示参数，刷新等操作会使页面丢失之前传过来的参数，如下</p>
-<p> 1.router配置中标明参数的名字</p>
-<pre><code>.state(&apos;state1&apos;, {
-url: &apos;/path/:id&apos;, // 这个地方用简单字符串
-templateUrl: &apos;/path/to.html&apos;,
-params: {
-obj: null // 这个地方就可以随便你用了. 因为这个参数没在state的url中体现出来
-}
-}).
-</code></pre><p> 2.$state.go</p>
-<pre><code>$state.go(&apos;state1&apos;, {
-id: &apos;22&apos;,
-obj: {
-    key: &apos;value&apos;
-}
-});
-</code></pre><p>3.获取obj直接用</p>
-<pre><code>$stateParams.obj
-</code></pre><blockquote>
-<p>不要用了</p>
+<p><del>注意安装后需要创建一个数据库数据存储的文件夹</del></p>
+<p><del><code>mkdir -p /data/db</code></del></p>
+<p><del>如果运行 <code>ps -xa | grep mongod</code>，没有看到一个 <code>dbpath</code> 显式地告诉 mongod 查看该数据库位置的参数，并且你的 mongodb.conf 中没有数据库路径，那么默认数据存储位置就是如上</del></p>
+<p>Mac 升级为 Catalina 系统后，根目录只有读的权限了，也就是不能在根目录创建 /data/db</p>
+<p>两种解决方法</p>
+<ol>
+<li><p>使用 <code>mongod --dbpath=/Users/user/data/db</code> 这种，每次都指明数据存放路径的命令启动 mongodb</p>
+</li>
+<li><p>参考 <a href="https://stackoverflow.com/questions/58034955/read-only-file-system-when-attempting-mkdir-data-db-on-mac" target="_blank" rel="noopener">stackoverflow</a> 第二条回答，使用 brew 启动<br><code>brew services start mongodb-community</code></p>
+</li>
+</ol>
+<blockquote>
+<p>顺便说 <code>cd /</code> 命令可以直接进入根目录<br><code>cd ~</code> 进入用户根目录</p>
 </blockquote>
-<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><p>忘记在哪个版本ui-router新增了如下方法，可保持url中的参数</p>
-<p>1.$state</p>
-<pre><code>$state.go(&quot;state&quot;,{datas:{ID:data1,NAME:data2}})
-</code></pre><p>2.配置router</p>
-<pre><code>.state(&apos;state&apos;,{
-url:&apos;path/{datas:json}&apos;,
-params:{&apos;datas&apos;:null}.
-...
-})
-</code></pre><p>3.用$stateParam.datas来取</p>
-<h1 id="基于factory的页面间传参"><a href="#基于factory的页面间传参" class="headerlink" title="基于factory的页面间传参"></a>基于factory的页面间传参</h1><blockquote>
-<p>这个没试过，上链接</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>因为我已经把 mongoDB 的路径加入了系统路径中，并且使用了默认的数据存放位置，所以可以直接，如果没做这两步的话，参考如下</p>
+<blockquote>
+<p><a href="https://docs.mongodb.com/guides/server/install/" target="_blank" rel="noopener">MongoDB 配置</a></p>
 </blockquote>
-<p><a href="https://www.zhihu.com/question/33565135" target="_blank" rel="noopener">知乎angular页面间传参</a></p>
+<pre><code>sudo mongod //启动
+</code></pre><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>新开一个命令行工具，输入</p>
+<pre><code>mongo
+</code></pre><p>连接数据库，可以输入查询语句了</p>
+<blockquote>
+<p>自己的阿里云使用了 docker 版本的 mongodb，所以在这里记录下进入 docker 版本 mongodb 的命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mongotest_mongo_1 mongo <span class="comment"># docker exec -it #容器名 mongo</span></span><br></pre></td></tr></table></figure>
+<h2 id="操作部分"><a href="#操作部分" class="headerlink" title="操作部分"></a>操作部分</h2><p>还能说啥，重中之重，多多练习</p>
+<h2 id="用户的授权，创建，修改，查看用户"><a href="#用户的授权，创建，修改，查看用户" class="headerlink" title="用户的授权，创建，修改，查看用户"></a>用户的授权，创建，修改，查看用户</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 选择管理员用户</span></span><br><span class="line">use admin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">db.auth(<span class="string">'user'</span>,<span class="string">'pwd'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">db.createUser(user:<span class="string">''</span>,<span class="built_in">pwd</span>:<span class="string">''</span>,roles:[])</span><br><span class="line"><span class="comment"># 示例 db.createUser(&#123;user:'owner',pwd:'yu321',roles:[&#123;role:'dbOwner',db:'filemanagedb'&#125;]&#125;)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">show users <span class="comment"># 查看当前数据库用户</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">db.system.users.find() // 查看所有用户</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/26215701" target="_blank" rel="noopener">详情参考此文</a></p>
+</blockquote>
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>查看所有数据库</p>
+<pre><code>&gt; show dbs
+</code></pre><p>查看当前数据库的 collections (集合)</p>
+<pre><code>&gt; show collections
+</code></pre><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建或进入某个存在的数据库</p>
+<pre><code>&gt; use &lt;name&gt;
+</code></pre><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入一条数据</p>
+<pre><code>&gt; db.collection.insertOne({})
+</code></pre><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a href="https://docs.mongodb.com/manual/tutorial/getting-started/" target="_blank" rel="noopener">MongoDB get start</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/44263728" target="_blank" rel="noopener">小白必须懂的 MongoDB 的十大总结-MongoDB 的认识
+</a></li>
+</ul>
 ]]></content>
       <categories>
-        <category>angular</category>
+        <category>DataBase</category>
       </categories>
       <tags>
-        <tag>angular</tag>
+        <tag>DataBase</tag>
+        <tag>MongoDB</tag>
       </tags>
   </entry>
   <entry>
@@ -314,67 +431,6 @@ appModule.directive(&apos;helloWorld&apos;,function(){
       </categories>
       <tags>
         <tag>angular</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MongoDB 小记</title>
-    <url>/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/</url>
-    <content><![CDATA[<p>主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧</p>
-<a id="more"></a>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>这是官网安装页面，<a href="https://docs.mongodb.com/manual/installation/#tutorial-installation" target="_blank" rel="noopener">MongoDB Install</a>。</p>
-<p>有企业版和社区版的区分，基本是</p>
-<p>我是 mac 系统，有 brew 和二进制文件两种安装方法</p>
-<p>顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户</p>
-<blockquote>
-<p>附上官方启用 root 账户的说明，<a href="https://support.apple.com/zh-cn/HT204012" target="_blank" rel="noopener">如何在 Mac 上启用 root 用户或更改 root 密码</a></p>
-</blockquote>
-<p><del>注意安装后需要创建一个数据库数据存储的文件夹</del></p>
-<p><del><code>mkdir -p /data/db</code></del></p>
-<p><del>如果运行 <code>ps -xa | grep mongod</code>，没有看到一个 <code>dbpath</code> 显式地告诉 mongod 查看该数据库位置的参数，并且你的 mongodb.conf 中没有数据库路径，那么默认数据存储位置就是如上</del></p>
-<p>Mac 升级为 Catalina 系统后，根目录只有读的权限了，也就是不能在根目录创建 /data/db</p>
-<p>两种解决方法</p>
-<ol>
-<li><p>使用 <code>mongod --dbpath=/Users/user/data/db</code> 这种，每次都指明数据存放路径的命令启动 mongodb</p>
-</li>
-<li><p>参考 <a href="https://stackoverflow.com/questions/58034955/read-only-file-system-when-attempting-mkdir-data-db-on-mac" target="_blank" rel="noopener">stackoverflow</a> 第二条回答，使用 brew 启动<br><code>brew services start mongodb-community</code></p>
-</li>
-</ol>
-<blockquote>
-<p>顺便说 <code>cd /</code> 命令可以直接进入根目录<br><code>cd ~</code> 进入用户根目录</p>
-</blockquote>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>因为我已经把 mongoDB 的路径加入了系统路径中，并且使用了默认的数据存放位置，所以可以直接，如果没做这两步的话，参考如下</p>
-<blockquote>
-<p><a href="https://docs.mongodb.com/guides/server/install/" target="_blank" rel="noopener">MongoDB 配置</a></p>
-</blockquote>
-<pre><code>sudo mongod //启动
-</code></pre><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>新开一个命令行工具，输入</p>
-<pre><code>mongo
-</code></pre><p>连接数据库，可以输入查询语句了</p>
-<h2 id="操作部分"><a href="#操作部分" class="headerlink" title="操作部分"></a>操作部分</h2><p>还能说啥，重中之重，多多练习</p>
-<h2 id="授权，创建，修改，查看用户"><a href="#授权，创建，修改，查看用户" class="headerlink" title="授权，创建，修改，查看用户"></a>授权，创建，修改，查看用户</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.auth(&apos;user&apos;,&apos;pwd&apos;)</span><br><span class="line">db.createUser(user:&apos;&apos;,pwd:&apos;&apos;,roles:[])</span><br><span class="line">show users // 查看当前数据库用户</span><br><span class="line">db.system.users.find() // 查看所有用户</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/26215701" target="_blank" rel="noopener">详情参考此文</a></p>
-</blockquote>
-<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>查看所有数据库</p>
-<pre><code>&gt; show dbs
-</code></pre><p>查看当前数据库的 collections (集合)</p>
-<pre><code>&gt; show collections
-</code></pre><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建或进入某个存在的数据库</p>
-<pre><code>&gt; use &lt;name&gt;
-</code></pre><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入一条数据</p>
-<pre><code>&gt; db.collection.insertOne({})
-</code></pre><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><a href="https://docs.mongodb.com/manual/tutorial/getting-started/" target="_blank" rel="noopener">MongoDB get start</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/44263728" target="_blank" rel="noopener">小白必须懂的 MongoDB 的十大总结-MongoDB 的认识
-</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>DataBase</category>
-      </categories>
-      <tags>
-        <tag>DataBase</tag>
-        <tag>MongoDB</tag>
       </tags>
   </entry>
   <entry>
@@ -455,51 +511,61 @@ npm install babel-eslint -g
       </tags>
   </entry>
   <entry>
-    <title>Visual Studio Code 相关</title>
-    <url>/2019/12/13/Visual-Studio-Code-%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<p>之前使用 setting sync 同步过别人 git gist 上的 vsCode 配置，接触了一些很好用的功能，不过同时也有大量的拓展和相关配置一并被下载下来了，然后就遇到了些问题，现在准备重新安装vscode<br><a id="more"></a></p>
-<h1 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h1><h1 id="之前遇到的问题"><a href="#之前遇到的问题" class="headerlink" title="之前遇到的问题"></a>之前遇到的问题</h1><ol>
-<li>debug 配置文件 lanch.js 无法触发 智能输入</li>
+    <title>javascript中this</title>
+    <url>/2017/05/08/javascript%E4%B8%ADthis/</url>
+    <content><![CDATA[<p>javascript中的this接触很多，但一直是模模糊糊的，在这里整理下</p>
+<h1 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h1><p>与其他语言相比，函数的 this 关键字在JavaScript中的行为略有不同。它在严格模式和非严格模式之间也有一些区别。</p>
+<p>读了廖雪峰老师的文章感觉文中所说的调用对象就是指执行环境，不知道可不可以这样理解</p>
+<p>当一个函数被调用时，会创建一个 <strong>执行环境(execution context)</strong>及相应的作用域链，自动获取两个特殊变量：this和arguments，然后使用arguments和其他命名参数的值来初始化函数的 <strong>活动对象(activation object)</strong>，</p>
+<p><code>(function(){}())</code>立即执行函数</p>
+<p>构造函数模式创建对象时，会经历以下4个步骤</p>
+<ol>
+<li>创建一个新对象</li>
+<li>见构造函数的作用域赋给新对象（因此this就指向了这个新对象）</li>
+<li>执行构造函数中的代码（为这个对象添加属性）</li>
+<li>返回新对象</li>
 </ol>
-<h1 id="拓展部分"><a href="#拓展部分" class="headerlink" title="拓展部分"></a>拓展部分</h1><ol>
-<li><strong>YAML</strong> 支持</li>
-<li><strong>Auto Close Tag</strong> 自动添加 html/xml 闭合标签</li>
-<li><strong>Auto Rename Tag</strong> 修改标签名的辅助插件</li>
-<li><strong>Auto import</strong> 自动 import</li>
-<li><strong>Babel JavaScript</strong> 支持 react jsx， es201* flow GraphQL 的语法高亮</li>
-<li><strong>Bash Debug</strong>  debug下的lanch.js 配置支持</li>
-<li><strong>Better Comments</strong> 注释用的，让注释更加可视化，五颜六色的</li>
-<li><strong>Branket Pair colorizer</strong>  标签，括号，范围提示</li>
-<li><strong>Community Material Theme</strong> 一个主题，注意相关配置</li>
-<li><strong>Dart dart</strong> 语言支持</li>
-<li><strong>Debugger for Chrome</strong> 基于 chrome 的调试工具</li>
-<li><strong>Django</strong></li>
-<li><strong>Docker</strong></li>
-<li><strong>DotENV</strong> 环境配置文件(.env,.env.development……结尾)语法高亮</li>
-<li><strong>EJS language support</strong></li>
-<li><strong>ES6 Mocha Snippets</strong></li>
-<li><strong>ES7 React/Redux/GraphQL/React-Native snippets</strong></li>
-<li><strong>ESLint</strong></li>
-<li><strong>Formatting Toggle</strong></li>
-<li><strong>GitLens</strong> — Git supercharged git 拓展</li>
-<li><strong>HTML CSS Support</strong> html css 拓展</li>
-<li><strong>Ignore files</strong> .gitignore 等文件的语法高亮</li>
-<li><strong>Import Cost</strong> 自动计算import 文件的大小</li>
-<li><strong>IntelliSense for CSS class names in HTML</strong> 自动检测引入的类名，智能提示补全</li>
-<li><strong>JavaScript (ES6) code snippets</strong> es6代码片段</li>
-<li><strong>JavaScript Booster</strong></li>
-<li><strong>Jest Snippets</strong></li>
-<li><strong>Jinja</strong></li>
-<li><strong>JS Refactor</strong></li>
-<li><strong>json2ts</strong> 将json 转化为 ts interface 文件</li>
-<li><strong>LeetCode</strong> 算法题目</li>
-<li><strong>Less IntelliSense</strong> less 的智能辅助</li>
-<li><strong>Live Sass Compiler</strong> 一个即时sass 编译插件</li>
+<h1 id="this-指向"><a href="#this-指向" class="headerlink" title="this 指向"></a>this 指向</h1><p>this总是指向调用函数的那个对象,在运行时基于函数的执行环境绑定的</p>
+<h2 id="纯函数调用"><a href="#纯函数调用" class="headerlink" title="纯函数调用"></a>纯函数调用</h2><p>属于全局调用，this代表全局对象Global</p>
+<pre><code>function foo(){
+    console.log(this);
+};
+foo(); //Window
+</code></pre><h2 id="作为对象方法的调用"><a href="#作为对象方法的调用" class="headerlink" title="作为对象方法的调用"></a>作为对象方法的调用</h2><p>this指向调用的函数</p>
+<h2 id="作为构造函数调用"><a href="#作为构造函数调用" class="headerlink" title="作为构造函数调用"></a>作为构造函数调用</h2><p>this 指向当前实例对象</p>
+<h2 id="apply-amp-amp-call"><a href="#apply-amp-amp-call" class="headerlink" title="apply &amp;&amp; call"></a>apply &amp;&amp; call</h2><p>apply()和call()作为函数对象的方法，可以改变函数的执行环境(调用对象)<br>它们的第一个参数是个对象，即作为函数内的this。</p>
+<pre><code>function foo(){
+    console.log(this);
+}
+foo.call(1);  //1
+foo.call(&apos;a&apos;);  //a
+foo.call(true);  //true
+foo.call({type:object});  //[object Object]
+</code></pre><p>如上，他们的参数作为函数内的this输出</p>
+<p>需要注意的是，传null或undefined时，将是JS执行环境的全局变量。浏览器中是window,其他环境，如node则是global。</p>
+<pre><code>fun.call(null);  //window or global
+fun.call(undefined);  //window or global
+</code></pre><p>apply()和call()唯一的区别是参数不一样，apply的第二个参数必须传入数组。<br>如 </p>
+<pre><code>func1.call(this, arg1, arg2);
+func1.apply(this, [arg1, arg2]);
+</code></pre><h3 id="适用条件"><a href="#适用条件" class="headerlink" title="适用条件"></a>适用条件</h3><p>js中函数的参数不固定，当参数是明确知道数量时，用 call，而不确定的时候，用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个 <strong>类数组</strong>来便利所有的参数。</p>
+<h3 id="小小结"><a href="#小小结" class="headerlink" title="小小结"></a>小小结</h3><ol>
+<li>apply() 的第一个参数是对象，第二个参数是数组，作为参数列表。</li>
+<li></li>
 </ol>
-<p>主要是对安装的拓展做个简介，方便自己后续的查找</p>
-<h1 id="同步-gist"><a href="#同步-gist" class="headerlink" title="同步 gist"></a>同步 gist</h1>]]></content>
+<h1 id="从ECMAScript规范谈this"><a href="#从ECMAScript规范谈this" class="headerlink" title="从ECMAScript规范谈this"></a>从ECMAScript规范谈this</h1><p>上面说的this的指向很偏应用的，倒是像经验上的总结。具体还是要看规范的，这部分打算之后再好好写写</p>
+<blockquote>
+<p>参考:<a href="https://github.com/mqyqingfeng/Blog/issues/7" target="_blank" rel="noopener">JavaScript深入之从ECMAScript规范解读this</a></p>
+</blockquote>
+<h1 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h1><blockquote>
+<p><a href="http://www.cnblogs.com/snandy/archive/2012/03/01/2373243.html" target="_blank" rel="noopener">call和apply</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
       <tags>
-        <tag>VSCode</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -640,31 +706,23 @@ git checkout XXX  //切换到XXX分支
       </tags>
   </entry>
   <entry>
-    <title>docker入门</title>
-    <url>/2020/06/29/docker%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<p>记录些安装，配置，和使用上的一些心得，方便日后查阅</p>
-<a id="more"></a>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="在centOS上安装"><a href="#在centOS上安装" class="headerlink" title="在centOS上安装"></a>在centOS上安装</h2><p>mac 上安装的话直接有相应的安装包，很简单，现在主要说下服务端的，流程大致可以参考官方 <a href="https://docs.docker.com/engine/install/centos/" target="_blank" rel="noopener">docker install</a>，不过要注意，我在centos8 上执行到 <code>sudo yum install docker-ce docker-ce-cli containerd.io</code> 命令报错（应该是containerd.io版本问题）。</p>
-<p>此时需要先执行 </p>
-<p><code>dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm</code> </p>
-<p>先安装 containerd.io。</p>
-<p>再执行 <code>sudo yum install docker-ce docker-ce-cli</code> ,<code>sudo systemctl start docker</code> 安装剩下两个</p>
-<h2 id="配置国内镜像"><a href="#配置国内镜像" class="headerlink" title="配置国内镜像"></a>配置国内镜像</h2><p>编辑 <code>sudo vi /etc/docker/daemon.json</code><br>加入如下<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"registry-mirrors"</span>: [</span><br><span class="line">        <span class="string">"https://1nj0zren.mirror.aliyuncs.com"</span>,</span><br><span class="line">        <span class="string">"https://docker.mirrors.ustc.edu.cn"</span>,</span><br><span class="line">        <span class="string">"http://f1361db2.m.daocloud.io"</span>,</span><br><span class="line">        <span class="string">"https://registry.docker-cn.com"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>好像 <code>&quot;https://registry.docker-cn.com&quot;</code> 失效了</p>
-</blockquote>
-<h1 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h1><p>参考官方安装文档 <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">compose install</a></p>
-<ol>
-<li>下载安装  </li>
+    <title>javascript闭包</title>
+    <url>/2017/05/12/javascript%E9%97%AD%E5%8C%85/</url>
+    <content><![CDATA[<h1 id="闭包是什么"><a href="#闭包是什么" class="headerlink" title="闭包是什么"></a>闭包是什么</h1><h2 id="闭包的产生"><a href="#闭包的产生" class="headerlink" title="闭包的产生"></a>闭包的产生</h2><p>我觉得是因为闭包函数的作用域链中保存着包裹函数的活动对象，正因保留着引用，导致包裹函数不会被垃圾回收</p>
+<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><ol>
+<li>闭包会引用包含函数的整个活动对象</li>
+<li>是个函数</li>
 </ol>
-<p><code>sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</code></p>
-<ol start="2">
-<li>给权限 <code>sudo chmod +x /usr/local/bin/docker-compose</code></li>
-<li>测试是否安装成功 <code>docker-compose --version</code></li>
+<h1 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h1><ol>
+<li>模拟私有方法</li>
 </ol>
-]]></content>
+<h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>作用域链和闭包脱不了干系，作用域链部分可以查看<a href="/2017/05/10/javascript作用域/" title="javascript作用域">javascript作用域</a></p>
+<h1 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h1>]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
       <tags>
-        <tag>docker</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -752,84 +810,6 @@ foo();
 <p><a href="http://blog.csdn.net/u010425776/article/details/53557942" target="_blank" rel="noopener">作用域</a></p>
 </blockquote>
 ]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>javascript中this</title>
-    <url>/2017/05/08/javascript%E4%B8%ADthis/</url>
-    <content><![CDATA[<p>javascript中的this接触很多，但一直是模模糊糊的，在这里整理下</p>
-<h1 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h1><p>与其他语言相比，函数的 this 关键字在JavaScript中的行为略有不同。它在严格模式和非严格模式之间也有一些区别。</p>
-<p>读了廖雪峰老师的文章感觉文中所说的调用对象就是指执行环境，不知道可不可以这样理解</p>
-<p>当一个函数被调用时，会创建一个 <strong>执行环境(execution context)</strong>及相应的作用域链，自动获取两个特殊变量：this和arguments，然后使用arguments和其他命名参数的值来初始化函数的 <strong>活动对象(activation object)</strong>，</p>
-<p><code>(function(){}())</code>立即执行函数</p>
-<p>构造函数模式创建对象时，会经历以下4个步骤</p>
-<ol>
-<li>创建一个新对象</li>
-<li>见构造函数的作用域赋给新对象（因此this就指向了这个新对象）</li>
-<li>执行构造函数中的代码（为这个对象添加属性）</li>
-<li>返回新对象</li>
-</ol>
-<h1 id="this-指向"><a href="#this-指向" class="headerlink" title="this 指向"></a>this 指向</h1><p>this总是指向调用函数的那个对象,在运行时基于函数的执行环境绑定的</p>
-<h2 id="纯函数调用"><a href="#纯函数调用" class="headerlink" title="纯函数调用"></a>纯函数调用</h2><p>属于全局调用，this代表全局对象Global</p>
-<pre><code>function foo(){
-    console.log(this);
-};
-foo(); //Window
-</code></pre><h2 id="作为对象方法的调用"><a href="#作为对象方法的调用" class="headerlink" title="作为对象方法的调用"></a>作为对象方法的调用</h2><p>this指向调用的函数</p>
-<h2 id="作为构造函数调用"><a href="#作为构造函数调用" class="headerlink" title="作为构造函数调用"></a>作为构造函数调用</h2><p>this 指向当前实例对象</p>
-<h2 id="apply-amp-amp-call"><a href="#apply-amp-amp-call" class="headerlink" title="apply &amp;&amp; call"></a>apply &amp;&amp; call</h2><p>apply()和call()作为函数对象的方法，可以改变函数的执行环境(调用对象)<br>它们的第一个参数是个对象，即作为函数内的this。</p>
-<pre><code>function foo(){
-    console.log(this);
-}
-foo.call(1);  //1
-foo.call(&apos;a&apos;);  //a
-foo.call(true);  //true
-foo.call({type:object});  //[object Object]
-</code></pre><p>如上，他们的参数作为函数内的this输出</p>
-<p>需要注意的是，传null或undefined时，将是JS执行环境的全局变量。浏览器中是window,其他环境，如node则是global。</p>
-<pre><code>fun.call(null);  //window or global
-fun.call(undefined);  //window or global
-</code></pre><p>apply()和call()唯一的区别是参数不一样，apply的第二个参数必须传入数组。<br>如 </p>
-<pre><code>func1.call(this, arg1, arg2);
-func1.apply(this, [arg1, arg2]);
-</code></pre><h3 id="适用条件"><a href="#适用条件" class="headerlink" title="适用条件"></a>适用条件</h3><p>js中函数的参数不固定，当参数是明确知道数量时，用 call，而不确定的时候，用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个 <strong>类数组</strong>来便利所有的参数。</p>
-<h3 id="小小结"><a href="#小小结" class="headerlink" title="小小结"></a>小小结</h3><ol>
-<li>apply() 的第一个参数是对象，第二个参数是数组，作为参数列表。</li>
-<li></li>
-</ol>
-<h1 id="从ECMAScript规范谈this"><a href="#从ECMAScript规范谈this" class="headerlink" title="从ECMAScript规范谈this"></a>从ECMAScript规范谈this</h1><p>上面说的this的指向很偏应用的，倒是像经验上的总结。具体还是要看规范的，这部分打算之后再好好写写</p>
-<blockquote>
-<p>参考:<a href="https://github.com/mqyqingfeng/Blog/issues/7" target="_blank" rel="noopener">JavaScript深入之从ECMAScript规范解读this</a></p>
-</blockquote>
-<h1 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h1><blockquote>
-<p><a href="http://www.cnblogs.com/snandy/archive/2012/03/01/2373243.html" target="_blank" rel="noopener">call和apply</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>js</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>javascript闭包</title>
-    <url>/2017/05/12/javascript%E9%97%AD%E5%8C%85/</url>
-    <content><![CDATA[<h1 id="闭包是什么"><a href="#闭包是什么" class="headerlink" title="闭包是什么"></a>闭包是什么</h1><h2 id="闭包的产生"><a href="#闭包的产生" class="headerlink" title="闭包的产生"></a>闭包的产生</h2><p>我觉得是因为闭包函数的作用域链中保存着包裹函数的活动对象，正因保留着引用，导致包裹函数不会被垃圾回收</p>
-<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><ol>
-<li>闭包会引用包含函数的整个活动对象</li>
-<li>是个函数</li>
-</ol>
-<h1 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h1><ol>
-<li>模拟私有方法</li>
-</ol>
-<h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>作用域链和闭包脱不了干系，作用域链部分可以查看<a href="/2017/05/10/javascript作用域/" title="javascript作用域">javascript作用域</a></p>
-<h1 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h1>]]></content>
       <categories>
         <category>js</category>
       </categories>
@@ -1024,91 +1004,6 @@ item1, ..., itemX   可选。向数组添加的新项目。
       </tags>
   </entry>
   <entry>
-    <title>sublime 安装小结</title>
-    <url>/2016/12/22/sublime-%E5%AE%89%E8%A3%85%E5%B0%8F%E7%BB%93/</url>
-    <content><![CDATA[<h1 id="sublime-3"><a href="#sublime-3" class="headerlink" title="sublime 3"></a>sublime 3</h1><p>sublime大家都知道啦，用了近一年了，感情颇深。之前用了sublime2，感觉最大的不同是sublime3的启动速度飞快，之后一直在用别人放出来装了各种插件的3，结果近几个月想要下载新的插件时发现竟然装不了，哈，值此一周年之际，自己重新捣鼓下3.<br><a id="more"></a></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装就不多说了，官网<a href="https://www.sublimetext.com/3" title="sublime3下载" target="_blank" rel="noopener">sublime3下载</a>。</p>
-<blockquote>
-<p>需要注意，最好在翻墙状态下，反正我没翻墙下不了。</p>
-</blockquote>
-<p>安装可以选中<strong>explorer context menu</strong>选项，意思是右击时显示open with sublime，方便编辑，不想显示中文可以去注册表改一下</p>
-<p><img src="http://i.imgur.com/UyAYoF3.png" alt></p>
-<p>重点来了，额，不购买的话会一直提示，比较烦</p>
-<blockquote>
-<p>最好有条件还是支持正版</p>
-</blockquote>
-<p>在简书上看到注册码<a href="http://www.jianshu.com/p/04e1b65dd2c0" title="sublime3注册码" target="_blank" rel="noopener">sublime3注册码</a><br>博主也在定期更新（非常感谢大神，大神的博客很赞）。help中填入注册码就行啦</p>
-<blockquote>
-<p>留一下，有好几个的，填一个就行啦</p>
-</blockquote>
-<h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><ul>
-<li>直接装</li>
-</ul>
-<p>preferences&gt;browse packages…</p>
-<p><img src="http://hiphotos.baidu.com/exp/pic/item/0e655ca7d933c8954e7c86f6d31373f0830200f9.jpg" alt></p>
-<p>下载地址：<a href="https://sublime.wbond.net/Package%20Control.sublime-package" title="package control" target="_blank" rel="noopener">package control</a></p>
-<p>放进去:</p>
-<p><img src="http://hiphotos.baidu.com/exp/pic/item/8a95ad1c8701a18b4eb90cc29c2f07082938feaa.jpg" alt></p>
-<blockquote>
-<p>建议用这个方法，我试了用console命令报错 好像是can not open XXX<br>,换了另外一个网上的命令可以下，但是速度很慢</p>
-</blockquote>
-<ul>
-<li>用package control组件安装</li>
-</ul>
-<p>这个不多说啦，附上官方介绍</p>
-<p><a href="https://packagecontrol.io/installation" title="packagecontrol installation" target="_blank" rel="noopener">packagecontrol installation</a></p>
-<h2 id="推荐插件"><a href="#推荐插件" class="headerlink" title="推荐插件"></a>推荐插件</h2><blockquote>
-<p>这里只记录我接触到的</p>
-</blockquote>
-<p>插件的安装嘛，ctrl+shift+p调出控制台，选到package controll install，然后等，再次弹出控制台输入想要安装的插件，选中 安装 等待</p>
-<p>注意要留意下方的状态</p>
-<ol>
-<li><p>emmet<br>神器，谁用谁知道，补全代码等等，附上用法<br><a href="https://packagecontrol.io/packages/Emmet" title="Emmet" target="_blank" rel="noopener">Emmet</a></p>
-</li>
-<li><p>markdownEditing<br>这个用来写博客，记得先ctrl+shift+p设置成markdown格式，写这篇文就遇到个坑，我用的<a href="markdownpad" title="http://markdownpad.com/">markdownpad</a>的图床是 <a href="Imgur" title="http://imgur.com/">Imgur</a>，额，不翻墙上传不了图片</p>
-</li>
-<li><p>angular<br>对于指令和服务，鼠标移上去可以看到初始化的地方</p>
-</li>
-<li><p>sublimeLinter<br>语法错误检测，这个组件依赖于nodeJS下的jshint，所以还要通过npm安装jshint的jshint</p>
-<p> npm install -g jshint</p>
-</li>
-<li><p>SideBarEnhancements<br>侧栏右键功能增强</p>
-</li>
-<li><p>Alignment<br>等号对齐（Ctrl+Alt+A）</p>
-</li>
-<li><p>Bracket Highlighter<br>代码匹配</p>
-</li>
-<li><p>prettify<br>HTML-CSS-JS Prettify  code format  代码格式化</p>
-</li>
-<li><p>color Highlighter<br>实时看到颜色</p>
-</li>
-<li><p>html/js/css prettify<br>ctrl+shift+h一键格式，代码对齐啥的</p>
-</li>
-<li><p>localhistory<br>历史记录</p>
-</li>
-</ol>
-<hr>
-<blockquote>
-<p>2017.5</p>
-</blockquote>
-<ol start="12">
-<li><p>nodejs<br>支持对node的语法补全等</p>
-</li>
-<li><p>SublimeLinter-contrib-eslint<br>使用eslint来进行代码规范检查</p>
-</li>
-<li><p>Vue Syntax Highlight<br>.vue结尾的代码也会变得五颜六色</p>
-</li>
-</ol>
-<p>持续更新中  …</p>
-]]></content>
-      <categories>
-        <category>sublime</category>
-      </categories>
-      <tags>
-        <tag>sublime</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>node(一)</title>
     <url>/2017/03/01/node-%E4%B8%80/</url>
     <content><![CDATA[<p>开始正式学习node，之前看过node即学即用，敲了遍书上的代码，有点晕晕的，之后很长时间没接触node了，现在下决心每天花些时间捣鼓下。<br><a id="more"></a></p>
@@ -1157,38 +1052,6 @@ item1, ..., itemX   可选。向数组添加的新项目。
       </categories>
       <tags>
         <tag>node</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>value和ng-value</title>
-    <url>/2017/02/23/value%E5%92%8Cng-value/</url>
-    <content><![CDATA[<p>开年第一篇，前两周赶进度特别忙，基本重构了整个系统，也踩了不少的坑，其中就有angular指令ng-value和value这俩货</p>
-<blockquote>
-<p>类似的还有ng-disabled和disabled等</p>
-</blockquote>
-<h1 id="ng-value-amp-amp-value"><a href="#ng-value-amp-amp-value" class="headerlink" title="ng-value&amp;&amp;value"></a>ng-value&amp;&amp;value</h1><h1 id="ng-disabled-amp-amp-disabled"><a href="#ng-disabled-amp-amp-disabled" class="headerlink" title="ng-disabled&amp;&amp;disabled"></a>ng-disabled&amp;&amp;disabled</h1><p>上来先举个正确的例子</p>
-<pre><code>ng-disabled=&quot;!(address.selected&amp;&amp;filterOptions.filterText.endTime&amp;&amp;filterOptions.filterText.startTime)&quot;
-</code></pre><blockquote>
-<p>这个是账户系统中的原例，注意逻辑关系的书写</p>
-</blockquote>
-<p><del>ng-disabled=”false“</del></p>
-<p>上面一条是错的</p>
-<blockquote>
-<p>注意disable存在时，表单不会对其校验，可使用visible属性</p>
-</blockquote>
-<h1 id="ng-if"><a href="#ng-if" class="headerlink" title="ng-if"></a>ng-if</h1><p>这里要特别注意ng-if和ng-show的区别</p>
-<p>ng-if = false 时，相应的标签元素在调试器里消失（不知道是否被移出了dom），且不占空间。而<br>ng-show = false 时 相应的的元素还是在dom中的，</p>
-<p>如下</p>
-<ul>
-<li>ng-if 在后面表达式为 true 的时候才创建这个 dom 节点，ng-show 是初始时就创建了，用 display:block 和 display:none 来控制显示和不显示。</li>
-<li>ng-if 会（隐式地）产生新作用域，ng-switch 、 ng-include 等会动态创建一块界面的也是如此。 </li>
-</ul>
-]]></content>
-      <categories>
-        <category>angular</category>
-      </categories>
-      <tags>
-        <tag>angular</tag>
       </tags>
   </entry>
   <entry>
@@ -1309,6 +1172,194 @@ item1, ..., itemX   可选。向数组添加的新项目。
       </tags>
   </entry>
   <entry>
+    <title>docker入门</title>
+    <url>/2020/06/29/docker%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>记录些安装，配置，和使用上的一些心得，方便日后查阅</p>
+<a id="more"></a>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="在centOS上安装"><a href="#在centOS上安装" class="headerlink" title="在centOS上安装"></a>在centOS上安装</h2><p>mac 上安装的话直接有相应的安装包，很简单，现在主要说下服务端的，流程大致可以参考官方 <a href="https://docs.docker.com/engine/install/centos/" target="_blank" rel="noopener">docker install</a>，不过要注意，我在centos8 上执行到 <code>sudo yum install docker-ce docker-ce-cli containerd.io</code> 命令报错（应该是containerd.io版本问题）。</p>
+<p>此时需要先执行 </p>
+<p><code>dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm</code> </p>
+<p>先安装 containerd.io。</p>
+<p>再执行 <code>sudo yum install docker-ce docker-ce-cli</code> ,<code>sudo systemctl start docker</code> 安装剩下两个</p>
+<h2 id="配置国内镜像"><a href="#配置国内镜像" class="headerlink" title="配置国内镜像"></a>配置国内镜像</h2><p>编辑 <code>sudo vi /etc/docker/daemon.json</code><br>加入如下<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"registry-mirrors"</span>: [</span><br><span class="line">        <span class="string">"https://1nj0zren.mirror.aliyuncs.com"</span>,</span><br><span class="line">        <span class="string">"https://docker.mirrors.ustc.edu.cn"</span>,</span><br><span class="line">        <span class="string">"http://f1361db2.m.daocloud.io"</span>,</span><br><span class="line">        <span class="string">"https://registry.docker-cn.com"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>好像 <code>&quot;https://registry.docker-cn.com&quot;</code> 失效了</p>
+</blockquote>
+<h1 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h1><p>参考官方安装文档 <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">compose install</a></p>
+<ol>
+<li>下载安装  </li>
+</ol>
+<p><code>sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</code></p>
+<ol start="2">
+<li>给权限 <code>sudo chmod +x /usr/local/bin/docker-compose</code></li>
+<li>测试是否安装成功 <code>docker-compose --version</code></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sublime 安装小结</title>
+    <url>/2016/12/22/sublime-%E5%AE%89%E8%A3%85%E5%B0%8F%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="sublime-3"><a href="#sublime-3" class="headerlink" title="sublime 3"></a>sublime 3</h1><p>sublime大家都知道啦，用了近一年了，感情颇深。之前用了sublime2，感觉最大的不同是sublime3的启动速度飞快，之后一直在用别人放出来装了各种插件的3，结果近几个月想要下载新的插件时发现竟然装不了，哈，值此一周年之际，自己重新捣鼓下3.<br><a id="more"></a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装就不多说了，官网<a href="https://www.sublimetext.com/3" title="sublime3下载" target="_blank" rel="noopener">sublime3下载</a>。</p>
+<blockquote>
+<p>需要注意，最好在翻墙状态下，反正我没翻墙下不了。</p>
+</blockquote>
+<p>安装可以选中<strong>explorer context menu</strong>选项，意思是右击时显示open with sublime，方便编辑，不想显示中文可以去注册表改一下</p>
+<p><img src="http://i.imgur.com/UyAYoF3.png" alt></p>
+<p>重点来了，额，不购买的话会一直提示，比较烦</p>
+<blockquote>
+<p>最好有条件还是支持正版</p>
+</blockquote>
+<p>在简书上看到注册码<a href="http://www.jianshu.com/p/04e1b65dd2c0" title="sublime3注册码" target="_blank" rel="noopener">sublime3注册码</a><br>博主也在定期更新（非常感谢大神，大神的博客很赞）。help中填入注册码就行啦</p>
+<blockquote>
+<p>留一下，有好几个的，填一个就行啦</p>
+</blockquote>
+<h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><ul>
+<li>直接装</li>
+</ul>
+<p>preferences&gt;browse packages…</p>
+<p><img src="http://hiphotos.baidu.com/exp/pic/item/0e655ca7d933c8954e7c86f6d31373f0830200f9.jpg" alt></p>
+<p>下载地址：<a href="https://sublime.wbond.net/Package%20Control.sublime-package" title="package control" target="_blank" rel="noopener">package control</a></p>
+<p>放进去:</p>
+<p><img src="http://hiphotos.baidu.com/exp/pic/item/8a95ad1c8701a18b4eb90cc29c2f07082938feaa.jpg" alt></p>
+<blockquote>
+<p>建议用这个方法，我试了用console命令报错 好像是can not open XXX<br>,换了另外一个网上的命令可以下，但是速度很慢</p>
+</blockquote>
+<ul>
+<li>用package control组件安装</li>
+</ul>
+<p>这个不多说啦，附上官方介绍</p>
+<p><a href="https://packagecontrol.io/installation" title="packagecontrol installation" target="_blank" rel="noopener">packagecontrol installation</a></p>
+<h2 id="推荐插件"><a href="#推荐插件" class="headerlink" title="推荐插件"></a>推荐插件</h2><blockquote>
+<p>这里只记录我接触到的</p>
+</blockquote>
+<p>插件的安装嘛，ctrl+shift+p调出控制台，选到package controll install，然后等，再次弹出控制台输入想要安装的插件，选中 安装 等待</p>
+<p>注意要留意下方的状态</p>
+<ol>
+<li><p>emmet<br>神器，谁用谁知道，补全代码等等，附上用法<br><a href="https://packagecontrol.io/packages/Emmet" title="Emmet" target="_blank" rel="noopener">Emmet</a></p>
+</li>
+<li><p>markdownEditing<br>这个用来写博客，记得先ctrl+shift+p设置成markdown格式，写这篇文就遇到个坑，我用的<a href="markdownpad" title="http://markdownpad.com/">markdownpad</a>的图床是 <a href="Imgur" title="http://imgur.com/">Imgur</a>，额，不翻墙上传不了图片</p>
+</li>
+<li><p>angular<br>对于指令和服务，鼠标移上去可以看到初始化的地方</p>
+</li>
+<li><p>sublimeLinter<br>语法错误检测，这个组件依赖于nodeJS下的jshint，所以还要通过npm安装jshint的jshint</p>
+<p> npm install -g jshint</p>
+</li>
+<li><p>SideBarEnhancements<br>侧栏右键功能增强</p>
+</li>
+<li><p>Alignment<br>等号对齐（Ctrl+Alt+A）</p>
+</li>
+<li><p>Bracket Highlighter<br>代码匹配</p>
+</li>
+<li><p>prettify<br>HTML-CSS-JS Prettify  code format  代码格式化</p>
+</li>
+<li><p>color Highlighter<br>实时看到颜色</p>
+</li>
+<li><p>html/js/css prettify<br>ctrl+shift+h一键格式，代码对齐啥的</p>
+</li>
+<li><p>localhistory<br>历史记录</p>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p>2017.5</p>
+</blockquote>
+<ol start="12">
+<li><p>nodejs<br>支持对node的语法补全等</p>
+</li>
+<li><p>SublimeLinter-contrib-eslint<br>使用eslint来进行代码规范检查</p>
+</li>
+<li><p>Vue Syntax Highlight<br>.vue结尾的代码也会变得五颜六色</p>
+</li>
+</ol>
+<p>持续更新中  …</p>
+]]></content>
+      <categories>
+        <category>sublime</category>
+      </categories>
+      <tags>
+        <tag>sublime</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>value和ng-value</title>
+    <url>/2017/02/23/value%E5%92%8Cng-value/</url>
+    <content><![CDATA[<p>开年第一篇，前两周赶进度特别忙，基本重构了整个系统，也踩了不少的坑，其中就有angular指令ng-value和value这俩货</p>
+<blockquote>
+<p>类似的还有ng-disabled和disabled等</p>
+</blockquote>
+<h1 id="ng-value-amp-amp-value"><a href="#ng-value-amp-amp-value" class="headerlink" title="ng-value&amp;&amp;value"></a>ng-value&amp;&amp;value</h1><h1 id="ng-disabled-amp-amp-disabled"><a href="#ng-disabled-amp-amp-disabled" class="headerlink" title="ng-disabled&amp;&amp;disabled"></a>ng-disabled&amp;&amp;disabled</h1><p>上来先举个正确的例子</p>
+<pre><code>ng-disabled=&quot;!(address.selected&amp;&amp;filterOptions.filterText.endTime&amp;&amp;filterOptions.filterText.startTime)&quot;
+</code></pre><blockquote>
+<p>这个是账户系统中的原例，注意逻辑关系的书写</p>
+</blockquote>
+<p><del>ng-disabled=”false“</del></p>
+<p>上面一条是错的</p>
+<blockquote>
+<p>注意disable存在时，表单不会对其校验，可使用visible属性</p>
+</blockquote>
+<h1 id="ng-if"><a href="#ng-if" class="headerlink" title="ng-if"></a>ng-if</h1><p>这里要特别注意ng-if和ng-show的区别</p>
+<p>ng-if = false 时，相应的标签元素在调试器里消失（不知道是否被移出了dom），且不占空间。而<br>ng-show = false 时 相应的的元素还是在dom中的，</p>
+<p>如下</p>
+<ul>
+<li>ng-if 在后面表达式为 true 的时候才创建这个 dom 节点，ng-show 是初始时就创建了，用 display:block 和 display:none 来控制显示和不显示。</li>
+<li>ng-if 会（隐式地）产生新作用域，ng-switch 、 ng-include 等会动态创建一块界面的也是如此。 </li>
+</ul>
+]]></content>
+      <categories>
+        <category>angular</category>
+      </categories>
+      <tags>
+        <tag>angular</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nginx笔记</title>
+    <url>/2020/10/23/nginx%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>像自己的 git 笔记一样，记录下自己安装以及使用的过程与心得，方便之后的查看</p>
+<a id="more"></a>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用 <strong>brew</strong> 安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>正常情况下执行完此命令后是看不到什么输出的 （实际上已经执行成功了）</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1gk3p0cgqt2j20g7037t9x.jpg" alt="nginxStart.png"></p>
+<p>启动后可通过如下命令控制服务器的状态</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -s signal</span><br></pre></td></tr></table></figure>
+<p><strong>signal</strong>的值可能如下</p>
+<ul>
+<li>stop — fast shutdown</li>
+<li>quit — graceful shutdown</li>
+<li>reload — reloading the configuration file</li>
+<li>reopen — reopening the log files</li>
+</ul>
+<blockquote>
+<p>使用 quit 参数会在主线程处理完当前请求后停止 nginx 线程</p>
+</blockquote>
+<p>每次修改完配置文件后需要重新执行 reload 命令</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><strong>nginx</strong>配置部分是重中之重</p>
+<p>这里举一个例子，下面的配置了服务器的 监听端口，重定向位置，代理服务</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">8089</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  localhost;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   html/web-mobile;                <span class="comment">#入口目录</span></span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /api &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://192.168.0.235:8091;  <span class="comment">#代理的目标服务器</span></span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><ul>
+<li><strong>nginx</strong> 有一个主线程和若干个工作线程</li>
+</ul>
+<h2 id="about"><a href="#about" class="headerlink" title="about"></a>about</h2><ul>
+<li><a href="https://nginx.org/en/docs/beginners_guide.html" target="_blank" rel="noopener">beginner’s guide</a></li>
+<li><a href="https://blog.imkasen.com/nginx-beginner-guide-zh.html" target="_blank" rel="noopener">beginner’s guide 翻译</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>nginx</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>传输过程小记</title>
     <url>/2017/04/12/%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B%E5%B0%8F%E8%AE%B0/</url>
     <content><![CDATA[]]></content>
@@ -1317,6 +1368,46 @@ item1, ..., itemX   可选。向数组添加的新项目。
       </categories>
       <tags>
         <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>node 相关依赖</title>
+    <url>/2020/12/21/node-%E7%9B%B8%E5%85%B3%E4%BE%9D%E8%B5%96/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>微信授权相关</title>
+    <url>/2020/02/22/%E5%BE%AE%E4%BF%A1%E6%8E%88%E6%9D%83%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<p>已经写过挺多授权部分的了，这里做写记录，并且附上相关的链接，以便后续查阅</p>
+<a id="more"></a>
+<h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><p>其实官网文档已经相当之详细了，这里特地记录下每一步骤实现所用的代码以及相关的工具函数</p>
+<blockquote>
+<p>所以重点还是要看看官方文档</p>
+</blockquote>
+<h2 id="1-获取code"><a href="#1-获取code" class="headerlink" title="1.获取code"></a>1.获取code</h2><p>获取code方法如下<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wechatAuth</span> (<span class="params">appId, redirectUri, responseType, scope, state</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> url = <span class="string">'https://open.weixin.qq.com/connect/oauth2/authorize'</span></span><br><span class="line">  <span class="keyword">let</span> queryString = <span class="string">'appid='</span> + appId + <span class="string">'&amp;redirect_uri='</span> + <span class="built_in">encodeURIComponent</span>(redirectUri) + <span class="string">'&amp;response_type='</span> + responseType + <span class="string">'&amp;scope='</span> + scope + <span class="string">'&amp;state='</span> + state</span><br><span class="line">  location.href = url + <span class="string">'?'</span> + queryString + <span class="string">'#wechat_redirect'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-通过code换取网页授权-access-token-和-openid"><a href="#2-通过code换取网页授权-access-token-和-openid" class="headerlink" title="2.通过code换取网页授权 access_token 和 openid"></a>2.通过code换取网页授权 access_token 和 openid</h2><p>一般获取access_token 和 openid 都是由后台获取到，因为获取上面两个参数除了code外还需要传secret参数，出于安全考虑不会写在前端(参照文档)</p>
+<h2 id="3-刷新access-token-如果需要"><a href="#3-刷新access-token-如果需要" class="headerlink" title="3.刷新access_token (如果需要)"></a>3.刷新access_token (如果需要)</h2><p>access_token scope为 snsapi_base 时，access_token似乎没啥用处</p>
+<h2 id="4-拉取用户信息-需scope为snsapi-userinfo"><a href="#4-拉取用户信息-需scope为snsapi-userinfo" class="headerlink" title="4.拉取用户信息(需scope为snsapi_userinfo)"></a>4.拉取用户信息(需scope为snsapi_userinfo)</h2><p>注意scope，这里针对scope为 snsapi_userinfo 的情景，即需要获取用户openid以外的更多信息</p>
+<h2 id="5-tips"><a href="#5-tips" class="headerlink" title="5.tips"></a>5.tips</h2><h3 id="获取url中code参数的方法"><a href="#获取url中code参数的方法" class="headerlink" title="获取url中code参数的方法"></a>获取url中code参数的方法</h3><ol>
+<li><p>自写一个原生的</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">getUrlParams (query, _url) &#123;</span><br><span class="line">  <span class="keyword">const</span> url = _url || <span class="built_in">window</span>.location.href</span><br><span class="line">  <span class="keyword">const</span> paramsString = url.indexOf(<span class="string">'?'</span>) &gt; <span class="number">-1</span> ? url.substring(url.indexOf(<span class="string">'?'</span>) + <span class="number">1</span>, url.length).split(<span class="string">'&amp;'</span>) : []</span><br><span class="line">  <span class="keyword">let</span> paramsObj = &#123;&#125;</span><br><span class="line">  paramsString.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    paramsObj[item.substring(<span class="number">0</span>, item.indexOf(<span class="string">'='</span>))] = item.substring(item.indexOf(<span class="string">'='</span>) + <span class="number">1</span>, item.length).split(<span class="string">'#'</span>)[<span class="number">0</span>]</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(query).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Array'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> paramsObj</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> returnValue = paramsObj[query]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> (returnValue) === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> returnValue</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>vue 中的 router相关方法</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.$route.query.code</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="存储相关配置参数的位置"><a href="#存储相关配置参数的位置" class="headerlink" title="存储相关配置参数的位置"></a>存储相关配置参数的位置</h3><p>微信和支付宝授权啊支付啊什么的都需要传一些参数给支付宝或微信的后台，就前端来说，常见的如下</p>
+<blockquote>
+<p>appid scope redirect_uri 等<br>那这些固定的常量都写在哪里呢？之前我会单新建一个config文件夹，然后分别创建微信和支付宝所需要用到的配置文件，不过有时候在测试的时候不想一遍遍的请求微信那边的授权（比如我只是想那个openid请求自己应用的接口），所以会额外加一些已知的openid userinfo 等，这些往往会再加多两个文件，而且还要加多一些有关开发和生产环境的判断等等</p>
+</blockquote>
+<p>所以如果是在vue-cli的开发环境下，推荐使用<a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">环境变量和模式</a></p>
+<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><ol>
+<li><a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html" target="_blank" rel="noopener">微信官方文档-网页授权</a></li>
+<li><a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">vue-cli环境变量和模式</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>WeChat</tag>
       </tags>
   </entry>
   <entry>
@@ -1421,84 +1512,6 @@ item1, ..., itemX   可选。向数组添加的新项目。
 ]]></content>
       <tags>
         <tag>shell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>微信授权相关</title>
-    <url>/2020/02/22/%E5%BE%AE%E4%BF%A1%E6%8E%88%E6%9D%83%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<p>已经写过挺多授权部分的了，这里做写记录，并且附上相关的链接，以便后续查阅</p>
-<a id="more"></a>
-<h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><p>其实官网文档已经相当之详细了，这里特地记录下每一步骤实现所用的代码以及相关的工具函数</p>
-<blockquote>
-<p>所以重点还是要看看官方文档</p>
-</blockquote>
-<h2 id="1-获取code"><a href="#1-获取code" class="headerlink" title="1.获取code"></a>1.获取code</h2><p>获取code方法如下<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wechatAuth</span> (<span class="params">appId, redirectUri, responseType, scope, state</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> url = <span class="string">'https://open.weixin.qq.com/connect/oauth2/authorize'</span></span><br><span class="line">  <span class="keyword">let</span> queryString = <span class="string">'appid='</span> + appId + <span class="string">'&amp;redirect_uri='</span> + <span class="built_in">encodeURIComponent</span>(redirectUri) + <span class="string">'&amp;response_type='</span> + responseType + <span class="string">'&amp;scope='</span> + scope + <span class="string">'&amp;state='</span> + state</span><br><span class="line">  location.href = url + <span class="string">'?'</span> + queryString + <span class="string">'#wechat_redirect'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-通过code换取网页授权-access-token-和-openid"><a href="#2-通过code换取网页授权-access-token-和-openid" class="headerlink" title="2.通过code换取网页授权 access_token 和 openid"></a>2.通过code换取网页授权 access_token 和 openid</h2><p>一般获取access_token 和 openid 都是由后台获取到，因为获取上面两个参数除了code外还需要传secret参数，出于安全考虑不会写在前端(参照文档)</p>
-<h2 id="3-刷新access-token-如果需要"><a href="#3-刷新access-token-如果需要" class="headerlink" title="3.刷新access_token (如果需要)"></a>3.刷新access_token (如果需要)</h2><p>access_token scope为 snsapi_base 时，access_token似乎没啥用处</p>
-<h2 id="4-拉取用户信息-需scope为snsapi-userinfo"><a href="#4-拉取用户信息-需scope为snsapi-userinfo" class="headerlink" title="4.拉取用户信息(需scope为snsapi_userinfo)"></a>4.拉取用户信息(需scope为snsapi_userinfo)</h2><p>注意scope，这里针对scope为 snsapi_userinfo 的情景，即需要获取用户openid以外的更多信息</p>
-<h2 id="5-tips"><a href="#5-tips" class="headerlink" title="5.tips"></a>5.tips</h2><h3 id="获取url中code参数的方法"><a href="#获取url中code参数的方法" class="headerlink" title="获取url中code参数的方法"></a>获取url中code参数的方法</h3><ol>
-<li><p>自写一个原生的</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">getUrlParams (query, _url) &#123;</span><br><span class="line">  <span class="keyword">const</span> url = _url || <span class="built_in">window</span>.location.href</span><br><span class="line">  <span class="keyword">const</span> paramsString = url.indexOf(<span class="string">'?'</span>) &gt; <span class="number">-1</span> ? url.substring(url.indexOf(<span class="string">'?'</span>) + <span class="number">1</span>, url.length).split(<span class="string">'&amp;'</span>) : []</span><br><span class="line">  <span class="keyword">let</span> paramsObj = &#123;&#125;</span><br><span class="line">  paramsString.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    paramsObj[item.substring(<span class="number">0</span>, item.indexOf(<span class="string">'='</span>))] = item.substring(item.indexOf(<span class="string">'='</span>) + <span class="number">1</span>, item.length).split(<span class="string">'#'</span>)[<span class="number">0</span>]</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(query).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Array'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> paramsObj</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> returnValue = paramsObj[query]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> (returnValue) === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> returnValue</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>vue 中的 router相关方法</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.$route.query.code</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="存储相关配置参数的位置"><a href="#存储相关配置参数的位置" class="headerlink" title="存储相关配置参数的位置"></a>存储相关配置参数的位置</h3><p>微信和支付宝授权啊支付啊什么的都需要传一些参数给支付宝或微信的后台，就前端来说，常见的如下</p>
-<blockquote>
-<p>appid scope redirect_uri 等<br>那这些固定的常量都写在哪里呢？之前我会单新建一个config文件夹，然后分别创建微信和支付宝所需要用到的配置文件，不过有时候在测试的时候不想一遍遍的请求微信那边的授权（比如我只是想那个openid请求自己应用的接口），所以会额外加一些已知的openid userinfo 等，这些往往会再加多两个文件，而且还要加多一些有关开发和生产环境的判断等等</p>
-</blockquote>
-<p>所以如果是在vue-cli的开发环境下，推荐使用<a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">环境变量和模式</a></p>
-<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><ol>
-<li><a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html" target="_blank" rel="noopener">微信官方文档-网页授权</a></li>
-<li><a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">vue-cli环境变量和模式</a></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>WeChat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nginx笔记</title>
-    <url>/2020/10/23/nginx%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>像自己的 git 笔记一样，记录下自己安装以及使用的过程与心得，方便之后的查看</p>
-<a id="more"></a>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用 <strong>brew</strong> 安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>正常情况下执行完此命令后是看不到什么输出的 （实际上已经执行成功了）</p>
-</blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1gk3p0cgqt2j20g7037t9x.jpg" alt="nginxStart.png"></p>
-<p>启动后可通过如下命令控制服务器的状态</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -s signal</span><br></pre></td></tr></table></figure>
-<p><strong>signal</strong>的值可能如下</p>
-<ul>
-<li>stop — fast shutdown</li>
-<li>quit — graceful shutdown</li>
-<li>reload — reloading the configuration file</li>
-<li>reopen — reopening the log files</li>
-</ul>
-<blockquote>
-<p>使用 quit 参数会在主线程处理完当前请求后停止 nginx 线程</p>
-</blockquote>
-<p>每次修改完配置文件后需要重新执行 reload 命令</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><strong>nginx</strong>配置部分是重中之重</p>
-<p>这里举一个例子，下面的配置了服务器的 监听端口，重定向位置，代理服务</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">8089</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  localhost;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   html/web-mobile;                <span class="comment">#入口目录</span></span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /api &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://192.168.0.235:8091;  <span class="comment">#代理的目标服务器</span></span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><ul>
-<li><strong>nginx</strong> 有一个主线程和若干个工作线程</li>
-</ul>
-<h2 id="about"><a href="#about" class="headerlink" title="about"></a>about</h2><ul>
-<li><a href="https://nginx.org/en/docs/beginners_guide.html" target="_blank" rel="noopener">beginner’s guide</a></li>
-<li><a href="https://blog.imkasen.com/nginx-beginner-guide-zh.html" target="_blank" rel="noopener">beginner’s guide 翻译</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>nginx</category>
-      </categories>
-      <tags>
-        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -1803,6 +1816,16 @@ queryLoans(query:any):Promise&lt;{count:number,items:Loan[]}&gt;{
       </tags>
   </entry>
   <entry>
+    <title>手写一个Promise</title>
+    <url>/2020/08/19/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAPromise/</url>
+    <content><![CDATA[<p>尝试实现一个符合规范的 promise，含大量注释和新得～</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; count &#125; = <span class="built_in">require</span>(<span class="string">'console'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promisePractice = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> resolve(<span class="number">12</span>)</span><br><span class="line">  &#125;, <span class="number">4000</span>)</span><br><span class="line">&#125;)</span><br><span class="line">promisePractice</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">  &#125;)</span><br><span class="line">  .finally(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Promise</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 区分 resolve() 和 reject() 方法传入的值是 promise 和 then() 方法的返回值 是 promise 的情况</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PENDING = <span class="string">'PENDING'</span></span><br><span class="line"><span class="keyword">const</span> FULLFILLED = <span class="string">'FULLFILLED'</span></span><br><span class="line"><span class="keyword">const</span> REJECTED = <span class="string">'REJECTED'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromiseClass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fun) &#123;</span><br><span class="line">    <span class="comment">// 状态初始化</span></span><br><span class="line">    <span class="keyword">this</span>._status = PENDING</span><br><span class="line">    <span class="comment">// value</span></span><br><span class="line">    <span class="keyword">this</span>._value = <span class="literal">undefined</span></span><br><span class="line">    <span class="comment">// 添加成功回调函数队列</span></span><br><span class="line">    <span class="keyword">this</span>._fullfilledQueues = []</span><br><span class="line">    <span class="comment">// 添加失败回调函数队列</span></span><br><span class="line">    <span class="keyword">this</span>._rejectedQueues = []</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> v !== <span class="string">'function'</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'must accept a function as a parameter'</span>)</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      fun(<span class="keyword">this</span>._resolve.bind(<span class="keyword">this</span>), <span class="keyword">this</span>._reject.bind(<span class="keyword">this</span>))</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="keyword">this</span>._reject(error)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  _resolve(val) &#123;</span><br><span class="line">    <span class="keyword">const</span> run = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>._status !== PENDING) <span class="keyword">return</span></span><br><span class="line">      <span class="comment">// 依次执行成功队列中的函数，并清空队列</span></span><br><span class="line">      <span class="keyword">const</span> runFullfilled = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> cb</span><br><span class="line">        <span class="keyword">while</span> ((cb = <span class="keyword">this</span>._fullfilledQueues.shift())) &#123;</span><br><span class="line">          cb(val)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 依次执行失败队列中的函数，并清空队列</span></span><br><span class="line">      <span class="keyword">const</span> runrejected = <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> cb</span><br><span class="line">        <span class="keyword">while</span> ((cb = <span class="keyword">this</span>._rejectedQueues.shift())) &#123;</span><br><span class="line">          cb(error)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (val <span class="keyword">instanceof</span> PromiseClass) &#123;</span><br><span class="line">        val.then(</span><br><span class="line">          (value) =&gt; &#123;</span><br><span class="line">            <span class="keyword">this</span>._value = value</span><br><span class="line">            <span class="keyword">this</span>._status = FULLFILLED</span><br><span class="line">            runFullfilled(value)</span><br><span class="line">          &#125;,</span><br><span class="line">          (err) =&gt; &#123;</span><br><span class="line">            <span class="keyword">this</span>._value = err</span><br><span class="line">            <span class="keyword">this</span>._status = REJECTED</span><br><span class="line">            runrejected(err)</span><br><span class="line">          &#125;</span><br><span class="line">        )</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>._value = val</span><br><span class="line">        <span class="keyword">this</span>._status = FULLFILLED</span><br><span class="line">        runFullfilled(val)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// setTimeout(run,0)</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> run(), <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  _reject(err) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._status !== PENDING) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._status = REJECTED</span><br><span class="line">    <span class="keyword">this</span>._value = err</span><br><span class="line">    <span class="keyword">const</span> run = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> cb</span><br><span class="line">      <span class="keyword">while</span> ((cb = <span class="keyword">this</span>._rejectedQueues.shift())) &#123;</span><br><span class="line">        cb(err)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// setTimeout(run,0)</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> run(), <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// then 方法必定返回一个 promise</span></span><br><span class="line">  then(onFullfilled, onRejected) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; _status, _value &#125; = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PromiseClass(<span class="function">(<span class="params">onFullfilledNext, onRejectedNext</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 封装成功时的回调函数</span></span><br><span class="line">      <span class="keyword">let</span> fullfilled = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (<span class="keyword">typeof</span> onFullfilled !== <span class="string">'function'</span>) &#123;</span><br><span class="line">            onFullfilledNext(value)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> res = onFullfilled(value)</span><br><span class="line">            <span class="keyword">if</span> (res <span class="keyword">instanceof</span> PromiseClass) &#123;</span><br><span class="line">              <span class="comment">// 如果当前回调函数返回MyPromise对象，必须等待其状态改变后在执行下一个回调</span></span><br><span class="line">              res.then(onFullfilledNext, onRejectedNext)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="comment">// 否则会将返回结果直接作为参数，传入下一个then的Fulfilled回调函数，并立即执行下一个then的Fulfilled回调函数</span></span><br><span class="line">              onFullfilledNext(res)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">          onRejectedNext(e)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 封装失败时的回调函数</span></span><br><span class="line">      <span class="keyword">let</span> rejected = <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (<span class="keyword">typeof</span> onRejected !== <span class="string">'function'</span>) &#123;</span><br><span class="line">            onRejectedNext(err)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> res = onRejected(err)</span><br><span class="line">            <span class="keyword">if</span> (res <span class="keyword">instanceof</span> PromiseClass) &#123;</span><br><span class="line">              <span class="comment">// 如果当前回调函数返回Promise对象，必须等待其状态改变后在执行下一个回调</span></span><br><span class="line">              res.then(onFullfilledNext, onRejectedNext)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="comment">// 否则会将返回结果直接作为参数，传入下一个then的rejected回调函数，并立即执行下一个then的rejected回调函数</span></span><br><span class="line">              onRejectedNext(res)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">          onRejectedNext(e)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">switch</span> (_status) &#123;</span><br><span class="line">        <span class="keyword">case</span> PENDING:</span><br><span class="line">          <span class="keyword">this</span>._fullfilledQueues.push(onFullfilled)</span><br><span class="line">          <span class="keyword">this</span>._rejectedQueues.push(onRejected)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> FULLFILLED:</span><br><span class="line">          fullfilled(_value)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> REJECTED:</span><br><span class="line">          rejected(_value)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">catch</span>(reject) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.then(<span class="literal">null</span>, reject)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> resolve(val) &#123;</span><br><span class="line">    <span class="keyword">if</span> (val <span class="keyword">instanceof</span> PromiseClass) &#123;</span><br><span class="line">      <span class="keyword">return</span> val</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> PromiseClass(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">        resolve(val)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> reject(err) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PromiseClass(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      reject(err)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> all(list) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PromiseClass(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> values = []</span><br><span class="line">      count = <span class="number">0</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> [index, promise] <span class="keyword">of</span> list.entires()) &#123;</span><br><span class="line">        <span class="comment">// 确保数组中的各项是 PromiseClass的实例，先调用 PromiseClass.resolve</span></span><br><span class="line">        <span class="keyword">this</span>.resolve(promise).then(</span><br><span class="line">          (res) =&gt; &#123;</span><br><span class="line">            values[index] = res</span><br><span class="line">            count++</span><br><span class="line">            <span class="comment">// 所有状态都为 fullfilled 时返回的PromiseClass状态变成 fullfilled</span></span><br><span class="line">            <span class="keyword">if</span> (count === list.length) resolve(values)</span><br><span class="line">          &#125;,</span><br><span class="line">          (err) =&gt; &#123;</span><br><span class="line">            <span class="comment">// 有一个被rejected时返回的MyPromise状态就变成rejected</span></span><br><span class="line">            reject(err)</span><br><span class="line">          &#125;</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> race(list) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PromiseClass(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> p <span class="keyword">of</span> list) &#123;</span><br><span class="line">        <span class="keyword">this</span>.resolve(p).then(</span><br><span class="line">          (res) =&gt; &#123;</span><br><span class="line">            resolve(res)</span><br><span class="line">          &#125;,</span><br><span class="line">          (err) =&gt; &#123;</span><br><span class="line">            reject(err)</span><br><span class="line">          &#125;</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">finally</span>(cb) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.then(</span><br><span class="line">      (value) =&gt; PromiseClass.resolve(cb()).then(<span class="function"><span class="params">()</span> =&gt;</span> value),</span><br><span class="line">      (reason) =&gt;</span><br><span class="line">        PromiseClass.resolve(cb()).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">throw</span> reason</span><br><span class="line">        &#125;)</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>promise</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>账户系统前端小规范</title>
     <url>/2017/01/10/%E8%B4%A6%E6%88%B7%E7%B3%BB%E7%BB%9F%E5%89%8D%E7%AB%AF%E5%B0%8F%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<p>为了后来的开发维护方便，在此写下账户系统前端部分的概述，包括所用框架，依赖，管理工具，命名规范，项目结构等，后面有时间也会总结下前端开发的规范。</p>
@@ -1914,45 +1937,6 @@ var modalController =[&quot;dev1&quot;,&quot;dev2&quot;,function(dev1,dev2){
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>配置husky与lint-staged用以实现快照生成前的代码检查和格式化</title>
-    <url>/2020/12/08/%E9%85%8D%E7%BD%AEhusky%E4%B8%8Elint-staged%E7%94%A8%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%BF%AB%E7%85%A7%E7%94%9F%E6%88%90%E5%89%8D%E7%9A%84%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/</url>
-    <content><![CDATA[<p>在之前的项目中，团队为了保持代码风格的统一会统一要求为各自的 vs-code 安装 <strong>prettier</strong> 插件，然后在项目中添加 <strong>.prettierrc</strong> 配置文件，还需要设置 vs-code 中的自动保存时使用 <strong>prettier</strong> 插件 格式化代码。同样为了减少低级的代码错误，也引进了 <strong>eslint</strong> 进行代码的检查。现引入 husky 和 lint-stage 来优化协作流程</p>
-<a id="more"></a>
-<p><strong>vue</strong> 项目在初始化的时候可以直接选择启用 <code>Lint and fix on commit</code>，如下</p>
-<p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1glgvu3ivx9j20v00caqf6.jpg" alt="WX20201208-234451@2x.png"></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>先安装 Eslint 和 Prettier </p>
-<blockquote>
-<p>如果原项目是小程序之类的没有 package.json 文件，需要先 <code>npm init</code></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install eslint --save-dev</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install prettier --save-dev</span><br></pre></td></tr></table></figure>
-<p>执行 lint-stage 的安装配置命令，此命令会同时安装并配置 husky </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npx mrm lint-staged</span><br></pre></td></tr></table></figure>
-<p>最终 package.json 文件相关配置如下</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "eslint": "^7.15.0",</span><br><span class="line">    "husky": "^4.3.5",</span><br><span class="line">    "lint-staged": "^10.5.3",</span><br><span class="line">    "prettier": "^2.2.1",</span><br><span class="line">    "stylelint": "^13.8.0",</span><br><span class="line">    "stylelint-config-standard": "^20.0.0"</span><br><span class="line">  &#125;,</span><br><span class="line">  "scripts": &#123;</span><br><span class="line">    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",</span><br><span class="line">    "lint": "npm run lint:js &amp;&amp; npm run lint:style &amp;&amp; npm run lint:prettier",</span><br><span class="line">    "lint:js": "eslint --fix \"**/*.js\"",</span><br><span class="line">    "lint:style": "stylelint --fix \"**/*.wxss\" --syntax css",</span><br><span class="line">    "lint:prettier": "prettier --write \"**/*.(js|wxss|json)\""</span><br><span class="line">  &#125;,</span><br><span class="line">  "husky": &#123;</span><br><span class="line">    "hooks": &#123;</span><br><span class="line">      "pre-commit": "lint-staged"</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  "lint-staged": &#123;</span><br><span class="line">    "*.js": "eslint --fix",</span><br><span class="line">    "*.wxss": "stylelint --fix --syntax css",</span><br><span class="line">    "*.&#123;js,wxss,md&#125;": "prettier --write"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这里同时引入了 stylelint 用来校验 wxss</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>standard</category>
-      </categories>
-      <tags>
-        <tag>standard</tag>
-        <tag>npm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>手写一个Promise</title>
-    <url>/2020/08/19/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAPromise/</url>
-    <content><![CDATA[<p>尝试实现一个符合规范的 promise，含大量注释和新得～</p>
-<a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; count &#125; = <span class="built_in">require</span>(<span class="string">'console'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promisePractice = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> resolve(<span class="number">12</span>)</span><br><span class="line">  &#125;, <span class="number">4000</span>)</span><br><span class="line">&#125;)</span><br><span class="line">promisePractice</span><br><span class="line">  .then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">  &#125;)</span><br><span class="line">  .finally(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Promise</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 区分 resolve() 和 reject() 方法传入的值是 promise 和 then() 方法的返回值 是 promise 的情况</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PENDING = <span class="string">'PENDING'</span></span><br><span class="line"><span class="keyword">const</span> FULLFILLED = <span class="string">'FULLFILLED'</span></span><br><span class="line"><span class="keyword">const</span> REJECTED = <span class="string">'REJECTED'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromiseClass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fun) &#123;</span><br><span class="line">    <span class="comment">// 状态初始化</span></span><br><span class="line">    <span class="keyword">this</span>._status = PENDING</span><br><span class="line">    <span class="comment">// value</span></span><br><span class="line">    <span class="keyword">this</span>._value = <span class="literal">undefined</span></span><br><span class="line">    <span class="comment">// 添加成功回调函数队列</span></span><br><span class="line">    <span class="keyword">this</span>._fullfilledQueues = []</span><br><span class="line">    <span class="comment">// 添加失败回调函数队列</span></span><br><span class="line">    <span class="keyword">this</span>._rejectedQueues = []</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> v !== <span class="string">'function'</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'must accept a function as a parameter'</span>)</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      fun(<span class="keyword">this</span>._resolve.bind(<span class="keyword">this</span>), <span class="keyword">this</span>._reject.bind(<span class="keyword">this</span>))</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="keyword">this</span>._reject(error)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  _resolve(val) &#123;</span><br><span class="line">    <span class="keyword">const</span> run = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>._status !== PENDING) <span class="keyword">return</span></span><br><span class="line">      <span class="comment">// 依次执行成功队列中的函数，并清空队列</span></span><br><span class="line">      <span class="keyword">const</span> runFullfilled = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> cb</span><br><span class="line">        <span class="keyword">while</span> ((cb = <span class="keyword">this</span>._fullfilledQueues.shift())) &#123;</span><br><span class="line">          cb(val)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 依次执行失败队列中的函数，并清空队列</span></span><br><span class="line">      <span class="keyword">const</span> runrejected = <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> cb</span><br><span class="line">        <span class="keyword">while</span> ((cb = <span class="keyword">this</span>._rejectedQueues.shift())) &#123;</span><br><span class="line">          cb(error)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (val <span class="keyword">instanceof</span> PromiseClass) &#123;</span><br><span class="line">        val.then(</span><br><span class="line">          (value) =&gt; &#123;</span><br><span class="line">            <span class="keyword">this</span>._value = value</span><br><span class="line">            <span class="keyword">this</span>._status = FULLFILLED</span><br><span class="line">            runFullfilled(value)</span><br><span class="line">          &#125;,</span><br><span class="line">          (err) =&gt; &#123;</span><br><span class="line">            <span class="keyword">this</span>._value = err</span><br><span class="line">            <span class="keyword">this</span>._status = REJECTED</span><br><span class="line">            runrejected(err)</span><br><span class="line">          &#125;</span><br><span class="line">        )</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>._value = val</span><br><span class="line">        <span class="keyword">this</span>._status = FULLFILLED</span><br><span class="line">        runFullfilled(val)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// setTimeout(run,0)</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> run(), <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  _reject(err) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._status !== PENDING) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._status = REJECTED</span><br><span class="line">    <span class="keyword">this</span>._value = err</span><br><span class="line">    <span class="keyword">const</span> run = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> cb</span><br><span class="line">      <span class="keyword">while</span> ((cb = <span class="keyword">this</span>._rejectedQueues.shift())) &#123;</span><br><span class="line">        cb(err)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// setTimeout(run,0)</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> run(), <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// then 方法必定返回一个 promise</span></span><br><span class="line">  then(onFullfilled, onRejected) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; _status, _value &#125; = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PromiseClass(<span class="function">(<span class="params">onFullfilledNext, onRejectedNext</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 封装成功时的回调函数</span></span><br><span class="line">      <span class="keyword">let</span> fullfilled = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (<span class="keyword">typeof</span> onFullfilled !== <span class="string">'function'</span>) &#123;</span><br><span class="line">            onFullfilledNext(value)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> res = onFullfilled(value)</span><br><span class="line">            <span class="keyword">if</span> (res <span class="keyword">instanceof</span> PromiseClass) &#123;</span><br><span class="line">              <span class="comment">// 如果当前回调函数返回MyPromise对象，必须等待其状态改变后在执行下一个回调</span></span><br><span class="line">              res.then(onFullfilledNext, onRejectedNext)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="comment">// 否则会将返回结果直接作为参数，传入下一个then的Fulfilled回调函数，并立即执行下一个then的Fulfilled回调函数</span></span><br><span class="line">              onFullfilledNext(res)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">          onRejectedNext(e)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 封装失败时的回调函数</span></span><br><span class="line">      <span class="keyword">let</span> rejected = <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (<span class="keyword">typeof</span> onRejected !== <span class="string">'function'</span>) &#123;</span><br><span class="line">            onRejectedNext(err)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> res = onRejected(err)</span><br><span class="line">            <span class="keyword">if</span> (res <span class="keyword">instanceof</span> PromiseClass) &#123;</span><br><span class="line">              <span class="comment">// 如果当前回调函数返回Promise对象，必须等待其状态改变后在执行下一个回调</span></span><br><span class="line">              res.then(onFullfilledNext, onRejectedNext)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="comment">// 否则会将返回结果直接作为参数，传入下一个then的rejected回调函数，并立即执行下一个then的rejected回调函数</span></span><br><span class="line">              onRejectedNext(res)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">          onRejectedNext(e)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">switch</span> (_status) &#123;</span><br><span class="line">        <span class="keyword">case</span> PENDING:</span><br><span class="line">          <span class="keyword">this</span>._fullfilledQueues.push(onFullfilled)</span><br><span class="line">          <span class="keyword">this</span>._rejectedQueues.push(onRejected)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> FULLFILLED:</span><br><span class="line">          fullfilled(_value)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> REJECTED:</span><br><span class="line">          rejected(_value)</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">catch</span>(reject) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.then(<span class="literal">null</span>, reject)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> resolve(val) &#123;</span><br><span class="line">    <span class="keyword">if</span> (val <span class="keyword">instanceof</span> PromiseClass) &#123;</span><br><span class="line">      <span class="keyword">return</span> val</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> PromiseClass(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">        resolve(val)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> reject(err) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PromiseClass(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      reject(err)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> all(list) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PromiseClass(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> values = []</span><br><span class="line">      count = <span class="number">0</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> [index, promise] <span class="keyword">of</span> list.entires()) &#123;</span><br><span class="line">        <span class="comment">// 确保数组中的各项是 PromiseClass的实例，先调用 PromiseClass.resolve</span></span><br><span class="line">        <span class="keyword">this</span>.resolve(promise).then(</span><br><span class="line">          (res) =&gt; &#123;</span><br><span class="line">            values[index] = res</span><br><span class="line">            count++</span><br><span class="line">            <span class="comment">// 所有状态都为 fullfilled 时返回的PromiseClass状态变成 fullfilled</span></span><br><span class="line">            <span class="keyword">if</span> (count === list.length) resolve(values)</span><br><span class="line">          &#125;,</span><br><span class="line">          (err) =&gt; &#123;</span><br><span class="line">            <span class="comment">// 有一个被rejected时返回的MyPromise状态就变成rejected</span></span><br><span class="line">            reject(err)</span><br><span class="line">          &#125;</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> race(list) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PromiseClass(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> p <span class="keyword">of</span> list) &#123;</span><br><span class="line">        <span class="keyword">this</span>.resolve(p).then(</span><br><span class="line">          (res) =&gt; &#123;</span><br><span class="line">            resolve(res)</span><br><span class="line">          &#125;,</span><br><span class="line">          (err) =&gt; &#123;</span><br><span class="line">            reject(err)</span><br><span class="line">          &#125;</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">finally</span>(cb) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.then(</span><br><span class="line">      (value) =&gt; PromiseClass.resolve(cb()).then(<span class="function"><span class="params">()</span> =&gt;</span> value),</span><br><span class="line">      (reason) =&gt;</span><br><span class="line">        PromiseClass.resolve(cb()).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">throw</span> reason</span><br><span class="line">        &#125;)</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>promise</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>译-8个有用的scss最佳实践</title>
     <url>/2020/08/19/%E8%AF%91-8%E4%B8%AA%E6%9C%89%E7%94%A8%E7%9A%84scss%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</url>
     <content><![CDATA[<blockquote>
@@ -2027,6 +2011,41 @@ var modalController =[&quot;dev1&quot;,&quot;dev2&quot;,function(dev1,dev2){
         <tag>规范</tag>
         <tag>译文</tag>
         <tag>scss</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>配置husky与lint-staged用以实现快照生成前的代码检查和格式化</title>
+    <url>/2020/12/08/%E9%85%8D%E7%BD%AEhusky%E4%B8%8Elint-staged%E7%94%A8%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%BF%AB%E7%85%A7%E7%94%9F%E6%88%90%E5%89%8D%E7%9A%84%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/</url>
+    <content><![CDATA[<p>在之前的项目中，团队为了保持代码风格的统一会统一要求为各自的 vs-code 安装 <strong>prettier</strong> 插件，然后在项目中添加 <strong>.prettierrc</strong> 配置文件，还需要设置 vs-code 中的自动保存时使用 <strong>prettier</strong> 插件 格式化代码。同样为了减少低级的代码错误，也引进了 <strong>eslint</strong> 进行代码的检查。现引入 husky 和 lint-stage 来优化协作流程</p>
+<a id="more"></a>
+<p><strong>vue</strong> 项目在初始化的时候可以直接选择启用 <code>Lint and fix on commit</code>，如下</p>
+<p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1glgvu3ivx9j20v00caqf6.jpg" alt="WX20201208-234451@2x.png"></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>先安装 Eslint 和 Prettier </p>
+<blockquote>
+<p>如果原项目是小程序之类的没有 package.json 文件，需要先 <code>npm init</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install eslint --save-dev</span><br></pre></td></tr></table></figure>
+<p>配置下 eslint，新增 .eslintrc.js 和 .eslintignore 文件，配置如下</p>
+<blockquote>
+<p>如果需要支持 typescript，还需 <code>npm i -d @typescript-eslint/parser @typescript-eslint/eslint-plugin</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// eslint.js  </span></span><br><span class="line"><span class="comment">// for ts //考虑到小程序初始化ts时已有的ts代码通过不了此配置下的校验，所以使用 ts 版本的 precommit 要慎重</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  parser: <span class="string">'@typescript-eslint/parser'</span>, <span class="comment">//定义ESLint的解析器</span></span><br><span class="line">  extends: [<span class="string">'plugin:@typescript-eslint/recommended'</span>], <span class="comment">//定义文件继承的子规范</span></span><br><span class="line">  plugins: [<span class="string">'@typescript-eslint'</span>], <span class="comment">//定义了该eslint文件所依赖的插件</span></span><br><span class="line">  env: &#123;</span><br><span class="line">    <span class="comment">//指定代码的运行环境</span></span><br><span class="line">    browser: <span class="literal">true</span>,</span><br><span class="line">    node: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  root: <span class="literal">true</span>,</span><br><span class="line">  env: &#123;</span><br><span class="line">    browser: <span class="literal">true</span>,</span><br><span class="line">    commonjs: <span class="literal">true</span>,</span><br><span class="line">    es2021: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  extends: <span class="string">'eslint:recommended'</span>,</span><br><span class="line">  <span class="comment">//全局变量</span></span><br><span class="line">  globals: &#123;</span><br><span class="line">    __DEV__: <span class="literal">true</span>,</span><br><span class="line">    __WECHAT__: <span class="literal">true</span>,</span><br><span class="line">    __ALIPAY__: <span class="literal">true</span>,</span><br><span class="line">    App: <span class="literal">true</span>,</span><br><span class="line">    Page: <span class="literal">true</span>,</span><br><span class="line">    Component: <span class="literal">true</span>,</span><br><span class="line">    Behavior: <span class="literal">true</span>,</span><br><span class="line">    wx: <span class="literal">true</span>,</span><br><span class="line">    getApp: <span class="literal">true</span>,</span><br><span class="line">    getCurrentPages: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  rules: &#123;</span><br><span class="line">    <span class="string">'no-debugger'</span>: <span class="string">'off'</span>,</span><br><span class="line">    <span class="string">'no-unused-vars'</span>: <span class="string">'off'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install prettier --save-dev</span><br></pre></td></tr></table></figure>
+<p>新增 prettierrc.js 文件，配置如下<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  eslintIntegration: <span class="literal">true</span>,</span><br><span class="line">  stylelintIntegration: <span class="literal">true</span>,</span><br><span class="line">  tabWidth: <span class="number">2</span>,</span><br><span class="line">  singleQuote: <span class="literal">true</span>,</span><br><span class="line">  semi: <span class="literal">false</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>执行 lint-stage 的安装配置命令，此命令会同时安装并配置 husky </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npx mrm lint-staged</span><br></pre></td></tr></table></figure>
+<p>最终 package.json 文件相关配置如下</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">"devDependencies": &#123;</span><br><span class="line">    "eslint": "^7.15.0",</span><br><span class="line">    "husky": "^4.3.5",</span><br><span class="line">    "lint-staged": "^10.5.3",</span><br><span class="line">    "prettier": "^2.2.1",</span><br><span class="line">    "stylelint": "^13.8.0",</span><br><span class="line">    "stylelint-config-standard": "^20.0.0"</span><br><span class="line">  &#125;,</span><br><span class="line">  "scripts": &#123;</span><br><span class="line">    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",</span><br><span class="line">    "lint": "npm run lint:js &amp;&amp; npm run lint:style &amp;&amp; npm run lint:prettier",</span><br><span class="line">    "lint:js": "eslint --fix \"**/*.js\"",</span><br><span class="line">    "lint:style": "stylelint --fix \"**/*.wxss\" --syntax css",</span><br><span class="line">    "lint:prettier": "prettier --write \"**/*.(js|wxss|json)\""</span><br><span class="line">  &#125;,</span><br><span class="line">  "husky": &#123;</span><br><span class="line">    "hooks": &#123;</span><br><span class="line">      "pre-commit": "lint-staged"</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  "lint-staged": &#123;</span><br><span class="line">    "*.js": "eslint --fix",</span><br><span class="line">    "*.wxss": "stylelint --fix --syntax css",</span><br><span class="line">    "*.&#123;js,wxss,md&#125;": "prettier --write"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里同时引入了 stylelint 用来校验 wxss</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>standard</category>
+      </categories>
+      <tags>
+        <tag>standard</tag>
+        <tag>npm</tag>
       </tags>
   </entry>
   <entry>

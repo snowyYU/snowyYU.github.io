@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-
+<meta name="referrer" content="no-referrer">
 
 <meta http-equiv="Cache-Control" content="no-transform">
 <meta http-equiv="Cache-Control" content="no-siteapp">
@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="snowyYU">
 <meta property="og:description" content="主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-30T08:06:34.452Z">
+<meta property="og:updated_time" content="2020-12-21T13:08:36.442Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB 小记">
 <meta name="twitter:description" content="主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
@@ -443,8 +443,16 @@
 </code></pre><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>新开一个命令行工具，输入</p>
 <pre><code>mongo
 </code></pre><p>连接数据库，可以输入查询语句了</p>
+<blockquote>
+<p>自己的阿里云使用了 docker 版本的 mongodb，所以在这里记录下进入 docker 版本 mongodb 的命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mongotest_mongo_1 mongo <span class="comment"># docker exec -it #容器名 mongo</span></span><br></pre></td></tr></table></figure>
 <h2 id="操作部分"><a href="#操作部分" class="headerlink" title="操作部分"></a>操作部分</h2><p>还能说啥，重中之重，多多练习</p>
-<h2 id="授权，创建，修改，查看用户"><a href="#授权，创建，修改，查看用户" class="headerlink" title="授权，创建，修改，查看用户"></a>授权，创建，修改，查看用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.auth(&apos;user&apos;,&apos;pwd&apos;)</span><br><span class="line">db.createUser(user:&apos;&apos;,pwd:&apos;&apos;,roles:[])</span><br><span class="line">show users // 查看当前数据库用户</span><br><span class="line">db.system.users.find() // 查看所有用户</span><br></pre></td></tr></table></figure>
+<h2 id="用户的授权，创建，修改，查看用户"><a href="#用户的授权，创建，修改，查看用户" class="headerlink" title="用户的授权，创建，修改，查看用户"></a>用户的授权，创建，修改，查看用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择管理员用户</span></span><br><span class="line">use admin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.auth(<span class="string">'user'</span>,<span class="string">'pwd'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(user:<span class="string">''</span>,<span class="built_in">pwd</span>:<span class="string">''</span>,roles:[])</span><br><span class="line"><span class="comment"># 示例 db.createUser(&#123;user:'owner',pwd:'yu321',roles:[&#123;role:'dbOwner',db:'filemanagedb'&#125;]&#125;)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show users <span class="comment"># 查看当前数据库用户</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.system.users.find() // 查看所有用户</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><a href="https://zhuanlan.zhihu.com/p/26215701" target="_blank" rel="noopener">详情参考此文</a></p>
 </blockquote>
@@ -578,7 +586,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -642,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">2.1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接"><span class="nav-number">2.2.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作部分"><span class="nav-number">2.3.</span> <span class="nav-text">操作部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授权，创建，修改，查看用户"><span class="nav-number">2.4.</span> <span class="nav-text">授权，创建，修改，查看用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看"><span class="nav-number">2.4.1.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.4.2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">2.4.3.</span> <span class="nav-text">插入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">2.1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接"><span class="nav-number">2.2.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作部分"><span class="nav-number">2.3.</span> <span class="nav-text">操作部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户的授权，创建，修改，查看用户"><span class="nav-number">2.4.</span> <span class="nav-text">用户的授权，创建，修改，查看用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看"><span class="nav-number">2.4.1.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.4.2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">2.4.3.</span> <span class="nav-text">插入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -663,7 +671,7 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
