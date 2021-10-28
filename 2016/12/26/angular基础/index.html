@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"snowyyu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="接触angular已经近半年了，一直在用别人的指令改改，遇到了很多自己解决不了的坑，其实自己对angular的各部分了解并不多，现在回头来弄清其中的用法原理，打好自己的基础。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular基础">
+<meta property="og:url" content="https://snowyyu.github.io/2016/12/26/angular%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="snowyYU">
+<meta property="og:description" content="接触angular已经近半年了，一直在用别人的指令改改，遇到了很多自己解决不了的坑，其实自己对angular的各部分了解并不多，现在回头来弄清其中的用法原理，打好自己的基础。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-12-26T07:39:48.000Z">
+<meta property="article:modified_time" content="2017-05-07T06:15:55.000Z">
+<meta property="article:author" content="snowyYU">
+<meta property="article:tag" content="angular">
+<meta property="article:tag" content="start">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://snowyyu.github.io/2016/12/26/angular%E5%9F%BA%E7%A1%80/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://snowyyu.github.io/2016/12/26/angular%E5%9F%BA%E7%A1%80/","path":"2016/12/26/angular基础/","title":"angular基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>angular基础 | snowyYU</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="snowyYU" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">snowyYU</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">dream passionately</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tisps"><span class="nav-number">1.</span> <span class="nav-text">tisps</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%9C%89%E4%B8%89%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="nav-number">2.1.</span> <span class="nav-text">指令有三个阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%90%AB%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">配置含义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#replace"><span class="nav-number">2.2.1.</span> <span class="nav-text">replace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transclude"><span class="nav-number">2.2.2.</span> <span class="nav-text">transclude</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scope"><span class="nav-number">2.2.3.</span> <span class="nav-text">scope</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">2.3.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.</span> <span class="nav-text">服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#angular%E6%A0%B8%E5%BF%83"><span class="nav-number">4.</span> <span class="nav-text">angular核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#angular%E5%8E%9F%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">angular原理</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="snowyYU"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">snowyYU</p>
+  <div class="site-description" itemprop="description">dream passionately</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyYU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyYU" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:snowy.yu@foxmail.com" title="E-Mail → mailto:snowy.yu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2016/12/26/angular%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          angular基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-26 15:39:48" itemprop="dateCreated datePublished" datetime="2016-12-26T15:39:48+08:00">2016-12-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2017-05-07 14:15:55" itemprop="dateModified" datetime="2017-05-07T14:15:55+08:00">2017-05-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/angular/" itemprop="url" rel="index"><span itemprop="name">angular</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>接触angular已经近半年了，一直在用别人的指令改改，遇到了很多自己解决不了的坑，其实自己对angular的各部分了解并不多，现在回头来弄清其中的用法原理，打好自己的基础。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>准备从如下几个部分展开，每个部分放出参考文章链接以及代码仓库地址</p>
+</blockquote>
+<h1 id="tisps"><a href="#tisps" class="headerlink" title="tisps"></a>tisps</h1><p>1.module.run()方法在注射器加载完所有模块是执行一次</p>
+<h1 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/snowyYU/angularPractice">git</a></p>
+</blockquote>
+<blockquote>
+<p>先记几个核心问题<br>1.指令的运行原理：comile与link(操作元素，添加CSS样式，绑定事件)<br>2.指令与控制器之间的交互<br>3.指令间的交互<br>4.scope的类型与独立scope<br>5.scope的绑定策略<br>6.angularjs内置指令(63)<br>7.Expander,Accordion<br>8.directive思想的起源和原理概述</p>
+</blockquote>
+<h2 id="指令有三个阶段"><a href="#指令有三个阶段" class="headerlink" title="指令有三个阶段"></a>指令有三个阶段</h2><blockquote>
+<p>1.<code>加载阶段</code>&gt;&gt;&gt;2.<code>编译阶段</code>&gt;&gt;&gt;3.<code>链接阶段</code></p>
+</blockquote>
+<p>1.加载angular.js，找到ng-app指令，确定应用的边界</p>
+<p>2.遍历DOM，找到所有指令；根据指令代码中的temlate,replace,transclue转换DOM结构；如果存在compile函数则调用；</p>
+<p>3.对每一条指令运行link函数；link函数一般用来操作DOM，绑定事件监听器；</p>
+<blockquote>
+<p>compile函数用来对模板自身进行转换，而link函数负责在模型和视图之间进行动态关联；<br>作用域在链接阶段才会被绑定到编译后的link函数上；<br>compile函数仅仅在编译阶段运行一次，而对于指令的每个实例，link函数都会执行一次；<br>compile可以返回preLink和postLink函数，而link函数只会返回postLink函数；<br>如果需要修改DOM结构，应该在postLink中来做这件事，而如果在preLink中做这件事会导致错误；<br>大多数时候我们只要写link函数即可  </p>
+</blockquote>
+<h2 id="配置含义"><a href="#配置含义" class="headerlink" title="配置含义"></a>配置含义</h2><p>练习指令时偶尔发现安装的sublime插件自动补全，如下格式</p>
+<pre><code>app.directive(&#39;&#39;, [&#39;&#39;, function()&#123;
+// Runs during compile
+return &#123;
+    // name: &#39;&#39;,
+    // priority: 1,
+    // terminal: true,
+    // scope: &#123;&#125;, // &#123;&#125; = isolate, true = child, false/undefined = no change
+    // controller: function($scope, $element, $attrs, $transclude) &#123;&#125;,
+    // require: &#39;ngModel&#39;, // Array = multiple requires, ? = optional, ^ = check parent elements
+    // restrict: &#39;A&#39;, // E = Element, A = Attribute, C = Class, M = Comment
+    // template: &#39;&#39;,
+    // templateUrl: &#39;&#39;,
+    // replace: true,
+    // transclude: true,
+    // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn)&#123; return function linking(scope, elm, attrs)&#123;&#125;&#125;)),
+    link: function($scope, iElm, iAttrs, controller) &#123;
+        
+    &#125;
+&#125;;
+&#125;]);
+</code></pre>
+<p>对各个属性都有注释，做个参考吧</p>
+<h3 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h3><p>replace 属性为 true 时，指令标签会被 templete中的内容替换掉，如</p>
+<pre><code>var appModule = angular.module(&#39;app&#39;, []);
+appModule.directive(&#39;hello&#39;, function() &#123;
+return &#123;
+    restrict: &#39;E&#39;,
+    template: &#39;&lt;div&gt;Hi there&lt;/div&gt;&#39;,
+    replace: true
+&#125;;
+&#125;);
+</code></pre>
+<p>打开浏览器调试工具只能看到<code>&lt;div&gt;Hi there&lt;/div&gt;</code></p>
+<h3 id="transclude"><a href="#transclude" class="headerlink" title="transclude"></a>transclude</h3><p>值为true时保留指令包裹的内容</p>
+<h3 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h3><p>作用域，用来隔离指令与所在控制器间的作用域、隔离指令与指令间的作用域</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>1.学习例子参考大漠老师的<a target="_blank" rel="noopener" href="http://damoqiongqiu.iteye.com/blog/1917971">5个实例详解指令机制</a></p>
+<p>2.<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004586636">angular指令的transclude选项以及ng-transclude指令</a></p>
+<p>3.<a target="_blank" rel="noopener" href="http://www.tuicool.com/articles/aAveEj">directive和controller通信</a></p>
+<h1 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h1><h1 id="angular核心"><a href="#angular核心" class="headerlink" title="angular核心"></a>angular核心</h1><h1 id="angular原理"><a href="#angular原理" class="headerlink" title="angular原理"></a>angular原理</h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/angular/" rel="tag"># angular</a>
+              <a href="/tags/start/" rel="tag"># start</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/12/26/angular%E6%9D%82%E8%B0%88/" rel="prev" title="angular杂谈">
+                  <i class="fa fa-chevron-left"></i> angular杂谈
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/01/10/2016%E5%B0%8F%E5%B0%8F%E7%BB%93/" rel="next" title="2016小小结">
+                  2016小小结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snowyYU</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

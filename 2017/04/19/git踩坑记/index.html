@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"snowyyu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git踩坑记">
+<meta property="og:url" content="https://snowyyu.github.io/2017/04/19/git%E8%B8%A9%E5%9D%91%E8%AE%B0/index.html">
+<meta property="og:site_name" content="snowyYU">
+<meta property="og:description" content="总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。">
+<meta property="og:locale">
+<meta property="og:image" content="http://i.imgur.com/QJamb2Z.jpg">
+<meta property="article:published_time" content="2017-04-19T10:51:39.000Z">
+<meta property="article:modified_time" content="2020-11-05T10:10:10.399Z">
+<meta property="article:author" content="snowyYU">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://i.imgur.com/QJamb2Z.jpg">
+
+
+<link rel="canonical" href="https://snowyyu.github.io/2017/04/19/git%E8%B8%A9%E5%9D%91%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://snowyyu.github.io/2017/04/19/git%E8%B8%A9%E5%9D%91%E8%AE%B0/","path":"2017/04/19/git踩坑记/","title":"git踩坑记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>git踩坑记 | snowyYU</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="snowyYU" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">snowyYU</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">dream passionately</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E6%96%87%E4%BB%B6%E7%A7%BB%E9%99%A4%E7%9B%91%E5%90%AC%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">将文件移除监听队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84-git-%E5%88%A0%E9%99%A4"><span class="nav-number">2.</span> <span class="nav-text">常见的 git 删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text">新增远程仓库地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#push%EF%BC%8Cpush%EF%BC%8Cpush"><span class="nav-number">4.</span> <span class="nav-text">push，push，push</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%93%E4%B8%8A%E6%A0%87%E7%AD%BE-tag"><span class="nav-number">5.</span> <span class="nav-text">打上标签 tag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#log-%E5%92%8C-reflog-%E5%91%BD%E4%BB%A4"><span class="nav-number">6.</span> <span class="nav-text">log 和 reflog 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-log"><span class="nav-number">6.1.</span> <span class="nav-text">git log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-reflog"><span class="nav-number">6.2.</span> <span class="nav-text">git reflog</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#merge-%E6%8A%A5%E9%94%99"><span class="nav-number">7.</span> <span class="nav-text">merge 报错</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%92%A4%E9%94%80%E5%90%88%E5%B9%B6"><span class="nav-number">7.1.</span> <span class="nav-text">撤销合并</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%9B%B4%E6%94%B9%E5%A4%84"><span class="nav-number">8.</span> <span class="nav-text">查看更改处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%92%A4%E9%94%80%E6%9B%B4%E6%94%B9"><span class="nav-number">9.</span> <span class="nav-text">撤销更改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="nav-number">9.1.</span> <span class="nav-text">单个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6"><span class="nav-number">9.2.</span> <span class="nav-text">所有文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E9%99%A4%E6%89%80%E6%9C%89%E6%96%B0%E5%A2%9E%E6%9C%AA%E5%8A%A0%E5%85%A5%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E6%96%87%E4%BB%B6-%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">9.3.</span> <span class="nav-text">清除所有新增未加入暂存区的文件&#x2F;文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6-1"><span class="nav-number">9.4.</span> <span class="nav-text">单个文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6-1"><span class="nav-number">9.5.</span> <span class="nav-text">所有文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF-%E5%88%A0%E9%99%A4"><span class="nav-number">10.</span> <span class="nav-text">创建,切换分支 ,删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-rebase"><span class="nav-number">11.</span> <span class="nav-text">git rebase</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-stash"><span class="nav-number">12.</span> <span class="nav-text">git stash</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD"><span class="nav-number">12.1.</span> <span class="nav-text">后续</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%81%87%E5%88%B0-ping-github-com-time-out-%E9%97%AE%E9%A2%98"><span class="nav-number">13.</span> <span class="nav-text">遇到 ping github.com time out 问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">14.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="snowyYU"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">snowyYU</p>
+  <div class="site-description" itemprop="description">dream passionately</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyYU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyYU" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:snowy.yu@foxmail.com" title="E-Mail → mailto:snowy.yu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/04/19/git%E8%B8%A9%E5%9D%91%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git踩坑记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-04-19 18:51:39" itemprop="dateCreated datePublished" datetime="2017-04-19T18:51:39+08:00">2017-04-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-11-05 18:10:10" itemprop="dateModified" datetime="2020-11-05T18:10:10+08:00">2020-11-05</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。</p>
+<span id="more"></span>
+
+<h1 id="将文件移除监听队列"><a href="#将文件移除监听队列" class="headerlink" title="将文件移除监听队列"></a>将文件移除监听队列</h1><p>git 中如果文件已被加入跟踪队列，后续添加相应的.gitignore 参数时其相应的改变仍会被监听，采用如下</p>
+<pre><code>git rm --cached XX/xx.x
+</code></pre>
+<blockquote>
+<p>附上链接<br><a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000000430426">git 忽略已经被提交的文件</a> &gt;<a target="_blank" rel="noopener" href="http://www.ifeegoo.com/git-code-management-dot-gitignore-file-has-no-effect-solution.html">.gitignore 文件无效的解决方法</a></p>
+</blockquote>
+<h1 id="常见的-git-删除"><a href="#常见的-git-删除" class="headerlink" title="常见的 git 删除"></a>常见的 git 删除</h1><pre><code>git rm XXX.xx
+</code></pre>
+<p>如果误删了可采用<code>git checkout</code></p>
+<blockquote>
+<p><code>git checkout</code>其实是用版本库里的版本替换工作区的版本，无论工作区修改还是删除，都可以使用此还原</p>
+</blockquote>
+<h1 id="新增远程仓库地址"><a href="#新增远程仓库地址" class="headerlink" title="新增远程仓库地址"></a>新增远程仓库地址</h1><pre><code>git add remote [&lt;options&gt;] &lt;name&gt; &lt;url&gt;
+//例子
+git add remote origin https://github.com/snowyYU/x.git
+</code></pre>
+<p>name 为远程主机的名字</p>
+<h1 id="push，push，push"><a href="#push，push，push" class="headerlink" title="push，push，push"></a>push，push，push</h1><pre><code>git push -u origin master
+</code></pre>
+<p>这里只想说一下-u 参数，设置了这个之后，pull fetch push 啥的默认连接的为 origin master</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20019419">知乎 git push 的 -u 参数具体适合含义</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --all</span><br></pre></td></tr></table></figure>
+<p>上面命令表示，将所有本地分支都推送到origin主机。如果远程主机的版本比本地版本更新，推送时Git会报错，要求先在本地做<code>git pull</code>合并差异，然后再推送到远程主机。这时，如果你一定要推送，可以使用 <code>–-force </code>选项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --tags</span><br></pre></td></tr></table></figure>
+
+<p><code>git push </code>不会推送标签(tag)，除非使用 <code>-–tags</code> 选项</p>
+<h1 id="打上标签-tag"><a href="#打上标签-tag" class="headerlink" title="打上标签 tag"></a>打上标签 tag</h1><p>主要有两种方法</p>
+<ul>
+<li><code>git tag tagName</code></li>
+<li><code>git tag -a tagName -m &quot;remarks备注&quot;</code></li>
+</ul>
+<p>查看<code>tags</code></p>
+<ul>
+<li><code>git tag</code></li>
+</ul>
+<p>从 tag 处开一个分支</p>
+<p><code>git branch &lt;new-branch&gt; &lt;tag-name&gt;</code> 进行版本的管理</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE">详情参考</a></p>
+</blockquote>
+<h1 id="log-和-reflog-命令"><a href="#log-和-reflog-命令" class="headerlink" title="log 和 reflog 命令"></a>log 和 reflog 命令</h1><h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p>展示所有的 commit</p>
+<h2 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h2><p>展示所有的操作记录，相较 git log ，reflog 命令可以展示 reset 和已删除 commit 的操作</p>
+<h1 id="merge-报错"><a href="#merge-报错" class="headerlink" title="merge 报错"></a>merge 报错</h1><p>今天在 pull 时出现了一个问题，过程是这样的，我新建了远程仓库时顺带初始化了 readme,结果本地 pull 时报错，如下</p>
+<pre><code>fatal: refusing to merge unrelated histories
+</code></pre>
+<p>就是它觉得我两个仓库没啥关联，然后我尝试 push，报错如下</p>
+<pre><code>$ git push -u origin master
+To https://github.com/snowyYU/center-solution.git
+! [rejected]        master -&gt; master (non-fast-forward)
+error: failed to push some refs to &#39;https://github.com/snowyYU/center-solution.git&#39;
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: &#39;git pull ...&#39;) before pushing again.
+hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.
+</code></pre>
+<p>说我本地仓库版本过时啦，叫我先 pull</p>
+<p>没办法，只能强上了，加上参数</p>
+<pre><code>git pull origin master --allow-unrelated-histories
+</code></pre>
+<p>之后会进入 vim 让我输入 commit message，</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories">stackoverflow</a> &gt;<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/eae20fcde419">vim 命令看这里</a></p>
+</blockquote>
+<h2 id="撤销合并"><a href="#撤销合并" class="headerlink" title="撤销合并"></a>撤销合并</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --abort</span><br></pre></td></tr></table></figure>
+
+<p>有时候拉代码，合并，结果整个文件到处是冲突，可以使用此命令撤销到合并前的状态</p>
+<blockquote>
+<p>一般这种情况常见于仓库和本地工作环境有一端代码格式化不同步</p>
+</blockquote>
+<h1 id="查看更改处"><a href="#查看更改处" class="headerlink" title="查看更改处"></a>查看更改处</h1><pre><code>git diff
+</code></pre>
+<p>上图:</p>
+<p><img src="http://i.imgur.com/QJamb2Z.jpg" alt="gitDiff"></p>
+<p>这样只会对比当前工作区和所在分支最新 commit 的改动处，需要对比远程分支，可以看 <a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></p>
+<h1 id="撤销更改"><a href="#撤销更改" class="headerlink" title="撤销更改"></a>撤销更改</h1><p>如果还没有使用 <code>add</code> 命令加入到暂存区，可以</p>
+<h2 id="单个文件"><a href="#单个文件" class="headerlink" title="单个文件"></a>单个文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout --filename</span><br></pre></td></tr></table></figure>
+
+<h2 id="所有文件"><a href="#所有文件" class="headerlink" title="所有文件"></a>所有文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout .</span><br></pre></td></tr></table></figure>
+
+<h2 id="清除所有新增未加入暂存区的文件-文件夹"><a href="#清除所有新增未加入暂存区的文件-文件夹" class="headerlink" title="清除所有新增未加入暂存区的文件/文件夹"></a>清除所有新增未加入暂存区的文件/文件夹</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -xdf</span><br></pre></td></tr></table></figure>
+
+<p>如果已经 <code>add</code> 之后，想要撤销</p>
+<h2 id="单个文件-1"><a href="#单个文件-1" class="headerlink" title="单个文件"></a>单个文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD filename</span><br></pre></td></tr></table></figure>
+
+<h2 id="所有文件-1"><a href="#所有文件-1" class="headerlink" title="所有文件"></a>所有文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD</span><br></pre></td></tr></table></figure>
+
+<p>如果已经 <code>commit</code> 了，想要撤销</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset commit_id  // 撤销后所有的更改会变成 add 之前的状态，git status 之后就是一片红红红</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个 id 是你想要回到的那个节点，可以通过 git log 查看，可以只选前 6 位<br>或者 通过 gitreflog 命令取得</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard commit_id //撤销之后，所做的已经commit的修改将会清除，仍在工作区/暂存区的代码也将会清除！</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建-切换分支-删除"><a href="#创建-切换分支-删除" class="headerlink" title="创建,切换分支 ,删除"></a>创建,切换分支 ,删除</h1><p>今天在看 webpack 官网的指南时候，发现各部分练习的代码挺不一样，又想起之前看 angularjs 时官网给出的 phonecat，他们项目各个构建步骤被创建成一个个 branch，感觉十分方便，所以我仿照试下</p>
+<pre><code>git checkout -b XXX
+</code></pre>
+<p>这个命令相当于</p>
+<pre><code>git branch XXX    //新建XXX分支
+git checkout XXX  //切换到XXX分支
+</code></pre>
+<p>现在就切换到 XXX 分支了，可以在 gitbash 中看到，然后我直接</p>
+<p>git push origin XXX</p>
+<p>其实此时远程仓库中并没有 XXX 分支，执行此命令后，远程仓库会新建 XXX 分支，并 push 成功。</p>
+<pre><code>git branch -D XXX
+</code></pre>
+<p>删除本地的 XXX 分支</p>
+<pre><code>git push origin :XXX
+</code></pre>
+<p>删除远程的 XXX 分支</p>
+<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>自己尝试更新 folk 到自己 github 上仓库时查到的这个命令，先上个链接</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/7244321/how-do-i-update-a-github-forked-repository">How do I update a GitHub forked repository?</a></p>
+</blockquote>
+<p>第一个答案大意就是，</p>
+<ol>
+<li>从自己的 GitHub 上 clone 至本地工作目录</li>
+<li>在本地添加 remote，即从哪 folk 来的(这里先叫 upstream)，</li>
+<li>fetch upstream 上的所有分支</li>
+<li>切换到本地的 master 分支</li>
+<li>将 upstream 上需要同步的分支 rebase</li>
+</ol>
+<p>我觉得 rebase 和 merge 差不多，区别可能是 rebase 不会留下痕迹，merge 需要输入 message 啥的</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/hudashi/article/details/7664631/">git rebase</a></p>
+</blockquote>
+<h1 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h1><p>哈哈，这个命令还挺好玩的，能把当前工作区的更改先搁置，最常见的应用就是突然要去到之前的某个版本打个包。</p>
+<p>使用 <code>git stash pop</code> 取回搁置的更改，继续撸码</p>
+<blockquote>
+<p>如果更改中有 untrack 的文件，需要加上 <code>-u</code> 参数，即 <code>git stash -u</code> 才能一起 stash 起来</p>
+</blockquote>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>针对更新自己 folk 的仓库，官方后来又给出了 web 版本的方案，上面的是需要本地仓库的，先上链接</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/KirstieJane/STEMMRoleModels/wiki/Syncing-your-fork-to-the-original-repository-via-the-browser">www</a></p>
+</blockquote>
+<p>大致就是自己从源向自己 folk 的仓库发起 pull request,然后合并</p>
+<h1 id="遇到-ping-github-com-time-out-问题"><a href="#遇到-ping-github-com-time-out-问题" class="headerlink" title="遇到 ping github.com time out 问题"></a>遇到 ping github.com time out 问题</h1><blockquote>
+<p>可以在网页中正常访问 github，唯独在终端中连接不了 github，也 ping 不通</p>
+</blockquote>
+<p>喵喵喵？查了半天网上说了一堆关于 proxy 代理的问题，结果我连到手机的热点就可以了，所以下次遇到时尝试切换网络环境</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/53601264">如何在 git 中对比当前工作区和远程仓库的区别</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/git/" rel="tag"># git</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/04/19/Angular1-X%E9%A1%B5%E9%9D%A2%E9%97%B4%E4%BC%A0%E5%80%BC/" rel="prev" title="Angular1.X页面间传值">
+                  <i class="fa fa-chevron-left"></i> Angular1.X页面间传值
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/05/05/eslint%E5%88%9D%E6%B6%89/" rel="next" title="eslint初涉">
+                  eslint初涉 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snowyYU</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

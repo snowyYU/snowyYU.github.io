@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"snowyyu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="之前在写angular时有用过ui-grid写过内嵌展开二级表格，怎么说呢，ui-grid很强大，功能挺多的，好像也是angular团队开发的，例子足，文档好(对那些英文阅读能力比较好的人来说)，不过他的有些功能不稳定，其中就包括表格中内嵌表格的实现Expandable grid。 之后在写别的项目时也遇到了相同的需求，这次准备使用datatables，在此记录下过程。 直接上代码: html部分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dataTables内嵌二级表格的实现">
+<meta property="og:url" content="https://snowyyu.github.io/2017/05/23/dataTables%E5%86%85%E5%B5%8C%E4%BA%8C%E7%BA%A7%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="snowyYU">
+<meta property="og:description" content="之前在写angular时有用过ui-grid写过内嵌展开二级表格，怎么说呢，ui-grid很强大，功能挺多的，好像也是angular团队开发的，例子足，文档好(对那些英文阅读能力比较好的人来说)，不过他的有些功能不稳定，其中就包括表格中内嵌表格的实现Expandable grid。 之后在写别的项目时也遇到了相同的需求，这次准备使用datatables，在此记录下过程。 直接上代码: html部分">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-05-23T03:41:08.000Z">
+<meta property="article:modified_time" content="2017-06-13T13:54:39.000Z">
+<meta property="article:author" content="snowyYU">
+<meta property="article:tag" content="插件">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://snowyyu.github.io/2017/05/23/dataTables%E5%86%85%E5%B5%8C%E4%BA%8C%E7%BA%A7%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://snowyyu.github.io/2017/05/23/dataTables%E5%86%85%E5%B5%8C%E4%BA%8C%E7%BA%A7%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/","path":"2017/05/23/dataTables内嵌二级表格的实现/","title":"dataTables内嵌二级表格的实现"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>dataTables内嵌二级表格的实现 | snowyYU</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="snowyYU" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">snowyYU</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">dream passionately</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#html%E9%83%A8%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">html部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#js%E9%83%A8%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">js部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%AB%E7%9A%84%E4%B8%9C%E8%A5%BF"><span class="nav-number">3.</span> <span class="nav-text">别的东西</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E5%88%AB%E5%A4%84%E8%AE%BF%E9%97%AE%E8%8E%B7%E5%BE%97%E7%9A%84json%E6%95%B0%E6%8D%AE"><span class="nav-number">3.1.</span> <span class="nav-text">从别处访问获得的json数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E8%A1%8C%E6%95%B0%E6%8D%AE"><span class="nav-number">3.2.</span> <span class="nav-text">操作行数据</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="snowyYU"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">snowyYU</p>
+  <div class="site-description" itemprop="description">dream passionately</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyYU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyYU" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:snowy.yu@foxmail.com" title="E-Mail → mailto:snowy.yu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/05/23/dataTables%E5%86%85%E5%B5%8C%E4%BA%8C%E7%BA%A7%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          dataTables内嵌二级表格的实现
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-05-23 11:41:08" itemprop="dateCreated datePublished" datetime="2017-05-23T11:41:08+08:00">2017-05-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2017-06-13 21:54:39" itemprop="dateModified" datetime="2017-06-13T21:54:39+08:00">2017-06-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8F%92%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">插件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>之前在写angular时有用过ui-grid写过内嵌展开二级表格，怎么说呢，ui-grid很强大，功能挺多的，好像也是angular团队开发的，例子足，文档好(对那些英文阅读能力比较好的人来说)，不过他的有些功能不稳定，其中就包括表格中内嵌表格的实现<a target="_blank" rel="noopener" href="http://ui-grid.info/docs/#/tutorial/216_expandable_grid">Expandable grid</a>。</p>
+<p>之后在写别的项目时也遇到了相同的需求，这次准备使用datatables，在此记录下过程。</p>
+<p>直接上代码:</p>
+<h1 id="html部分"><a href="#html部分" class="headerlink" title="html部分"></a>html部分</h1><pre><code>//这个div用来存放查询条件
+&lt;div&gt;
+    &lt;div class=&quot;float-left m-b-md&quot;&gt;&lt;label&gt;账户名:&lt;/label&gt;&lt;input id=&quot;accountName&quot; type=&quot;text&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;float-left m-b-md&quot;&gt;&lt;label&gt;银行账号:&lt;/label&gt;&lt;input id=&quot;bankAccount&quot; type=&quot;text&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;float-left m-b-md&quot;&gt;&lt;label&gt;账户ID:&lt;/label&gt;&lt;input id=&quot;accountId&quot; type=&quot;text&quot;&gt;&lt;/div&gt;
+    
+    &lt;button id=&quot;searchBtn&quot; class=&quot;m-b-md&quot;&gt;查询&lt;/button&gt;
+&lt;/div&gt;
+//以下是table的主体
+&lt;table id=&quot;example&quot; class=&quot;display&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;&lt;/th&gt;
+            &lt;th&gt;账户ID&lt;/th&gt;
+            &lt;th&gt;账户名&lt;/th&gt;
+            &lt;th&gt;账户状态&lt;/th&gt;
+            &lt;th&gt;账户类型&lt;/th&gt;
+            &lt;th&gt;账户余额&lt;/th&gt;
+            &lt;th&gt;银行账号&lt;/th&gt;
+            &lt;th&gt;冻结金额&lt;/th&gt;
+            &lt;th&gt;在途金额&lt;/th&gt;
+            &lt;th&gt;最后交易时间&lt;/th&gt;
+            
+            
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+&lt;/table&gt;
+</code></pre>
+<p>html部分分为搜索部分和table主体部分，挺简单的没啥说的</p>
+<h1 id="js部分"><a href="#js部分" class="headerlink" title="js部分"></a>js部分</h1><pre><code>    //1.初始化部分
+    //1.1禁用表格自带的搜索和排序
+    $.extend($.fn.dataTable.defaults, &#123;
+        searching: false,
+        ordering: false
+    &#125;);
+    //1.2初始化表格主体
+    var table = $(&#39;#example&#39;).DataTable(&#123;
+    //配置相应部分的中文显示(废话，不然就显示英文了)
+        &quot;language&quot;: &#123;
+            &quot;lengthMenu&quot;: &quot;每页 _MENU_ 条记录&quot;,
+            &quot;zeroRecords&quot;: &quot;没有找到记录&quot;,
+            &quot;info&quot;: &quot;第 _PAGE_ 页 ( 总共 _PAGES_ 页 )&quot;,
+            &quot;infoEmpty&quot;: &quot;无记录&quot;,
+            &quot;infoFiltered&quot;: &quot;(从 _MAX_ 条记录过滤)&quot;,
+            &quot;paginate&quot;: &#123;
+                &quot;first&quot;: &quot;First&quot;,
+                &quot;last&quot;: &quot;Last&quot;,
+                &quot;next&quot;: &quot;后一页&quot;,
+                &quot;previous&quot;: &quot;上一页&quot;
+            &#125;,
+        &#125;,
+    
+        &quot;pageLength&quot;: 10,           //默认每页条数
+        &quot;lengthChange&quot;: false,      //禁掉表格自带的选择每页条数的下拉框
+        &quot;processing&quot;: true,         //是否显示进度遮罩
+        &quot;serverSide&quot;: true,         //开启服务端传输数据
+        &quot;ajax&quot;: &#123;                   //ajax
+            url: &quot;$&#123;ctx&#125;/client/account/accountListData&quot;,
+            type: &quot;POST&quot;,
+            data: function(d) &#123;
+                //获取查询条件的值
+                var accountName  = $(&quot;#accountName&quot;).val();
+                var bankAccount  = $(&quot;#bankAccount&quot;).val();
+                var accountId  = $(&quot;#accountId&quot;).val();
+                //添加额外的参数传给服务器  
+                 d.accountName = accountName;
+                 d.bankAccountNo = bankAccount;
+                 d.accountId = accountId;
+            &#125;,
+            
+        &#125;,
+        //这里虽然没用到，但这个属性很有用，可以初始datatable的data(还是去看看官网吧)，因为插件对返回值的格式要求严格
+        /* &quot;dataSrc&quot;: function(json)&#123;
+               
+               return json.data[0].body.records;
+            &#125;, */
+        //配置各列
+        &quot;columns&quot;: [&#123;
+            className: &#39;details-control&#39;,   //就是给这列添加的类名
+            orderable: false,               //禁用掉这列的排序功能
+            data: null,                  //data为空，因为这列只有展开icon
+            defaultContent: &#39;&#39;          //没数据的话为空
+            &#125;,&#123;
+            data:&#39;accountId&#39;
+                /* &quot;targets&quot;: 0,
+                &quot;data&quot;: &quot;body&quot;,
+                &quot;render&quot;: function ( data, type, full, meta ) &#123;
+                  return data.records.memberId;
+                &#125; */
+            &#125;,&#123;
+            data: &#39;accountName&#39;
+            &#125;,&#123;
+            data: &#39;accountStatusdic&#39;
+            &#125;,&#123;
+            data: &#39;accounTypedic&#39;
+            &#125;,&#123;
+            data: &#39;availableBalance&#39;
+            &#125;,&#123;
+            data: &#39;bankAccount&#39;
+            &#125;,&#123;
+            data: &#39;freezeBalance&#39;
+            &#125;,&#123;
+            data: &#39;undeterminedBalance&#39;
+            &#125;,/* &#123;
+            data: &#39;memberId&#39;,
+            &#125;,&#123;
+            data: &#39;memberStatusDic&#39;,  
+            &#125;, */&#123;
+             data: &#39;lastTranTime&#39;
+            &#125;
+            ],
+        &quot;columnDefs&quot;: [
+            &#123;
+                targets: [5, 7, 8 ],  //这个用于对列的批量处理，里面为需要处理的列的下标
+                //render很有用，这里主要是过滤用，好像在columns中也可以写render
+                render: function(data,type,row,meta)&#123;
+                    return (&quot;￥&quot;+data.toFixed(2));
+                &#125;
+            &#125;,
+            
+         ] 
+    &#125;);
+    //点击查询，触发表格的渲染
+    $(&quot;#searchBtn&quot;).click(function() &#123;
+        table.ajax.reload();
+    &#125;);
+    //二级table的模板
+    function format(table_id) &#123;
+        return &#39;&lt;table class=&quot;table table-striped&quot; id=&quot;opiniondt_&#39; + table_id + &#39;&quot;&gt;&#39; +
+        &#39;&lt;thead&gt;&#39;+
+        &#39;&lt;tr&gt;&#39;+
+        &#39;&lt;th&gt;账户ID&lt;/th&gt;&lt;th&gt;账户名&lt;/th&gt;&lt;th&gt;账户状态&lt;/th&gt;&#39;+
+        &#39;&lt;th&gt;账户类型&lt;/th&gt;&lt;th&gt;可用余额&lt;/th&gt;&lt;th&gt;冻结金额 &lt;/th&gt;&#39;+
+        &#39;&lt;th&gt;最后交易时间&lt;/th&gt;&lt;th&gt;锁定金额&lt;/th&gt;&lt;th&gt;在途金额&lt;/th&gt;&#39;+
+        &#39;&lt;/tr&gt;&#39;+
+        &#39;&lt;/thead&gt;&#39; +
+        &#39;&lt;tr&gt;&#39; +
+        &#39;&lt;td&gt;Full name:&lt;/td&gt;&#39; +
+        &#39;&lt;td&gt;Extension number:&lt;/td&gt;&#39; +
+        &#39;&lt;td&gt;Extra info:&lt;/td&gt;&#39; +
+        &#39;&lt;/tr&gt;&#39; +
+        &#39;&lt;tr&gt;&#39; +
+        &#39;&lt;td&gt;Full name:&lt;/td&gt;&#39; +
+        &#39;&lt;td&gt;Extension number:&lt;/td&gt;&#39; +
+        &#39;&lt;td&gt;Extra info:&lt;/td&gt;&#39; +
+        &#39;&lt;/tr&gt;&#39; +
+        &#39;&lt;/table&gt;&#39;;
+    &#125;
+    //先初始化一个变量，用于动态给展开的二级table赋值
+    var iTableCounter = 1;
+    var oInnerTable;
+    //展开icon的点击事件
+    $(&#39;#example tbody&#39;).on(&#39;click&#39;, &#39;td.details-control&#39;, function() &#123;
+        //获得最近的tr老爸
+        var tr = $(this).closest(&#39;tr&#39;);
+        //遍历老铁们
+        var td = $(this).siblings(&quot;td&quot;);
+        //获取第一个老铁的内容
+        var acId=td[0].innerHTML;
+        
+        //把选择的这一行变成datatable的行，这样就可以使用一些方法了
+        //dataTables默认给所有的行设置了他们的子显示区
+        //可通过row().child.show()和row().child.hide()显示隐藏
+        var row = table.row(tr);
+        
+        var data;
+        if (row.child.isShown()) &#123;
+            //  This row is already open - close it
+            row.child.hide();
+            //这个shown是为了控制展开icon和收缩icon的切换显示
+            tr.removeClass(&#39;shown&#39;);
+        &#125; else &#123;
+            //ajax开始传参给后台
+              $.ajax(&#123;
+                url:&quot;$&#123;ctx&#125;/client/account/getSlaveAccount&quot;,
+                type:&quot;POST&quot;,
+                data:&#123;accountId:acId&#125;,
+            &#125;).done(function(res)&#123;
+                data = JSON.parse(res);
+                //这里是请求后台字典接口，进行过滤数据，记住设置为同步请求
+                data.slaveAccounts.forEach(function(e)&#123;
+                    (function()&#123;
+                    $.ajax(&#123;
+                        url:&quot;$&#123;ctx&#125;/client/dict/getDicValue&quot;,
+                        type:&quot;post&quot;,
+                        async:false,
+                        data:&#123;
+                            type:&quot;accountType&quot;,
+                            value:e.accountType,
+                            defaultValue:&quot;&quot;
+                        &#125;
+                    &#125;).done(function(res1)&#123;
+                        e.accountType=res1;
+                    &#125;);
+                &#125;());
+                    //处理accountStatus
+                    (function()&#123;
+                    $.ajax(&#123;
+                        url:&quot;$&#123;ctx&#125;/client/dict/getDicValue&quot;,
+                        type:&quot;post&quot;,
+                        async:false,
+                        data:&#123;
+                            type:&quot;accountStatus&quot;,
+                            value:e.accountStatus,
+                            defaultValue:&quot;&quot;
+                        &#125;
+                    &#125;).done(function(res2)&#123;
+                        e.accountStatus=res2;
+                    &#125;);
+                    &#125;());
+                &#125;)
+                var lastData=data.slaveAccounts;
+                // Open this row
+                //child()内接收二级table的模板
+                row.child(format(iTableCounter)).show();
+                //显示出收缩icon
+                tr.addClass(&#39;shown&#39;);
+                // try datatable stuff
+                //为所有的二级列表配置
+                oInnerTable = $(&#39;#opiniondt_&#39; + iTableCounter).dataTable(&#123;
+                    data: lastData,
+                    autoWidth: true,
+                    deferRender: true,
+                    info: false,
+                    lengthChange: false,
+                    ordering: false,
+                    paging: false,
+                    scrollX: false,
+                    scrollY: false,
+                    searching: false,
+                    columns: [&#123;
+                        data: &#39;accountId&#39;
+                    &#125;, &#123;
+                        data: &#39;accountName&#39;
+                    &#125;, &#123;
+                        data: &#39;accountStatus&#39;
+                    &#125;, &#123;
+                        data: &#39;accountType&#39;
+                    &#125;, &#123;
+                        data: &#39;availableBalance&#39;
+                    &#125;, &#123;
+                        data: &#39;freezeBalance&#39;
+                    &#125;, &#123;
+                        data: &#39;lastTranTime&#39;
+                    &#125;, &#123;
+                        data: &#39;lockBalance&#39;
+                    &#125;, &#123;
+                        data: &#39;undeterminedBalance&#39;
+                    &#125;],
+                    columnDefs: [&#123;
+                        targets: [4,5, 7, 8 ],
+                        render: function(data,type,row,meta)&#123;
+                                    return (&quot;￥&quot;+data.toFixed(2));
+                                &#125;
+                    &#125;] 
+                &#125;);
+                //+1后下一个展开的二级table的id加1
+                iTableCounter = iTableCounter + 1;
+            &#125;)  
+        &#125;
+    &#125;)
+</code></pre>
+<p>嗯，想说的过程全变成注释了，就酱吧。</p>
+<h1 id="别的东西"><a href="#别的东西" class="headerlink" title="别的东西"></a>别的东西</h1><h2 id="从别处访问获得的json数据"><a href="#从别处访问获得的json数据" class="headerlink" title="从别处访问获得的json数据"></a>从别处访问获得的json数据</h2><p>2017.06.09，之后遇到了这个问题，去查了下文档，在datatable配置内可通过<code>this.api().ajax.json()</code>访问获得的json数据</p>
+<blockquote>
+<p>其实this指向的就是table</p>
+</blockquote>
+<h2 id="操作行数据"><a href="#操作行数据" class="headerlink" title="操作行数据"></a>操作行数据</h2><p>一般是写在监听事件的处理函数中的，如下，获取触发点击事件哪一行的数据<br>    table.row( this ).data()</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag"># 插件</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/05/12/javascript%E9%97%AD%E5%8C%85/" rel="prev" title="javascript闭包">
+                  <i class="fa fa-chevron-left"></i> javascript闭包
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/06/20/js%E6%95%B0%E7%BB%84/" rel="next" title="js数组">
+                  js数组 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snowyYU</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

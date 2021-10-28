@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"snowyyu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="之前使用 setting sync 同步过别人 git gist 上的 vsCode 配置，接触了一些很好用的功能，不过同时也有大量的拓展和相关配置一并被下载下来了，然后就遇到了些问题，现在准备重新安装vscode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Visual Studio Code 相关">
+<meta property="og:url" content="https://snowyyu.github.io/2019/12/13/Visual-Studio-Code-%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="snowyYU">
+<meta property="og:description" content="之前使用 setting sync 同步过别人 git gist 上的 vsCode 配置，接触了一些很好用的功能，不过同时也有大量的拓展和相关配置一并被下载下来了，然后就遇到了些问题，现在准备重新安装vscode">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-12-13T10:53:51.000Z">
+<meta property="article:modified_time" content="2020-07-13T08:25:33.495Z">
+<meta property="article:author" content="snowyYU">
+<meta property="article:tag" content="VSCode">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://snowyyu.github.io/2019/12/13/Visual-Studio-Code-%E7%9B%B8%E5%85%B3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://snowyyu.github.io/2019/12/13/Visual-Studio-Code-%E7%9B%B8%E5%85%B3/","path":"2019/12/13/Visual-Studio-Code-相关/","title":"Visual Studio Code 相关"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Visual Studio Code 相关 | snowyYU</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="snowyYU" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">snowyYU</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">dream passionately</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%8B%E5%89%8D%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">之前遇到的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E9%83%A8%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">拓展部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5-gist"><span class="nav-number">4.</span> <span class="nav-text">同步 gist</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="snowyYU"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">snowyYU</p>
+  <div class="site-description" itemprop="description">dream passionately</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyYU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyYU" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:snowy.yu@foxmail.com" title="E-Mail → mailto:snowy.yu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2019/12/13/Visual-Studio-Code-%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Visual Studio Code 相关
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-12-13 18:53:51" itemprop="dateCreated datePublished" datetime="2019-12-13T18:53:51+08:00">2019-12-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-07-13 16:25:33" itemprop="dateModified" datetime="2020-07-13T16:25:33+08:00">2020-07-13</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>之前使用 setting sync 同步过别人 git gist 上的 vsCode 配置，接触了一些很好用的功能，不过同时也有大量的拓展和相关配置一并被下载下来了，然后就遇到了些问题，现在准备重新安装vscode</p>
+<span id="more"></span>
+
+<h1 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h1><h1 id="之前遇到的问题"><a href="#之前遇到的问题" class="headerlink" title="之前遇到的问题"></a>之前遇到的问题</h1><ol>
+<li>debug 配置文件 lanch.js 无法触发 智能输入</li>
+</ol>
+<h1 id="拓展部分"><a href="#拓展部分" class="headerlink" title="拓展部分"></a>拓展部分</h1><ol>
+<li><strong>YAML</strong> 支持</li>
+<li><strong>Auto Close Tag</strong> 自动添加 html/xml 闭合标签</li>
+<li><strong>Auto Rename Tag</strong> 修改标签名的辅助插件</li>
+<li><strong>Auto import</strong> 自动 import</li>
+<li><strong>Babel JavaScript</strong> 支持 react jsx， es201* flow GraphQL 的语法高亮</li>
+<li><strong>Bash Debug</strong>  debug下的lanch.js 配置支持</li>
+<li><strong>Better Comments</strong> 注释用的，让注释更加可视化，五颜六色的</li>
+<li><strong>Branket Pair colorizer</strong>  标签，括号，范围提示</li>
+<li><strong>Community Material Theme</strong> 一个主题，注意相关配置</li>
+<li><strong>Dart dart</strong> 语言支持</li>
+<li><strong>Debugger for Chrome</strong> 基于 chrome 的调试工具</li>
+<li><strong>Django</strong></li>
+<li><strong>Docker</strong></li>
+<li><strong>DotENV</strong> 环境配置文件(.env,.env.development……结尾)语法高亮</li>
+<li><strong>EJS language support</strong></li>
+<li><strong>ES6 Mocha Snippets</strong></li>
+<li><strong>ES7 React/Redux/GraphQL/React-Native snippets</strong></li>
+<li><strong>ESLint</strong></li>
+<li><strong>Formatting Toggle</strong></li>
+<li><strong>GitLens</strong> — Git supercharged git 拓展</li>
+<li><strong>HTML CSS Support</strong> html css 拓展</li>
+<li><strong>Ignore files</strong> .gitignore 等文件的语法高亮</li>
+<li><strong>Import Cost</strong> 自动计算import 文件的大小</li>
+<li><strong>IntelliSense for CSS class names in HTML</strong> 自动检测引入的类名，智能提示补全</li>
+<li><strong>JavaScript (ES6) code snippets</strong> es6代码片段</li>
+<li><strong>JavaScript Booster</strong></li>
+<li><strong>Jest Snippets</strong></li>
+<li><strong>Jinja</strong></li>
+<li><strong>JS Refactor</strong></li>
+<li><strong>json2ts</strong> 将json 转化为 ts interface 文件</li>
+<li><strong>LeetCode</strong> 算法题目</li>
+<li><strong>Less IntelliSense</strong> less 的智能辅助</li>
+<li><strong>Live Sass Compiler</strong> 一个即时sass 编译插件</li>
+</ol>
+<p>主要是对安装的拓展做个简介，方便自己后续的查找</p>
+<h1 id="同步-gist"><a href="#同步-gist" class="headerlink" title="同步 gist"></a>同步 gist</h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VSCode/" rel="tag"># VSCode</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" rel="prev" title="Linus 相关命令">
+                  <i class="fa fa-chevron-left"></i> Linus 相关命令
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/22/%E5%BE%AE%E4%BF%A1%E6%8E%88%E6%9D%83%E7%9B%B8%E5%85%B3/" rel="next" title="微信授权相关">
+                  微信授权相关 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snowyYU</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

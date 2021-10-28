@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"snowyyu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="在之前的项目中，团队为了保持代码风格的统一会统一要求为各自的 vs-code 安装 prettier 插件，然后在项目中添加 .prettierrc 配置文件，还需要设置 vs-code 中的自动保存时使用 prettier 插件 格式化代码。同样为了减少低级的代码错误，也引进了 eslint 进行代码的检查。现引入 husky 和 lint-stage 来优化协作流程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置husky与lint-staged用以实现快照生成前的代码检查和格式化">
+<meta property="og:url" content="https://snowyyu.github.io/2020/12/08/%E9%85%8D%E7%BD%AEhusky%E4%B8%8Elint-staged%E7%94%A8%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%BF%AB%E7%85%A7%E7%94%9F%E6%88%90%E5%89%8D%E7%9A%84%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/index.html">
+<meta property="og:site_name" content="snowyYU">
+<meta property="og:description" content="在之前的项目中，团队为了保持代码风格的统一会统一要求为各自的 vs-code 安装 prettier 插件，然后在项目中添加 .prettierrc 配置文件，还需要设置 vs-code 中的自动保存时使用 prettier 插件 格式化代码。同样为了减少低级的代码错误，也引进了 eslint 进行代码的检查。现引入 husky 和 lint-stage 来优化协作流程">
+<meta property="og:locale">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/40c136bfgy1glgvu3ivx9j20v00caqf6.jpg">
+<meta property="article:published_time" content="2020-12-08T13:43:47.000Z">
+<meta property="article:modified_time" content="2020-12-21T09:45:11.450Z">
+<meta property="article:author" content="snowyYU">
+<meta property="article:tag" content="standard">
+<meta property="article:tag" content="npm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/40c136bfgy1glgvu3ivx9j20v00caqf6.jpg">
+
+
+<link rel="canonical" href="https://snowyyu.github.io/2020/12/08/%E9%85%8D%E7%BD%AEhusky%E4%B8%8Elint-staged%E7%94%A8%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%BF%AB%E7%85%A7%E7%94%9F%E6%88%90%E5%89%8D%E7%9A%84%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://snowyyu.github.io/2020/12/08/%E9%85%8D%E7%BD%AEhusky%E4%B8%8Elint-staged%E7%94%A8%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%BF%AB%E7%85%A7%E7%94%9F%E6%88%90%E5%89%8D%E7%9A%84%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/","path":"2020/12/08/配置husky与lint-staged用以实现快照生成前的代码检查和格式化/","title":"配置husky与lint-staged用以实现快照生成前的代码检查和格式化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>配置husky与lint-staged用以实现快照生成前的代码检查和格式化 | snowyYU</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="snowyYU" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">snowyYU</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">dream passionately</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="snowyYU"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">snowyYU</p>
+  <div class="site-description" itemprop="description">dream passionately</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyYU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyYU" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:snowy.yu@foxmail.com" title="E-Mail → mailto:snowy.yu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2020/12/08/%E9%85%8D%E7%BD%AEhusky%E4%B8%8Elint-staged%E7%94%A8%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%BF%AB%E7%85%A7%E7%94%9F%E6%88%90%E5%89%8D%E7%9A%84%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          配置husky与lint-staged用以实现快照生成前的代码检查和格式化
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-12-08 21:43:47" itemprop="dateCreated datePublished" datetime="2020-12-08T21:43:47+08:00">2020-12-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-21 17:45:11" itemprop="dateModified" datetime="2020-12-21T17:45:11+08:00">2020-12-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/standard/" itemprop="url" rel="index"><span itemprop="name">standard</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在之前的项目中，团队为了保持代码风格的统一会统一要求为各自的 vs-code 安装 <strong>prettier</strong> 插件，然后在项目中添加 <strong>.prettierrc</strong> 配置文件，还需要设置 vs-code 中的自动保存时使用 <strong>prettier</strong> 插件 格式化代码。同样为了减少低级的代码错误，也引进了 <strong>eslint</strong> 进行代码的检查。现引入 husky 和 lint-stage 来优化协作流程</p>
+<span id="more"></span>
+
+<p><strong>vue</strong> 项目在初始化的时候可以直接选择启用 <code>Lint and fix on commit</code>，如下</p>
+<p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1glgvu3ivx9j20v00caqf6.jpg" alt="WX20201208-234451@2x.png"></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>先安装 Eslint 和 Prettier </p>
+<blockquote>
+<p>如果原项目是小程序之类的没有 package.json 文件，需要先 <code>npm init</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install eslint --save-dev  </span><br></pre></td></tr></table></figure>
+
+<p>配置下 eslint，新增 .eslintrc.js 和 .eslintignore 文件，配置如下</p>
+<blockquote>
+<p>如果需要支持 typescript，还需 <code>npm i -d @typescript-eslint/parser @typescript-eslint/eslint-plugin</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// eslint.js  </span></span><br><span class="line"><span class="comment">// for ts //考虑到小程序初始化ts时已有的ts代码通过不了此配置下的校验，所以使用 ts 版本的 precommit 要慎重</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">parser</span>: <span class="string">&#x27;@typescript-eslint/parser&#x27;</span>, <span class="comment">//定义ESLint的解析器</span></span><br><span class="line">  <span class="attr">extends</span>: [<span class="string">&#x27;plugin:@typescript-eslint/recommended&#x27;</span>], <span class="comment">//定义文件继承的子规范</span></span><br><span class="line">  <span class="attr">plugins</span>: [<span class="string">&#x27;@typescript-eslint&#x27;</span>], <span class="comment">//定义了该eslint文件所依赖的插件</span></span><br><span class="line">  <span class="attr">env</span>: &#123;</span><br><span class="line">    <span class="comment">//指定代码的运行环境</span></span><br><span class="line">    <span class="attr">browser</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">node</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">root</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">env</span>: &#123;</span><br><span class="line">    <span class="attr">browser</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">commonjs</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">es2021</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">extends</span>: <span class="string">&#x27;eslint:recommended&#x27;</span>,</span><br><span class="line">  <span class="comment">//全局变量</span></span><br><span class="line">  <span class="attr">globals</span>: &#123;</span><br><span class="line">    <span class="attr">__DEV__</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">__WECHAT__</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">__ALIPAY__</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">App</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">Page</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">Component</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">Behavior</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">wx</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">getApp</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">getCurrentPages</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;no-debugger&#x27;</span>: <span class="string">&#x27;off&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;no-unused-vars&#x27;</span>: <span class="string">&#x27;off&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install prettier --save-dev </span><br></pre></td></tr></table></figure>
+<p>新增 prettierrc.js 文件，配置如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">eslintIntegration</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">stylelintIntegration</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">tabWidth</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">singleQuote</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">semi</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>执行 lint-stage 的安装配置命令，此命令会同时安装并配置 husky </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx mrm lint-staged</span><br></pre></td></tr></table></figure>
+
+<p>最终 package.json 文件相关配置如下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;devDependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;eslint&quot;</span>: <span class="string">&quot;^7.15.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;husky&quot;</span>: <span class="string">&quot;^4.3.5&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;lint-staged&quot;</span>: <span class="string">&quot;^10.5.3&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prettier&quot;</span>: <span class="string">&quot;^2.2.1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;stylelint&quot;</span>: <span class="string">&quot;^13.8.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;stylelint-config-standard&quot;</span>: <span class="string">&quot;^20.0.0&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;lint&quot;</span>: <span class="string">&quot;npm run lint:js &amp;&amp; npm run lint:style &amp;&amp; npm run lint:prettier&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;lint:js&quot;</span>: <span class="string">&quot;eslint --fix \&quot;**/*.js\&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;lint:style&quot;</span>: <span class="string">&quot;stylelint --fix \&quot;**/*.wxss\&quot; --syntax css&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;lint:prettier&quot;</span>: <span class="string">&quot;prettier --write \&quot;**/*.(js|wxss|json)\&quot;&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;husky&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;hooks&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;pre-commit&quot;</span>: <span class="string">&quot;lint-staged&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;lint-staged&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;*.js&quot;</span>: <span class="string">&quot;eslint --fix&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;*.wxss&quot;</span>: <span class="string">&quot;stylelint --fix --syntax css&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;*.&#123;js,wxss,md&#125;&quot;</span>: <span class="string">&quot;prettier --write&quot;</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里同时引入了 stylelint 用来校验 wxss</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/standard/" rel="tag"># standard</a>
+              <a href="/tags/npm/" rel="tag"># npm</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/04/vue%E5%92%8Cangular%E5%BC%82%E5%90%8C/" rel="prev" title="vue和angular异同">
+                  <i class="fa fa-chevron-left"></i> vue和angular异同
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/21/node-%E7%9B%B8%E5%85%B3%E4%BE%9D%E8%B5%96/" rel="next" title="node 相关依赖">
+                  node 相关依赖 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snowyYU</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

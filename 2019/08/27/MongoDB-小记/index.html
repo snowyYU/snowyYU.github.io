@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"snowyyu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB 小记">
+<meta property="og:url" content="https://snowyyu.github.io/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/index.html">
+<meta property="og:site_name" content="snowyYU">
+<meta property="og:description" content="主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-08-27T08:38:37.000Z">
+<meta property="article:modified_time" content="2020-12-21T13:08:36.442Z">
+<meta property="article:author" content="snowyYU">
+<meta property="article:tag" content="DataBase">
+<meta property="article:tag" content="MongoDB">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://snowyyu.github.io/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://snowyyu.github.io/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/","path":"2019/08/27/MongoDB-小记/","title":"MongoDB 小记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MongoDB 小记 | snowyYU</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="snowyYU" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">snowyYU</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">dream passionately</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.2.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E9%83%A8%E5%88%86"><span class="nav-number">2.3.</span> <span class="nav-text">操作部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%9A%84%E6%8E%88%E6%9D%83%EF%BC%8C%E5%88%9B%E5%BB%BA%EF%BC%8C%E4%BF%AE%E6%94%B9%EF%BC%8C%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7"><span class="nav-number">2.4.</span> <span class="nav-text">用户的授权，创建，修改，查看用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B"><span class="nav-number">2.4.1.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA"><span class="nav-number">2.4.2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-number">2.4.3.</span> <span class="nav-text">插入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="snowyYU"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">snowyYU</p>
+  <div class="site-description" itemprop="description">dream passionately</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyYU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyYU" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:snowy.yu@foxmail.com" title="E-Mail → mailto:snowy.yu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MongoDB 小记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-08-27 16:38:37" itemprop="dateCreated datePublished" datetime="2019-08-27T16:38:37+08:00">2019-08-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-12-21 21:08:36" itemprop="dateModified" datetime="2020-12-21T21:08:36+08:00">2020-12-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DataBase/" itemprop="url" rel="index"><span itemprop="name">DataBase</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>这是官网安装页面，<a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/installation/#tutorial-installation">MongoDB Install</a>。</p>
+<p>有企业版和社区版的区分，基本是</p>
+<p>我是 mac 系统，有 brew 和二进制文件两种安装方法</p>
+<p>顺便说一下，MacOS 因为涉及到权限问题，需要用到 sudo 命令，或是设置 root 账户，然后用 su 命令切换用户</p>
+<blockquote>
+<p>附上官方启用 root 账户的说明，<a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT204012">如何在 Mac 上启用 root 用户或更改 root 密码</a></p>
+</blockquote>
+<p><del>注意安装后需要创建一个数据库数据存储的文件夹</del></p>
+<p><del><code>mkdir -p /data/db</code></del></p>
+<p><del>如果运行 <code>ps -xa | grep mongod</code>，没有看到一个 <code>dbpath</code> 显式地告诉 mongod 查看该数据库位置的参数，并且你的 mongodb.conf 中没有数据库路径，那么默认数据存储位置就是如上</del></p>
+<p>Mac 升级为 Catalina 系统后，根目录只有读的权限了，也就是不能在根目录创建 /data/db</p>
+<p>两种解决方法</p>
+<ol>
+<li><p>使用 <code>mongod --dbpath=/Users/user/data/db</code> 这种，每次都指明数据存放路径的命令启动 mongodb</p>
+</li>
+<li><p>参考 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/58034955/read-only-file-system-when-attempting-mkdir-data-db-on-mac">stackoverflow</a> 第二条回答，使用 brew 启动<br><code>brew services start mongodb-community</code></p>
+</li>
+</ol>
+<blockquote>
+<p>顺便说 <code>cd /</code> 命令可以直接进入根目录<br><code>cd ~</code> 进入用户根目录</p>
+</blockquote>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>因为我已经把 mongoDB 的路径加入了系统路径中，并且使用了默认的数据存放位置，所以可以直接，如果没做这两步的话，参考如下</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.mongodb.com/guides/server/install/">MongoDB 配置</a></p>
+</blockquote>
+<pre><code>sudo mongod //启动
+</code></pre>
+<h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>新开一个命令行工具，输入</p>
+<pre><code>mongo
+</code></pre>
+<p>连接数据库，可以输入查询语句了</p>
+<blockquote>
+<p>自己的阿里云使用了 docker 版本的 mongodb，所以在这里记录下进入 docker 版本 mongodb 的命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mongotest_mongo_1 mongo <span class="comment"># docker exec -it #容器名 mongo</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="操作部分"><a href="#操作部分" class="headerlink" title="操作部分"></a>操作部分</h2><p>还能说啥，重中之重，多多练习</p>
+<h2 id="用户的授权，创建，修改，查看用户"><a href="#用户的授权，创建，修改，查看用户" class="headerlink" title="用户的授权，创建，修改，查看用户"></a>用户的授权，创建，修改，查看用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择管理员用户</span></span><br><span class="line">use admin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.auth(<span class="string">&#x27;user&#x27;</span>,<span class="string">&#x27;pwd&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(user:<span class="string">&#x27;&#x27;</span>,<span class="built_in">pwd</span>:<span class="string">&#x27;&#x27;</span>,roles:[])</span><br><span class="line"><span class="comment"># 示例 db.createUser(&#123;user:&#x27;owner&#x27;,pwd:&#x27;yu321&#x27;,roles:[&#123;role:&#x27;dbOwner&#x27;,db:&#x27;filemanagedb&#x27;&#125;]&#125;)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show users <span class="comment"># 查看当前数据库用户</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.system.users.find() // 查看所有用户</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26215701">详情参考此文</a></p>
+</blockquote>
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>查看所有数据库</p>
+<pre><code>&gt; show dbs
+</code></pre>
+<p>查看当前数据库的 collections (集合)</p>
+<pre><code>&gt; show collections
+</code></pre>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建或进入某个存在的数据库</p>
+<pre><code>&gt; use &lt;name&gt;
+</code></pre>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入一条数据</p>
+<pre><code>&gt; db.collection.insertOne(&#123;&#125;)
+</code></pre>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/tutorial/getting-started/">MongoDB get start</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/44263728">小白必须懂的 MongoDB 的十大总结-MongoDB 的认识
+</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DataBase/" rel="tag"># DataBase</a>
+              <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/11/05/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0-%E5%8F%A3%E8%AF%AD%E7%AF%87/" rel="prev" title="英语学习-口语篇">
+                  <i class="fa fa-chevron-left"></i> 英语学习-口语篇
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" rel="next" title="Linus 相关命令">
+                  Linus 相关命令 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snowyYU</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

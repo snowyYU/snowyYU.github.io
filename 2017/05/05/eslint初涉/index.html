@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"snowyyu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="便于养成良好的代码习惯和规范性，开始学习eslint,还有sublime相应的插件安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="eslint初涉">
+<meta property="og:url" content="https://snowyyu.github.io/2017/05/05/eslint%E5%88%9D%E6%B6%89/index.html">
+<meta property="og:site_name" content="snowyYU">
+<meta property="og:description" content="便于养成良好的代码习惯和规范性，开始学习eslint,还有sublime相应的插件安装">
+<meta property="og:locale">
+<meta property="og:image" content="http://i.imgur.com/gXpuFcw.png">
+<meta property="og:image" content="http://i.imgur.com/4l6XQ0o.png">
+<meta property="article:published_time" content="2017-05-05T13:00:31.000Z">
+<meta property="article:modified_time" content="2017-05-08T15:50:03.000Z">
+<meta property="article:author" content="snowyYU">
+<meta property="article:tag" content="eslint">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://i.imgur.com/gXpuFcw.png">
+
+
+<link rel="canonical" href="https://snowyyu.github.io/2017/05/05/eslint%E5%88%9D%E6%B6%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://snowyyu.github.io/2017/05/05/eslint%E5%88%9D%E6%B6%89/","path":"2017/05/05/eslint初涉/","title":"eslint初涉"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>eslint初涉 | snowyYU</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="snowyYU" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">snowyYU</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">dream passionately</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#eslint"><span class="nav-number">1.</span> <span class="nav-text">eslint</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#eslint-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">.eslint 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85nodejs%E9%83%A8%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">安装nodejs部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8sublime-%E5%AE%89%E8%A3%85-eslint-%E6%8F%92%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">在sublime 安装 eslint 插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.2.</span> <span class="nav-text">配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#eslint-js"><span class="nav-number">3.</span> <span class="nav-text">.eslint.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#node-js%E9%83%A8%E5%88%86%E7%9A%84%E7%9B%B8%E5%85%B3%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">node.js部分的相关安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="snowyYU"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">snowyYU</p>
+  <div class="site-description" itemprop="description">dream passionately</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyYU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyYU" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:snowy.yu@foxmail.com" title="E-Mail → mailto:snowy.yu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/05/05/eslint%E5%88%9D%E6%B6%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          eslint初涉
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-05-05 21:00:31" itemprop="dateCreated datePublished" datetime="2017-05-05T21:00:31+08:00">2017-05-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2017-05-08 23:50:03" itemprop="dateModified" datetime="2017-05-08T23:50:03+08:00">2017-05-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/eslint/" itemprop="url" rel="index"><span itemprop="name">eslint</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>便于养成良好的代码习惯和规范性，开始学习eslint,还有sublime相应的插件安装</p>
+<span id="more"></span>
+
+<h1 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h1><p>eslint 还是挺强大的，相较于jshint</p>
+<blockquote>
+<p>新版本配置文件 .eslint 被抛弃，建议使用 .eslint.js来进行配置，不过我分别尝试后发现第二种行不通，暂时还没找到问题，就都记下来</p>
+</blockquote>
+<h1 id="eslint-配置"><a href="#eslint-配置" class="headerlink" title=".eslint 配置"></a>.eslint 配置</h1><h2 id="安装nodejs部分"><a href="#安装nodejs部分" class="headerlink" title="安装nodejs部分"></a>安装nodejs部分</h2><pre><code>npm install eslint -g
+npm install babel-eslint -g
+</code></pre>
+<h2 id="在sublime-安装-eslint-插件"><a href="#在sublime-安装-eslint-插件" class="headerlink" title="在sublime 安装 eslint 插件"></a>在sublime 安装 eslint 插件</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li>SublimeLinter</li>
+<li>SublimeLinter-contrib-eslint</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在项目根目录编写配置文件</p>
+<p>.eslintrc</p>
+<pre><code>&#123;
+&quot;env&quot;: &#123;
+    &quot;browser&quot;: true,
+    &quot;node&quot;: true,
+    &quot;es6&quot;: true
+&#125;,
+&quot;parser&quot;: &quot;babel-eslint&quot;,
+&quot;ecmaFeatures&quot;: &#123;
+   &quot;jsx&quot;: true
+&#125;,
+&quot;rules&quot;: &#123;
+    &quot;semi&quot;: [2, &quot;always&quot;],
+    &quot;quotes&quot;: [2, &quot;single&quot;]
+&#125;
+&#125;
+</code></pre>
+<p>sublime 编辑器内Prefernces &gt; Pakage Settings &gt; SublimeLinter &gt; Settings-User<br>debug设置为true</p>
+<p>it works</p>
+<p><img src="http://i.imgur.com/gXpuFcw.png" alt="效果"></p>
+<h1 id="eslint-js"><a href="#eslint-js" class="headerlink" title=".eslint.js"></a>.eslint.js</h1><p>看了些文档后好像可以通过运行如下命令在控制台输出错误信息</p>
+<pre><code>$ eslint yourfile.js
+</code></pre>
+<p>也就是说不需要sublime了，喔</p>
+<h2 id="node-js部分的相关安装"><a href="#node-js部分的相关安装" class="headerlink" title="node.js部分的相关安装"></a>node.js部分的相关安装</h2><p>局部安装</p>
+<p>不说了，看参考链接2</p>
+<p>全局安装</p>
+<pre><code>$ npm i -g eslint
+</code></pre>
+<blockquote>
+<p>一直分不清 <code>$ npm i -g eslint</code>和<code>$ npm i eslint -g</code>的区别</p>
+</blockquote>
+<p>初始化</p>
+<pre><code>$ eslint --init
+</code></pre>
+<p>建议命令行配置如下</p>
+<ul>
+<li>Use a popular style guide</li>
+<li>Standard</li>
+<li>JavaScript</li>
+</ul>
+<blockquote>
+<p>可以看看参考链接3</p>
+</blockquote>
+<blockquote>
+<p>注意，这个需要package.json的配置了，全局使用的话要同样全局安装使用到的插件，比如如下配置的话就要全局安装plugins里的了</p>
+</blockquote>
+<p><img src="http://i.imgur.com/4l6XQ0o.png" alt="plugins"></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><ol>
+<li>.eslint的使用感觉更方便啊，不需要配置package.json，不需安装相应的node_module。不过明显感觉.eslint.js更智能，有脚手架的感觉</li>
+<li>优先级方面</li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/binjly/article/details/49926001">.eslint</a></li>
+<li><a target="_blank" rel="noopener" href="http://eslint.org/docs/user-guide/getting-started">官方起步文档,不过没有sublime的配置部分</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/e826e13c67ec">参考链接3</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/eslint/" rel="tag"># eslint</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/04/19/git%E8%B8%A9%E5%9D%91%E8%AE%B0/" rel="prev" title="git踩坑记">
+                  <i class="fa fa-chevron-left"></i> git踩坑记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/05/08/javascript%E4%B8%ADthis/" rel="next" title="javascript中this">
+                  javascript中this <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snowyYU</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"snowyyu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="javascript中的this接触很多，但一直是模模糊糊的，在这里整理下 相关与其他语言相比，函数的 this 关键字在JavaScript中的行为略有不同。它在严格模式和非严格模式之间也有一些区别。 读了廖雪峰老师的文章感觉文中所说的调用对象就是指执行环境，不知道可不可以这样理解 当一个函数被调用时，会创建一个 __执行环境(execution context)__及相应的作用域链，自动获取两">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript中this">
+<meta property="og:url" content="https://snowyyu.github.io/2017/05/08/javascript%E4%B8%ADthis/index.html">
+<meta property="og:site_name" content="snowyYU">
+<meta property="og:description" content="javascript中的this接触很多，但一直是模模糊糊的，在这里整理下 相关与其他语言相比，函数的 this 关键字在JavaScript中的行为略有不同。它在严格模式和非严格模式之间也有一些区别。 读了廖雪峰老师的文章感觉文中所说的调用对象就是指执行环境，不知道可不可以这样理解 当一个函数被调用时，会创建一个 __执行环境(execution context)__及相应的作用域链，自动获取两">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-05-08T12:58:06.000Z">
+<meta property="article:modified_time" content="2017-06-10T14:06:49.000Z">
+<meta property="article:author" content="snowyYU">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://snowyyu.github.io/2017/05/08/javascript%E4%B8%ADthis/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://snowyyu.github.io/2017/05/08/javascript%E4%B8%ADthis/","path":"2017/05/08/javascript中this/","title":"javascript中this"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>javascript中this | snowyYU</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="snowyYU" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">snowyYU</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">dream passionately</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3"><span class="nav-number">1.</span> <span class="nav-text">相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this-%E6%8C%87%E5%90%91"><span class="nav-number">2.</span> <span class="nav-text">this 指向</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%AF%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">纯函数调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">作为对象方法的调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text">作为构造函数调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apply-amp-amp-call"><span class="nav-number">2.4.</span> <span class="nav-text">apply &amp;&amp; call</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.4.1.</span> <span class="nav-text">适用条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E5%B0%8F%E7%BB%93"><span class="nav-number">2.4.2.</span> <span class="nav-text">小小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8EECMAScript%E8%A7%84%E8%8C%83%E8%B0%88this"><span class="nav-number">3.</span> <span class="nav-text">从ECMAScript规范谈this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">相关参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="snowyYU"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">snowyYU</p>
+  <div class="site-description" itemprop="description">dream passionately</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/snowyYU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyYU" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:snowy.yu@foxmail.com" title="E-Mail → mailto:snowy.yu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/05/08/javascript%E4%B8%ADthis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          javascript中this
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-05-08 20:58:06" itemprop="dateCreated datePublished" datetime="2017-05-08T20:58:06+08:00">2017-05-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2017-06-10 22:06:49" itemprop="dateModified" datetime="2017-06-10T22:06:49+08:00">2017-06-10</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>javascript中的this接触很多，但一直是模模糊糊的，在这里整理下</p>
+<h1 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h1><p>与其他语言相比，函数的 this 关键字在JavaScript中的行为略有不同。它在严格模式和非严格模式之间也有一些区别。</p>
+<p>读了廖雪峰老师的文章感觉文中所说的调用对象就是指执行环境，不知道可不可以这样理解</p>
+<p>当一个函数被调用时，会创建一个 __执行环境(execution context)__及相应的作用域链，自动获取两个特殊变量：this和arguments，然后使用arguments和其他命名参数的值来初始化函数的 **活动对象(activation object)**，</p>
+<p><code>(function()&#123;&#125;())</code>立即执行函数</p>
+<p>构造函数模式创建对象时，会经历以下4个步骤</p>
+<ol>
+<li>创建一个新对象</li>
+<li>见构造函数的作用域赋给新对象（因此this就指向了这个新对象）</li>
+<li>执行构造函数中的代码（为这个对象添加属性）</li>
+<li>返回新对象</li>
+</ol>
+<h1 id="this-指向"><a href="#this-指向" class="headerlink" title="this 指向"></a>this 指向</h1><p>this总是指向调用函数的那个对象,在运行时基于函数的执行环境绑定的</p>
+<h2 id="纯函数调用"><a href="#纯函数调用" class="headerlink" title="纯函数调用"></a>纯函数调用</h2><p>属于全局调用，this代表全局对象Global</p>
+<pre><code>function foo()&#123;
+    console.log(this);
+&#125;;
+foo(); //Window
+</code></pre>
+<h2 id="作为对象方法的调用"><a href="#作为对象方法的调用" class="headerlink" title="作为对象方法的调用"></a>作为对象方法的调用</h2><p>this指向调用的函数</p>
+<h2 id="作为构造函数调用"><a href="#作为构造函数调用" class="headerlink" title="作为构造函数调用"></a>作为构造函数调用</h2><p>this 指向当前实例对象</p>
+<h2 id="apply-amp-amp-call"><a href="#apply-amp-amp-call" class="headerlink" title="apply &amp;&amp; call"></a>apply &amp;&amp; call</h2><p>apply()和call()作为函数对象的方法，可以改变函数的执行环境(调用对象)<br>它们的第一个参数是个对象，即作为函数内的this。</p>
+<pre><code>function foo()&#123;
+    console.log(this);
+&#125;
+foo.call(1);  //1
+foo.call(&#39;a&#39;);  //a
+foo.call(true);  //true
+foo.call(&#123;type:object&#125;);  //[object Object]
+</code></pre>
+<p>如上，他们的参数作为函数内的this输出</p>
+<p>需要注意的是，传null或undefined时，将是JS执行环境的全局变量。浏览器中是window,其他环境，如node则是global。</p>
+<pre><code>fun.call(null);  //window or global
+fun.call(undefined);  //window or global
+</code></pre>
+<p>apply()和call()唯一的区别是参数不一样，apply的第二个参数必须传入数组。<br>如 </p>
+<pre><code>func1.call(this, arg1, arg2);
+func1.apply(this, [arg1, arg2]);
+</code></pre>
+<h3 id="适用条件"><a href="#适用条件" class="headerlink" title="适用条件"></a>适用条件</h3><p>js中函数的参数不固定，当参数是明确知道数量时，用 call，而不确定的时候，用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个 __类数组__来便利所有的参数。</p>
+<h3 id="小小结"><a href="#小小结" class="headerlink" title="小小结"></a>小小结</h3><ol>
+<li>apply() 的第一个参数是对象，第二个参数是数组，作为参数列表。</li>
+<li></li>
+</ol>
+<h1 id="从ECMAScript规范谈this"><a href="#从ECMAScript规范谈this" class="headerlink" title="从ECMAScript规范谈this"></a>从ECMAScript规范谈this</h1><p>上面说的this的指向很偏应用的，倒是像经验上的总结。具体还是要看规范的，这部分打算之后再好好写写</p>
+<blockquote>
+<p>参考:<a target="_blank" rel="noopener" href="https://github.com/mqyqingfeng/Blog/issues/7">JavaScript深入之从ECMAScript规范解读this</a></p>
+</blockquote>
+<h1 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/snandy/archive/2012/03/01/2373243.html">call和apply</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"># js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/05/05/eslint%E5%88%9D%E6%B6%89/" rel="prev" title="eslint初涉">
+                  <i class="fa fa-chevron-left"></i> eslint初涉
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/05/10/javascript%E4%BD%9C%E7%94%A8%E5%9F%9F/" rel="next" title="javascript作用域">
+                  javascript作用域 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snowyYU</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
