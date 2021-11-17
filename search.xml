@@ -950,7 +950,8 @@ git add remote origin https://github.com/snowyYU/x.git
 <p><a href="https://www.zhihu.com/question/20019419">知乎 git push 的 -u 参数具体适合含义</a></p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin --all</span><br></pre></td></tr></table></figure>
-<p>上面命令表示，将所有本地分支都推送到origin主机。如果远程主机的版本比本地版本更新，推送时Git会报错，要求先在本地做<code>git pull</code>合并差异，然后再推送到远程主机。这时，如果你一定要推送，可以使用 <code>–-force </code>选项。</p>
+
+<p>上面命令表示，将所有本地分支都推送到 origin 主机。如果远程主机的版本比本地版本更新，推送时 Git 会报错，要求先在本地做<code>git pull</code>合并差异，然后再推送到远程主机。这时，如果你一定要推送，可以使用 <code>–-force </code>选项。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin --tags</span><br></pre></td></tr></table></figure>
 
 <p><code>git push </code>不会推送标签(tag)，除非使用 <code>-–tags</code> 选项</p>
@@ -1009,6 +1010,10 @@ hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; fo
 
 <h2 id="清除所有新增未加入暂存区的文件-文件夹"><a href="#清除所有新增未加入暂存区的文件-文件夹" class="headerlink" title="清除所有新增未加入暂存区的文件/文件夹"></a>清除所有新增未加入暂存区的文件/文件夹</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clean -xdf</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>注意：-x 会清除掉 .gitignore 文件中的忽略文件，比如常见的 node_modules 文件</p>
+</blockquote>
+<p>详情见 <a href="https://www.makeuseof.com/git-clean/">Here’s How to Clean Git and Remove Untracked Files</a></p>
 <p>如果已经 <code>add</code> 之后，想要撤销</p>
 <h2 id="单个文件-1"><a href="#单个文件-1" class="headerlink" title="单个文件"></a>单个文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reset HEAD filename</span><br></pre></td></tr></table></figure>
 
@@ -1030,6 +1035,9 @@ hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; fo
 git checkout XXX  //切换到XXX分支
 </code></pre>
 <p>现在就切换到 XXX 分支了，可以在 gitbash 中看到，然后我直接</p>
+<p>一般情况下直接 clone 的项目只有 master 分支，想要获取远程别的分支代码还需要在本地检出一个分支，然后建立映射，这两步可以使用一条命令完成</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b 本地分支名 origin/远程分支名</span><br></pre></td></tr></table></figure>
+
 <p>git push origin XXX</p>
 <p>其实此时远程仓库中并没有 XXX 分支，执行此命令后，远程仓库会新建 XXX 分支，并 push 成功。</p>
 <pre><code>git branch -D XXX
