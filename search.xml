@@ -926,6 +926,9 @@ func1.apply(this, [arg1, arg2]);
     <content><![CDATA[<p>总是容易忘记 git 的一些命令和用法，在此记下我重复 google 的，哈哈，比较无序，足够多时再分类。</p>
 <span id="more"></span>
 
+<h1 id="credentials-helper"><a href="#credentials-helper" class="headerlink" title="credentials helper"></a>credentials helper</h1><blockquote>
+<p><a href="https://www.shellhacks.com/git-config-username-password-store-credentials/">Git – Config Username &amp; Password – Store Credentials</a></p>
+</blockquote>
 <h1 id="将文件移除监听队列"><a href="#将文件移除监听队列" class="headerlink" title="将文件移除监听队列"></a>将文件移除监听队列</h1><p>git 中如果文件已被加入跟踪队列，后续添加相应的.gitignore 参数时其相应的改变仍会被监听，采用如下</p>
 <pre><code>git rm --cached XX/xx.x
 </code></pre>
@@ -1433,7 +1436,10 @@ item1, ..., itemX   可选。向数组添加的新项目。
 <p>使用 quit 参数会在主线程处理完当前请求后停止 nginx 线程</p>
 </blockquote>
 <p>每次修改完配置文件后需要重新执行 reload 命令</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在 mac 系统中，相关的几个路径</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><blockquote>
+<p>有时可能会登录一个不熟悉的服务器，需要看下 nginx 配置的位置，可使用 <code>nginx -t</code> 命令查看下位置</p>
+</blockquote>
+<p>在 mac 系统中，相关的几个路径</p>
 <ul>
 <li><code>/usr/local/etc/nginx/nginx.conf</code> （nginx 配置文件路径）</li>
 <li><code>/usr/local/var/www</code> （nginx 服务器默认的根目录）</li>
@@ -2553,5 +2559,43 @@ var modalController =[&quot;dev1&quot;,&quot;dev2&quot;,function(dev1,dev2)&#123
     <content><![CDATA[<p>ts 报错默认使用 vscode locale 语言，这样可能不太容易在 google 中查询报错原因，使用如下命令将报错提示设置为英文</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tsc --locale en</span><br></pre></td></tr></table></figure>
 ]]></content>
+  </entry>
+  <entry>
+    <title>2022前端建设-技术篇</title>
+    <url>/2022/02/14/2022%E5%89%8D%E7%AB%AF%E5%BB%BA%E8%AE%BE-%E6%8A%80%E6%9C%AF%E7%AF%87/</url>
+    <content><![CDATA[<p>方向</p>
+<span id="more"></span>
+
+<p>丰富项目 seed 模版，深入探索模版渲染技术，开发高效脚手架，示例交互项目</p>
+<h2 id="团队建设"><a href="#团队建设" class="headerlink" title="团队建设"></a>团队建设</h2><p>gitteam blog （hexo engine）（掘金，知乎）</p>
+<h2 id="规范建设"><a href="#规范建设" class="headerlink" title="规范建设"></a>规范建设</h2><p>eslint ，Gitlab 规范，CICD 规范，COMMIT 规范<br>css、html、js 规范文档，vscode setting</p>
+<h2 id="技术-amp-质量性能提升"><a href="#技术-amp-质量性能提升" class="headerlink" title="技术&amp;质量性能提升"></a>技术&amp;质量性能提升</h2><p>Vue3 ts 抽象语法树系</p>
+<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><p>打包构建，vite，rollup</p>
+<h2 id="相关项目"><a href="#相关项目" class="headerlink" title="相关项目"></a>相关项目</h2><p>门户，错误监控，性能监控，统计分析</p>
+]]></content>
+      <tags>
+        <tag>summary</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pnpm</title>
+    <url>/2021/12/25/pnpm/</url>
+    <content><![CDATA[<h2 id="pnpm-create"><a href="#pnpm-create" class="headerlink" title="pnpm create"></a>pnpm create</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Usage: pnpm create &lt;name&gt;</span><br><span class="line">       pnpm create &lt;name-without-create&gt;</span><br><span class="line">       pnpm create &lt;@scope&gt;</span><br><span class="line"></span><br><span class="line">Creates a project from a `create-*` starter kit.</span><br><span class="line"></span><br><span class="line">Visit https://pnpm.io/6.x/cli/create <span class="keyword">for</span> documentation about this <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure>
+
+<p>此命令相当于 <code>npm init</code> 命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Create a package.json file</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">npm init [--force|-f|--yes|-y|--scope]</span><br><span class="line">npm init &lt;@scope&gt; (same as `npx &lt;@scope&gt;/create`)</span><br><span class="line">npm init [&lt;@scope&gt;/]&lt;name&gt; (same as `npx [&lt;@scope&gt;/]create-&lt;name&gt;`)</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">[-y|--yes] [-f|--force]</span><br><span class="line">[-w|--workspace &lt;workspace-name&gt; [-w|--workspace &lt;workspace-name&gt; ...]]</span><br><span class="line">[-ws|--workspaces] [--include-workspace-root]</span><br><span class="line"></span><br><span class="line">aliases: create, innit</span><br><span class="line"></span><br><span class="line">Run <span class="string">&quot;npm help init&quot;</span> <span class="keyword">for</span> more info</span><br></pre></td></tr></table></figure>
+
+<h3 id="npx-命令"><a href="#npx-命令" class="headerlink" title="npx 命令"></a>npx 命令</h3><blockquote>
+<p><a href="https://www.ruanyifeng.com/blog/2019/02/npx.html">npx 使用</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>npm</category>
+        <category>pnpm</category>
+      </categories>
+      <tags>
+        <tag>npm</tag>
+        <tag>pnpm</tag>
+      </tags>
   </entry>
 </search>

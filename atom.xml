@@ -6,7 +6,7 @@
   <link href="https://snowyyu.github.io/atom.xml" rel="self"/>
   
   <link href="https://snowyyu.github.io/"/>
-  <updated>2021-10-11T07:27:46.000Z</updated>
+  <updated>2022-02-14T09:59:41.000Z</updated>
   <id>https://snowyyu.github.io/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2022前端建设-技术篇</title>
+    <link href="https://snowyyu.github.io/2022/02/14/2022%E5%89%8D%E7%AB%AF%E5%BB%BA%E8%AE%BE-%E6%8A%80%E6%9C%AF%E7%AF%87/"/>
+    <id>https://snowyyu.github.io/2022/02/14/2022%E5%89%8D%E7%AB%AF%E5%BB%BA%E8%AE%BE-%E6%8A%80%E6%9C%AF%E7%AF%87/</id>
+    <published>2022-02-14T09:59:41.000Z</published>
+    <updated>2022-02-14T09:59:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>方向</p><span id="more"></span><p>丰富项目 seed 模版，深入探索模版渲染技术，开发高效脚手架，示例交互项目</p><h2 id="团队建设"><a href="#团队建设" class="headerlink" title="团队建设"></a>团队建设</h2><p>gitteam blog （hexo engine）（掘金，知乎）</p><h2 id="规范建设"><a href="#规范建设" class="headerlink" title="规范建设"></a>规范建设</h2><p>eslint ，Gitlab 规范，CICD 规范，COMMIT 规范<br>css、html、js 规范文档，vscode setting</p><h2 id="技术-amp-质量性能提升"><a href="#技术-amp-质量性能提升" class="headerlink" title="技术&amp;质量性能提升"></a>技术&amp;质量性能提升</h2><p>Vue3 ts 抽象语法树系</p><h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><p>打包构建，vite，rollup</p><h2 id="相关项目"><a href="#相关项目" class="headerlink" title="相关项目"></a>相关项目</h2><p>门户，错误监控，性能监控，统计分析</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;方向&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="summary" scheme="https://snowyyu.github.io/tags/summary/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pnpm</title>
+    <link href="https://snowyyu.github.io/2021/12/25/pnpm/"/>
+    <id>https://snowyyu.github.io/2021/12/25/pnpm/</id>
+    <published>2021-12-25T03:51:30.000Z</published>
+    <updated>2021-12-25T03:51:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="pnpm-create"><a href="#pnpm-create" class="headerlink" title="pnpm create"></a>pnpm create</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Usage: pnpm create &lt;name&gt;</span><br><span class="line">       pnpm create &lt;name-without-create&gt;</span><br><span class="line">       pnpm create &lt;@scope&gt;</span><br><span class="line"></span><br><span class="line">Creates a project from a `create-*` starter kit.</span><br><span class="line"></span><br><span class="line">Visit https://pnpm.io/6.x/cli/create <span class="keyword">for</span> documentation about this <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure><p>此命令相当于 <code>npm init</code> 命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Create a package.json file</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">npm init [--force|-f|--yes|-y|--scope]</span><br><span class="line">npm init &lt;@scope&gt; (same as `npx &lt;@scope&gt;/create`)</span><br><span class="line">npm init [&lt;@scope&gt;/]&lt;name&gt; (same as `npx [&lt;@scope&gt;/]create-&lt;name&gt;`)</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">[-y|--yes] [-f|--force]</span><br><span class="line">[-w|--workspace &lt;workspace-name&gt; [-w|--workspace &lt;workspace-name&gt; ...]]</span><br><span class="line">[-ws|--workspaces] [--include-workspace-root]</span><br><span class="line"></span><br><span class="line">aliases: create, innit</span><br><span class="line"></span><br><span class="line">Run <span class="string">&quot;npm help init&quot;</span> <span class="keyword">for</span> more info</span><br></pre></td></tr></table></figure><h3 id="npx-命令"><a href="#npx-命令" class="headerlink" title="npx 命令"></a>npx 命令</h3><blockquote><p><a href="https://www.ruanyifeng.com/blog/2019/02/npx.html">npx 使用</a></p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;pnpm-create&quot;&gt;&lt;a href=&quot;#pnpm-create&quot; class=&quot;headerlink&quot; title=&quot;pnpm create&quot;&gt;&lt;/a&gt;pnpm create&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table</summary>
+      
+    
+    
+    
+    <category term="npm" scheme="https://snowyyu.github.io/categories/npm/"/>
+    
+    <category term="pnpm" scheme="https://snowyyu.github.io/categories/npm/pnpm/"/>
+    
+    
+    <category term="npm" scheme="https://snowyyu.github.io/tags/npm/"/>
+    
+    <category term="pnpm" scheme="https://snowyyu.github.io/tags/pnpm/"/>
+    
+  </entry>
   
   <entry>
     <title>TypeScript 使用笔记</title>
@@ -121,9 +168,9 @@
     <link href="https://snowyyu.github.io/2020/10/23/nginx%E7%AC%94%E8%AE%B0/"/>
     <id>https://snowyyu.github.io/2020/10/23/nginx%E7%AC%94%E8%AE%B0/</id>
     <published>2020-10-23T07:09:13.000Z</published>
-    <updated>2021-07-19T07:25:47.265Z</updated>
+    <updated>2020-10-23T07:09:13.000Z</updated>
     
-    <content type="html"><![CDATA[<p>像自己的 git 笔记一样，记录下自己安装以及使用的过程与心得，方便之后的查看</p><span id="more"></span><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用 <strong>brew</strong> 安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure><blockquote><p>正常情况下执行完此命令后是看不到什么输出的 （实际上已经执行成功了）</p></blockquote><p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1gk3p0cgqt2j20g7037t9x.jpg" alt="nginxStart.png"></p><p>启动后可通过如下命令控制服务器的状态</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s signal</span><br></pre></td></tr></table></figure><p><strong>signal</strong>的值可能如下</p><ul><li>stop — fast shutdown</li><li>quit — graceful shutdown</li><li>reload — reloading the configuration file</li><li>reopen — reopening the log files</li></ul><blockquote><p>使用 quit 参数会在主线程处理完当前请求后停止 nginx 线程</p></blockquote><p>每次修改完配置文件后需要重新执行 reload 命令</p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在 mac 系统中，相关的几个路径</p><ul><li><code>/usr/local/etc/nginx/nginx.conf</code> （nginx 配置文件路径）</li><li><code>/usr/local/var/www</code> （nginx 服务器默认的根目录）</li><li><code>/usr/local/Cellar/nginx/1.17.9</code> （nginx 的安装路径）</li><li><code>/usr/local/var/log/nginx/error.log</code> （nginx 默认的日志路径）</li></ul><p><strong>nginx</strong>配置部分是重中之重</p><p>这里举一个例子，下面的配置了服务器的 监听端口，重定向位置，代理服务</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">8089</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  localhost;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   html/web-mobile;                <span class="comment">#入口目录</span></span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /api &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://192.168.0.235:8091;  <span class="comment">#代理的目标服务器</span></span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host $host;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP $remote_addr;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><ul><li><strong>nginx</strong> 有一个主线程和若干个工作线程</li></ul><h2 id="about"><a href="#about" class="headerlink" title="about"></a>about</h2><ul><li><a href="https://nginx.org/en/docs/beginners_guide.html">beginner’s guide</a></li><li><a href="https://blog.imkasen.com/nginx-beginner-guide-zh.html">beginner’s guide 翻译</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>像自己的 git 笔记一样，记录下自己安装以及使用的过程与心得，方便之后的查看</p><span id="more"></span><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用 <strong>brew</strong> 安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure><blockquote><p>正常情况下执行完此命令后是看不到什么输出的 （实际上已经执行成功了）</p></blockquote><p><img src="http://ww1.sinaimg.cn/large/40c136bfgy1gk3p0cgqt2j20g7037t9x.jpg" alt="nginxStart.png"></p><p>启动后可通过如下命令控制服务器的状态</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s signal</span><br></pre></td></tr></table></figure><p><strong>signal</strong>的值可能如下</p><ul><li>stop — fast shutdown</li><li>quit — graceful shutdown</li><li>reload — reloading the configuration file</li><li>reopen — reopening the log files</li></ul><blockquote><p>使用 quit 参数会在主线程处理完当前请求后停止 nginx 线程</p></blockquote><p>每次修改完配置文件后需要重新执行 reload 命令</p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><blockquote><p>有时可能会登录一个不熟悉的服务器，需要看下 nginx 配置的位置，可使用 <code>nginx -t</code> 命令查看下位置</p></blockquote><p>在 mac 系统中，相关的几个路径</p><ul><li><code>/usr/local/etc/nginx/nginx.conf</code> （nginx 配置文件路径）</li><li><code>/usr/local/var/www</code> （nginx 服务器默认的根目录）</li><li><code>/usr/local/Cellar/nginx/1.17.9</code> （nginx 的安装路径）</li><li><code>/usr/local/var/log/nginx/error.log</code> （nginx 默认的日志路径）</li></ul><p><strong>nginx</strong>配置部分是重中之重</p><p>这里举一个例子，下面的配置了服务器的 监听端口，重定向位置，代理服务</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">8089</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  localhost;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   html/web-mobile;                <span class="comment">#入口目录</span></span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /api &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://192.168.0.235:8091;  <span class="comment">#代理的目标服务器</span></span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host $host;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP $remote_addr;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><ul><li><strong>nginx</strong> 有一个主线程和若干个工作线程</li></ul><h2 id="about"><a href="#about" class="headerlink" title="about"></a>about</h2><ul><li><a href="https://nginx.org/en/docs/beginners_guide.html">beginner’s guide</a></li><li><a href="https://blog.imkasen.com/nginx-beginner-guide-zh.html">beginner’s guide 翻译</a></li></ul>]]></content>
     
     
     <summary type="html">&lt;p&gt;像自己的 git 笔记一样，记录下自己安装以及使用的过程与心得，方便之后的查看&lt;/p&gt;</summary>
@@ -395,40 +442,6 @@
     
     
     <category term="angular" scheme="https://snowyyu.github.io/tags/angular/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sublime3主题和BracketHightLighter插件配置</title>
-    <link href="https://snowyyu.github.io/2017/07/12/sublime3%E4%B8%BB%E9%A2%98%E5%92%8CBracketHightLighter%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/"/>
-    <id>https://snowyyu.github.io/2017/07/12/sublime3%E4%B8%BB%E9%A2%98%E5%92%8CBracketHightLighter%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/</id>
-    <published>2017-07-12T03:38:14.000Z</published>
-    <updated>2017-07-21T14:56:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>sublime有很高的配置性，这里说下他的主题部分和插件(BracketHightLighter)的相关配置。</p><span id="more"></span><h1 id="sublime主题"><a href="#sublime主题" class="headerlink" title="sublime主题"></a>sublime主题</h1><p>我的sublime版本为3126</p><p>网上有很多主题，可通过package control来安装，就不说啦</p><h1 id="BracketHightLighter插件配置"><a href="#BracketHightLighter插件配置" class="headerlink" title="BracketHightLighter插件配置"></a>BracketHightLighter插件配置</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装不说了，直接在package control中安装</p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>打开</p><p>Preferences  &gt;  Package Settings  &gt;  BracketHighlighter  &gt;  Bracket Settings</p><p>不同版本的sublime会有些差异，sublime3的话一般配置分为</p><ul><li>默认配置（用户不可更改，以防你改残了）</li><li>用户配置（这部分随便你改，大不了最后直接删掉）</li></ul><p>这个就像css一样，用户配置的部分会覆盖默认的配置</p><p>现在，你看到两栏，左边就是默认配置啦，改不了的，右边就是用户配置，现在空空的向其中添加如下，</p><blockquote><p>其中，根据英文名就可以知道default(默认)，curly(大括号)，round(小括号)，square(方括号)……是分别配置各自的显示信息的啦</p></blockquote><blockquote><p>style 属性就是展示的类型了，默认为下划线(underline)，个人偏好都改为高亮(highlight)</p></blockquote><blockquote><p>color 的配置稍微繁琐，放到下面讲</p></blockquote><pre><code> &#123; &quot;bracket_styles&quot;:     &#123;        &quot;default&quot;: &#123;        &quot;icon&quot;: &quot;dot&quot;,         &quot;color&quot;: &quot;entity.name.class&quot;,         &quot;color&quot;: &quot;brackethighlighter.default&quot;,         &quot;style&quot;: &quot;highlight&quot;         &#125;,         &quot;unmatched&quot;: &#123;        &quot;icon&quot;: &quot;question&quot;,         &quot;color&quot;: &quot;brackethighlighter.unmatched&quot;,         &quot;style&quot;: &quot;highlight&quot;         &#125;,         &quot;curly&quot;: &#123;        &quot;icon&quot;: &quot;curly_bracket&quot;,         &quot;color&quot;: &quot;brackethighlighter.curly&quot;,         &quot;style&quot;: &quot;highlight&quot;         &#125;,         &quot;round&quot;: &#123;        &quot;icon&quot;: &quot;round_bracket&quot;,         &quot;color&quot;: &quot;brackethighlighter.round&quot;,         &quot;style&quot;: &quot;highlight&quot;         &#125;,         &quot;square&quot;: &#123;        &quot;icon&quot;: &quot;square_bracket&quot;,         &quot;color&quot;: &quot;brackethighlighter.square&quot;,         &quot;style&quot;: &quot;highlight&quot;         &#125;,         &quot;angle&quot;: &#123;        &quot;icon&quot;: &quot;angle_bracket&quot;,         &quot;color&quot;: &quot;brackethighlighter.angle&quot;,         &quot;style&quot;: &quot;highlight&quot;         &#125;,         &quot;tag&quot;: &#123;        &quot;icon&quot;: &quot;tag&quot;,         &quot;color&quot;: &quot;brackethighlighter.tag&quot;,         &quot;style&quot;: &quot;highlight&quot;         &#125;,         &quot;single_quote&quot;: &#123;         &quot;icon&quot;: &quot;single_quote&quot;,          &quot;color&quot;: &quot;brackethighlighter.quote&quot;,          &quot;style&quot;: &quot;highlight&quot;         &#125;,         &quot;double_quote&quot;: &#123;        &quot;icon&quot;: &quot;double_quote&quot;,         &quot;color&quot;: &quot;brackethighlighter.quote&quot;,         &quot;style&quot;: &quot;highlight&quot;         &#125;,         &quot;regex&quot;: &#123;        &quot;icon&quot;: &quot;regex&quot;,         &quot;color&quot;: &quot;brackethighlighter.quote&quot;,         &quot;style&quot;: &quot;outline&quot;          &#125;     &#125; &#125;</code></pre><p>BracketHightLighter插件默认是使用下划线的（underline）</p><h2 id="color的配置"><a href="#color的配置" class="headerlink" title="color的配置"></a>color的配置</h2><p>比如其中的</p><pre><code>&quot;curly&quot;: &#123;        &quot;icon&quot;: &quot;curly_bracket&quot;,         &quot;color&quot;: &quot;brackethighlighter.curly&quot;,         &quot;style&quot;: &quot;highlight&quot;         &#125;, </code></pre><p>color属性值为brackethighlighter.curly，这个在哪呢</p><p>首先要找到正在使用的主题,打开Packages文件夹，再打开User  &gt;  Preferences.sublime-settings<br>第一行就是正在使用的主题配置</p><p>之后(Preferences  &gt;  Browse Packages)打开Packages文件夹，User  &gt;   Color Highlighter    &gt;   themes</p><p>我试用的Monokai.tmTheme，打开，向<code>&lt;array&gt;&lt;/array&gt;</code>添加</p><pre><code>    &lt;dict&gt;        &lt;key&gt;name&lt;/key&gt;        &lt;string&gt;Bracket Curly&lt;/string&gt;        &lt;key&gt;scope&lt;/key&gt;        &lt;string&gt;brackethighlighter.curly&lt;/string&gt;        &lt;key&gt;settings&lt;/key&gt;        &lt;dict&gt;            &lt;key&gt;foreground&lt;/key&gt;            &lt;string&gt;#CC99CC&lt;/string&gt;        &lt;/dict&gt;    &lt;/dict&gt;</code></pre><p>保存后就发现花括号高亮颜色就变成粉红色啦，其他配置同理</p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul><li><a href="http://docs.sublimetext.info/en/latest/reference/color_schemes.html">color schemes</a></li><li><a href="https://facelessuser.github.io/BracketHighlighter/customize/#configuring-highlight-style">BracketHighlighter set color</a></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;sublime有很高的配置性，这里说下他的主题部分和插件(BracketHightLighter)的相关配置。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="sublime" scheme="https://snowyyu.github.io/categories/sublime/"/>
-    
-    
-    <category term="sublime" scheme="https://snowyyu.github.io/tags/sublime/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>进击的vue</title>
-    <link href="https://snowyyu.github.io/2017/06/20/%E8%BF%9B%E5%87%BB%E7%9A%84vue/"/>
-    <id>https://snowyyu.github.io/2017/06/20/%E8%BF%9B%E5%87%BB%E7%9A%84vue/</id>
-    <published>2017-06-20T15:36:26.000Z</published>
-    <updated>2017-07-10T13:15:16.000Z</updated>
-    
-    
-    
-    
     
   </entry>
   
