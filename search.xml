@@ -2566,12 +2566,44 @@ var modalController =[&quot;dev1&quot;,&quot;dev2&quot;,function(dev1,dev2)&#123
     <content><![CDATA[<p>方向</p>
 <span id="more"></span>
 
-<p>丰富项目 seed 模版，深入探索模版渲染技术，开发高效脚手架，示例交互项目</p>
-<h2 id="规范建设"><a href="#规范建设" class="headerlink" title="规范建设"></a>规范建设</h2><p>eslint，Gitlab 规范，CICD 规范，COMMIT 规范<br>css、html、js 规范文档，vscode setting</p>
-<h2 id="技术-amp-质量性能提升"><a href="#技术-amp-质量性能提升" class="headerlink" title="技术&amp;质量性能提升"></a>技术&amp;质量性能提升</h2><p>Vue3 ts 抽象语法树 pnpm 微前端 业务组件库</p>
-<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><p>打包构建，vite，rollup</p>
-<h2 id="相关项目"><a href="#相关项目" class="headerlink" title="相关项目"></a>相关项目</h2><p>门户，错误监控，性能监控，统计分析</p>
-<h2 id="团队建设"><a href="#团队建设" class="headerlink" title="团队建设"></a>团队建设</h2><p>分享，code review，gitteam blog （hexo engine）（掘金，知乎）</p>
+<blockquote>
+<p>起点</p>
+</blockquote>
+<ul>
+<li>丰富项目 seed 模版 （深入探索模版渲染技术）</li>
+<li>开发高效脚手架，示例交互项目</li>
+</ul>
+<h2 id="规范建设"><a href="#规范建设" class="headerlink" title="规范建设"></a>规范建设</h2><ul>
+<li>eslint （vue3-essential，ts/recommended …）</li>
+<li>Gitlab 规范 (repo)，COMMIT 规范，CICD 规范</li>
+<li>css、html、js 规范文档，</li>
+<li>vscode setting</li>
+</ul>
+<h2 id="技术-amp-质量性能提升"><a href="#技术-amp-质量性能提升" class="headerlink" title="技术&amp;质量性能提升"></a>技术&amp;质量性能提升</h2><ul>
+<li>Vue3</li>
+<li>typescript 抽象语法树</li>
+<li>pnpm</li>
+<li>微前端</li>
+<li>业务组件库</li>
+</ul>
+<h2 id="工程化"><a href="#工程化" class="headerlink" title="工程化"></a>工程化</h2><ul>
+<li>打包构建</li>
+<li>vite</li>
+<li>rollup</li>
+</ul>
+<h2 id="相关项目"><a href="#相关项目" class="headerlink" title="相关项目"></a>相关项目</h2><ul>
+<li>博客</li>
+<li>门户</li>
+<li>错误监控</li>
+<li>性能监控</li>
+<li>统计分析</li>
+<li>低代码</li>
+</ul>
+<h2 id="团队建设"><a href="#团队建设" class="headerlink" title="团队建设"></a>团队建设</h2><ul>
+<li>分享</li>
+<li>code review</li>
+<li>gitteam blog （hexo engine）（掘金，知乎）</li>
+</ul>
 ]]></content>
       <tags>
         <tag>summary</tag>
