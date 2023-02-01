@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -16,11 +15,12 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"snowyyu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="dream passionately">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"snowyyu.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"بحث...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="dream passionately">
 <meta property="og:type" content="website">
 <meta property="og:title" content="snowyYU">
 <meta property="og:url" content="https://snowyyu.github.io/page/3/index.html">
@@ -44,6 +44,12 @@
 
 
 
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -54,10 +60,10 @@
   <div class="headband"></div>
 
   <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="تشغيل شريط التصفح" role="button">
     </div>
   </div>
 
@@ -72,7 +78,7 @@
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="بحث" role="button">
     </div>
   </div>
 </div>
@@ -83,24 +89,18 @@
 
 
 
-</div>
+</header>
         
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
   <aside class="sidebar">
 
     <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          المحتويات
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          عام
         </li>
       </ul>
 
@@ -111,66 +111,554 @@
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
-          <div class="site-overview">
-            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="snowyYU"
-      src="/images/avatar.gif">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">snowyYU</p>
   <div class="site-description" itemprop="description">dream passionately</div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">42</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">المقالات</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
         <span class="site-state-item-count">17</span>
-        <span class="site-state-item-name">categories</span></a>
+        <span class="site-state-item-name">التصنيفات</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
         <span class="site-state-item-count">35</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-name">الوسوم</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author site-overview-item animated">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/snowyYU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyYU" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/snowyYU" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;snowyYU" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:snowy.yu@foxmail.com" title="E-Mail → mailto:snowy.yu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="mailto:snowy.yu@foxmail.com" title="E-Mail → mailto:snowy.yu@foxmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
-
-
-          </div>
         </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
 
     
-  <div class="back-to-top" role="button" aria-label="Back to top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
+  </aside>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+    </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | snowyYU">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linus 相关命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">نُشر في</span>
+
+      <time title="أُنشأ: 2019-12-06 15:35:29" itemprop="dateCreated datePublished" datetime="2019-12-06T15:35:29+08:00">2019-12-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>需要用到的时候常常忘记，与其每次去Google还不如自己好好做下记录，至少不用去Google了吧，哈哈</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/06/Linus-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/#more" rel="contents">
+                تابع القراءة &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | snowyYU">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/" class="post-title-link" itemprop="url">MongoDB 小记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">نُشر في</span>
+
+      <time title="أُنشأ: 2019-08-27 16:38:37" itemprop="dateCreated datePublished" datetime="2019-08-27T16:38:37+08:00">2019-08-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">في</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DataBase/" itemprop="url" rel="index"><span itemprop="name">DataBase</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>主要是记录下我学习 MongoDB 的过程和遇到的问题，以供后续的查阅和学习，持续改进吧</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/27/MongoDB-%E5%B0%8F%E8%AE%B0/#more" rel="contents">
+                تابع القراءة &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2018/11/05/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0-%E5%8F%A3%E8%AF%AD%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | snowyYU">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/11/05/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0-%E5%8F%A3%E8%AF%AD%E7%AF%87/" class="post-title-link" itemprop="url">英语学习-口语篇</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">نُشر في</span>
+
+      <time title="أُنشأ: 2018-11-05 23:23:45" itemprop="dateCreated datePublished" datetime="2018-11-05T23:23:45+08:00">2018-11-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">في</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/study/" itemprop="url" rel="index"><span itemprop="name">study</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>今年集中学习了一段时间英语，后经我家东贤提醒，应该写写自己学习的心得，供我们以后参考。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/11/05/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0-%E5%8F%A3%E8%AF%AD%E7%AF%87/#more" rel="contents">
+                تابع القراءة &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/08/03/%E6%B5%85%E8%B0%88%E8%87%AA%E5%B7%B1%E5%AF%B9Promise%E7%9A%84%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | snowyYU">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/08/03/%E6%B5%85%E8%B0%88%E8%87%AA%E5%B7%B1%E5%AF%B9Promise%E7%9A%84%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">浅谈自己对Promise的理解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">نُشر في</span>
+
+      <time title="أُنشأ: 2017-08-03 17:54:05" itemprop="dateCreated datePublished" datetime="2017-08-03T17:54:05+08:00">2017-08-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>一直以来虽然写了不少promise，总感觉有点一知半解，现在花些时间整理下。</p>
+<h1 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h1><p>自己最早是从一篇介绍promise的文章看到的，记得文章中说promise可以使代码更整洁，避免陷入重重的回调当中。之后真正写是从angularjs中的$http服务中开始的，嗯，其中的写法很多，我一直用success和error来加载回调函数，现在看起来应该是then和catch的实现(或者是只用then方法即then中含有两个方法参数)，还有bootstrap UI for Angular组件中modal框部分，$modal.open().result返回的便是一个promise对象，在上面写关闭modal框后实现的方法</p>
+<p>等等，现在又接触到angular2的observer了，</p>
+<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="http://liubin.org/promises-book/#promises-overview">promise小小书</a></p>
+</blockquote>
+<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>创建promise对象的流程如下所示。</p>
+<ol>
+<li><p>new Promise(fn) 返回一个promise对象</p>
+</li>
+<li><p>在fn 中指定异步等处理</p>
+</li>
+<li><p>处理结果正常的话，调用resolve(处理结果值)</p>
+</li>
+<li><p>处理结果错误的话，调用reject(Error对象)</p>
+</li>
+</ol>
+<p>举个书上的栗子，一看便懂</p>
+<pre><code>function getURL(URL) &#123;
+    return new Promise(function (resolve, reject) &#123;
+        var req = new XMLHttpRequest();
+        req.open(&#39;GET&#39;, URL, true);
+        req.onload = function () &#123;
+            if (req.status === 200) &#123;
+                resolve(req.responseText);
+            &#125; else &#123;
+                reject(new Error(req.statusText));
+            &#125;
+        &#125;;
+        req.onerror = function () &#123;
+            reject(new Error(req.statusText));
+        &#125;;
+        req.send();
+    &#125;);
+&#125;
+// 运行示例
+var URL = &quot;http://httpbin.org/get&quot;;
+getURL(URL).then(function onFulfilled(value)&#123;
+    console.log(value);
+&#125;).catch(function onRejected(error)&#123;
+    console.error(error);
+&#125;);
+</code></pre>
+<p>首先，返回resolve就代表着接下来then的回调函数会调用，(也意味着catch中的回调函数不会执行了)</p>
+<p>这有个angular2的例子，是个resolve很好的应用</p>
+<pre><code>//返回的promise中的泛型，为返回data的格式
+queryLoans(query:any):Promise&lt;&#123;count:number,items:Loan[]&#125;&gt;&#123;
+    return this.myHttp.get(&#123;
+      api:this.myHttp.api.loanList,
+      query:query
+    &#125;).toPromise()
+      .then((res)=&gt;&#123;
+        let data=&#123;
+          count:0,
+          items:[]
+        &#125;;
+        if(res.ok)&#123;
+          console.log(res);
+          let result=res.json();
+          if(result.status===200)&#123;
+            data.count=result.body.paginator.totalCount;
+            for(let l of result.body.records)&#123;
+              let loan=new Loan();
+              loan.borrowApplyId=l.borrowApplyId;
+              loan.memberId=l.memberId;
+              loan.companyName=l.companyName;
+              loan.applyAmount=parseFloat(l.applyAmount);
+              loan.approveAmount=parseFloat(l.approveAmount);
+              loan.productId=l.productId;
+              loan.borrowHowLong=l.borrowHowlong;
+              loan.repaymentWay=l.repaymentWay;
+              loan.cardId=l.cardId;
+              loan.cardNo=l.cardNo;
+              loan.isContract=!!parseFloat(l.isContract);
+              loan.status=parseFloat(l.status);
+              loan.createTime=l.createTime;
+              loan.auditOneTime=l.auditOneTime;
+              loan.auditOneBy=l.auditOneBy;
+              data.items.push(loan);
+            &#125;
+          &#125;
+        &#125;
+        return Promise.resolve(data);
+      &#125;);
+&#125;
+</code></pre>
+<p>angular2使用typescript来写的，ts可以说是强类型了，这个方法是用来获取接口的数据，并对接收的数据进行了一定的格式化，最后把格式化后的数据放在promise中的resolve中返回，angular2中这种和数据打交道的方法一般都放置在服务中，组件作为服务的最大消费者来调用它。</p>
+<h2 id="Promise的状态"><a href="#Promise的状态" class="headerlink" title="Promise的状态"></a>Promise的状态</h2><p>实例化的promise对象只有三种状态，成功，失败，初始化状态</p>
+<ul>
+<li><p>“has-resolution” - Fulfilled<br>resolve(成功)时。此时会调用 onFulfilled</p>
+</li>
+<li><p>“has-rejection” - Rejected<br>reject(失败)时。此时会调用 onRejected</p>
+</li>
+<li><p>“unresolved” - Pending<br>既不是resolve也不是reject的状态。也就是promise对象刚被创建后的初始化状态等</p>
+</li>
+</ul>
+<h2 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h2><p>Promise.all 接收一个 promise对象的数组作为参数，当这个数组里的所有promise对象全部变为resolve或reject状态的时候，它才会去调用 .then 方法。</p>
+<pre><code>Promise.all([promise1,promise2],...).then(res=&gt;&#123;&#125;)
+</code></pre>
+<p>res接收各个结果组成的数组，</p>
+<p>个人觉得这个会应用于接口间顺序的请求渲染，比如编辑页面的初始渲染可能会依赖于一些字典接口查询后的结果。或者对多个接口数据请求后的统一处理。</p>
+<h2 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h2><p>Promise.race 也同样接收一个promise对象的数组作为参数，区别是Promise.race只要有一个promise对象进入 FulFilled 或者 Rejected 状态的话，就会继续进行后面的处理</p>
+<blockquote>
+<p>这样的话，之后的then或catch接收的参数就只有最快进入FulFilled 或 Rejected 状态的promise返回的数据了</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/07/21/%E8%BF%9B%E5%87%BB%E7%9A%84angular2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="snowyYU">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | snowyYU">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/07/21/%E8%BF%9B%E5%87%BB%E7%9A%84angular2/" class="post-title-link" itemprop="url">进击的angular2</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">نُشر في</span>
+
+      <time title="أُنشأ: 2017-07-21 23:03:52" itemprop="dateCreated datePublished" datetime="2017-07-21T23:03:52+08:00">2017-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">في</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/angular/" itemprop="url" rel="index"><span itemprop="name">angular</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>记录下</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/07/21/%E8%BF%9B%E5%87%BB%E7%9A%84angular2/#more" rel="contents">
+                تابع القراءة &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -185,11 +673,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="snowyYU">
-      <meta itemprop="description" content="dream passionately">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | snowyYU">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -202,22 +695,15 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">نُشر في</span>
 
-      <time title="Created: 2017-07-12 11:38:14" itemprop="dateCreated datePublished" datetime="2017-07-12T11:38:14+08:00">2017-07-12</time>
+      <time title="أُنشأ: 2017-07-12 11:38:14" itemprop="dateCreated datePublished" datetime="2017-07-12T11:38:14+08:00">2017-07-12</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2017-07-21 22:56:56" itemprop="dateModified" datetime="2017-07-21T22:56:56+08:00">2017-07-21</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">In</span>
+      <span class="post-meta-item-text">في</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/sublime/" itemprop="url" rel="index"><span itemprop="name">sublime</span></a>
         </span>
@@ -237,7 +723,7 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/07/12/sublime3%E4%B8%BB%E9%A2%98%E5%92%8CBracketHightLighter%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/#more" rel="contents">
-                Read more &raquo;
+                تابع القراءة &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -272,11 +758,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="snowyYU">
-      <meta itemprop="description" content="dream passionately">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | snowyYU">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -289,17 +780,10 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">نُشر في</span>
 
-      <time title="Created: 2017-06-20 23:36:26" itemprop="dateCreated datePublished" datetime="2017-06-20T23:36:26+08:00">2017-06-20</time>
+      <time title="أُنشأ: 2017-06-20 23:36:26" itemprop="dateCreated datePublished" datetime="2017-06-20T23:36:26+08:00">2017-06-20</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2017-07-10 21:15:16" itemprop="dateModified" datetime="2017-07-10T21:15:16+08:00">2017-07-10</time>
-      </span>
 
   
 </div>
@@ -342,11 +826,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="snowyYU">
-      <meta itemprop="description" content="dream passionately">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | snowyYU">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -359,22 +848,15 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">نُشر في</span>
 
-      <time title="Created: 2017-06-20 19:51:50" itemprop="dateCreated datePublished" datetime="2017-06-20T19:51:50+08:00">2017-06-20</time>
+      <time title="أُنشأ: 2017-06-20 19:51:50" itemprop="dateCreated datePublished" datetime="2017-06-20T19:51:50+08:00">2017-06-20</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-04-07 17:58:17" itemprop="dateModified" datetime="2020-04-07T17:58:17+08:00">2020-04-07</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">In</span>
+      <span class="post-meta-item-text">في</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
         </span>
@@ -491,7 +973,7 @@ console.log(colors2);   //[&quot;red&quot;,&quot;yellow&quot;,&quot;blue&quot;,&
 <blockquote>
 <p>注意参数可以为负值</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">&quot;red&quot;</span>,<span class="string">&quot;yellow&quot;</span>,<span class="string">&quot;blue&quot;</span>,<span class="string">&quot;green&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> colorss = colors.slice() <span class="comment">// 相当于colors.slice(0)</span></span><br><span class="line"><span class="keyword">var</span> colors3 = colors.slice(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> colors4 = colors.slice(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">var</span> colors5 = colors.slice(-<span class="number">3</span>,-<span class="number">2</span>);  <span class="comment">//colors.length-3==1</span></span><br><span class="line"><span class="built_in">console</span>.log(colors3);   <span class="comment">//[&quot;yellow&quot;, &quot;blue&quot;, &quot;green&quot;]</span></span><br><span class="line"><span class="built_in">console</span>.log(colors4);   <span class="comment">//[&quot;yellow&quot;]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">&quot;red&quot;</span>,<span class="string">&quot;yellow&quot;</span>,<span class="string">&quot;blue&quot;</span>,<span class="string">&quot;green&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> colorss = colors.<span class="title function_">slice</span>() <span class="comment">// 相当于colors.slice(0)</span></span><br><span class="line"><span class="keyword">var</span> colors3 = colors.<span class="title function_">slice</span>(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> colors4 = colors.<span class="title function_">slice</span>(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">var</span> colors5 = colors.<span class="title function_">slice</span>(-<span class="number">3</span>,-<span class="number">2</span>);  <span class="comment">//colors.length-3==1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(colors3);   <span class="comment">//[&quot;yellow&quot;, &quot;blue&quot;, &quot;green&quot;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(colors4);   <span class="comment">//[&quot;yellow&quot;]</span></span><br></pre></td></tr></table></figure>
 
 
 <blockquote>
@@ -564,11 +1046,16 @@ item1, ..., itemX   可选。向数组添加的新项目。
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="snowyYU">
-      <meta itemprop="description" content="dream passionately">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | snowyYU">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -581,22 +1068,15 @@ item1, ..., itemX   可选。向数组添加的新项目。
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">نُشر في</span>
 
-      <time title="Created: 2017-05-23 11:41:08" itemprop="dateCreated datePublished" datetime="2017-05-23T11:41:08+08:00">2017-05-23</time>
+      <time title="أُنشأ: 2017-05-23 11:41:08" itemprop="dateCreated datePublished" datetime="2017-05-23T11:41:08+08:00">2017-05-23</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2017-06-13 21:54:39" itemprop="dateModified" datetime="2017-06-13T21:54:39+08:00">2017-06-13</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">In</span>
+      <span class="post-meta-item-text">في</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/%E6%8F%92%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">插件</span></a>
         </span>
@@ -914,11 +1394,16 @@ item1, ..., itemX   可选。向数组添加的新项目。
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="snowyYU">
-      <meta itemprop="description" content="dream passionately">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="snowyYU">
+      <meta itemprop="description" content="dream passionately">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | snowyYU">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -931,22 +1416,15 @@ item1, ..., itemX   可选。向数组添加的新项目。
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">نُشر في</span>
 
-      <time title="Created: 2017-05-12 09:17:07" itemprop="dateCreated datePublished" datetime="2017-05-12T09:17:07+08:00">2017-05-12</time>
+      <time title="أُنشأ: 2017-05-12 09:17:07" itemprop="dateCreated datePublished" datetime="2017-05-12T09:17:07+08:00">2017-05-12</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2017-06-10 22:32:11" itemprop="dateModified" datetime="2017-06-10T22:32:11+08:00">2017-06-10</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">In</span>
+      <span class="post-meta-item-text">في</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
         </span>
@@ -989,614 +1467,8 @@ item1, ..., itemX   可选。向数组添加的新项目。
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/05/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="snowyYU">
-      <meta itemprop="description" content="dream passionately">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="snowyYU">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/05/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">浏览器渲染过程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-05-11 17:31:00" itemprop="dateCreated datePublished" datetime="2017-05-11T17:31:00+08:00">2017-05-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2020-02-27 17:34:15" itemprop="dateModified" datetime="2020-02-27T17:34:15+08:00">2020-02-27</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/browser/" itemprop="url" rel="index"><span itemprop="name">browser</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>暂时只是大概读了一遍，先记下来</p>
-<h1 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h1><p>自上而下</p>
-<ul>
-<li>应用层</li>
-<li>传输层</li>
-<li>网络层</li>
-<li>链路层</li>
-<li>物理层</li>
-</ul>
-<p>前四层构成TCP/IP协议族，之所以分层，我觉得可以理解为像前端的模块化，易于管理，改动。实际上设计也变得简单，各层只需考虑自己分内的事</p>
-<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层决定了向用户提供应用服务时通信的活动。</p>
-<blockquote>
-<p>包含FTP，DNS，HTTP</p>
-</blockquote>
-<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。</p>
-<blockquote>
-<p>包含TCP，UDP(用户数据报协议)</p>
-</blockquote>
-<h2 id="网络层-网络互连层"><a href="#网络层-网络互连层" class="headerlink" title="网络层(网络互连层)"></a>网络层(网络互连层)</h2><p>网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数据单位。该层规定了通过怎样的路径（所谓的传输路线）到达对方计算机，并把数据包传送给对方。</p>
-<blockquote>
-<p>IP</p>
-</blockquote>
-<h2 id="链路层-数据链路层-网络接口层"><a href="#链路层-数据链路层-网络接口层" class="headerlink" title="链路层(数据链路层)(网络接口层)"></a>链路层(数据链路层)(网络接口层)</h2><p>用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC（Network Interface Card，网络适配器，即网卡），及光纤等物理可见部分（还包括连接器等一切传输媒介）。硬件上的范畴均在链路层的作用范围之内。</p>
-<h1 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h1><p>发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后，回传一个带有 SYN/ACK 标志的数据包以示传达确认信息。最后，发送端再回传一个带 ACK 标志的数据包，代表“握手”结束。 若在握手过程中某个阶段莫名中断，TCP 协议会再次以相同的顺序发送相同的数据包。</p>
-<h1 id="http"><a href="#http" class="headerlink" title="http"></a>http</h1><h2 id="职责"><a href="#职责" class="headerlink" title="职责"></a>职责</h2><p>生成针对目标服务器的HTTP请求报文</p>
-<h1 id="从输入-URL-到页面加载完成的过程中都发生了什么事情？"><a href="#从输入-URL-到页面加载完成的过程中都发生了什么事情？" class="headerlink" title="从输入 URL 到页面加载完成的过程中都发生了什么事情？"></a>从输入 URL 到页面加载完成的过程中都发生了什么事情？</h1><ul>
-<li>输入URL </li>
-<li>发起请求：URL解析/DNS解析  </li>
-<li>网络连接：三次握手  </li>
-<li>服务器响应请求：返回数据  </li>
-<li>客户端接收响应：浏览器加载/渲染页面</li>
-</ul>
-<h1 id="两个引擎"><a href="#两个引擎" class="headerlink" title="两个引擎"></a>两个引擎</h1><p>浏览器两个引擎</p>
-<ol>
-<li><p>渲染引擎</p>
-<blockquote>
-<p>常称为浏览器的内核，webkit，gecko，persto(opera)</p>
-</blockquote>
-</li>
-<li><p>js引擎</p>
-</li>
-</ol>
-<h1 id="两个树"><a href="#两个树" class="headerlink" title="两个树"></a>两个树</h1><h1 id="遇到的一些问题和解决办法"><a href="#遇到的一些问题和解决办法" class="headerlink" title="遇到的一些问题和解决办法"></a>遇到的一些问题和解决办法</h1><h2 id="Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received"><a href="#Unchecked-runtime-lastError-The-message-port-closed-before-a-response-was-received" class="headerlink" title="Unchecked runtime.lastError: The message port closed before a response was received."></a>Unchecked runtime.lastError: The message port closed before a response was received.</h2><p>调试工具中报如上的错误，查阅资料得知是chrome某个插件报的错，自己一一验证，发祥是迅雷下载插件这个毒瘤，禁用可消除如上的报错</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://coolshell.cn/articles/9666.html">浏览器的渲染原理简介</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/e141d1543143">简书，浏览器加载解析渲染</a></p>
-</blockquote>
-<blockquote>
-<p>图解http</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/05/10/angular%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="snowyYU">
-      <meta itemprop="description" content="dream passionately">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="snowyYU">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/05/10/angular%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">angular相关问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-05-10 19:15:53" itemprop="dateCreated datePublished" datetime="2017-05-10T19:15:53+08:00">2017-05-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2017-06-11 23:06:11" itemprop="dateModified" datetime="2017-06-11T23:06:11+08:00">2017-06-11</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/angular/" itemprop="url" rel="index"><span itemprop="name">angular</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>整理一些angular相关的问题，多了再整理</p>
-<h1 id="angular-的数据绑定采用什么机制"><a href="#angular-的数据绑定采用什么机制" class="headerlink" title="angular 的数据绑定采用什么机制"></a>angular 的数据绑定采用什么机制</h1><p>脏检查机制。</p>
-<p>双向数据绑定是 AngularJS 的核心机制之一。当 view 中有任何数据变化时，会更新到 model ，当 model 中数据有变化时，view 也会同步更新，显然，这需要一个监控。</p>
-<p>原理就是，Angular 在 scope 模型上设置了一个 监听队列，用来监听数据变化并更新 view 。每次绑定一个东西到 view 上时 AngularJS 就会往 $watch 队列里插入一条 $watch，用来检测它监视的 model 里是否有变化的东西。当浏览器接收到可以被 angular context 处理的事件时，$digest 循环就会触发，遍历所有的 $watch，最后更新 dom。</p>
-<p>举个栗子</p>
-<pre><code>&lt;button ng-click=&quot;val=val+1&quot;&gt;increase 1&lt;/button&gt;
-</code></pre>
-<p>click 时会产生一次更新的操作（至少触发两次 $digest 循环）</p>
-<p>按下按钮<br>浏览器接收到一个事件，进入到 angular context<br>$digest 循环开始执行，查询每个 $watch 是否变化<br>由于监视 $scope.val 的 $watch 报告了变化，因此强制再执行一次 $digest 循环<br>新的 $digest 循环未检测到变化<br>浏览器拿回控制器，更新 $scope.val 新值对应的 dom<br>$digest 循环的上限是 10 次（超过 10次后抛出一个异常，防止无限循环）。</p>
-<blockquote>
-<p>自己感觉吧，绑定在$scope上的变量都会被监听，有变化时会刷新整个$scope上的队列。</p>
-</blockquote>
-<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><ol>
-<li><a target="_blank" rel="noopener" href="https://docs.angularjs.org/misc/faq">官网FAQ</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/36040694">知乎-如何衡量一个人的angular水平</a></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/05/10/javascript%E4%BD%9C%E7%94%A8%E5%9F%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="snowyYU">
-      <meta itemprop="description" content="dream passionately">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="snowyYU">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/05/10/javascript%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="post-title-link" itemprop="url">javascript作用域</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-05-10 18:50:19" itemprop="dateCreated datePublished" datetime="2017-05-10T18:50:19+08:00">2017-05-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2017-05-19 22:15:08" itemprop="dateModified" datetime="2017-05-19T22:15:08+08:00">2017-05-19</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><ol>
-<li><strong>执行环境</strong>(execution context,有时也叫“环境”,“执行上下文”,“”,“”)</li>
-<li><strong>变量对象</strong>(variable object)</li>
-<li><strong>活动对象</strong>(activation object)</li>
-</ol>
-<h1 id="执行环境和作用域"><a href="#执行环境和作用域" class="headerlink" title="执行环境和作用域"></a>执行环境和作用域</h1><p><strong>执行环境</strong>很重要，执行环境定义了变量或函数有权访问的其他数据(难道指的就是初始化的作用域链？),决定论它们各自的行为。每个执行环境都有一个与之关联的 <strong>变量对象</strong>(包含了环境中定义的所有变量和函数)(难道执行环境只包含了一个标识符指针列表？)，虽然我们的代码无法访问这个对象，但解析器在数据处理时会在后台使用它</p>
-<p>全局执行环境是最外围的执行环境，在Web浏览器中，全局执行环节被认为是window对象</p>
-<p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
-<blockquote>
-<p>也就是说这个栈一直存在，和全局执行环境一样关闭网页时才被销毁</p>
-</blockquote>
-<p>当代码在一个环境中执行时，会创建变量对象的一个 <strong>作用域链</strong>(scope chain)。作用域链的用途，是保证对执行环境有权访问的所有变量和函数有序的访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动对象作为变量对象，活动对象在开始时只包含一个变量，即arguments对象(这个对象在全局环境中是不存在的)。作用域链中的下一个变量对象来自包含(外部)环境，而再下个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
-<blockquote>
-<p>作用域链存放在哪</p>
-</blockquote>
-<p>以上大部分来自js高程这本书，下面开始图解</p>
-<h1 id="图解过程"><a href="#图解过程" class="headerlink" title="图解过程"></a>图解过程</h1><h2 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h2><pre><code>//myScript.js 
-&quot;use strict&quot;    
-var a=1;
-var b=2; 
-</code></pre>
-<p>如图，开始时，创建全局执行环境并被推入执行环境栈<br><img src="http://i.imgur.com/FcKggu2.png" alt="p1"></p>
-<h2 id="step2"><a href="#step2" class="headerlink" title="step2"></a>step2</h2><pre><code>//myScript.js 
-&quot;use strict&quot;    
-var a=1;
-var b=2; 
-function foo()&#123;
-    var c=3;
-    var d=4;
-    console.log(c+d);
-&#125;
-</code></pre>
-<p>执行至<code>function foo()&#123;&#125;</code>也就是函数创建时，food的标识符(identifier)被加到当前(栗子中是全局变量对象)中,并且这个标识符引用了一个函数对象，函数对象中不仅包含了函数的源代码等还有[[scope]],[[Scope]]属性中保存了一条用来初始化作用域链，其指向就是当前的变量对象(全局变量对象)</p>
-<blockquote>
-<p>注意此时并没创建函数相应的执行环境<br><img src="http://i.imgur.com/GGGcGON.png" alt="p2"></p>
-</blockquote>
-<h2 id="step3"><a href="#step3" class="headerlink" title="step3"></a>step3</h2><pre><code>//myScript.js 
-&quot;use strict&quot;    
-var a=1;
-var b=2; 
-function foo()&#123;
-    var c=3;
-    var d=4;
-    console.log(c+d);
-&#125;;
-foo();
-</code></pre>
-<p>执行至<code>foo()</code>,函数被调用，产生相应的执行环境，之后被推入执行环境栈顶，</p>
-<blockquote>
-<p>此时产生的执行环境中的作用域链由之前函数定义时的[[scope]]而来，作用链的前端为foo的变量对象，由于这个环境是函数，创建活动对象并将其作为变量对象<br><img src="http://i.imgur.com/ocIbFzQ.png" alt="p3"></p>
-</blockquote>
-<h2 id="step4"><a href="#step4" class="headerlink" title="step4"></a>step4</h2><p>调用foo()结束后，其执行环境会被弹出执行栈，<br><img src="http://i.imgur.com/gDcXp4r.png" alt="p4"></p>
-<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>1.作用域链是本质上是一个指向变量对象的指针列表，它只是引用但不实际包含变量对象。<br>2.AO中包含了函数的形参、arguments对象、this对象、以及局部变量和内部函数的定义，然后AO会被推入作用域链的顶端。</p>
-<blockquote>
-<p>感觉AO和VO里的内容差不多</p>
-</blockquote>
-<h1 id="EC和VO的产生过程"><a href="#EC和VO的产生过程" class="headerlink" title="EC和VO的产生过程"></a>EC和VO的产生过程</h1><p>当函数被调用时进入EC的产生阶段</p>
-<h1 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/4881610a8c24">简书</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/jacksplwxy/p/6725850.html">偶尔看到的个人挺赞同的</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/jacksplwxy/p/6725850.html">执行环境、变量对象、活动对象和作用域链</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/dwqs/blog/issues/18">皮卡丘的讲解</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004676747">segmentfault作用域javascript1</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000008614579">segmentfault作用域javascript2</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000000533094">segmentfault作用域javascript3</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009247123">讲了执行环境和变量对象的创建和执行过程，很有用</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/u010425776/article/details/53557942">作用域</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/05/08/javascript%E4%B8%ADthis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="snowyYU">
-      <meta itemprop="description" content="dream passionately">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="snowyYU">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/05/08/javascript%E4%B8%ADthis/" class="post-title-link" itemprop="url">javascript中this</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-05-08 20:58:06" itemprop="dateCreated datePublished" datetime="2017-05-08T20:58:06+08:00">2017-05-08</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2017-06-10 22:06:49" itemprop="dateModified" datetime="2017-06-10T22:06:49+08:00">2017-06-10</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>javascript中的this接触很多，但一直是模模糊糊的，在这里整理下</p>
-<h1 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h1><p>与其他语言相比，函数的 this 关键字在JavaScript中的行为略有不同。它在严格模式和非严格模式之间也有一些区别。</p>
-<p>读了廖雪峰老师的文章感觉文中所说的调用对象就是指执行环境，不知道可不可以这样理解</p>
-<p>当一个函数被调用时，会创建一个 __执行环境(execution context)__及相应的作用域链，自动获取两个特殊变量：this和arguments，然后使用arguments和其他命名参数的值来初始化函数的 **活动对象(activation object)**，</p>
-<p><code>(function()&#123;&#125;())</code>立即执行函数</p>
-<p>构造函数模式创建对象时，会经历以下4个步骤</p>
-<ol>
-<li>创建一个新对象</li>
-<li>见构造函数的作用域赋给新对象（因此this就指向了这个新对象）</li>
-<li>执行构造函数中的代码（为这个对象添加属性）</li>
-<li>返回新对象</li>
-</ol>
-<h1 id="this-指向"><a href="#this-指向" class="headerlink" title="this 指向"></a>this 指向</h1><p>this总是指向调用函数的那个对象,在运行时基于函数的执行环境绑定的</p>
-<h2 id="纯函数调用"><a href="#纯函数调用" class="headerlink" title="纯函数调用"></a>纯函数调用</h2><p>属于全局调用，this代表全局对象Global</p>
-<pre><code>function foo()&#123;
-    console.log(this);
-&#125;;
-foo(); //Window
-</code></pre>
-<h2 id="作为对象方法的调用"><a href="#作为对象方法的调用" class="headerlink" title="作为对象方法的调用"></a>作为对象方法的调用</h2><p>this指向调用的函数</p>
-<h2 id="作为构造函数调用"><a href="#作为构造函数调用" class="headerlink" title="作为构造函数调用"></a>作为构造函数调用</h2><p>this 指向当前实例对象</p>
-<h2 id="apply-amp-amp-call"><a href="#apply-amp-amp-call" class="headerlink" title="apply &amp;&amp; call"></a>apply &amp;&amp; call</h2><p>apply()和call()作为函数对象的方法，可以改变函数的执行环境(调用对象)<br>它们的第一个参数是个对象，即作为函数内的this。</p>
-<pre><code>function foo()&#123;
-    console.log(this);
-&#125;
-foo.call(1);  //1
-foo.call(&#39;a&#39;);  //a
-foo.call(true);  //true
-foo.call(&#123;type:object&#125;);  //[object Object]
-</code></pre>
-<p>如上，他们的参数作为函数内的this输出</p>
-<p>需要注意的是，传null或undefined时，将是JS执行环境的全局变量。浏览器中是window,其他环境，如node则是global。</p>
-<pre><code>fun.call(null);  //window or global
-fun.call(undefined);  //window or global
-</code></pre>
-<p>apply()和call()唯一的区别是参数不一样，apply的第二个参数必须传入数组。<br>如 </p>
-<pre><code>func1.call(this, arg1, arg2);
-func1.apply(this, [arg1, arg2]);
-</code></pre>
-<h3 id="适用条件"><a href="#适用条件" class="headerlink" title="适用条件"></a>适用条件</h3><p>js中函数的参数不固定，当参数是明确知道数量时，用 call，而不确定的时候，用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个 __类数组__来便利所有的参数。</p>
-<h3 id="小小结"><a href="#小小结" class="headerlink" title="小小结"></a>小小结</h3><ol>
-<li>apply() 的第一个参数是对象，第二个参数是数组，作为参数列表。</li>
-<li></li>
-</ol>
-<h1 id="从ECMAScript规范谈this"><a href="#从ECMAScript规范谈this" class="headerlink" title="从ECMAScript规范谈this"></a>从ECMAScript规范谈this</h1><p>上面说的this的指向很偏应用的，倒是像经验上的总结。具体还是要看规范的，这部分打算之后再好好写写</p>
-<blockquote>
-<p>参考:<a target="_blank" rel="noopener" href="https://github.com/mqyqingfeng/Blog/issues/7">JavaScript深入之从ECMAScript规范解读this</a></p>
-</blockquote>
-<h1 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/snandy/archive/2012/03/01/2373243.html">call和apply</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://snowyyu.github.io/2017/05/05/eslint%E5%88%9D%E6%B6%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="snowyYU">
-      <meta itemprop="description" content="dream passionately">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="snowyYU">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/05/05/eslint%E5%88%9D%E6%B6%89/" class="post-title-link" itemprop="url">eslint初涉</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-05-05 21:00:31" itemprop="dateCreated datePublished" datetime="2017-05-05T21:00:31+08:00">2017-05-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2017-05-08 23:50:03" itemprop="dateModified" datetime="2017-05-08T23:50:03+08:00">2017-05-08</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/eslint/" itemprop="url" rel="index"><span itemprop="name">eslint</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>便于养成良好的代码习惯和规范性，开始学习eslint,还有sublime相应的插件安装</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/05/05/eslint%E5%88%9D%E6%B6%89/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" title="الصفحة السابقة" aria-label="الصفحة السابقة" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="الصفحة التالية" aria-label="الصفحة التالية" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1608,20 +1480,37 @@ func1.apply(this, [arg1, arg2]);
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">snowyYU</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
     </div>
   </footer>
 
   
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
